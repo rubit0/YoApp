@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{0C4A1F2A-F174-496E-B9A4-8A90B763D150}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{49DFC595-40CB-4C12-954A-49F09BA75243}"
+	ProjectSection(SolutionItems) = preProject
+		global.json = global.json
+	EndProjectSection
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "YoApp.Backend", "src\YoApp.Backend\YoApp.Backend.xproj", "{005C8836-0197-4A0A-B5B7-A6916FA4826D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{005C8836-0197-4A0A-B5B7-A6916FA4826D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{005C8836-0197-4A0A-B5B7-A6916FA4826D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{005C8836-0197-4A0A-B5B7-A6916FA4826D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{005C8836-0197-4A0A-B5B7-A6916FA4826D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{005C8836-0197-4A0A-B5B7-A6916FA4826D} = {0C4A1F2A-F174-496E-B9A4-8A90B763D150}
+	EndGlobalSection
+EndGlobal
