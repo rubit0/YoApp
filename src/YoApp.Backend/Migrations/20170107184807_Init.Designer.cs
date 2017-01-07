@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using YoApp.Backend.Data;
+using YoApp.Backend.Data.EF;
 
 namespace YoApp.Backend.Migrations
 {

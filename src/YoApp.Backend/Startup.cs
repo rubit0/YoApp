@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -11,6 +7,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using YoApp.Backend.Data;
+using YoApp.Backend.Data.EF;
+using YoApp.Backend.Data.EF.Repositories;
+using YoApp.Backend.Data.Repositories;
 using YoApp.Backend.Models;
 
 namespace YoApp.Backend
@@ -56,6 +55,10 @@ namespace YoApp.Backend
 
             // Add framework services.
             services.AddMvc();
+
+            //IoC
+            services.AddTransient<IUserRepository, UserRepository>();
+            services.AddTransient<IUnitOfWork, UnitOfWork>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
