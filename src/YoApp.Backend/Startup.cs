@@ -11,6 +11,8 @@ using YoApp.Backend.Data.EF;
 using YoApp.Backend.Data.EF.Repositories;
 using YoApp.Backend.Data.Repositories;
 using YoApp.Backend.Models;
+using YoApp.Backend.Services;
+using YoApp.Backend.Services.Interfaces;
 
 namespace YoApp.Backend
 {
@@ -59,6 +61,7 @@ namespace YoApp.Backend
             //IoC
             services.AddTransient<IUserRepository, UserRepository>();
             services.AddTransient<IUnitOfWork, UnitOfWork>();
+            services.AddTransient<IMessageSender, TwilioMessageSender>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

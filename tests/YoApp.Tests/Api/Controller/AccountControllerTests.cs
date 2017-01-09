@@ -42,7 +42,7 @@ namespace YoApp.Tests.Api.Controller
         }
 
         [Fact]
-        public void InitialUserCreationForm_OnTakenPhoneNumber_ShouldReturnOk()
+        public void InitialUserCreationForm_OnUntakenPhoneNumber_ShouldReturnOk()
         {
             var form = new InitialUserCreationForm
             {
