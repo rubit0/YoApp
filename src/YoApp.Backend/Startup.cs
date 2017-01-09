@@ -59,9 +59,11 @@ namespace YoApp.Backend
             services.AddMvc();
 
             //IoC
-            services.AddTransient<IUserRepository, UserRepository>();
-            services.AddTransient<IUnitOfWork, UnitOfWork>();
-            services.AddTransient<IMessageSender, TwilioMessageSender>();
+            services.AddSingleton<ILoggerFactory, LoggerFactory>();
+            services.AddSingleton(typeof(ILogger<>), typeof(Logger<>));
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddSingleton<IMessageSender, TwilioMessageSender>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
