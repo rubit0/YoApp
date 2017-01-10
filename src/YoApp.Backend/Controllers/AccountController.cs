@@ -33,13 +33,12 @@ namespace YoApp.Backend.Controllers
             if (!ModelState.IsValid)
                 return BadRequest();
 
-            if (_unitOfWork.UserRepository.IsPhoneNumberTaken(form.PhoneNumber))
+            if (_unitOfWork.UserRepository.IsPhoneNumberTaken(form.GetValidPhoneNumber()))
                 return BadRequest("Phonenumber already taken");
 
-            _logger.LogInformation($"The PhoneNumber [{form.PhoneNumber}] is requesting an setup code");
+            _logger.LogInformation($"The PhoneNumber [{form.GetValidPhoneNumber()}] is requesting an setup code");
 
-            var number = $"+{form.CountryCode}{form.PhoneNumber}";
-            await _messageSender.SendMessageAsync(number, "Hello from YoApp!");
+            await _messageSender.SendMessageAsync(form.GetValidPhoneNumber(), "Hello from YoApp!");
 
             return Ok();
         }

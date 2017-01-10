@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using Moq;
 using Xunit;
 using YoApp.Backend.Controllers;
@@ -7,51 +8,53 @@ using YoApp.Backend.Data;
 using YoApp.Backend.Data.EF;
 using YoApp.Backend.Data.Repositories;
 using YoApp.Backend.DataObjects.Account;
+using YoApp.Backend.Services.Interfaces;
 
 
 namespace YoApp.Tests.Api.Controller
 {
     public class AccountControllerTests
     {
-        private AccountController _accountController;
+        private ILogger<AccountController> _logger;
 
         public AccountControllerTests()
         {
-            var mockUserRepo = new Mock<IUserRepository>();
-            mockUserRepo.Setup(r => r.IsPhoneNumberTaken("123456")).Returns(true);
-            mockUserRepo.Setup(r => r.IsPhoneNumberTaken("1234567")).Returns(false);
-
-            var mockUoW = new Mock<IUnitOfWork>();
-            mockUoW.SetupGet(m => m.UserRepository).Returns(mockUserRepo.Object);
-            
-            _accountController = new AccountController(mockUoW.Object);
+            _logger = new Mock<ILogger<AccountController>>().Object;
         }
 
         [Fact]
         public void InitialUserCreationForm_OnTakenPhoneNumber_ShouldReturnBadRequest()
         {
+            var messageSenderMock = new Mock<IMessageSender>();
+            var userRepoMock = new Mock<IUnitOfWork>();
+            userRepoMock.Setup(r => r.UserRepository.IsPhoneNumberTaken("+49123456")).Returns(true);
+            var accountController = new AccountController(_logger, userRepoMock.Object, messageSenderMock.Object);
+            
             var form = new InitialUserCreationForm
             {
                 CountryCode = 49,
                 PhoneNumber = "123456"
             };
 
-            var result = _accountController.InitialSetup(form);
-
+            var result = accountController.InitialSetup(form).Result;
             Assert.IsType<BadRequestObjectResult>(result);
         }
 
         [Fact]
         public void InitialUserCreationForm_OnUntakenPhoneNumber_ShouldReturnOk()
         {
+            var messageSenderMock = new Mock<IMessageSender>();
+            var userRepoMock = new Mock<IUnitOfWork>();
+            userRepoMock.Setup(r => r.UserRepository.IsPhoneNumberTaken("+49123456")).Returns(true);
+            var accountController = new AccountController(_logger, userRepoMock.Object, messageSenderMock.Object);
+
             var form = new InitialUserCreationForm
             {
                 CountryCode = 49,
-                PhoneNumber = "1234567"
+                PhoneNumber = "12345"
             };
 
-            var result = _accountController.InitialSetup(form);
-
+            var result = accountController.InitialSetup(form).Result;
             Assert.IsType<OkResult>(result);
         }
     }
