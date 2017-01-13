@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Moq;
 using Xunit;
+using Xunit.Sdk;
 using YoApp.Backend.Controllers;
 using YoApp.Backend.Data;
 using YoApp.Backend.Data.EF;
@@ -23,7 +24,7 @@ namespace YoApp.Tests.Api.Controller
         }
 
         [Fact]
-        public void InitialUserCreationForm_OnTakenPhoneNumber_ShouldReturnBadRequest()
+        public void InitialUserCreationForm_OnInvalidForm_ShouldReturnBadRequest()
         {
             var messageSenderMock = new Mock<IMessageSender>();
             var userRepoMock = new Mock<IUnitOfWork>();
@@ -32,30 +33,12 @@ namespace YoApp.Tests.Api.Controller
             
             var form = new InitialVerificationForm
             {
-                CountryCode = 49,
-                PhoneNumber = "123456"
+                CountryCode = 0,
+                PhoneNumber = null
             };
 
             var result = accountController.StartVerification(form).Result;
-            Assert.IsType<BadRequestObjectResult>(result);
-        }
-
-        [Fact]
-        public void InitialUserCreationForm_OnUntakenPhoneNumber_ShouldReturnOk()
-        {
-            var messageSenderMock = new Mock<IMessageSender>();
-            var userRepoMock = new Mock<IUnitOfWork>();
-            userRepoMock.Setup(r => r.UserRepository.IsPhoneNumberTaken("+49123456")).Returns(true);
-            var accountController = new AccountController(_logger, userRepoMock.Object, messageSenderMock.Object);
-
-            var form = new InitialVerificationForm
-            {
-                CountryCode = 49,
-                PhoneNumber = "12345"
-            };
-
-            var result = accountController.StartVerification(form).Result;
-            Assert.IsType<OkResult>(result);
+            Assert.IsType<BadRequestResult>(result);
         }
     }
 }

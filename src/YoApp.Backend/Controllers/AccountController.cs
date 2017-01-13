@@ -25,7 +25,7 @@ namespace YoApp.Backend.Controllers
         [HttpPost("StartVerification")]
         public async Task<IActionResult> StartVerification([FromForm]InitialVerificationForm form)
         {
-            if (!ModelState.IsValid)
+            if (!ModelState.IsValid || !form.IsModelValid())
                 return BadRequest();
 
             if (!form.CheckIsValidCountryCode())

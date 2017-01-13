@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using YoApp.Backend.Models;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace YoApp.Backend.DataObjects.Account
 {
@@ -17,6 +18,14 @@ namespace YoApp.Backend.DataObjects.Account
 
         [Required]
         public string PhoneNumber { get; set; }
+
+        public bool IsModelValid()
+        {
+            if (this.CountryCode > 0 && PhoneNumber != null)
+                return true;
+
+            return false;
+        }
 
         public bool CheckIsValidCountryCode()
         {
