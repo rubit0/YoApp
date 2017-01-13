@@ -27,9 +27,9 @@ namespace YoApp.Backend.Services
             _twilioSender = Startup.Configuration["Twillio:Sender"];
         }
 
-        public async Task SendMessageAsync(string number, string message)
+        public async Task<bool> SendMessageAsync(string number, string message)
         {
-            _logger.LogInformation($"Attempting an (SMS) message delivery via Twilio to {number} from {_twilioSender}");
+            _logger.LogInformation($"Attempting an (SMS) message delivery via Twilio to {number} from {_twilioSender}.");
 
             var client = new HttpClient();
             client.DefaultRequestHeaders.Authorization = this.GetBasicAuthHeader();
@@ -38,7 +38,7 @@ namespace YoApp.Backend.Services
             if (!response.IsSuccessStatusCode)
             {
                 _logger.LogError($"Twilio denied service, message to [{number}] could not be send.\nHttp Status: [{response.StatusCode}]\nReason: [{response.ReasonPhrase}]");
-                return;
+                return false;
             }
             
             var contentStream = await response.Content.ReadAsStringAsync();
@@ -47,10 +47,11 @@ namespace YoApp.Backend.Services
             if (!status.IsSuccess())
             {
                 _logger.LogWarning($"Could not send message to [{number}].\nTwilio Error Status: [{status.Status}]");
-                return;
+                return false;
             }
 
-            _logger.LogInformation($"SMS message was delivered to [{number}] successfully");
+            _logger.LogInformation($"SMS message was delivered to [{number}] by Twilio successfully.");
+            return true;
         }
 
         private Uri GetTwilioEndpoint()

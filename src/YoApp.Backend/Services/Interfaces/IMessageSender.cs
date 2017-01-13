@@ -7,6 +7,6 @@ namespace YoApp.Backend.Services.Interfaces
 {
     public interface IMessageSender
     {
-        Task SendMessageAsync(string number, string message);
+        Task<bool> SendMessageAsync(string number, string message);
     }
 }

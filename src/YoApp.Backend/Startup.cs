@@ -49,7 +49,7 @@ namespace YoApp.Backend
             services.Configure<IdentityOptions>(o =>
             {
                 o.Password.RequireDigit = true;
-                o.Password.RequiredLength = 36;
+                o.Password.RequiredLength = 32;
 
                 o.SignIn.RequireConfirmedEmail = false;
                 o.SignIn.RequireConfirmedPhoneNumber = true;
@@ -62,6 +62,7 @@ namespace YoApp.Backend
             services.AddSingleton<ILoggerFactory, LoggerFactory>();
             services.AddSingleton(typeof(ILogger<>), typeof(Logger<>));
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IVerificationRequestsRepository, VerificationRequestRepository>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddSingleton<IMessageSender, TwilioMessageSender>();
         }

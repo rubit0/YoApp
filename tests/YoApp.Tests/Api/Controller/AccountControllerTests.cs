@@ -30,13 +30,13 @@ namespace YoApp.Tests.Api.Controller
             userRepoMock.Setup(r => r.UserRepository.IsPhoneNumberTaken("+49123456")).Returns(true);
             var accountController = new AccountController(_logger, userRepoMock.Object, messageSenderMock.Object);
             
-            var form = new InitialUserCreationForm
+            var form = new InitialVerificationForm
             {
                 CountryCode = 49,
                 PhoneNumber = "123456"
             };
 
-            var result = accountController.InitialSetup(form).Result;
+            var result = accountController.StartVerification(form).Result;
             Assert.IsType<BadRequestObjectResult>(result);
         }
 
@@ -48,13 +48,13 @@ namespace YoApp.Tests.Api.Controller
             userRepoMock.Setup(r => r.UserRepository.IsPhoneNumberTaken("+49123456")).Returns(true);
             var accountController = new AccountController(_logger, userRepoMock.Object, messageSenderMock.Object);
 
-            var form = new InitialUserCreationForm
+            var form = new InitialVerificationForm
             {
                 CountryCode = 49,
                 PhoneNumber = "12345"
             };
 
-            var result = accountController.InitialSetup(form).Result;
+            var result = accountController.StartVerification(form).Result;
             Assert.IsType<OkResult>(result);
         }
     }

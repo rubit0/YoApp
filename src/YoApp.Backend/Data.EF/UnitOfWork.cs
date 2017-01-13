@@ -7,11 +7,13 @@ namespace YoApp.Backend.Data.EF
     {
         private readonly ApplicationDbContext _context;
         public IUserRepository UserRepository { get; }
+        public IVerificationRequestsRepository VerificationRequestsRepository { get; }
 
-        public UnitOfWork(ApplicationDbContext context, IUserRepository userRepository)
+        public UnitOfWork(ApplicationDbContext context, IUserRepository userRepository, IVerificationRequestsRepository verificationRequestsRepository)
         {
             _context = context;
             UserRepository = userRepository;
+            VerificationRequestsRepository = verificationRequestsRepository;
         }
 
         public void Complete()
@@ -23,5 +25,6 @@ namespace YoApp.Backend.Data.EF
         {
             await _context.SaveChangesAsync();
         }
+
     }
 }

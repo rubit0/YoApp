@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using YoApp.Backend.Data;
 using YoApp.Backend.DataObjects.Account;
+using YoApp.Backend.Models;
 using YoApp.Backend.Services.Interfaces;
 
 namespace YoApp.Backend.Controllers
@@ -21,26 +22,31 @@ namespace YoApp.Backend.Controllers
             _messageSender = messageSender;
         }
 
-        [HttpGet]
-        public IActionResult Test()
-        {
-            return Ok();
-        }
-
-        [HttpPost("InitialSetup")]
-        public async Task<IActionResult> InitialSetup(InitialUserCreationForm form)
+        [HttpPost("StartVerification")]
+        public async Task<IActionResult> StartVerification([FromForm]InitialVerificationForm form)
         {
             if (!ModelState.IsValid)
                 return BadRequest();
 
-            if (_unitOfWork.UserRepository.IsPhoneNumberTaken(form.GetValidPhoneNumber()))
-                return BadRequest("Phonenumber already taken");
+            if (!form.CheckIsValidCountryCode())
+                return BadRequest($"Country [{form.CountryCode}] is not supported.");
 
-            _logger.LogInformation($"The PhoneNumber [{form.GetValidPhoneNumber()}] is requesting an setup code");
+            var number = form.GetFormatedPhoneNumber();
+            _logger.LogInformation($"The PhoneNumber [{number}] is requesting an verification code");
 
-            await _messageSender.SendMessageAsync(form.GetValidPhoneNumber(), "Hello from YoApp!");
+            var request = VerificationtRequest.CreateVerificationtRequest(number);
 
-            return Ok();
+            var sendingResult = await _messageSender.SendMessageAsync("+" + number, $"Hello from YoApp!\nYour verification Code is:\n{request.VerificationCode}");
+            if(!sendingResult)
+                return new StatusCodeResult(500);
+
+            //remove potentially previous request
+            _unitOfWork.VerificationRequestsRepository.RemoveVerificationRequestByPhone(number);
+
+            await _unitOfWork.VerificationRequestsRepository.AddVerificationRequestAsync(request);
+            await _unitOfWork.CompleteAsync();
+
+            return Ok(VerificationCode.CreateFromVerificationRequest(request));
         }
     }
 }

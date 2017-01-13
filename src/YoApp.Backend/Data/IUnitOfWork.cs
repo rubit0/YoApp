@@ -6,6 +6,7 @@ namespace YoApp.Backend.Data
     public interface IUnitOfWork
     {
         IUserRepository UserRepository { get; }
+        IVerificationRequestsRepository VerificationRequestsRepository { get; }
 
         void Complete();
         Task CompleteAsync();
