@@ -23,22 +23,22 @@ namespace YoApp.Tests.Api.Controller
             _logger = new Mock<ILogger<AccountController>>().Object;
         }
 
-        [Fact]
-        public void InitialUserCreationForm_OnInvalidForm_ShouldReturnBadRequest()
-        {
-            var messageSenderMock = new Mock<IMessageSender>();
-            var userRepoMock = new Mock<IUnitOfWork>();
-            userRepoMock.Setup(r => r.UserRepository.IsPhoneNumberTaken("+49123456")).Returns(true);
-            var accountController = new AccountController(_logger, userRepoMock.Object, messageSenderMock.Object);
+        //[Fact]
+        //public void InitialUserCreationForm_OnInvalidForm_ShouldReturnBadRequest()
+        //{
+        //    var messageSenderMock = new Mock<IMessageSender>();
+        //    var userRepoMock = new Mock<IUnitOfWork>();
+        //    userRepoMock.Setup(r => r.UserRepository.IsPhoneNumberTaken("+49123456")).Returns(true);
+        //    var accountController = new AccountController(_logger, userRepoMock.Object, messageSenderMock.Object);
             
-            var form = new InitialVerificationForm
-            {
-                CountryCode = 0,
-                PhoneNumber = null
-            };
+        //    var form = new InitialVerificationForm
+        //    {
+        //        CountryCode = 0,
+        //        PhoneNumber = null
+        //    };
 
-            var result = accountController.StartVerification(form).Result;
-            Assert.IsType<BadRequestResult>(result);
-        }
+        //    var result = accountController.StartVerification(form).Result;
+        //    Assert.IsType<BadRequestResult>(result);
+        //}
     }
 }

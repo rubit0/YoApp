@@ -6,15 +6,15 @@ using YoApp.Backend.Models;
 
 namespace YoApp.Backend.DataObjects.Account
 {
-    public class VerificationCode
+    public class VerificationChallenge
     {
         public string Code { get; set; }
         public DateTime CreationDate { get; set; }
         public DateTime ExpireDate { get; set; }
 
-        public static VerificationCode CreateFromVerificationRequest(VerificationtRequest request)
+        public static VerificationChallenge CreateFromVerificationRequest(VerificationtRequest request)
         {
-            return new VerificationCode
+            return new VerificationChallenge
             {
                 Code = request?.VerificationCode,
                 CreationDate = request.CreationDate,
