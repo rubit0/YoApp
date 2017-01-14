@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using System;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -18,8 +19,12 @@ namespace YoApp.Backend
 {
     public class Startup
     {
+        private IHostingEnvironment _environment;
+
         public Startup(IHostingEnvironment env)
         {
+            _environment = env;
+
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
                 .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
@@ -36,9 +41,11 @@ namespace YoApp.Backend
             //Persistence and connection strings
             services.AddEntityFramework()
                 .AddEntityFrameworkSqlServer()
-                .AddDbContext<ApplicationDbContext>(
-                    o => o.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"])
-                    );
+                .AddDbContext<ApplicationDbContext>(options =>
+                {
+                    options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]);
+                    options.UseOpenIddict();
+                });
 
             //Identity persitence
             services.AddIdentity<ApplicationUser, IdentityRole>()
@@ -55,6 +62,27 @@ namespace YoApp.Backend
                 o.SignIn.RequireConfirmedEmail = false;
                 o.SignIn.RequireConfirmedPhoneNumber = true;
             });
+
+            //TODO Development configuration should go to StartupDevelopment.cs
+            //Add OpenIddict
+            if (_environment.IsDevelopment())
+            {
+                services.AddOpenIddict()
+                    .AddEntityFrameworkCoreStores<ApplicationDbContext>()
+                    .AddMvcBinders()
+                    .EnableTokenEndpoint("/connect/token")
+                    .AllowPasswordFlow().SetAccessTokenLifetime(TimeSpan.FromSeconds(30))
+                    .DisableHttpsRequirement()
+                    .AddEphemeralSigningKey();
+            }
+            else
+            {
+                services.AddOpenIddict()
+                    .AddEntityFrameworkCoreStores<ApplicationDbContext>()
+                    .AddMvcBinders()
+                    .EnableTokenEndpoint("/connect/token")
+                    .AllowPasswordFlow();
+            }
 
             // Add framework services.
             services.AddMvc();
@@ -74,7 +102,10 @@ namespace YoApp.Backend
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
 
+            app.UseOAuthValidation();
             app.UseIdentity();
+            app.UseOAuthValidation();
+            app.UseOpenIddict();
             app.UseMvc();
         }
     }

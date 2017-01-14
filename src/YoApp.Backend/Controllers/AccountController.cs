@@ -29,7 +29,7 @@ namespace YoApp.Backend.Controllers
         }
 
         [HttpPost("StartVerification")]
-        public async Task<IActionResult> StartVerification([FromForm]InitialVerificationForm form)
+        public async Task<IActionResult> StartVerification([FromForm]VerificationForm form)
         {
             if (!ModelState.IsValid || !form.IsModelValid())
                 return BadRequest();
@@ -97,6 +97,12 @@ namespace YoApp.Backend.Controllers
             _unitOfWork.VerificationRequestsRepository.RemoveVerificationRequest(request.Id);
             await _unitOfWork.CompleteAsync();
 
+            return Ok();
+        }
+
+        [HttpPost("Login")]
+        public IActionResult Login()
+        {
             return Ok();
         }
     }
