@@ -1,4 +1,5 @@
 ﻿using System;
+using AspNet.Security.OAuth.Validation;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -71,7 +72,7 @@ namespace YoApp.Backend
                     .AddEntityFrameworkCoreStores<ApplicationDbContext>()
                     .AddMvcBinders()
                     .EnableTokenEndpoint("/connect/token")
-                    .AllowPasswordFlow().SetAccessTokenLifetime(TimeSpan.FromSeconds(30))
+                    .AllowPasswordFlow()
                     .DisableHttpsRequirement()
                     .AddEphemeralSigningKey();
             }
@@ -102,8 +103,6 @@ namespace YoApp.Backend
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
 
-            app.UseOAuthValidation();
-            app.UseIdentity();
             app.UseOAuthValidation();
             app.UseOpenIddict();
             app.UseMvc();

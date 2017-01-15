@@ -20,8 +20,8 @@ namespace YoApp.Backend.Controllers
     [Route("api/[controller]")]
     public class AuthorizationController : Controller
     {
-        private UserManager<ApplicationUser> _userManager;
-        private SignInManager<ApplicationUser> _signInManager;
+        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly SignInManager<ApplicationUser> _signInManager;
 
         public AuthorizationController(UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager)
@@ -59,8 +59,7 @@ namespace YoApp.Backend.Controllers
                 return SignIn(ticket.Principal, ticket.Properties, ticket.AuthenticationScheme);
             }
 
-
-            else if (request.IsAuthorizationCodeGrantType() || request.IsRefreshTokenGrantType())
+            if (request.IsAuthorizationCodeGrantType() || request.IsRefreshTokenGrantType())
             {
                 // Retrieve the claims principal stored in the authorization code/refresh token.
                 var info = await HttpContext.Authentication.GetAuthenticateInfoAsync(
@@ -91,9 +90,8 @@ namespace YoApp.Backend.Controllers
             });
         }
 
-
-        private async Task<AuthenticationTicket> CreateTicketAsync(
-            OpenIdConnectRequest request, ApplicationUser user,
+        private async Task<AuthenticationTicket> CreateTicketAsync(OpenIdConnectRequest request, 
+            ApplicationUser user,
             AuthenticationProperties properties = null)
         {
             // Create a new ClaimsPrincipal containing the claims that

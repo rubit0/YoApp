@@ -99,11 +99,5 @@ namespace YoApp.Backend.Controllers
 
             return Ok();
         }
-
-        [HttpPost("Login")]
-        public IActionResult Login()
-        {
-            return Ok();
-        }
     }
 }

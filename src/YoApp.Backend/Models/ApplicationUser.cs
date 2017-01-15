@@ -8,5 +8,6 @@ namespace YoApp.Backend.Models
 {
     public class ApplicationUser : IdentityUser
     {
+        public string Status { get; set; } = "Greetings! I am using YoApp.";
     }
 }
