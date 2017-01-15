@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using YoApp.Backend.Data.Repositories;
@@ -12,32 +10,31 @@ namespace YoApp.Backend.Data.EF.Repositories
     {
         private readonly UserManager<ApplicationUser> _userManager;
 
-
         public UserRepository(UserManager<ApplicationUser> userManager)
         {
             _userManager = userManager;
         }
 
-        public ApplicationUser GetUserFromPhoneNumber(string phoneNumber)
+        public ApplicationUser GetUser(string name)
         {
-            return this.GetUserFromPhoneNumberAsync(phoneNumber).Result;
+            return this.GetUserAsync(name).Result;
         }
 
-        public async Task<ApplicationUser> GetUserFromPhoneNumberAsync(string phoneNumber)
+        public async Task<ApplicationUser> GetUserAsync(string name)
         {
-            return await _userManager.FindByNameAsync(phoneNumber);
+            return await _userManager.FindByNameAsync(name);
         }
 
-        public IEnumerable<ApplicationUser> GetUsersFromPhoneNumbers(IEnumerable<string> phoneNumbers)
+        public IEnumerable<ApplicationUser> GetUsers(IEnumerable<string> names)
         {
-            return this.GetUsersFromPhoneNumbersAsync(phoneNumbers).Result;
+            return this.GetUsersAsync(names).Result;
         }
 
-        public async Task<IEnumerable<ApplicationUser>> GetUsersFromPhoneNumbersAsync(IEnumerable<string> phoneNumbers)
+        public async Task<IEnumerable<ApplicationUser>> GetUsersAsync(IEnumerable<string> names)
         {
-            List<ApplicationUser> usersInDb = new List<ApplicationUser>();
+            var usersInDb = new List<ApplicationUser>();
 
-            foreach (var phoneNumber in phoneNumbers)
+            foreach (var phoneNumber in names)
             {
                 var userInDb = await _userManager.FindByNameAsync(phoneNumber);
                 if (userInDb != null)
@@ -45,6 +42,30 @@ namespace YoApp.Backend.Data.EF.Repositories
             }
 
             return usersInDb;
+        }
+
+        public IdentityResult AddUser(ApplicationUser user, string password)
+        {
+            return AddUserAsync(user, password).Result;
+        }
+
+        public async Task<IdentityResult> AddUserAsync(ApplicationUser user, string password)
+        {
+            if (user == null || string.IsNullOrWhiteSpace(password))
+                return IdentityResult.Failed();
+
+            return await _userManager.CreateAsync(user, password);
+        }
+
+        public void UpdateUserPassword(ApplicationUser user, string password)
+        {
+            UpdateUserPasswordAsync(user, password).RunSynchronously();
+        }
+
+        public async Task UpdateUserPasswordAsync(ApplicationUser user, string password)
+        {
+            await _userManager.RemovePasswordAsync(user);
+            await _userManager.AddPasswordAsync(user, password);
         }
     }
 }

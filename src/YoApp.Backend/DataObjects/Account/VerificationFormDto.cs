@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
-using Newtonsoft.Json;
-using YoApp.Backend.Models;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace YoApp.Backend.DataObjects.Account
 {

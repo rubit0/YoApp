@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using YoApp.Backend.Data;
 using YoApp.Backend.DataObjects.Users;
-using YoApp.Backend.Models;
 
 namespace YoApp.Backend.Controllers
 {
@@ -30,7 +27,7 @@ namespace YoApp.Backend.Controllers
 
             var usersInDb = await _unitOfWork
                 .UserRepository
-                .GetUsersFromPhoneNumbersAsync(contacts.Select(c => c.PhoneNumber));
+                .GetUsersAsync(contacts.Select(c => c.PhoneNumber));
 
             if (!usersInDb.Any())
                 return NoContent();
@@ -42,7 +39,7 @@ namespace YoApp.Backend.Controllers
         [HttpGet("GetContact")]
         public async Task<IActionResult> GetContact(string phoneNumber)
         {
-            var userInDb = await _unitOfWork.UserRepository.GetUserFromPhoneNumberAsync(phoneNumber);
+            var userInDb = await _unitOfWork.UserRepository.GetUserAsync(phoneNumber);
             if (userInDb == null)
                 return BadRequest();
 

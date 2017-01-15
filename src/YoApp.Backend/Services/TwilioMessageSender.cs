@@ -6,7 +6,6 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
-using YoApp.Backend.Models;
 using YoApp.Backend.Services.Interfaces;
 
 

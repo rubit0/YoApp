@@ -1,5 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -16,20 +16,16 @@ namespace YoApp.Backend.Controllers
         private readonly ILogger _logger;
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMessageSender _messageSender;
-        private readonly UserManager<ApplicationUser> _userManager;
-        private readonly SignInManager<ApplicationUser> _signInManager;
 
-        public AccountController(ILogger<AccountController> logger, IUnitOfWork unitOfWork, IMessageSender messageSender, UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager)
+        public AccountController(ILogger<AccountController> logger, IUnitOfWork unitOfWork, IMessageSender messageSender)
         {
             _logger = logger;
             _unitOfWork = unitOfWork;
             _messageSender = messageSender;
-            _userManager = userManager;
-            _signInManager = signInManager;
         }
 
         [HttpPost("StartVerification")]
-        public async Task<IActionResult> StartVerification([FromForm]VerificationForm form)
+        public async Task<IActionResult> StartVerification([FromForm]VerificationFormDto form)
         {
             if (!ModelState.IsValid || !form.IsModelValid())
                 return BadRequest();
@@ -38,7 +34,7 @@ namespace YoApp.Backend.Controllers
                 return BadRequest($"Country [{form.CountryCode}] is not supported.");
 
             var number = form.GetFormatedPhoneNumber();
-            _logger.LogInformation($"The PhoneNumber [{number}] is requesting an verification code");
+            _logger.LogInformation($"The PhoneNumber [{number}] is requesting an verification code.");
 
             var request = VerificationtRequest.CreateVerificationtRequest(number);
 
@@ -52,11 +48,11 @@ namespace YoApp.Backend.Controllers
             await _unitOfWork.VerificationRequestsRepository.AddVerificationRequestAsync(request);
             await _unitOfWork.CompleteAsync();
 
-            return Ok(VerificationChallenge.CreateFromVerificationRequest(request));
+            return Ok(VerificationChallengeDto.CreateFromVerificationRequest(request));
         }
 
         [HttpPost("ResolveVerification")]
-        public async Task<IActionResult> ResolveVerification([FromForm]VerificationResponse response)
+        public async Task<IActionResult> ResolveVerification([FromForm]VerificationResponseDto response)
         {
             if (!ModelState.IsValid || !response.IsModelValid())
                 return BadRequest();
@@ -66,36 +62,47 @@ namespace YoApp.Backend.Controllers
                 .FindVerificationtRequestByPhoneAsync(response.PhoneNumber);
 
             if (request == null)
-                return BadRequest("No verification request found.");
+                return BadRequest($"No verification request found for {response.PhoneNumber}.");
 
-            if(!response.Verify(request))
+            if (!response.Verify(request))
+            {
+                _logger.LogInformation($"Code verification failed for [+{response.PhoneNumber}.\nExpected ({request.VerificationCode}) but got ({response.VerificationCode}).]");
                 return BadRequest("Verification code does not match.");
+            }
 
-            var user = await _userManager.FindByNameAsync(response.PhoneNumber);
+            var user = await _unitOfWork.UserRepository.GetUserAsync(response.PhoneNumber);
             if (user == null)
             {
-                user = new ApplicationUser
-                {
-                    UserName = response.PhoneNumber,
-                    PhoneNumber = response.PhoneNumber,
-                    PhoneNumberConfirmed = true
-                };
-
-                var creationResult = await _userManager.CreateAsync(user, response.Password);
+                user = new ApplicationUser { UserName = response.PhoneNumber };
+                var creationResult = await _unitOfWork.UserRepository.AddUserAsync(user, response.Password);
                 if (!creationResult.Succeeded)
                     return StatusCode(500);
 
-                _unitOfWork.VerificationRequestsRepository.RemoveVerificationRequest(request.Id);
-                await _unitOfWork.CompleteAsync();
-
-                return Ok();
+                _logger.LogInformation($"A new User have been created [{user.UserName}].");
             }
-
-            await _userManager.RemovePasswordAsync(user);
-            await _userManager.AddPasswordAsync(user, response.Password);
+            else
+            {
+                await _unitOfWork.UserRepository.UpdateUserPasswordAsync(user, response.Password);
+            }
 
             _unitOfWork.VerificationRequestsRepository.RemoveVerificationRequest(request.Id);
             await _unitOfWork.CompleteAsync();
+            _logger.LogInformation($"Verification was succesfull for User [{user.UserName}.]");
+
+            return Ok();
+        }
+
+        [Authorize]
+        [HttpPost("UpdateStatus")]
+        public async Task<IActionResult> UpateStatus(string status)
+        {
+            var user = await _unitOfWork.UserRepository.GetUserAsync(User.Identity.Name);
+            if (user == null)
+                return StatusCode(500);
+
+            user.Status = status ?? "";
+            await _unitOfWork.CompleteAsync();
+            _logger.LogInformation($"Updated status message for User [{user.UserName}.]");
 
             return Ok();
         }
