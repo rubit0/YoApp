@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace YoApp.Backend.DataObjects.Account
 {
-    public class VerificationForm
+    public class VerificationFormDto
     {
         [Required]
         public int CountryCode { get; set; }

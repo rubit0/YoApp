@@ -7,7 +7,7 @@ using YoApp.Backend.Models;
 
 namespace YoApp.Backend.DataObjects.Account
 {
-    public class VerificationResponse
+    public class VerificationResponseDto
     {
         [Required]
         public string PhoneNumber { get; set; }
