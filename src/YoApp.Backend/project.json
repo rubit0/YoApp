@@ -21,7 +21,9 @@
     "AspNet.Security.OAuth.Validation": "1.0.0-alpha2-final",
     "OpenIddict": "1.0.0-*",
     "OpenIddict.EntityFrameworkCore": "1.0.0-*",
-    "OpenIddict.Mvc": "1.0.0-*"
+    "OpenIddict.Mvc": "1.0.0-*",
+    "Microsoft.AspNetCore.SignalR.Server": "0.2.0-*",
+    "Microsoft.AspNetCore.WebSockets": "1.0.0"
   },
 
   "tools": {

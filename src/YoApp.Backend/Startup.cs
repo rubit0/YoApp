@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.SignalR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.Extensions.Configuration;
@@ -85,6 +86,14 @@ namespace YoApp.Backend
 
             // Add framework services.
             services.AddMvc();
+            services.AddSignalR(o =>
+            {
+                if (_environment.IsDevelopment())
+                    o.Hubs.EnableDetailedErrors = true;
+
+                if(_environment.IsProduction())
+                    o.Hubs.EnableJavaScriptProxies = false;
+            });
 
             //IoC
             services.AddSingleton<ILoggerFactory, LoggerFactory>();
@@ -104,6 +113,8 @@ namespace YoApp.Backend
             app.UseOAuthValidation();
             app.UseOpenIddict();
             app.UseMvc();
+            app.UseWebSockets();
+            app.UseSignalR();
         }
     }
 }
