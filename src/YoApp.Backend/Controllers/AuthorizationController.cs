@@ -14,7 +14,6 @@ using YoApp.Backend.Models;
 
 namespace YoApp.Backend.Controllers
 {
-    [Route("api/[controller]")]
     public class AuthorizationController : Controller
     {
         private readonly UserManager<ApplicationUser> _userManager;

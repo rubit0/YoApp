@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
@@ -83,17 +84,11 @@ namespace YoApp.Backend.Services
             [JsonProperty("status")]
             public string Status { get; set; }
 
-            private readonly string[] _badStatusCodes = {"400", "undelivered", "failed", ""};
+            private static readonly string[] BadStatusCodes = {"400", "undelivered", "failed", ""};
 
             public bool IsSuccess()
             {
-                foreach (var badStatusCode in _badStatusCodes)
-                {
-                    if (string.CompareOrdinal(this.Status, badStatusCode) == 0)
-                        return false;
-                }
-
-                return true;
+                return !BadStatusCodes.Contains(Status);
             }
         }
     }

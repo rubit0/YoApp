@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Microsoft.AspNetCore.SignalR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.Extensions.Configuration;
@@ -19,7 +18,7 @@ namespace YoApp.Backend
 {
     public class Startup
     {
-        private IHostingEnvironment _environment;
+        private readonly IHostingEnvironment _environment;
 
         public Startup(IHostingEnvironment env)
         {

@@ -1,6 +1,6 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using YoApp.Backend.Data;
@@ -37,10 +37,16 @@ namespace YoApp.Backend.Controllers
             _logger.LogInformation($"The PhoneNumber [{number}] is requesting an verification code.");
 
             var request = VerificationtRequest.CreateVerificationtRequest(number);
+            var clientMessage = $"Hello from YoApp!\nYour verification Code is:\n{request.VerificationCode}";
 
-            var sendingResult = await _messageSender.SendMessageAsync("+" + number, $"Hello from YoApp!\nYour verification Code is:\n{request.VerificationCode}");
+            var sendingResult = await _messageSender.SendMessageAsync("+" + number, clientMessage);
             if(!sendingResult)
                 return new StatusCodeResult(500);
+
+#if DEBUG
+            _logger.LogDebug($"Verification Code for {request.PhoneNumber} is: [{request.VerificationCode}]");
+            _logger.LogInformation($"Message send to client:\n{clientMessage}");
+#endif
 
             //remove potentially previous request
             _unitOfWork.VerificationRequestsRepository.RemoveVerificationRequestByPhone(number);
@@ -48,7 +54,7 @@ namespace YoApp.Backend.Controllers
             await _unitOfWork.VerificationRequestsRepository.AddVerificationRequestAsync(request);
             await _unitOfWork.CompleteAsync();
 
-            return Ok(VerificationChallengeDto.CreateFromVerificationRequest(request));
+            return Ok();
         }
 
         [HttpPost("ResolveVerification")]
