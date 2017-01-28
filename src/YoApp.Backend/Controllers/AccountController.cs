@@ -79,7 +79,7 @@ namespace YoApp.Backend.Controllers
             var user = await _unitOfWork.UserRepository.GetUserAsync(response.PhoneNumber);
             if (user == null)
             {
-                user = new ApplicationUser { UserName = response.PhoneNumber };
+                user = new ApplicationUser { UserName = response.PhoneNumber, NickName = response.PhoneNumber };
                 var creationResult = await _unitOfWork.UserRepository.AddUserAsync(user, response.Password);
                 if (!creationResult.Succeeded)
                     return StatusCode(500);
@@ -94,6 +94,21 @@ namespace YoApp.Backend.Controllers
             _unitOfWork.VerificationRequestsRepository.RemoveVerificationRequest(request.Id);
             await _unitOfWork.CompleteAsync();
             _logger.LogInformation($"Verification was succesfull for User [{user.UserName}.]");
+
+            return Ok();
+        }
+
+        [Authorize]
+        [HttpPost("UpdateNickName")]
+        public async Task<IActionResult> UpdateNickName(string name)
+        {
+            var user = await _unitOfWork.UserRepository.GetUserAsync(User.Identity.Name);
+            if (user == null)
+                return StatusCode(500);
+
+            user.NickName = name;
+            await _unitOfWork.CompleteAsync();
+            _logger.LogInformation($"Updated NickName for User [{user.UserName}.]");
 
             return Ok();
         }

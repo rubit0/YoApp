@@ -15,6 +15,14 @@ namespace YoApp.Backend.Data.EF
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            builder.Entity<ApplicationUser>()
+                .Property(au => au.Status)
+                .HasMaxLength(30);
+
+            builder.Entity<ApplicationUser>()
+                .Property(au => au.NickName)
+                .HasMaxLength(20);
+
             builder.Entity<VerificationtRequest>()
                 .Property(vr => vr.PhoneNumber)
                 .HasMaxLength(30);
