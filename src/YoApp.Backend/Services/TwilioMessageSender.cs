@@ -12,7 +12,7 @@ using YoApp.Backend.Services.Interfaces;
 
 namespace YoApp.Backend.Services
 {
-    public class TwilioMessageSender : IMessageSender
+    public class TwilioMessageSender : ISmsSender
     {
         private readonly string _accountSid;
         private readonly string _authToken;
