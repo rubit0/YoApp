@@ -7,6 +7,7 @@ using YoApp.Backend.Data;
 namespace YoApp.Backend.Controllers
 {
     [Route("api/[controller]")]
+    [Authorize]
     public class AccountController : Controller
     {
         private readonly ILogger _logger;
@@ -18,7 +19,6 @@ namespace YoApp.Backend.Controllers
             _unitOfWork = unitOfWork;
         }
 
-        [Authorize]
         [HttpPost("UpdateNickName")]
         public async Task<IActionResult> UpdateNickName(string name)
         {
@@ -33,7 +33,6 @@ namespace YoApp.Backend.Controllers
             return Ok();
         }
 
-        [Authorize]
         [HttpPost("UpdateStatus")]
         public async Task<IActionResult> UpateStatus(string status)
         {

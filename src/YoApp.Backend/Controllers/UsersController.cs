@@ -36,8 +36,8 @@ namespace YoApp.Backend.Controllers
             return Ok(matches);
         }
 
-        [HttpGet("GetContact")]
-        public async Task<IActionResult> GetContact(string phoneNumber)
+        [HttpGet("GetUser")]
+        public async Task<IActionResult> GetUser(string phoneNumber)
         {
             var userInDb = await _unitOfWork.UserRepository.GetUserAsync(phoneNumber);
             if (userInDb == null)
