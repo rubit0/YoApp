@@ -22,8 +22,8 @@ namespace YoApp.Backend.Controllers
             _messageSender = messageSender;
         }
 
-        [HttpPost("StartVerification")]
-        public async Task<IActionResult> StartVerification([FromForm]VerificationFormDto form)
+        [HttpPost("Challenge")]
+        public async Task<IActionResult> ChallengeVerification([FromForm]VerificationFormDto form)
         {
             if (!ModelState.IsValid || !form.IsModelValid())
                 return BadRequest();
@@ -55,7 +55,7 @@ namespace YoApp.Backend.Controllers
             return Ok();
         }
 
-        [HttpPost("ResolveVerification")]
+        [HttpPost("Resolve")]
         public async Task<IActionResult> ResolveVerification([FromForm]VerificationResponseDto response)
         {
             if (!ModelState.IsValid || !response.IsModelValid())
@@ -77,7 +77,7 @@ namespace YoApp.Backend.Controllers
             var user = await _unitOfWork.UserRepository.GetUserAsync(response.PhoneNumber);
             if (user == null)
             {
-                user = new ApplicationUser { UserName = response.PhoneNumber, NickName = response.PhoneNumber };
+                user = new ApplicationUser { UserName = response.PhoneNumber, Nickname = response.PhoneNumber };
                 var creationResult = await _unitOfWork.UserRepository.AddUserAsync(user, response.Password);
                 if (!creationResult.Succeeded)
                     return StatusCode(500);

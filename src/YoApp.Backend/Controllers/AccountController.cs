@@ -6,8 +6,8 @@ using YoApp.Backend.Data;
 
 namespace YoApp.Backend.Controllers
 {
-    [Route("api/[controller]")]
     [Authorize]
+    [Route("api/[controller]")]
     public class AccountController : Controller
     {
         private readonly ILogger _logger;
@@ -19,28 +19,48 @@ namespace YoApp.Backend.Controllers
             _unitOfWork = unitOfWork;
         }
 
-        [HttpPost("UpdateNickName")]
-        public async Task<IActionResult> UpdateNickName(string name)
+        [HttpGet("Nickname")]
+        public async Task<IActionResult> GetNickname()
         {
             var user = await _unitOfWork.UserRepository.GetUserAsync(User.Identity.Name);
             if (user == null)
-                return StatusCode(500);
+                return NotFound();
 
-            user.NickName = name;
+            return Ok(user.Nickname);
+        }
+
+        [HttpPut("Nickname")]
+        public async Task<IActionResult> UpdateNickname(string name)
+        {
+            var user = await _unitOfWork.UserRepository.GetUserAsync(User.Identity.Name);
+            if (user == null)
+                return NotFound();
+
+            user.Nickname = name;
             await _unitOfWork.CompleteAsync();
-            _logger.LogInformation($"Updated NickName for User [{user.UserName}.]");
+            _logger.LogInformation($"Updated Nickname for User [{user.UserName}.]");
 
             return Ok();
         }
 
-        [HttpPost("UpdateStatus")]
+        [HttpGet("Status")]
+        public async Task<IActionResult> GetStatus()
+        {
+            var user = await _unitOfWork.UserRepository.GetUserAsync(User.Identity.Name);
+            if (user == null)
+                return NotFound();
+
+            return Ok(user.Status);
+        }
+
+        [HttpPut("Status")]
         public async Task<IActionResult> UpateStatus(string status)
         {
             var user = await _unitOfWork.UserRepository.GetUserAsync(User.Identity.Name);
             if (user == null)
-                return StatusCode(500);
+                return NotFound();
 
-            user.Status = status ?? "";
+            user.Status = status;
             await _unitOfWork.CompleteAsync();
             _logger.LogInformation($"Updated status message for User [{user.UserName}.]");
 

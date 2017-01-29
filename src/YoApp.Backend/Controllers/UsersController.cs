@@ -19,24 +19,7 @@ namespace YoApp.Backend.Controllers
             _unitOfWork = unitOfWork;
         }
 
-        [HttpPost("Match")]
-        public async Task<IActionResult> Match(IEnumerable<UsersDto> contacts)
-        {
-            if (!ModelState.IsValid)
-                return BadRequest();
-
-            var usersInDb = await _unitOfWork
-                .UserRepository
-                .GetUsersAsync(contacts.Select(c => c.PhoneNumber));
-
-            if (!usersInDb.Any())
-                return NoContent();
-
-            var matches = UsersDto.MapFromAppUsers(usersInDb);
-            return Ok(matches);
-        }
-
-        [HttpGet("GetUser")]
+        [HttpGet]
         public async Task<IActionResult> GetUser(string phoneNumber)
         {
             var userInDb = await _unitOfWork.UserRepository.GetUserAsync(phoneNumber);
@@ -44,6 +27,19 @@ namespace YoApp.Backend.Controllers
                 return BadRequest();
 
             return Ok(userInDb);
+        }
+
+        //Using POST Verb due to long querry object
+        [HttpPost]
+        public async Task<IActionResult> GetUsers(IEnumerable<string> phoneNumbers)
+        {
+            var usersInDb = await _unitOfWork.UserRepository.GetUsersAsync(phoneNumbers);
+            if (!usersInDb.Any())
+                return NoContent();
+
+            var matches = UsersDto.MapFromAppUsers(usersInDb);
+
+            return Ok(matches);
         }
     }
 }

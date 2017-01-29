@@ -20,7 +20,7 @@ namespace YoApp.Backend.Data.EF
                 .HasMaxLength(30);
 
             builder.Entity<ApplicationUser>()
-                .Property(au => au.NickName)
+                .Property(au => au.Nickname)
                 .HasMaxLength(20);
 
             builder.Entity<VerificationtRequest>()

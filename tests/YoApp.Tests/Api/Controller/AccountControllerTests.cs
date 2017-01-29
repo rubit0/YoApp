@@ -37,7 +37,7 @@ namespace YoApp.Tests.Api.Controller
         //        PhoneNumber = null
         //    };
 
-        //    var result = accountController.StartVerification(form).Result;
+        //    var result = accountController.ChallengeVerification(form).Result;
         //    Assert.IsType<BadRequestResult>(result);
         //}
     }
