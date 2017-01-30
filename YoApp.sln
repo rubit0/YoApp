@@ -17,6 +17,8 @@ Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "YoApp.Tests", "tests\YoApp.
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{F94AA586-E24E-4316-9564-D22DC0643C64}"
 EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "YoApp.DataObjects", "src\YoApp.DataObjects\YoApp.DataObjects.xproj", "{59A91995-0BA6-41B5-A28F-045FE4282418}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,6 +33,10 @@ Global
 		{1A2A81C6-7380-4580-8B39-D1F852742F63}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1A2A81C6-7380-4580-8B39-D1F852742F63}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1A2A81C6-7380-4580-8B39-D1F852742F63}.Release|Any CPU.Build.0 = Release|Any CPU
+		{59A91995-0BA6-41B5-A28F-045FE4282418}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59A91995-0BA6-41B5-A28F-045FE4282418}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{59A91995-0BA6-41B5-A28F-045FE4282418}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59A91995-0BA6-41B5-A28F-045FE4282418}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -38,5 +44,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{005C8836-0197-4A0A-B5B7-A6916FA4826D} = {0C4A1F2A-F174-496E-B9A4-8A90B763D150}
 		{1A2A81C6-7380-4580-8B39-D1F852742F63} = {F94AA586-E24E-4316-9564-D22DC0643C64}
+		{59A91995-0BA6-41B5-A28F-045FE4282418} = {0C4A1F2A-F174-496E-B9A4-8A90B763D150}
 	EndGlobalSection
 EndGlobal

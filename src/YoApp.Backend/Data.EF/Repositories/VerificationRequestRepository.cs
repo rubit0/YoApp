@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using YoApp.Backend.Data.Repositories;
-using YoApp.Backend.Models;
+using YoApp.DataObjects.Verification;
 
 namespace YoApp.Backend.Data.EF.Repositories
 {
@@ -15,49 +15,49 @@ namespace YoApp.Backend.Data.EF.Repositories
             _context = context;
         }
 
-        public VerificationtRequest FindVerificationtRequest(int id)
+        public VerificationtRequestDto FindVerificationtRequest(int id)
         {
             return _context
                 .VerificationtRequests
                 .SingleOrDefault(vr => vr.Id == id);
         }
 
-        public async Task<VerificationtRequest> FindVerificationtRequestAsync(int id)
+        public async Task<VerificationtRequestDto> FindVerificationtRequestAsync(int id)
         {
             return await _context
                 .VerificationtRequests
                 .SingleOrDefaultAsync(vr => vr.Id == id);
         }
 
-        public VerificationtRequest FindVerificationtRequestByPhone(string number)
+        public VerificationtRequestDto FindVerificationtRequestByPhone(string number)
         {
             return _context
                 .VerificationtRequests
                 .SingleOrDefault(vr => vr.PhoneNumber == number);
         }
 
-        public async Task<VerificationtRequest> FindVerificationtRequestByPhoneAsync(string number)
+        public async Task<VerificationtRequestDto> FindVerificationtRequestByPhoneAsync(string number)
         {
             return await _context
                 .VerificationtRequests
                 .SingleOrDefaultAsync(vr => vr.PhoneNumber == number);
         }
 
-        public VerificationtRequest FindVerificationtRequestByCode(string code)
+        public VerificationtRequestDto FindVerificationtRequestByCode(string code)
         {
             return _context
                 .VerificationtRequests
                 .SingleOrDefault(vr => vr.VerificationCode == code);
         }
 
-        public async Task<VerificationtRequest> FindVerificationtRequestByCodeAsync(string code)
+        public async Task<VerificationtRequestDto> FindVerificationtRequestByCodeAsync(string code)
         {
             return await _context
                 .VerificationtRequests
                 .SingleOrDefaultAsync(vr => vr.VerificationCode == code);
         }
 
-        public void AddVerificationRequest(VerificationtRequest request)
+        public void AddVerificationRequest(VerificationtRequestDto request)
         {
             if(request == null)
                 return;
@@ -65,7 +65,7 @@ namespace YoApp.Backend.Data.EF.Repositories
             _context.VerificationtRequests.Add(request);
         }
 
-        public async Task AddVerificationRequestAsync(VerificationtRequest request)
+        public async Task AddVerificationRequestAsync(VerificationtRequestDto request)
         {
             if (request == null)
                 return;

@@ -1,10 +1,13 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using YoApp.Backend.Data;
-using YoApp.Backend.DataObjects.Account;
+using YoApp.Backend.Helper;
 using YoApp.Backend.Models;
 using YoApp.Backend.Services.Interfaces;
+using YoApp.DataObjects.Verification;
 
 namespace YoApp.Backend.Controllers
 {
@@ -28,13 +31,13 @@ namespace YoApp.Backend.Controllers
             if (!ModelState.IsValid || !form.IsModelValid())
                 return BadRequest();
 
-            if (!form.CheckIsValidCountryCode())
+            if(!Settings.ValidCountryCallCodes.Contains(form.CountryCode))
                 return BadRequest($"Country [{form.CountryCode}] is not supported.");
 
             var number = form.GetFormatedPhoneNumber();
             _logger.LogInformation($"The PhoneNumber [{number}] is requesting an verification code.");
 
-            var request = VerificationtRequest.CreateVerificationtRequest(number);
+            var request = new VerificationtRequestDto(number, Settings.VerificationDuration, GenerateVerificationCode());
             var clientMessage = $"Hello from YoApp!\nYour verification Code is:\n{request.VerificationCode}";
 
             var sendingResult = await _messageSender.SendMessageAsync("+" + number, clientMessage);
@@ -68,7 +71,7 @@ namespace YoApp.Backend.Controllers
             if (request == null)
                 return BadRequest($"No verification request found for {response.PhoneNumber}.");
 
-            if (!response.Verify(request))
+            if (!response.VerifyFromRequest(request))
             {
                 _logger.LogInformation($"Code verification failed for [+{response.PhoneNumber}.\nExpected ({request.VerificationCode}) but got ({response.VerificationCode}).]");
                 return BadRequest("Verification code does not match.");
@@ -94,6 +97,12 @@ namespace YoApp.Backend.Controllers
             _logger.LogInformation($"Verification was succesfull for User [{user.UserName}.]");
 
             return Ok();
+        }
+
+        private static string GenerateVerificationCode()
+        {
+            var rng = new Random();
+            return $"{rng.Next(100, 1000)}-{rng.Next(100, 1000)}";
         }
     }
 }

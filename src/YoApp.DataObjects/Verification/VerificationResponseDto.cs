@@ -1,8 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
-using YoApp.Backend.Models;
 
-namespace YoApp.Backend.DataObjects.Account
+namespace YoApp.DataObjects.Verification
 {
     public class VerificationResponseDto
     {
@@ -26,7 +25,7 @@ namespace YoApp.Backend.DataObjects.Account
             return true;
         }
 
-        public bool Verify(VerificationtRequest request)
+        public bool VerifyFromRequest(VerificationtRequestDto request)
         {
             if(request == null)
                 throw new ArgumentNullException();

@@ -1,12 +1,13 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using YoApp.Backend.Models;
+using YoApp.DataObjects.Verification;
 
 namespace YoApp.Backend.Data.EF
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
-        public DbSet<VerificationtRequest> VerificationtRequests { get; set; }
+        public DbSet<VerificationtRequestDto> VerificationtRequests { get; set; }
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             :base(options)
@@ -23,11 +24,11 @@ namespace YoApp.Backend.Data.EF
                 .Property(au => au.Nickname)
                 .HasMaxLength(20);
 
-            builder.Entity<VerificationtRequest>()
+            builder.Entity<VerificationtRequestDto>()
                 .Property(vr => vr.PhoneNumber)
                 .HasMaxLength(30);
 
-            builder.Entity<VerificationtRequest>()
+            builder.Entity<VerificationtRequestDto>()
                 .Property(vr => vr.VerificationCode)
                 .HasMaxLength(8);
 

@@ -7,29 +7,24 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
+using YoApp.Backend.Helper;
 using YoApp.Backend.Services.Interfaces;
 
 
 namespace YoApp.Backend.Services
 {
-    public class TwilioMessageSender : ISmsSender
+    public class TwilioMessageService : ISmsSender
     {
-        private readonly string _accountSid;
-        private readonly string _authToken;
-        private readonly string _twilioSender;
         private readonly ILogger _logger;
 
-        public TwilioMessageSender(ILogger<TwilioMessageSender> logger)
+        public TwilioMessageService(ILogger<TwilioMessageService> logger)
         {
             _logger = logger;
-            _accountSid = Startup.Configuration["Twillio:Sid"];
-            _authToken = Startup.Configuration["Twillio:Token"];
-            _twilioSender = Startup.Configuration["Twillio:Sender"];
         }
 
         public async Task<bool> SendMessageAsync(string number, string message)
         {
-            _logger.LogInformation($"Attempting an (SMS) message delivery via Twilio to {number} from {_twilioSender}.");
+            _logger.LogInformation($"Attempting an (SMS) message delivery via Twilio to {number} from {Settings.TwillioSettings.SenderPhoneNumber}.");
 
             var client = new HttpClient();
             client.DefaultRequestHeaders.Authorization = this.GetBasicAuthHeader();
@@ -56,14 +51,14 @@ namespace YoApp.Backend.Services
 
         private Uri GetTwilioEndpoint()
         {
-            return new Uri($"https://api.twilio.com/2010-04-01/Accounts/{this._accountSid}/Messages.json");
+            return new Uri($"https://api.twilio.com/2010-04-01/Accounts/{Settings.TwillioSettings.AccountSid}/Messages.json");
         }
 
         private FormUrlEncodedContent GetTwilioFormHeaders(string receiver, string message)
         {
             var headers = new Dictionary<string, string>()
             {
-                {"From", _twilioSender},
+                {"From", Settings.TwillioSettings.SenderPhoneNumber},
                 {"To", receiver},
                 {"Body", message}
             };
@@ -73,7 +68,7 @@ namespace YoApp.Backend.Services
 
         private AuthenticationHeaderValue GetBasicAuthHeader()
         {
-            var authValues = Encoding.ASCII.GetBytes($"{_accountSid}:{_authToken}");
+            var authValues = Encoding.ASCII.GetBytes($"{Settings.TwillioSettings.AccountSid}:{Settings.TwillioSettings.AuthToken}");
             var converted = Convert.ToBase64String(authValues);
 
             return new AuthenticationHeaderValue("Basic", converted);

@@ -23,7 +23,10 @@
     "OpenIddict.EntityFrameworkCore": "1.0.0-*",
     "OpenIddict.Mvc": "1.0.0-*",
     "Microsoft.AspNetCore.SignalR.Server": "0.2.0-*",
-    "Microsoft.AspNetCore.WebSockets": "1.0.0"
+    "Microsoft.AspNetCore.WebSockets": "1.0.0",
+    "YoApp.DataObjects": "1.0.0-*",
+    "AutoMapper": "5.2.0",
+    "AutoMapper.Extensions.Microsoft.DependencyInjection": "1.2.0"
   },
 
   "tools": {

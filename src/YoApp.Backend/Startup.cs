@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -83,7 +84,7 @@ namespace YoApp.Backend
                     .AllowPasswordFlow();
             }
 
-            // Add framework services.
+            // Add frameworks
             services.AddMvc();
             services.AddSignalR(o =>
             {
@@ -93,6 +94,7 @@ namespace YoApp.Backend
                 if(_environment.IsProduction())
                     o.Hubs.EnableJavaScriptProxies = false;
             });
+            services.AddAutoMapper();
 
             //IoC
             services.AddSingleton<ILoggerFactory, LoggerFactory>();
@@ -100,7 +102,7 @@ namespace YoApp.Backend
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IVerificationRequestsRepository, VerificationRequestRepository>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
-            services.AddSingleton<ISmsSender, TwilioMessageSender>();
+            services.AddSingleton<ISmsSender, TwilioMessageService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

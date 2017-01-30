@@ -8,7 +8,6 @@ using YoApp.Backend.Controllers;
 using YoApp.Backend.Data;
 using YoApp.Backend.Data.EF;
 using YoApp.Backend.Data.Repositories;
-using YoApp.Backend.DataObjects.Account;
 using YoApp.Backend.Services.Interfaces;
 
 
