@@ -37,7 +37,7 @@ namespace YoApp.Backend.Controllers
 
         //Using POST Verb due to long querry object
         [HttpPost]
-        public async Task<IActionResult> GetUsers(IEnumerable<string> phoneNumbers)
+        public async Task<IActionResult> GetUsers([FromBody]IEnumerable<string> phoneNumbers)
         {
             if (!ModelState.IsValid)
                 return BadRequest();

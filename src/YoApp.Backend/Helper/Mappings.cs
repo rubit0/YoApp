@@ -10,6 +10,9 @@ namespace YoApp.Backend.Helper
         {
             CreateMap<UsersDto, ApplicationUser>()
                 .ForMember(a => a.UserName, o => o.MapFrom(u => u.PhoneNumber));
+
+            CreateMap<ApplicationUser, UsersDto>()
+                .ForMember(u => u.PhoneNumber, o => o.MapFrom(a => a.UserName));
         }
     }
 }
