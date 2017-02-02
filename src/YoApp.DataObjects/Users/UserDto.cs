@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace YoApp.DataObjects.Users
 {
-    public class UsersDto
+    public class UserDto
     {
         [Required]
         public string PhoneNumber { get; set; }

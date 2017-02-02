@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using YoApp.Backend.Data;
 using YoApp.DataObjects.Users;
 
@@ -13,26 +14,33 @@ namespace YoApp.Backend.Controllers
     [Route("api/[controller]")]
     public class UsersController : Controller
     {
+        private readonly ILogger _logger;
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
 
-        public UsersController(IUnitOfWork unitOfWork, IMapper mapper)
+        public UsersController(ILogger<UsersController> logger, IUnitOfWork unitOfWork, IMapper mapper)
         {
+            _logger = logger;
             _unitOfWork = unitOfWork;
             _mapper = mapper;
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetUser(string phoneNumber)
+        public async Task<IActionResult> GetUser([FromForm]string phoneNumber)
         {
             if (string.IsNullOrWhiteSpace(phoneNumber))
                 return BadRequest();
 
             var userInDb = await _unitOfWork.UserRepository.GetUserAsync(phoneNumber);
             if (userInDb == null)
-                return BadRequest();
+            {
+                _logger.LogError($"User by {phoneNumber} requested by [{User.Identity.Name}] was not found.");
+                return NotFound();
+            }
 
-            return Ok(userInDb);
+            var dto = _mapper.Map<UserDto>(userInDb);
+            
+            return Ok(dto);
         }
 
         //Using POST Verb due to long querry object
@@ -44,9 +52,12 @@ namespace YoApp.Backend.Controllers
 
             var usersInDb = await _unitOfWork.UserRepository.GetUsersAsync(phoneNumbers);
             if (!usersInDb.Any())
-                return NoContent();
+            {
+                _logger.LogError($"No matching Users found for [{User.Identity.Name}] request.");
+                return NotFound();
+            }
 
-            var matches = _mapper.Map<IEnumerable<UsersDto>>(usersInDb);
+            var matches = _mapper.Map<IEnumerable<UserDto>>(usersInDb);
 
             return Ok(matches);
         }

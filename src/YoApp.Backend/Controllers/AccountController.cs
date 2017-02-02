@@ -30,7 +30,7 @@ namespace YoApp.Backend.Controllers
         }
 
         [HttpPut("Nickname")]
-        public async Task<IActionResult> UpdateNickname(string name)
+        public async Task<IActionResult> UpdateNickname([FromForm]string name)
         {
             var user = await _unitOfWork.UserRepository.GetUserAsync(User.Identity.Name);
             if (user == null)
@@ -38,9 +38,9 @@ namespace YoApp.Backend.Controllers
 
             user.Nickname = name;
             await _unitOfWork.CompleteAsync();
-            _logger.LogInformation($"Updated Nickname for User [{user.UserName}.]");
+            _logger.LogInformation($"Updated Nickname for User [{user.Nickname}.]");
 
-            return Ok();
+            return Ok(user.Nickname);
         }
 
         [HttpGet("Status")]
@@ -54,7 +54,7 @@ namespace YoApp.Backend.Controllers
         }
 
         [HttpPut("Status")]
-        public async Task<IActionResult> UpateStatus(string status)
+        public async Task<IActionResult> UpateStatus([FromForm]string status)
         {
             var user = await _unitOfWork.UserRepository.GetUserAsync(User.Identity.Name);
             if (user == null)
@@ -62,9 +62,9 @@ namespace YoApp.Backend.Controllers
 
             user.Status = status;
             await _unitOfWork.CompleteAsync();
-            _logger.LogInformation($"Updated status message for User [{user.UserName}.]");
+            _logger.LogInformation($"Updated status message for User [{user.Status}.]");
 
-            return Ok();
+            return Ok(user.Status);
         }
     }
 }

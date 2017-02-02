@@ -8,10 +8,10 @@ namespace YoApp.Backend.Helper
     {
         public Mappings()
         {
-            CreateMap<UsersDto, ApplicationUser>()
+            CreateMap<UserDto, ApplicationUser>()
                 .ForMember(a => a.UserName, o => o.MapFrom(u => u.PhoneNumber));
 
-            CreateMap<ApplicationUser, UsersDto>()
+            CreateMap<ApplicationUser, UserDto>()
                 .ForMember(u => u.PhoneNumber, o => o.MapFrom(a => a.UserName));
         }
     }
