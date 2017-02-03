@@ -22,7 +22,7 @@ namespace YoApp.Tests.Api.Controller
         }
 
         [Fact]
-        public async void GetUser_BadRequestOnEmptyPhoneNumber()
+        public async void GetUser_OnEmptyPhoneNumber_ReturnsBadRequest()
         {
             //Arrange
             var mapperMock = new Mock<IMapper>();
@@ -39,7 +39,7 @@ namespace YoApp.Tests.Api.Controller
 
         [Theory]
         [InlineData("Bob")]
-        public async void GetUser_NotFoundOnUnknownPhoneNumber(string phoneNumber)
+        public async void GetUser_OnUnknownPhoneNumber_ReturnsNotFound(string phoneNumber)
         {
             //Arrange
             var mapperMock = new Mock<IMapper>();
@@ -66,7 +66,7 @@ namespace YoApp.Tests.Api.Controller
 
         [Theory]
         [InlineData("Bob")]
-        public async void GetUser_ReturnsUserOnOkResponse(string phoneNumber)
+        public async void GetUser_OnOkResponse_ReturnsUser(string phoneNumber)
         {
             //Arrange
             var fakeUser = new ApplicationUser { UserName = phoneNumber };
@@ -94,7 +94,7 @@ namespace YoApp.Tests.Api.Controller
         }
 
         [Fact]
-        public async void GetUsers_ReturnsOnOnAnyMatches()
+        public async void GetUsers_OnAnyFindingMatche_ReturnsOk()
         {
             //Arrange
             var requestPhoneNumbers = new List<string> {"123", "456", "789"};

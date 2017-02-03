@@ -21,7 +21,7 @@ namespace YoApp.Tests.Api.Controller
 
         [Theory]
         [InlineData("4915701234", "Bob", "Martin")]
-        public async void UpdateNickname_ReturnsNewName(string username, string oldNickname, string newNickname)
+        public async void UpdateNickname_OnNicknameUpdate_ReturnsNewName(string username, string oldNickname, string newNickname)
         {
             //Arrange
             var fakeUser = new ApplicationUser
@@ -54,7 +54,7 @@ namespace YoApp.Tests.Api.Controller
 
         [Theory]
         [InlineData("4915701234", "Bob", "Martin")]
-        public async void UpdateStatus_ReturnsNewStatus(string username, string oldStatus, string newStatus)
+        public async void UpdateStatus_OnStatusUpdate_ReturnsNewStatus(string username, string oldStatus, string newStatus)
         {
             //Arrange
             var fakeUser = new ApplicationUser
@@ -86,7 +86,7 @@ namespace YoApp.Tests.Api.Controller
         }
 
         [Fact]
-        public async void GetNickname_NullUserReturnsNotfound()
+        public async void GetNickname_NullUser_ReturnsNotfound()
         {
             //Arrange
             var unitOfWorkMock = new Mock<IUnitOfWork>();
@@ -111,7 +111,7 @@ namespace YoApp.Tests.Api.Controller
         }
 
         [Fact]
-        public async void GetStatus_NullUserReturnsNotfound()
+        public async void GetStatus_NullUser_ReturnsNotfound()
         {
             //Arrange
             var unitOfWorkMock = new Mock<IUnitOfWork>();

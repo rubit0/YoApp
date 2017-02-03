@@ -17,12 +17,14 @@ namespace YoApp.Backend.Controllers
         private readonly ILogger _logger;
         private readonly IUnitOfWork _unitOfWork;
         private readonly ISmsSender _messageSender;
+        private readonly IConfigurationService _configurationService;
 
-        public VerificationController(ILogger<VerificationController> logger, IUnitOfWork unitOfWork, ISmsSender messageSender)
+        public VerificationController(ILogger<VerificationController> logger, IUnitOfWork unitOfWork, ISmsSender messageSender, IConfigurationService configurationService)
         {
             _logger = logger;
             _unitOfWork = unitOfWork;
             _messageSender = messageSender;
+            _configurationService = configurationService;
         }
 
         [HttpPost("Challenge")]
@@ -31,15 +33,17 @@ namespace YoApp.Backend.Controllers
             if (!ModelState.IsValid || !form.IsModelValid())
                 return BadRequest();
 
-            if(!Settings.ValidCountryCallCodes.Contains(form.CountryCode))
+            if(!_configurationService.ValidCountryCallCodes.Contains(form.CountryCode))
                 return BadRequest($"Country [{form.CountryCode}] is not supported.");
 
             var number = form.GetFormatedPhoneNumber();
             _logger.LogInformation($"The PhoneNumber [{number}] is requesting an verification code.");
 
-            var request = new VerificationtRequestDto(number, Settings.VerificationDuration, GenerateVerificationCode());
+            //Generate request object
+            var request = new VerificationtRequestDto(number, _configurationService.VerificationDuration, GenerateVerificationCode());
             var clientMessage = $"Hello from YoApp!\nYour verification Code is:\n{request.VerificationCode}";
 
+            //Send SMS message with code to client
             var sendingResult = await _messageSender.SendMessageAsync("+" + number, clientMessage);
             if (!sendingResult)
                 return new StatusCodeResult(500);
@@ -52,6 +56,7 @@ namespace YoApp.Backend.Controllers
             //remove potentially previous request
             _unitOfWork.VerificationRequestsRepository.RemoveVerificationRequestByPhone(number);
 
+            //Persist the request to resolve it later
             await _unitOfWork.VerificationRequestsRepository.AddVerificationRequestAsync(request);
             await _unitOfWork.CompleteAsync();
 
@@ -64,6 +69,7 @@ namespace YoApp.Backend.Controllers
             if (!ModelState.IsValid || !response.IsModelValid())
                 return BadRequest();
 
+            //Retrieve request from db
             var request = await _unitOfWork
                 .VerificationRequestsRepository
                 .FindVerificationtRequestByPhoneAsync(response.PhoneNumber);
@@ -71,12 +77,14 @@ namespace YoApp.Backend.Controllers
             if (request == null)
                 return BadRequest($"No verification request found for {response.PhoneNumber}.");
 
+            //Verify if code matches
             if (!response.VerifyFromRequest(request))
             {
                 _logger.LogInformation($"Code verification failed for [+{response.PhoneNumber}.\nExpected ({request.VerificationCode}) but got ({response.VerificationCode}).]");
                 return BadRequest("Verification code does not match.");
             }
 
+            //Check if the user already has an account, otherwise create and persist a new one
             var user = await _unitOfWork.UserRepository.GetUserAsync(response.PhoneNumber);
             if (user == null)
             {
@@ -92,6 +100,7 @@ namespace YoApp.Backend.Controllers
                 await _unitOfWork.UserRepository.UpdateUserPasswordAsync(user, response.Password);
             }
 
+            //At this step the user is verified and persistet, remove obsolet request from db
             _unitOfWork.VerificationRequestsRepository.RemoveVerificationRequest(request.Id);
             await _unitOfWork.CompleteAsync();
             _logger.LogInformation($"Verification was succesfull for User [{user.UserName}.]");
@@ -99,10 +108,11 @@ namespace YoApp.Backend.Controllers
             return Ok();
         }
 
-        private static string GenerateVerificationCode()
+        private static readonly Random RandomGenerator = new Random();
+
+        public static string GenerateVerificationCode()
         {
-            var rng = new Random();
-            return $"{rng.Next(100, 1000)}-{rng.Next(100, 1000)}";
+            return $"{RandomGenerator.Next(100, 1000)}-{RandomGenerator.Next(100, 1000)}";
         }
     }
 }

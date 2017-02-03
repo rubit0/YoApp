@@ -16,15 +16,17 @@ namespace YoApp.Backend.Services
     public class TwilioMessageService : ISmsSender
     {
         private readonly ILogger _logger;
+        private readonly IConfigurationService _configurationService;
 
-        public TwilioMessageService(ILogger<TwilioMessageService> logger)
+        public TwilioMessageService(ILogger<TwilioMessageService> logger, IConfigurationService configurationService)
         {
             _logger = logger;
+            _configurationService = configurationService;
         }
 
         public async Task<bool> SendMessageAsync(string number, string message)
         {
-            _logger.LogInformation($"Attempting an (SMS) message delivery via Twilio to {number} from {Settings.TwillioSettings.SenderPhoneNumber}.");
+            _logger.LogInformation($"Attempting an (SMS) message delivery via Twilio to {number} from {_configurationService.Twillio.SenderPhoneNumber}.");
 
             var client = new HttpClient();
             client.DefaultRequestHeaders.Authorization = this.GetBasicAuthHeader();
@@ -51,14 +53,14 @@ namespace YoApp.Backend.Services
 
         private Uri GetTwilioEndpoint()
         {
-            return new Uri($"https://api.twilio.com/2010-04-01/Accounts/{Settings.TwillioSettings.AccountSid}/Messages.json");
+            return new Uri($"https://api.twilio.com/2010-04-01/Accounts/{_configurationService.Twillio.AccountSid}/Messages.json");
         }
 
         private FormUrlEncodedContent GetTwilioFormHeaders(string receiver, string message)
         {
             var headers = new Dictionary<string, string>()
             {
-                {"From", Settings.TwillioSettings.SenderPhoneNumber},
+                {"From", _configurationService.Twillio.SenderPhoneNumber},
                 {"To", receiver},
                 {"Body", message}
             };
@@ -68,7 +70,7 @@ namespace YoApp.Backend.Services
 
         private AuthenticationHeaderValue GetBasicAuthHeader()
         {
-            var authValues = Encoding.ASCII.GetBytes($"{Settings.TwillioSettings.AccountSid}:{Settings.TwillioSettings.AuthToken}");
+            var authValues = Encoding.ASCII.GetBytes($"{_configurationService.Twillio.AccountSid}:{_configurationService.Twillio.AuthToken}");
             var converted = Convert.ToBase64String(authValues);
 
             return new AuthenticationHeaderValue("Basic", converted);

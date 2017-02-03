@@ -11,6 +11,7 @@ using YoApp.Backend.Data;
 using YoApp.Backend.Data.EF;
 using YoApp.Backend.Data.EF.Repositories;
 using YoApp.Backend.Data.Repositories;
+using YoApp.Backend.Helper;
 using YoApp.Backend.Models;
 using YoApp.Backend.Services;
 using YoApp.Backend.Services.Interfaces;
@@ -103,6 +104,7 @@ namespace YoApp.Backend
             services.AddScoped<IVerificationRequestsRepository, VerificationRequestRepository>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddSingleton<ISmsSender, TwilioMessageService>();
+            services.AddSingleton<IConfigurationService, ConfigurationService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
