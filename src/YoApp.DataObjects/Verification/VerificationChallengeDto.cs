@@ -1,20 +1,32 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace YoApp.DataObjects.Verification
 {
 
-    public class VerificationChallengeDto : IValidatableObject
+    public class VerificationChallengeDto
     {
         [Required]
-        public int CountryCode { get; set; }
+        [StringLength(3, MinimumLength = 1, ErrorMessage = "CountryCode too long or short")]
+        public string CountryCode { get; set; }
 
         [Required]
-        public int PhoneNumber { get; set; }
+        [StringLength(13, MinimumLength = 6, ErrorMessage = "Phonenumber too long or short")]
+        public string PhoneNumber { get; set; }
 
         /// <summary>
-        /// Returns CountryCode and PhoneNumber concatenated
+        /// Rerturns the CountryCode as an int.
+        /// </summary>
+        /// <returns></returns>
+        public int CountryCodeToInt()
+        {
+            var result = 0;
+            int.TryParse(this.CountryCode, out result);
+            return result;
+        }
+
+        /// <summary>
+        /// Returns CountryCode and PhoneNumber concatenated.
         /// </summary>
         /// <returns></returns>
         public override string ToString()
@@ -22,13 +34,17 @@ namespace YoApp.DataObjects.Verification
             return $"{this.CountryCode}{this.PhoneNumber}";
         }
 
-        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        /// <summary>
+        /// Get this Dto as a KeyValuePair.
+        /// </summary>
+        /// <returns></returns>
+        public virtual IDictionary<string, string> ToDictionary()
         {
-            if(this.CountryCode < 1 || this.CountryCode > 999)
-                yield return new ValidationResult("Invalid Country code", new []{nameof(this.CountryCode)});
-
-            if (this.PhoneNumber < 5)
-                yield return new ValidationResult("PhoneNumber is too short", new []{nameof(this.PhoneNumber)});
+            return new Dictionary<string, string>
+            {
+                {"CountryCode", this.CountryCode},
+                {"PhoneNumber", this.PhoneNumber}
+            };
         }
     }
 }

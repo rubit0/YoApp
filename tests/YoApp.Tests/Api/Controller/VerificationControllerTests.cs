@@ -46,8 +46,8 @@ namespace YoApp.Tests.Api.Controller
             //Arrange
             var form = new VerificationChallengeDto
             {
-                CountryCode = 49,
-                PhoneNumber = 1730456789
+                CountryCode = "49",
+                PhoneNumber = "1730456789"
             };
 
             var unitOfWorkMock = new Mock<IUnitOfWork>();
@@ -73,8 +73,8 @@ namespace YoApp.Tests.Api.Controller
             //Arrange
             var form = new VerificationChallengeDto
             {
-                CountryCode = 49,
-                PhoneNumber = 1730456789
+                CountryCode = "49",
+                PhoneNumber = "1730456789"
             };
 
             var unitOfWorkMock = new Mock<IUnitOfWork>();
@@ -103,8 +103,8 @@ namespace YoApp.Tests.Api.Controller
             //Arrange
             var form = new VerificationChallengeDto
             {
-                CountryCode = 49,
-                PhoneNumber = 1730456789
+                CountryCode = "49",
+                PhoneNumber = "1730456789"
             };
 
             var unitOfWorkMock = new Mock<IUnitOfWork>();
@@ -267,7 +267,7 @@ namespace YoApp.Tests.Api.Controller
             //Act
             for (int i = 0; i < times; i++)
             {
-                var code = VerificationController.GenerateVerificationCode();
+                var code = CodeGenerator.GetCode();
                 if (code.Length < 7)
                 {
                     result = false;

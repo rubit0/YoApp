@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace YoApp.DataObjects.Verification
@@ -18,24 +17,18 @@ namespace YoApp.DataObjects.Verification
         [StringLength(36, MinimumLength = 32, ErrorMessage = "Password too long or short.")]
         public string Password { get; set; }
 
-        //public bool IsModelValid()
-        //{
-        //    if (string.IsNullOrWhiteSpace(this.PhoneNumber)
-        //        || string.IsNullOrWhiteSpace(this.VerificationCode)
-        //        || string.IsNullOrWhiteSpace(this.Password))
-        //        return false;
-
-        //    return true;
-        //}
-
-        //public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-        //{
-        //    if(string.IsNullOrWhiteSpace(this.PhoneNumber))
-        //        yield return new ValidationResult("You must provice a Phonenumber", new []{nameof(this.PhoneNumber)});
-        //    if(string.IsNullOrWhiteSpace(this.VerificationCode))
-        //        yield return new ValidationResult("VerificationCode is empty", new []{nameof(this.VerificationCode)});
-        //    if(string.IsNullOrWhiteSpace(this.Password))
-        //        yield return new ValidationResult("Password is empty", new []{nameof(this.Password)});
-        //}
+        /// <summary>
+        /// Get this Dto as a KeyValuePair.
+        /// </summary>
+        /// <returns></returns>
+        public virtual IDictionary<string, string> ToDictionary()
+        {
+            return new Dictionary<string, string>
+            {
+                {"PhoneNumber", this.PhoneNumber},
+                {"VerificationCode", this.VerificationCode},
+                {"Password", this.Password}
+            };
+        }
     }
 }

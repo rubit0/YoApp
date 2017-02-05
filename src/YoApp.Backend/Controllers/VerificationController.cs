@@ -33,7 +33,7 @@ namespace YoApp.Backend.Controllers
             if (!ModelState.IsValid)
                 return BadRequest();
 
-            if(!_configurationService.ValidCountryCallCodes.Contains(challenge.CountryCode))
+            if(!_configurationService.ValidCountryCallCodes.Contains(challenge.CountryCodeToInt()))
                 return BadRequest($"Country [{challenge.CountryCode}] is not supported.");
 
             var number = challenge.ToString();
