@@ -7,16 +7,16 @@ namespace YoApp.Backend.Data.Repositories
 {
     public interface IUserRepository
     {
-        ApplicationUser GetUser(string name);
-        Task<ApplicationUser> GetUserAsync(string name);
+        ApplicationUser GetByUsername(string name);
+        Task<ApplicationUser> GetByUsernameAsync(string name);
 
-        IEnumerable<ApplicationUser> GetUsers(IEnumerable<string> names);
-        Task<IEnumerable<ApplicationUser>> GetUsersAsync(IEnumerable<string> names);
+        IEnumerable<ApplicationUser> GetByUsernames(IEnumerable<string> names);
+        Task<IEnumerable<ApplicationUser>> GetByUsernamesAsync(IEnumerable<string> names);
 
-        IdentityResult AddUser(ApplicationUser user, string password);
-        Task<IdentityResult> AddUserAsync(ApplicationUser user, string password);
+        IdentityResult Add(ApplicationUser user, string password);
+        Task<IdentityResult> AddAsync(ApplicationUser user, string password);
 
-        void UpdateUserPassword(ApplicationUser user, string password);
-        Task UpdateUserPasswordAsync(ApplicationUser user, string password);
+        void UpdatePassword(ApplicationUser user, string password);
+        Task UpdatePasswordAsync(ApplicationUser user, string password);
     }
 }

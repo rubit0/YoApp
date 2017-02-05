@@ -28,22 +28,22 @@ namespace YoApp.Backend.Controllers
         }
 
         [HttpPost("Challenge")]
-        public async Task<IActionResult> ChallengeVerification([FromForm]VerificationFormDto form)
+        public async Task<IActionResult> ChallengeVerification([FromForm]VerificationChallengeDto challenge)
         {
-            if (!ModelState.IsValid || !form.IsModelValid())
+            if (!ModelState.IsValid)
                 return BadRequest();
 
-            if(!_configurationService.ValidCountryCallCodes.Contains(form.CountryCode))
-                return BadRequest($"Country [{form.CountryCode}] is not supported.");
+            if(!_configurationService.ValidCountryCallCodes.Contains(challenge.CountryCode))
+                return BadRequest($"Country [{challenge.CountryCode}] is not supported.");
 
-            var number = form.GetFormatedPhoneNumber();
+            var number = challenge.ToString();
             _logger.LogInformation($"The PhoneNumber [{number}] is requesting an verification code.");
 
             //Generate request object
-            var request = new VerificationtRequestDto(number, _configurationService.VerificationDuration, GenerateVerificationCode());
-            var clientMessage = $"Hello from YoApp!\nYour verification Code is:\n{request.VerificationCode}";
+            var request = new VerificationtRequest(number, _configurationService.VerificationDuration, CodeGenerator.GetCode());
 
             //Send SMS message with code to client
+            var clientMessage = $"Hello from YoApp!\nYour verification Code is:\n{request.VerificationCode}";
             var sendingResult = await _messageSender.SendMessageAsync("+" + number, clientMessage);
             if (!sendingResult)
                 return new StatusCodeResult(500);
@@ -53,43 +53,40 @@ namespace YoApp.Backend.Controllers
             _logger.LogInformation($"Message send to client:\n{clientMessage}");
 #endif
 
-            //remove potentially previous request
-            _unitOfWork.VerificationRequestsRepository.RemoveVerificationRequestByPhone(number);
-
             //Persist the request to resolve it later
-            await _unitOfWork.VerificationRequestsRepository.AddVerificationRequestAsync(request);
+            await _unitOfWork.VerificationRequestsRepository.AddOrReplaceAsync(request);
             await _unitOfWork.CompleteAsync();
 
             return Ok();
         }
 
         [HttpPost("Resolve")]
-        public async Task<IActionResult> ResolveVerification([FromForm]VerificationResponseDto response)
+        public async Task<IActionResult> ResolveVerification([FromForm]VerificationResolveDto resolve)
         {
-            if (!ModelState.IsValid || !response.IsModelValid())
+            if (!ModelState.IsValid)
                 return BadRequest();
 
             //Retrieve request from db
             var request = await _unitOfWork
                 .VerificationRequestsRepository
-                .FindVerificationtRequestByPhoneAsync(response.PhoneNumber);
+                .FindByPhoneAsync(resolve.PhoneNumber);
 
             if (request == null)
-                return BadRequest($"No verification request found for {response.PhoneNumber}.");
+                return BadRequest($"No verification request found for {resolve.PhoneNumber}.");
 
             //Verify if code matches
-            if (!response.VerifyFromRequest(request))
+            if (!request.VerifyFromRequest(resolve))
             {
-                _logger.LogInformation($"Code verification failed for [+{response.PhoneNumber}.\nExpected ({request.VerificationCode}) but got ({response.VerificationCode}).]");
+                _logger.LogInformation($"Code verification failed for [+{resolve.PhoneNumber}.\nExpected ({request.VerificationCode}) but got ({resolve.VerificationCode}).]");
                 return BadRequest("Verification code does not match.");
             }
 
             //Check if the user already has an account, otherwise create and persist a new one
-            var user = await _unitOfWork.UserRepository.GetUserAsync(response.PhoneNumber);
+            var user = await _unitOfWork.UserRepository.GetByUsernameAsync(resolve.PhoneNumber);
             if (user == null)
             {
-                user = new ApplicationUser { UserName = response.PhoneNumber, Nickname = response.PhoneNumber };
-                var creationResult = await _unitOfWork.UserRepository.AddUserAsync(user, response.Password);
+                user = new ApplicationUser { UserName = resolve.PhoneNumber, Nickname = resolve.PhoneNumber };
+                var creationResult = await _unitOfWork.UserRepository.AddAsync(user, resolve.Password);
                 if (!creationResult.Succeeded)
                     return StatusCode(500);
 
@@ -97,22 +94,15 @@ namespace YoApp.Backend.Controllers
             }
             else
             {
-                await _unitOfWork.UserRepository.UpdateUserPasswordAsync(user, response.Password);
+                await _unitOfWork.UserRepository.UpdatePasswordAsync(user, resolve.Password);
             }
 
             //At this step the user is verified and persistet, remove obsolet request from db
-            _unitOfWork.VerificationRequestsRepository.RemoveVerificationRequest(request.Id);
+            _unitOfWork.VerificationRequestsRepository.RemoveById(request.Id);
             await _unitOfWork.CompleteAsync();
             _logger.LogInformation($"Verification was succesfull for User [{user.UserName}.]");
 
             return Ok();
-        }
-
-        private static readonly Random RandomGenerator = new Random();
-
-        public static string GenerateVerificationCode()
-        {
-            return $"{RandomGenerator.Next(100, 1000)}-{RandomGenerator.Next(100, 1000)}";
         }
     }
 }

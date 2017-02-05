@@ -22,7 +22,7 @@ namespace YoApp.Backend.Controllers
         [HttpGet("Nickname")]
         public async Task<IActionResult> GetNickname()
         {
-            var user = await _unitOfWork.UserRepository.GetUserAsync(User.Identity.Name);
+            var user = await _unitOfWork.UserRepository.GetByUsernameAsync(User.Identity.Name);
             if (user == null)
                 return NotFound();
 
@@ -32,7 +32,7 @@ namespace YoApp.Backend.Controllers
         [HttpPut("Nickname")]
         public async Task<IActionResult> UpdateNickname([FromForm]string name)
         {
-            var user = await _unitOfWork.UserRepository.GetUserAsync(User.Identity.Name);
+            var user = await _unitOfWork.UserRepository.GetByUsernameAsync(User.Identity.Name);
             if (user == null)
                 return NotFound();
 
@@ -46,7 +46,7 @@ namespace YoApp.Backend.Controllers
         [HttpGet("Status")]
         public async Task<IActionResult> GetStatus()
         {
-            var user = await _unitOfWork.UserRepository.GetUserAsync(User.Identity.Name);
+            var user = await _unitOfWork.UserRepository.GetByUsernameAsync(User.Identity.Name);
             if (user == null)
                 return NotFound();
 
@@ -56,7 +56,7 @@ namespace YoApp.Backend.Controllers
         [HttpPut("Status")]
         public async Task<IActionResult> UpateStatus([FromForm]string status)
         {
-            var user = await _unitOfWork.UserRepository.GetUserAsync(User.Identity.Name);
+            var user = await _unitOfWork.UserRepository.GetByUsernameAsync(User.Identity.Name);
             if (user == null)
                 return NotFound();
 

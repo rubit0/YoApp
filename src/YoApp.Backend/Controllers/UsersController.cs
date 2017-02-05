@@ -31,7 +31,7 @@ namespace YoApp.Backend.Controllers
             if (string.IsNullOrWhiteSpace(phoneNumber))
                 return BadRequest();
 
-            var userInDb = await _unitOfWork.UserRepository.GetUserAsync(phoneNumber);
+            var userInDb = await _unitOfWork.UserRepository.GetByUsernameAsync(phoneNumber);
             if (userInDb == null)
             {
                 _logger.LogError($"User by {phoneNumber} requested by [{User.Identity.Name}] was not found.");
@@ -50,7 +50,7 @@ namespace YoApp.Backend.Controllers
             if (!ModelState.IsValid)
                 return BadRequest();
 
-            var usersInDb = await _unitOfWork.UserRepository.GetUsersAsync(phoneNumbers);
+            var usersInDb = await _unitOfWork.UserRepository.GetByUsernamesAsync(phoneNumbers);
             if (!usersInDb.Any())
             {
                 _logger.LogError($"No matching Users found for [{User.Identity.Name}] request.");

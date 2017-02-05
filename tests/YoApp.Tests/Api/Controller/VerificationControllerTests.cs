@@ -26,7 +26,7 @@ namespace YoApp.Tests.Api.Controller
         public async void ChallangeVerification_OnInvalidForm_ReturnsBadRequest()
         {
             //Arrange
-            var form = new VerificationFormDto();
+            var form = new VerificationChallengeDto();
 
             var unitOfWorkMock = new Mock<IUnitOfWork>();
             var messageSenderMock = new Mock<ISmsSender>();
@@ -44,10 +44,10 @@ namespace YoApp.Tests.Api.Controller
         public async void ChallengeVerification_OnInvalidCountryCode_ReturnsBadRequest()
         {
             //Arrange
-            var form = new VerificationFormDto
+            var form = new VerificationChallengeDto
             {
                 CountryCode = 49,
-                PhoneNumber = "1730456789"
+                PhoneNumber = 1730456789
             };
 
             var unitOfWorkMock = new Mock<IUnitOfWork>();
@@ -71,10 +71,10 @@ namespace YoApp.Tests.Api.Controller
         public async void ChallengeVerification_OnSmsSendingFailure_ReturnsStatusCode500()
         {
             //Arrange
-            var form = new VerificationFormDto
+            var form = new VerificationChallengeDto
             {
                 CountryCode = 49,
-                PhoneNumber = "1730456789"
+                PhoneNumber = 1730456789
             };
 
             var unitOfWorkMock = new Mock<IUnitOfWork>();
@@ -101,20 +101,20 @@ namespace YoApp.Tests.Api.Controller
         public async void ChallengeVerification_OnValidForm_ReturnsOk()
         {
             //Arrange
-            var form = new VerificationFormDto
+            var form = new VerificationChallengeDto
             {
                 CountryCode = 49,
-                PhoneNumber = "1730456789"
+                PhoneNumber = 1730456789
             };
 
             var unitOfWorkMock = new Mock<IUnitOfWork>();
             unitOfWorkMock
                 .Setup(r => r.VerificationRequestsRepository
-                .FindVerificationtRequestByPhone(It.IsAny<string>()));
+                .FindByPhone(It.IsAny<string>()));
 
             unitOfWorkMock
                 .Setup(r => r.VerificationRequestsRepository
-                .AddVerificationRequestAsync(It.IsAny<VerificationtRequestDto>()))
+                .AddAsync(It.IsAny<VerificationtRequest>()))
                 .Returns(Task.FromResult(false));
 
             var messageSenderMock = new Mock<ISmsSender>();
@@ -140,7 +140,7 @@ namespace YoApp.Tests.Api.Controller
         public async void ResolveVerification_OnInvalidDto_ReturnsBadRequest()
         {
             //Arrange
-            var verificationResponseDto = new VerificationResponseDto();
+            var verificationResponseDto = new VerificationResolveDto();
 
             var unitOfWorkMock = new Mock<IUnitOfWork>();
             var messageSenderMock = new Mock<ISmsSender>();
@@ -159,7 +159,7 @@ namespace YoApp.Tests.Api.Controller
         public async void ResolveVerification_OnNullVerificationRequests_ReturnsBadRequest()
         {
             //Arrange
-            var verificationResponseDto = new VerificationResponseDto
+            var verificationResponseDto = new VerificationResolveDto
             {
                 PhoneNumber = "491736890",
                 Password = "123456789",
@@ -169,7 +169,7 @@ namespace YoApp.Tests.Api.Controller
             var unitOfWorkMock = new Mock<IUnitOfWork>();
             unitOfWorkMock
                 .Setup(r => r.VerificationRequestsRepository
-                .FindVerificationtRequestByPhoneAsync(It.IsAny<string>()))
+                .FindByPhoneAsync(It.IsAny<string>()))
                 .ReturnsAsync(null);
 
             var messageSenderMock = new Mock<ISmsSender>();
@@ -188,19 +188,19 @@ namespace YoApp.Tests.Api.Controller
         public async void ResolveVerification_OnNotMatchingCode_ReturnsBadRequest()
         {
             //Arrange
-            var verificationResponseDto = new VerificationResponseDto
+            var verificationResponseDto = new VerificationResolveDto
             {
                 PhoneNumber = "491736890",
                 Password = "123456789",
                 VerificationCode = "123-456"
             };
 
-            var requestDto = new VerificationtRequestDto { VerificationCode = "456-789" };
+            var requestDto = new VerificationtRequest { VerificationCode = "456-789" };
 
             var unitOfWorkMock = new Mock<IUnitOfWork>();
             unitOfWorkMock
                 .Setup(r => r.VerificationRequestsRepository
-                .FindVerificationtRequestByPhoneAsync(It.IsAny<string>()))
+                .FindByPhoneAsync(It.IsAny<string>()))
                 .ReturnsAsync(requestDto);
 
             var messageSenderMock = new Mock<ISmsSender>();
@@ -219,14 +219,14 @@ namespace YoApp.Tests.Api.Controller
         public async void ResolveVerification_OnMatchingCode_ReturnsOk()
         {
             //Arrange
-            var verificationResponseDto = new VerificationResponseDto
+            var verificationResponseDto = new VerificationResolveDto
             {
                 PhoneNumber = "491736890",
                 Password = "123456789",
                 VerificationCode = "123-456"
             };
 
-            var requestDto = new VerificationtRequestDto
+            var requestDto = new VerificationtRequest
             {
                 PhoneNumber = "491736890",
                 VerificationCode = "123-456"
@@ -237,13 +237,13 @@ namespace YoApp.Tests.Api.Controller
             var unitOfWorkMock = new Mock<IUnitOfWork>();
             unitOfWorkMock
                 .Setup(r => r.VerificationRequestsRepository
-                .FindVerificationtRequestByPhoneAsync(It.IsAny<string>()))
+                .FindByPhoneAsync(It.IsAny<string>()))
                 .ReturnsAsync(requestDto);
 
             unitOfWorkMock
-                .Setup(r => r.UserRepository.GetUserAsync(It.IsAny<string>()))
+                .Setup(r => r.UserRepository.GetByUsernameAsync(It.IsAny<string>()))
                 .ReturnsAsync(appUser);
-            unitOfWorkMock.Setup(r => r.VerificationRequestsRepository.RemoveVerificationRequest(It.IsAny<int>()));
+            unitOfWorkMock.Setup(r => r.VerificationRequestsRepository.RemoveById(It.IsAny<int>()));
 
             var messageSenderMock = new Mock<ISmsSender>();
             var configurationMock = new Mock<IConfigurationService>();

@@ -15,22 +15,22 @@ namespace YoApp.Backend.Data.EF.Repositories
             _userManager = userManager;
         }
 
-        public ApplicationUser GetUser(string name)
+        public ApplicationUser GetByUsername(string name)
         {
-            return this.GetUserAsync(name).Result;
+            return this.GetByUsernameAsync(name).Result;
         }
 
-        public async Task<ApplicationUser> GetUserAsync(string name)
+        public async Task<ApplicationUser> GetByUsernameAsync(string name)
         {
             return await _userManager.FindByNameAsync(name);
         }
 
-        public IEnumerable<ApplicationUser> GetUsers(IEnumerable<string> names)
+        public IEnumerable<ApplicationUser> GetByUsernames(IEnumerable<string> names)
         {
-            return this.GetUsersAsync(names).Result;
+            return this.GetByUsernamesAsync(names).Result;
         }
 
-        public async Task<IEnumerable<ApplicationUser>> GetUsersAsync(IEnumerable<string> names)
+        public async Task<IEnumerable<ApplicationUser>> GetByUsernamesAsync(IEnumerable<string> names)
         {
             var usersInDb = new List<ApplicationUser>();
 
@@ -44,12 +44,12 @@ namespace YoApp.Backend.Data.EF.Repositories
             return usersInDb;
         }
 
-        public IdentityResult AddUser(ApplicationUser user, string password)
+        public IdentityResult Add(ApplicationUser user, string password)
         {
-            return AddUserAsync(user, password).Result;
+            return AddAsync(user, password).Result;
         }
 
-        public async Task<IdentityResult> AddUserAsync(ApplicationUser user, string password)
+        public async Task<IdentityResult> AddAsync(ApplicationUser user, string password)
         {
             if (user == null || string.IsNullOrWhiteSpace(password))
                 return IdentityResult.Failed();
@@ -57,12 +57,12 @@ namespace YoApp.Backend.Data.EF.Repositories
             return await _userManager.CreateAsync(user, password);
         }
 
-        public void UpdateUserPassword(ApplicationUser user, string password)
+        public void UpdatePassword(ApplicationUser user, string password)
         {
-            UpdateUserPasswordAsync(user, password).RunSynchronously();
+            UpdatePasswordAsync(user, password).RunSynchronously();
         }
 
-        public async Task UpdateUserPasswordAsync(ApplicationUser user, string password)
+        public async Task UpdatePasswordAsync(ApplicationUser user, string password)
         {
             await _userManager.RemovePasswordAsync(user);
             await _userManager.AddPasswordAsync(user, password);

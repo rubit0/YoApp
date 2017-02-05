@@ -33,7 +33,7 @@ namespace YoApp.Tests.Api.Controller
             var unitOfWorkMock = new Mock<IUnitOfWork>();
             unitOfWorkMock
                 .Setup(r => r.UserRepository
-                .GetUserAsync(It.IsAny<string>()))
+                .GetByUsernameAsync(It.IsAny<string>()))
                 .ReturnsAsync(fakeUser);
 
             var httpContextMock = new Mock<DefaultHttpContext>(null);
@@ -66,7 +66,7 @@ namespace YoApp.Tests.Api.Controller
             var unitOfWorkMock = new Mock<IUnitOfWork>();
             unitOfWorkMock
                 .Setup(r => r.UserRepository
-                .GetUserAsync(It.IsAny<string>()))
+                .GetByUsernameAsync(It.IsAny<string>()))
                 .ReturnsAsync(fakeUser);
 
             var httpContextMock = new Mock<DefaultHttpContext>(null);
@@ -92,7 +92,7 @@ namespace YoApp.Tests.Api.Controller
             var unitOfWorkMock = new Mock<IUnitOfWork>();
             unitOfWorkMock
                 .Setup(r => r.UserRepository
-                .GetUserAsync(It.IsAny<string>()))
+                .GetByUsernameAsync(It.IsAny<string>()))
                 .ReturnsAsync(null);
 
             var httpContextMock = new Mock<DefaultHttpContext>(null);
@@ -117,7 +117,7 @@ namespace YoApp.Tests.Api.Controller
             var unitOfWorkMock = new Mock<IUnitOfWork>();
             unitOfWorkMock
                 .Setup(r => r.UserRepository
-                .GetUserAsync(It.IsAny<string>()))
+                .GetByUsernameAsync(It.IsAny<string>()))
                 .ReturnsAsync(null);
 
             var httpContextMock = new Mock<DefaultHttpContext>(null);

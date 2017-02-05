@@ -8,9 +8,10 @@ using YoApp.Backend.Data.EF;
 namespace YoApp.Backend.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20170205135057_FixNicknameCaseAndAddOpenIddictTables")]
+    partial class FixNicknameCaseAndAddOpenIddictTables
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.1.0-rtm-22752")
@@ -273,7 +274,7 @@ namespace YoApp.Backend.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("VerificationRequests");
+                    b.ToTable("VerificationtRequests");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRoleClaim<string>", b =>

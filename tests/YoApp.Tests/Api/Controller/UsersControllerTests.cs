@@ -46,7 +46,7 @@ namespace YoApp.Tests.Api.Controller
             var unitOfWorkMock = new Mock<IUnitOfWork>();
             unitOfWorkMock
                 .Setup(r => r.UserRepository
-                .GetUserAsync(phoneNumber))
+                .GetByUsernameAsync(phoneNumber))
                 .ReturnsAsync(null);
 
             var httpContextMock = new Mock<DefaultHttpContext>(null);
@@ -80,7 +80,7 @@ namespace YoApp.Tests.Api.Controller
             var unitOfWorkMock = new Mock<IUnitOfWork>();
             unitOfWorkMock
                 .Setup(r => r.UserRepository
-                .GetUserAsync(phoneNumber))
+                .GetByUsernameAsync(phoneNumber))
                 .ReturnsAsync(fakeUser);
 
             var controller = new UsersController(_logger, unitOfWorkMock.Object, mapperMock.Object);
@@ -110,7 +110,7 @@ namespace YoApp.Tests.Api.Controller
             var unitOfWorkMock = new Mock<IUnitOfWork>();
             unitOfWorkMock
                 .Setup(r => r.UserRepository
-                .GetUsersAsync(requestPhoneNumbers))
+                .GetByUsernamesAsync(requestPhoneNumbers))
                 .ReturnsAsync(fakeUsers);
 
             var mapperMock = new Mock<IMapper>();

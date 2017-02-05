@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using YoApp.Backend.Data.Repositories;
+using YoApp.Backend.Models;
 using YoApp.DataObjects.Verification;
 
 namespace YoApp.Backend.Data.EF.Repositories
@@ -15,80 +16,92 @@ namespace YoApp.Backend.Data.EF.Repositories
             _context = context;
         }
 
-        public VerificationtRequestDto FindVerificationtRequest(int id)
+        public VerificationtRequest FindById(int id)
         {
             return _context
-                .VerificationtRequests
+                .VerificationRequests
                 .SingleOrDefault(vr => vr.Id == id);
         }
 
-        public async Task<VerificationtRequestDto> FindVerificationtRequestAsync(int id)
+        public async Task<VerificationtRequest> FindByIdAsync(int id)
         {
             return await _context
-                .VerificationtRequests
+                .VerificationRequests
                 .SingleOrDefaultAsync(vr => vr.Id == id);
         }
 
-        public VerificationtRequestDto FindVerificationtRequestByPhone(string number)
+        public VerificationtRequest FindByPhone(string number)
         {
             return _context
-                .VerificationtRequests
+                .VerificationRequests
                 .SingleOrDefault(vr => vr.PhoneNumber == number);
         }
 
-        public async Task<VerificationtRequestDto> FindVerificationtRequestByPhoneAsync(string number)
+        public async Task<VerificationtRequest> FindByPhoneAsync(string number)
         {
             return await _context
-                .VerificationtRequests
+                .VerificationRequests
                 .SingleOrDefaultAsync(vr => vr.PhoneNumber == number);
         }
 
-        public VerificationtRequestDto FindVerificationtRequestByCode(string code)
+        public VerificationtRequest FindByCode(string code)
         {
             return _context
-                .VerificationtRequests
+                .VerificationRequests
                 .SingleOrDefault(vr => vr.VerificationCode == code);
         }
 
-        public async Task<VerificationtRequestDto> FindVerificationtRequestByCodeAsync(string code)
+        public async Task<VerificationtRequest> FindByCodeAsync(string code)
         {
             return await _context
-                .VerificationtRequests
+                .VerificationRequests
                 .SingleOrDefaultAsync(vr => vr.VerificationCode == code);
         }
 
-        public void AddVerificationRequest(VerificationtRequestDto request)
+        public void Add(VerificationtRequest request)
         {
             if(request == null)
                 return;
 
-            _context.VerificationtRequests.Add(request);
+            _context.VerificationRequests.Add(request);
         }
 
-        public async Task AddVerificationRequestAsync(VerificationtRequestDto request)
+        public async Task AddAsync(VerificationtRequest request)
         {
             if (request == null)
                 return;
 
-            await _context.VerificationtRequests.AddAsync(request);
+            await _context.VerificationRequests.AddAsync(request);
         }
 
-        public void RemoveVerificationRequest(int id)
+        public void AddOrReplace(VerificationtRequest request)
         {
-            var request = this.FindVerificationtRequest(id);
+            RemoveById(request.Id);
+            Add(request);
+        }
+
+        public async Task AddOrReplaceAsync(VerificationtRequest request)
+        {
+            RemoveById(request.Id);
+            await AddAsync(request);
+        }
+
+        public void RemoveById(int id)
+        {
+            var request = this.FindById(id);
             if (request == null)
                 return;
 
-            _context.VerificationtRequests.Remove(request);
+            _context.VerificationRequests.Remove(request);
         }
 
-        public void RemoveVerificationRequestByPhone(string number)
+        public void RemoveByPhone(string number)
         {
-            var request = this.FindVerificationtRequestByPhone(number);
+            var request = this.FindByPhone(number);
             if (request == null)
                 return;
 
-            _context.VerificationtRequests.Remove(request);
+            _context.VerificationRequests.Remove(request);
         }
     }
 }
