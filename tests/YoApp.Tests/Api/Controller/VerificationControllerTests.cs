@@ -23,24 +23,6 @@ namespace YoApp.Tests.Api.Controller
         }
 
         [Fact]
-        public async void ChallangeVerification_OnInvalidForm_ReturnsBadRequest()
-        {
-            //Arrange
-            var form = new VerificationChallengeDto();
-
-            var unitOfWorkMock = new Mock<IUnitOfWork>();
-            var messageSenderMock = new Mock<ISmsSender>();
-            var configurationMock = new Mock<IConfigurationService>();
-            var controller = new VerificationController(_logger, unitOfWorkMock.Object, messageSenderMock.Object, configurationMock.Object);
-
-            //Act
-            var response = await controller.ChallengeVerification(form);
-
-            //Assert
-            Assert.IsType<BadRequestResult>(response);
-        }
-
-        [Fact]
         public async void ChallengeVerification_OnInvalidCountryCode_ReturnsBadRequest()
         {
             //Arrange
@@ -134,25 +116,6 @@ namespace YoApp.Tests.Api.Controller
 
             //Assert
             Assert.IsType<OkResult>(response);
-        }
-
-        [Fact]
-        public async void ResolveVerification_OnInvalidDto_ReturnsBadRequest()
-        {
-            //Arrange
-            var verificationResponseDto = new VerificationResolveDto();
-
-            var unitOfWorkMock = new Mock<IUnitOfWork>();
-            var messageSenderMock = new Mock<ISmsSender>();
-            var configurationMock = new Mock<IConfigurationService>();
-
-            var controller = new VerificationController(_logger, unitOfWorkMock.Object, messageSenderMock.Object, configurationMock.Object);
-
-            //Act
-            var response = await controller.ResolveVerification(verificationResponseDto);
-
-            //Assert
-            Assert.IsType<BadRequestResult>(response);
         }
 
         [Fact]
@@ -268,7 +231,7 @@ namespace YoApp.Tests.Api.Controller
             for (int i = 0; i < times; i++)
             {
                 var code = CodeGenerator.GetCode();
-                if (code.Length < 7)
+                if (code.Length < 6)
                 {
                     result = false;
                     break;

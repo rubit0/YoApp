@@ -3,7 +3,6 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using YoApp.Backend.Data.Repositories;
 using YoApp.Backend.Models;
-using YoApp.DataObjects.Verification;
 
 namespace YoApp.Backend.Data.EF.Repositories
 {
@@ -76,13 +75,13 @@ namespace YoApp.Backend.Data.EF.Repositories
 
         public void AddOrReplace(VerificationtRequest request)
         {
-            RemoveById(request.Id);
+            RemoveByPhone(request.PhoneNumber);
             Add(request);
         }
 
         public async Task AddOrReplaceAsync(VerificationtRequest request)
         {
-            RemoveById(request.Id);
+            RemoveByPhone(request.PhoneNumber);
             await AddAsync(request);
         }
 

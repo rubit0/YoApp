@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace YoApp.Backend.Helper
 {
@@ -20,7 +17,7 @@ namespace YoApp.Backend.Helper
         /// <returns></returns>
         public static string GetCode()
         {
-            return $"{RandomGenerator.Next(100, 1000)}-{RandomGenerator.Next(100, 1000)}";
+            return $"{RandomGenerator.Next(100, 1000)}{RandomGenerator.Next(100, 1000)}";
         }
     }
 }
