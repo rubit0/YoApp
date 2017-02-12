@@ -43,15 +43,15 @@ namespace YoApp.Backend.Controllers
 
             //Send SMS message with code to client
             var clientMessage = $"Hello from YoApp!\nYour verification Code is:\n{request.VerificationCode}";
+#if !DEBUG
             var sendingResult = await _messageSender.SendMessageAsync("+" + number, clientMessage);
             if (!sendingResult)
                 return new StatusCodeResult(500);
-
+#endif
 #if DEBUG
             _logger.LogDebug($"Verification Code for {request.PhoneNumber} is: [{request.VerificationCode}]");
             _logger.LogInformation($"Message send to client:\n{clientMessage}");
 #endif
-
             //Persist the request to resolve it later
             await _unitOfWork.VerificationRequestsRepository.AddOrReplaceAsync(request);
             await _unitOfWork.CompleteAsync();
