@@ -12,13 +12,13 @@ namespace YoApp.Backend.Controllers
 {
     [Authorize]
     [Route("api/[controller]")]
-    public class UsersController : Controller
+    public class ContactsController : Controller
     {
         private readonly ILogger _logger;
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
 
-        public UsersController(ILogger<UsersController> logger, IUnitOfWork unitOfWork, IMapper mapper)
+        public ContactsController(ILogger<ContactsController> logger, IUnitOfWork unitOfWork, IMapper mapper)
         {
             _logger = logger;
             _unitOfWork = unitOfWork;
@@ -60,6 +60,20 @@ namespace YoApp.Backend.Controllers
             var matches = _mapper.Map<IEnumerable<UserDto>>(usersInDb);
 
             return Ok(matches);
+        }
+
+        [HttpGet("IsMember")]
+        public IActionResult IsMember(string phoneNumber)
+        {
+            if (string.IsNullOrWhiteSpace(phoneNumber))
+                return BadRequest();
+
+            var result = _unitOfWork.UserRepository.IsMember(phoneNumber);
+
+            if (result)
+                return Ok();
+            else
+                return NotFound();
         }
     }
 }

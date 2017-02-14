@@ -13,6 +13,8 @@ namespace YoApp.Backend.Data.Repositories
         IEnumerable<ApplicationUser> GetByUsernames(IEnumerable<string> names);
         Task<IEnumerable<ApplicationUser>> GetByUsernamesAsync(IEnumerable<string> names);
 
+        bool IsMember(string name);
+
         IdentityResult Add(ApplicationUser user, string password);
         Task<IdentityResult> AddAsync(ApplicationUser user, string password);
 

@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using YoApp.Backend.Data;
+using YoApp.DataObjects.Account;
 
 namespace YoApp.Backend.Controllers
 {
@@ -19,52 +20,36 @@ namespace YoApp.Backend.Controllers
             _unitOfWork = unitOfWork;
         }
 
-        [HttpGet("Nickname")]
-        public async Task<IActionResult> GetNickname()
+        [HttpPost("Update")]
+        public async Task<IActionResult> UpdateAccount([FromBody] UpdatedAccountDto dto)
         {
-            var user = await _unitOfWork.UserRepository.GetByUsernameAsync(User.Identity.Name);
-            if (user == null)
+            var userInDb = await _unitOfWork.UserRepository.GetByUsernameAsync(User.Identity.Name);
+            if (userInDb == null)
                 return NotFound();
 
-            return Ok(user.Nickname);
+            if (string.CompareOrdinal(userInDb.Nickname, dto.Nickname) != 0)
+                userInDb.Nickname = dto.Nickname;
+
+            if (string.CompareOrdinal(userInDb.Status, dto.StatusMessage) != 0)
+                userInDb.Status = dto.StatusMessage;
+
+            return Ok();
         }
 
-        [HttpPut("Nickname")]
-        public async Task<IActionResult> UpdateNickname([FromForm]string name)
+        [HttpGet]
+        public async Task<IActionResult> GetAccount()
         {
-            var user = await _unitOfWork.UserRepository.GetByUsernameAsync(User.Identity.Name);
-            if (user == null)
-                return NotFound();
+            var userInDb = await _unitOfWork.UserRepository.GetByUsernameAsync(User.Identity.Name);
+            if (userInDb == null)
+                return StatusCode(500);
 
-            user.Nickname = name;
-            await _unitOfWork.CompleteAsync();
-            _logger.LogInformation($"Updated Nickname for User [{user.Nickname}.]");
+            var dto = new UpdatedAccountDto
+            {
+                Nickname = userInDb.Nickname,
+                StatusMessage = userInDb.Status
+            };
 
-            return Ok(user.Nickname);
-        }
-
-        [HttpGet("Status")]
-        public async Task<IActionResult> GetStatus()
-        {
-            var user = await _unitOfWork.UserRepository.GetByUsernameAsync(User.Identity.Name);
-            if (user == null)
-                return NotFound();
-
-            return Ok(user.Status);
-        }
-
-        [HttpPut("Status")]
-        public async Task<IActionResult> UpateStatus([FromForm]string status)
-        {
-            var user = await _unitOfWork.UserRepository.GetByUsernameAsync(User.Identity.Name);
-            if (user == null)
-                return NotFound();
-
-            user.Status = status;
-            await _unitOfWork.CompleteAsync();
-            _logger.LogInformation($"Updated status message for User [{user.Status}.]");
-
-            return Ok(user.Status);
+            return Ok(dto);
         }
     }
 }

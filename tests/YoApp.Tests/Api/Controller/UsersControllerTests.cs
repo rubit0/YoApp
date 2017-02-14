@@ -14,11 +14,11 @@ namespace YoApp.Tests.Api.Controller
 {
     public class UsersControllerTests
     {
-        private ILogger<UsersController> _logger;
+        private ILogger<ContactsController> _logger;
 
         public UsersControllerTests()
         {
-            _logger = new Mock<ILogger<UsersController>>().Object;
+            _logger = new Mock<ILogger<ContactsController>>().Object;
         }
 
         [Fact]
@@ -28,7 +28,7 @@ namespace YoApp.Tests.Api.Controller
             var mapperMock = new Mock<IMapper>();
             var unitOfWorkMock = new Mock<IUnitOfWork>();
 
-            var controller = new UsersController(_logger, unitOfWorkMock.Object,mapperMock.Object);
+            var controller = new ContactsController(_logger, unitOfWorkMock.Object,mapperMock.Object);
 
             //Act
             var response = await controller.GetUser(string.Empty);
@@ -54,7 +54,7 @@ namespace YoApp.Tests.Api.Controller
                 .SetupGet(am => am.User.Identity.Name)
                 .Returns("Somebody");
 
-            var controller = new UsersController(_logger, unitOfWorkMock.Object, mapperMock.Object);
+            var controller = new ContactsController(_logger, unitOfWorkMock.Object, mapperMock.Object);
             controller.ControllerContext.HttpContext = httpContextMock.Object;
 
             //Act
@@ -70,11 +70,11 @@ namespace YoApp.Tests.Api.Controller
         {
             //Arrange
             var fakeUser = new ApplicationUser { UserName = phoneNumber };
-            var fakeDto = new UserDto { PhoneNumber = phoneNumber };
+            var fakeDto = new CreatedAccountDto { PhoneNumber = phoneNumber };
 
             var mapperMock = new Mock<IMapper>();
             mapperMock
-                .Setup(m => m.Map<UserDto>(fakeUser))
+                .Setup(m => m.Map<CreatedAccountDto>(fakeUser))
                 .Returns(fakeDto);
 
             var unitOfWorkMock = new Mock<IUnitOfWork>();
@@ -83,11 +83,11 @@ namespace YoApp.Tests.Api.Controller
                 .GetByUsernameAsync(phoneNumber))
                 .ReturnsAsync(fakeUser);
 
-            var controller = new UsersController(_logger, unitOfWorkMock.Object, mapperMock.Object);
+            var controller = new ContactsController(_logger, unitOfWorkMock.Object, mapperMock.Object);
 
             //Act
             var respone = await controller.GetUser(phoneNumber);
-            var dto = ((OkObjectResult) respone).Value as UserDto;
+            var dto = ((OkObjectResult) respone).Value as CreatedAccountDto;
 
             //Assert
             Assert.Equal(phoneNumber, dto.PhoneNumber);
@@ -115,7 +115,7 @@ namespace YoApp.Tests.Api.Controller
 
             var mapperMock = new Mock<IMapper>();
 
-            var controller = new UsersController(_logger, unitOfWorkMock.Object, mapperMock.Object);
+            var controller = new ContactsController(_logger, unitOfWorkMock.Object, mapperMock.Object);
 
             //Act
             var response = await controller.GetUsers(requestPhoneNumbers);
