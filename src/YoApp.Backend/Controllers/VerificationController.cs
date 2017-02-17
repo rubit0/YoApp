@@ -84,7 +84,7 @@ namespace YoApp.Backend.Controllers
             var user = await _unitOfWork.UserRepository.GetByUsernameAsync(resolve.PhoneNumber);
             if (user == null)
             {
-                user = new ApplicationUser { UserName = resolve.PhoneNumber, Nickname = resolve.PhoneNumber };
+                user = new ApplicationUser { UserName = resolve.PhoneNumber, Nickname = string.Empty };
                 var creationResult = await _unitOfWork.UserRepository.AddAsync(user, resolve.Password);
                 if (!creationResult.Succeeded)
                     return StatusCode(500);

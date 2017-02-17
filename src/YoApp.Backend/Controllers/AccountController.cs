@@ -20,7 +20,7 @@ namespace YoApp.Backend.Controllers
             _unitOfWork = unitOfWork;
         }
 
-        [HttpPost("Update")]
+        [HttpPost]
         public async Task<IActionResult> UpdateAccount([FromBody] UpdatedAccountDto dto)
         {
             var userInDb = await _unitOfWork.UserRepository.GetByUsernameAsync(User.Identity.Name);
@@ -28,10 +28,18 @@ namespace YoApp.Backend.Controllers
                 return NotFound();
 
             if (string.CompareOrdinal(userInDb.Nickname, dto.Nickname) != 0)
+            {
                 userInDb.Nickname = dto.Nickname;
+                _logger.LogInformation($"{userInDb.Nickname} changed Nickname to: {dto.Nickname}");
+            }
 
             if (string.CompareOrdinal(userInDb.Status, dto.StatusMessage) != 0)
+            {
                 userInDb.Status = dto.StatusMessage;
+                _logger.LogInformation($"{userInDb.Status} changed Status to: {dto.StatusMessage}");
+            }
+
+            await _unitOfWork.CompleteAsync();
 
             return Ok();
         }
