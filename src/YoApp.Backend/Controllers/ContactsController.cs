@@ -63,12 +63,12 @@ namespace YoApp.Backend.Controllers
         }
 
         [HttpGet("IsMember")]
-        public IActionResult IsMember(string phoneNumber)
+        public async Task<IActionResult> IsMember(string phoneNumber)
         {
             if (string.IsNullOrWhiteSpace(phoneNumber))
                 return BadRequest();
 
-            var result = _unitOfWork.UserRepository.IsMember(phoneNumber);
+            var result = await _unitOfWork.UserRepository.IsMemberAsync(phoneNumber);
 
             if (result)
                 return Ok();

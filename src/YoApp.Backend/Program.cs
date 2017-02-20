@@ -9,6 +9,9 @@ namespace YoApp.Backend
         {
             var host = new WebHostBuilder()
                 .UseKestrel()
+#if DEBUG
+                .UseUrls("http://0.0.0.0:5000")
+#endif
                 .UseContentRoot(Directory.GetCurrentDirectory())
                 .UseIISIntegration()
                 .UseStartup<Startup>()

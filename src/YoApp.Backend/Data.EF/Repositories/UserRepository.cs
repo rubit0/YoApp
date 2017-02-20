@@ -44,9 +44,10 @@ namespace YoApp.Backend.Data.EF.Repositories
             return usersInDb;
         }
 
-        public bool IsMember(string name)
+        public async Task<bool> IsMemberAsync(string name)
         {
-            return _userManager.FindByNameAsync(name) != null;
+            var user = await _userManager.FindByNameAsync(name);
+            return user != null;
         }
 
         public IdentityResult Add(ApplicationUser user, string password)
