@@ -56,6 +56,7 @@ namespace YoApp.Backend
             //Identity configuration
             services.Configure<IdentityOptions>(o =>
             {
+                o.Password.RequireUppercase = false;
                 o.Password.RequireLowercase = false;
                 o.Password.RequireDigit = true;
                 o.Password.RequiredLength = 32;

@@ -47,8 +47,7 @@ namespace YoApp.Backend.Controllers
             var sendingResult = await _messageSender.SendMessageAsync("+" + number, clientMessage);
             if (!sendingResult)
                 return new StatusCodeResult(500);
-#endif
-#if DEBUG
+#else
             _logger.LogDebug($"Verification Code for {request.PhoneNumber} is: [{request.VerificationCode}]");
             _logger.LogInformation($"Message send to client:\n{clientMessage}");
 #endif

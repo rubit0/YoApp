@@ -12,13 +12,13 @@ namespace YoApp.Backend.Controllers
 {
     [Authorize]
     [Route("api/[controller]")]
-    public class ContactsController : Controller
+    public class FriendsController : Controller
     {
         private readonly ILogger _logger;
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
 
-        public ContactsController(ILogger<ContactsController> logger, IUnitOfWork unitOfWork, IMapper mapper)
+        public FriendsController(ILogger<FriendsController> logger, IUnitOfWork unitOfWork, IMapper mapper)
         {
             _logger = logger;
             _unitOfWork = unitOfWork;
