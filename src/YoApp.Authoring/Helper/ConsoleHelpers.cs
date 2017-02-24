@@ -1,38 +1,43 @@
 ﻿using System.Drawing;
-using System.Drawing.Text;
-using System.Runtime.InteropServices;
+using System.Reflection;
 using Console = Colorful.Console;
 
 namespace YoApp.Authoring.Helper
 {
     public class ConsoleHelpers
     {
-        public static void PrintHeader(string text)
+        public static void PrintHeader(string text = "YoApp Authoring")
         {
             Console.WriteAscii(text, Color.FromArgb(42, 223, 98));
             Console.WriteLine("Welcome to the wonderful YoApp Authoring Interface!", Color.FromArgb(42, 223, 48));
-            Console.WriteLine("Try 'help' in case of panic.", Color.FromArgb(42, 223, 177));
-            Console.WriteLine("Default connection: http://localhost:5000", Color.FromArgb(228, 67, 171));
+            Console.WriteLine("Type 'commands' to list all actions.", Color.FromArgb(42, 223, 177));
+            Console.WriteLine($"Default connection: {Program.DefaultEndpoint}", Color.FromArgb(228, 67, 171));
             Console.WriteLine("----------\n");
         }
 
-        public static void PrintInfo()
-        {
-            Console.WriteLine("Connection", Color.FromArgb(42, 223, 48));
-            Console.WriteLine("Try 'help' in case of panic.", Color.FromArgb(42, 223, 177));
-            Console.WriteLine("----------\n");
-        }
-
-        private const string _prefix = "=>";
+        private const string Prefix = "=> ";
         public static string ReadPrompt()
         {
-            Console.Write(_prefix, Color.Beige);
+            Console.Write(Prefix, Color.Beige);
             return Console.ReadLine();
         }
 
-        public static void Execute(string command)
+        public static string Execute(ConsoleCommand command)
         {
-            Console.WriteLine("Executing some command...");
+            try
+            {
+                return CommandHelpers.TryExecute(command);
+            }
+            catch (TargetInvocationException ex)
+            {
+                WriteExeption(ex.Message);
+                return string.Empty;
+            }
+        }
+
+        public static void WriteExeption(string message)
+        {
+            Console.WriteLine(message, Color.IndianRed);
         }
     }
 }

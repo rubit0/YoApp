@@ -7,14 +7,12 @@ namespace YoApp.Authoring.Services
 {
     public class AccountService
     {
-        private readonly Uri _accountDebugEndPoint = new Uri("http://localhost:5000/api/debug");
-
         public async Task<HttpResponseMessage> RegisterContact(Contact contact)
         {
             using (var client = new HttpClient())
             {
                 var content = contact.ToFormEncoded();
-                return await client.PostAsync(_accountDebugEndPoint, content);
+                return await client.PostAsync(new Uri(Program.DefaultEndpoint, "api/debug"), content);
             }
         }
     }
