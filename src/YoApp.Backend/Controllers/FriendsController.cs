@@ -26,7 +26,7 @@ namespace YoApp.Backend.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetUser([FromForm]string phoneNumber)
+        public async Task<IActionResult> GetUser([FromQuery]string phoneNumber)
         {
             if (string.IsNullOrWhiteSpace(phoneNumber))
                 return BadRequest();
