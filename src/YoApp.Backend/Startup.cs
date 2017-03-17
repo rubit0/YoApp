@@ -88,14 +88,6 @@ namespace YoApp.Backend
 
             // Add frameworks
             services.AddMvc();
-            services.AddSignalR(o =>
-            {
-                if (_environment.IsDevelopment())
-                    o.Hubs.EnableDetailedErrors = true;
-
-                if(_environment.IsProduction())
-                    o.Hubs.EnableJavaScriptProxies = false;
-            });
             services.AddAutoMapper();
 
             //IoC
@@ -118,7 +110,6 @@ namespace YoApp.Backend
             app.UseOpenIddict();
             app.UseMvc();
             app.UseWebSockets();
-            app.UseSignalR();
         }
     }
 }
