@@ -1,12 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Moq;
 using Xunit;
 using YoApp.Backend.Controllers;
 using YoApp.Backend.Data;
 using YoApp.Backend.Models;
-using Microsoft.AspNetCore.Http;
-
+using YoApp.DataObjects.Account;
 
 namespace YoApp.Tests.Api.Controller
 {
@@ -45,7 +45,8 @@ namespace YoApp.Tests.Api.Controller
             controller.ControllerContext.HttpContext = httpContextMock.Object;
 
             //Act
-            var response = await controller.UpdateNickname(newNickname);
+            var dto = new UpdatedAccountDto { Nickname = newNickname };
+            var response = await controller.UpdateAccount(dto);
             var resultValue = ((OkObjectResult)response).Value as string;
 
             //Assert
@@ -78,7 +79,8 @@ namespace YoApp.Tests.Api.Controller
             controller.ControllerContext.HttpContext = httpContextMock.Object;
 
             //Act
-            var response = await controller.UpateStatus(newStatus);
+            var dto = new UpdatedAccountDto { StatusMessage = newStatus };
+            var response = await controller.UpdateAccount(dto);
             var resultValue = ((OkObjectResult)response).Value as string;
 
             //Assert
@@ -104,7 +106,7 @@ namespace YoApp.Tests.Api.Controller
             controller.ControllerContext.HttpContext = httpContextMock.Object;
 
             //Act
-            var response = await controller.GetNickname();
+            var response = await controller.GetAccount();
 
             //Assert
             Assert.IsType<NotFoundResult>(response);
@@ -129,7 +131,7 @@ namespace YoApp.Tests.Api.Controller
             controller.ControllerContext.HttpContext = httpContextMock.Object;
 
             //Act
-            var response = await controller.GetStatus();
+            var response = await controller.GetAccount();
 
             //Assert
             Assert.IsType<NotFoundResult>(response);

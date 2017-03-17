@@ -9,16 +9,17 @@ using YoApp.Backend.Controllers;
 using YoApp.Backend.Data;
 using YoApp.Backend.Models;
 using YoApp.DataObjects.Users;
+using YoApp.DataObjects.Account;
 
 namespace YoApp.Tests.Api.Controller
 {
     public class UsersControllerTests
     {
-        private ILogger<ContactsController> _logger;
+        private ILogger<FriendsController> _logger;
 
         public UsersControllerTests()
         {
-            _logger = new Mock<ILogger<ContactsController>>().Object;
+            _logger = new Mock<ILogger<FriendsController>>().Object;
         }
 
         [Fact]
@@ -28,7 +29,7 @@ namespace YoApp.Tests.Api.Controller
             var mapperMock = new Mock<IMapper>();
             var unitOfWorkMock = new Mock<IUnitOfWork>();
 
-            var controller = new ContactsController(_logger, unitOfWorkMock.Object,mapperMock.Object);
+            var controller = new FriendsController(_logger, unitOfWorkMock.Object,mapperMock.Object);
 
             //Act
             var response = await controller.GetUser(string.Empty);
@@ -54,7 +55,7 @@ namespace YoApp.Tests.Api.Controller
                 .SetupGet(am => am.User.Identity.Name)
                 .Returns("Somebody");
 
-            var controller = new ContactsController(_logger, unitOfWorkMock.Object, mapperMock.Object);
+            var controller = new FriendsController(_logger, unitOfWorkMock.Object, mapperMock.Object);
             controller.ControllerContext.HttpContext = httpContextMock.Object;
 
             //Act
@@ -83,7 +84,7 @@ namespace YoApp.Tests.Api.Controller
                 .GetByUsernameAsync(phoneNumber))
                 .ReturnsAsync(fakeUser);
 
-            var controller = new ContactsController(_logger, unitOfWorkMock.Object, mapperMock.Object);
+            var controller = new FriendsController(_logger, unitOfWorkMock.Object, mapperMock.Object);
 
             //Act
             var respone = await controller.GetUser(phoneNumber);
@@ -115,7 +116,7 @@ namespace YoApp.Tests.Api.Controller
 
             var mapperMock = new Mock<IMapper>();
 
-            var controller = new ContactsController(_logger, unitOfWorkMock.Object, mapperMock.Object);
+            var controller = new FriendsController(_logger, unitOfWorkMock.Object, mapperMock.Object);
 
             //Act
             var response = await controller.GetUsers(requestPhoneNumbers);
