@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using AspNet.Security.OpenIdConnect.Primitives;
+using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -29,7 +30,7 @@ namespace YoApp.Backend
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
                 .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
-                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
+                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", reloadOnChange: true, optional: true)
                 .AddEnvironmentVariables();
 
             Configuration = builder.Build();
@@ -62,7 +63,11 @@ namespace YoApp.Backend
                 o.Password.RequiredLength = 32;
 
                 o.SignIn.RequireConfirmedEmail = false;
-                o.SignIn.RequireConfirmedPhoneNumber = true;
+                o.SignIn.RequireConfirmedPhoneNumber = false;
+
+                o.ClaimsIdentity.UserNameClaimType = OpenIdConnectConstants.Claims.Name;
+                o.ClaimsIdentity.UserIdClaimType = OpenIdConnectConstants.Claims.Subject;
+                o.ClaimsIdentity.RoleClaimType = OpenIdConnectConstants.Claims.Role;
             });
 
             //TODO Development configuration should go to StartupDevelopment.cs
@@ -105,11 +110,11 @@ namespace YoApp.Backend
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
+            loggerFactory.AddAzureWebAppDiagnostics();
 
             app.UseOAuthValidation();
             app.UseOpenIddict();
             app.UseMvc();
-            app.UseWebSockets();
         }
     }
 }
