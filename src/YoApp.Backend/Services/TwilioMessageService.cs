@@ -26,7 +26,7 @@ namespace YoApp.Backend.Services
 
         public async Task<bool> SendMessageAsync(string number, string message)
         {
-            _logger.LogInformation($"Attempting an (SMS) message delivery via Twilio to {number} from {_configurationService.Twillio.SenderPhoneNumber}.");
+            _logger.LogInformation($"Attempting (SMS) message delivery via Twilio to {number} from {_configurationService.Twillio.SenderPhoneNumber}.");
 
             var client = new HttpClient();
             client.DefaultRequestHeaders.Authorization = this.GetBasicAuthHeader();

@@ -242,3 +242,5 @@ ModelManifest.xml
 .fake/
 /src/YoApp.Backend/appsettings.Development.json
 /src/YoApp.Backend/Properties/PublishProfiles
+/src/Services/YoApp.Chat/appsettings.Development.json
+/src/Services/YoApp.Chat/Properties/PublishProfiles/YoAppChat - Web Deploy.pubxml

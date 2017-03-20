@@ -26,6 +26,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\YoApp.Utils\YoApp.Utils.csproj" />
     <ProjectReference Include="..\YoApp.DataObjects\YoApp.DataObjects.csproj" />
   </ItemGroup>
 

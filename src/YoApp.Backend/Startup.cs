@@ -16,6 +16,7 @@ using YoApp.Backend.Helper;
 using YoApp.Backend.Models;
 using YoApp.Backend.Services;
 using YoApp.Backend.Services.Interfaces;
+using YoApp.Utils.Extensions;
 
 namespace YoApp.Backend
 {
@@ -69,6 +70,11 @@ namespace YoApp.Backend
                 o.ClaimsIdentity.UserIdClaimType = OpenIdConnectConstants.Claims.Subject;
                 o.ClaimsIdentity.RoleClaimType = OpenIdConnectConstants.Claims.Role;
             });
+
+            //Set App wide protection keyring
+            var accountName = Configuration.GetSection("Blob:keyring").GetValue<string>("Account");
+            var secrect = Configuration.GetSection("Blob:keyring").GetValue<string>("Secret");
+            services.ConfigureDataProtectionOnAzure("YoApp", accountName, secrect);
 
             //TODO Development configuration should go to StartupDevelopment.cs
             //Add OpenIddict
