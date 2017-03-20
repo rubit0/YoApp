@@ -16,7 +16,7 @@ namespace YoApp.Utils.Extensions
         /// <param name="accountKey">Key of the account</param>
         /// <param name="containerName">Blob target container.</param>
         public static void ConfigureDataProtectionOnAzure(this IServiceCollection services, 
-            string applicationName,string accountName, string accountKey, string containerName = "ringkeys")
+            string applicationName, string accountName, string accountKey, string containerName = "ringkeys")
         {
             var credentials = new StorageCredentials(accountName, accountKey);
 

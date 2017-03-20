@@ -39,8 +39,8 @@ namespace YoApp.Chat
 
             //Set App wide protection keyring
             var accountName = Configuration.GetSection("Blob:keyring").GetValue<string>("Account");
-            var secrect = Configuration.GetSection("Blob:keyring").GetValue<string>("Secret");
-            services.ConfigureDataProtectionOnAzure("YoApp", accountName, secrect);
+            var secret = Configuration.GetSection("Blob:keyring").GetValue<string>("Secret");
+            services.ConfigureDataProtectionOnAzure("YoApp", accountName, secret);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -73,8 +73,8 @@ namespace YoApp.Backend
 
             //Set App wide protection keyring
             var accountName = Configuration.GetSection("Blob:keyring").GetValue<string>("Account");
-            var secrect = Configuration.GetSection("Blob:keyring").GetValue<string>("Secret");
-            services.ConfigureDataProtectionOnAzure("YoApp", accountName, secrect);
+            var secret = Configuration.GetSection("Blob:keyring").GetValue<string>("Secret");
+            services.ConfigureDataProtectionOnAzure("YoApp", accountName, secret);
 
             //TODO Development configuration should go to StartupDevelopment.cs
             //Add OpenIddict
