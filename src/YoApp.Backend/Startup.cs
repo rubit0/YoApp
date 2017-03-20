@@ -72,9 +72,8 @@ namespace YoApp.Backend
             });
 
             //Set App wide protection keyring
-            var accountName = Configuration.GetSection("Blob:keyring").GetValue<string>("Account");
-            var secret = Configuration.GetSection("Blob:keyring").GetValue<string>("Secret");
-            services.ConfigureDataProtectionOnAzure("YoApp", accountName, secret);
+            var section = Configuration.GetSection("Blob:keyring");
+            services.ConfigureDataProtectionOnAzure("YoApp", section["Account"], section["Secret"]);
 
             //TODO Development configuration should go to StartupDevelopment.cs
             //Add OpenIddict
@@ -107,8 +106,12 @@ namespace YoApp.Backend
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IVerificationRequestsRepository, VerificationRequestRepository>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
-            services.AddSingleton<ISmsSender, TwilioMessageService>();
             services.AddSingleton<IConfigurationService, ConfigurationService>();
+
+            if (_environment.IsDevelopment())
+                services.AddSingleton<ISmsSender, DummyMessageService>();
+            else
+                services.AddSingleton<ISmsSender, TwilioMessageService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

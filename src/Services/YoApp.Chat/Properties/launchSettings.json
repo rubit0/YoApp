@@ -1,4 +1,4 @@
-﻿{
+{
   "iisSettings": {
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
@@ -18,12 +18,11 @@
     },
     "YoApp.Chat": {
       "commandName": "Project",
-      "launchBrowser": true,
       "launchUrl": "api/values",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
-      "applicationUrl": "http://localhost:50350"
+      "applicationUrl": "http://localhost:5010"
     }
   }
 }

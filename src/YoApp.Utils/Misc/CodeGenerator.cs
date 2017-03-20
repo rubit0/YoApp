@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace YoApp.Backend.Helper
+namespace YoApp.Utils.Misc
 {
-    public static class CodeGenerator
+    public class CodeGenerator
     {
         private static readonly Random RandomGenerator;
 
@@ -12,7 +12,7 @@ namespace YoApp.Backend.Helper
         }
 
         /// <summary>
-        /// Returns a 2x3 digit long code as string
+        /// Returns a 2x3 digit long code string
         /// </summary>
         /// <returns></returns>
         public static string GetCode()

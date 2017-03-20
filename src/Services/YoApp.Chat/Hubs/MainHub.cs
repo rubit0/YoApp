@@ -6,11 +6,16 @@ using System.Threading.Tasks;
 
 namespace YoApp.Chat.Hubs
 {
+    [Authorize]
     public class MainHub : Hub
     {
+        public MainHub()
+        {
+        }
+
         public override async Task OnConnected()
         {
-            await Clients.All.onMain<string>("Hello World!");
+            await Clients.All.OnWelcome<string>("Hello World!");
         }
     }
 }

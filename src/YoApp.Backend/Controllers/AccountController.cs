@@ -23,6 +23,9 @@ namespace YoApp.Backend.Controllers
         [HttpPost]
         public async Task<IActionResult> UpdateAccount([FromBody] UpdatedAccountDto dto)
         {
+            if (!ModelState.IsValid)
+                return BadRequest();
+
             var userInDb = await _unitOfWork.UserRepository.GetByUsernameAsync(User.Identity.Name);
             if (userInDb == null)
                 return NotFound();

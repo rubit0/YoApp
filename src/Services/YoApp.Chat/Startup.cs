@@ -1,17 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using YoApp.Chat.Helpers;
-using Microsoft.AspNet.SignalR;
 using Owin;
-using Microsoft.AspNetCore.DataProtection;
-using System.IO;
 using YoApp.Utils.Extensions;
 
 namespace YoApp.Chat
@@ -38,9 +31,8 @@ namespace YoApp.Chat
             services.AddMvc();
 
             //Set App wide protection keyring
-            var accountName = Configuration.GetSection("Blob:keyring").GetValue<string>("Account");
-            var secret = Configuration.GetSection("Blob:keyring").GetValue<string>("Secret");
-            services.ConfigureDataProtectionOnAzure("YoApp", accountName, secret);
+            var section = Configuration.GetSection("Blob:keyring");
+            services.ConfigureDataProtectionOnAzure("YoApp", section["Account"], section["Secret"]);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -50,9 +42,9 @@ namespace YoApp.Chat
             loggerFactory.AddDebug();
             loggerFactory.AddAzureWebAppDiagnostics();
 
+            app.UseOAuthValidation();
             app.UseAppBuilder((builder) => builder.MapSignalR());
             
-            app.UseOAuthValidation();
             app.UseMvc();
         }
     }

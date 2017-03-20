@@ -230,7 +230,7 @@ namespace YoApp.Tests.Api.Controller
             //Act
             for (int i = 0; i < times; i++)
             {
-                var code = CodeGenerator.GetCode();
+                var code = Utils.Misc.CodeGenerator.GetCode();
                 if (code.Length < 6)
                 {
                     result = false;
