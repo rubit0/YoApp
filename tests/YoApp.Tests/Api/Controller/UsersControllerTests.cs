@@ -29,7 +29,7 @@ namespace YoApp.Tests.Api.Controller
             var mapperMock = new Mock<IMapper>();
             var unitOfWorkMock = new Mock<IUnitOfWork>();
 
-            var controller = new FriendsController(_logger, unitOfWorkMock.Object,mapperMock.Object);
+            var controller = new FriendsController(_logger, unitOfWorkMock.Object, mapperMock.Object);
 
             //Act
             var response = await controller.GetUser(string.Empty);
@@ -88,7 +88,7 @@ namespace YoApp.Tests.Api.Controller
 
             //Act
             var respone = await controller.GetUser(phoneNumber);
-            var dto = ((OkObjectResult) respone).Value as CreatedAccountDto;
+            var dto = ((OkObjectResult)respone).Value as CreatedAccountDto;
 
             //Assert
             Assert.Equal(phoneNumber, dto.PhoneNumber);
@@ -98,7 +98,7 @@ namespace YoApp.Tests.Api.Controller
         public async void GetUsers_OnAnyFindingMatche_ReturnsOk()
         {
             //Arrange
-            var requestPhoneNumbers = new List<string> {"123", "456", "789"};
+            var requestPhoneNumbers = new List<string> { "123", "456", "789" };
 
             var fakeUsers = new List<ApplicationUser>
             {
@@ -106,7 +106,7 @@ namespace YoApp.Tests.Api.Controller
                 new ApplicationUser { UserName = "456" }
             };
 
-            string[] x = new[] {"", ""};
+            string[] x = new[] { "", "" };
 
             var unitOfWorkMock = new Mock<IUnitOfWork>();
             unitOfWorkMock

@@ -29,7 +29,7 @@ namespace YoApp.Tests.Api.Controller
                 UserName = username,
                 Nickname = oldNickname
             };
-            
+
             var unitOfWorkMock = new Mock<IUnitOfWork>();
             unitOfWorkMock
                 .Setup(r => r.UserRepository

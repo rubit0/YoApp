@@ -244,3 +244,5 @@ ModelManifest.xml
 /src/YoApp.Backend/Properties/PublishProfiles
 /src/Services/YoApp.Chat/appsettings.Development.json
 /src/Services/YoApp.Chat/Properties/PublishProfiles/YoAppChat - Web Deploy.pubxml
+/src/Services/YoApp.Friends/appsettings.Development.json
+/src/Services/YoApp.Identity/appsettings.Development.json
