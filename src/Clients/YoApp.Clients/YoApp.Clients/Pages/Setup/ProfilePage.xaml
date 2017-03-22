@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="YoApp.Clients.Pages.Setup.ProfilePage"
+             Title="Edit profile"
+             NavigationPage.HasBackButton="False"
+             NavigationPage.HasNavigationBar="True" >
+  <StackLayout>
+    <Label Text="Please enter your username and optionaly your status message." />
+    <Entry Placeholder="Nickname" Text="{Binding NickName, Mode=TwoWay}" />
+    <Entry Placeholder="Status message" Text="{Binding StatusMessage, Mode=TwoWay}" />
+    <Button Text="Done" Command="{Binding SubmitCommand}" IsEnabled="{Binding CanSubmit}" />
+  </StackLayout>
+</ContentPage>

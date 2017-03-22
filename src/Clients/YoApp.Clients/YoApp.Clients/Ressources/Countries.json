@@ -1,0 +1,3505 @@
+//REST Countries: License https://github.com/fayder/restcountries/blob/master/LICENSE
+//emoji-flags: License https://github.com/matiassingers/emoji-flags/blob/master/license
+
+[
+  {
+    "CountryCode": "AF",
+    "Name": "Afghanistan",
+    "CallingCode": "93",
+    "EmojiUnicode": "U+1F1E6 U+1F1EB",
+    "Language": "ps",
+    "Translations": {
+      "DE": "Afghanistan",
+      "ES": "Afganistán",
+      "FR": "Afghanistan",
+      "JA": "アフガニスタン",
+      "IT": "Afghanistan"
+    }
+  },
+  {
+    "CountryCode": "AX",
+    "Name": "Åland Islands",
+    "CallingCode": "358",
+    "EmojiUnicode": "U+1F1E6 U+1F1FD",
+    "Language": "sv",
+    "Translations": {
+      "DE": "Åland",
+      "ES": "Alandia",
+      "FR": "Åland",
+      "JA": "オーランド諸島",
+      "IT": "Isole Aland"
+    }
+  },
+  {
+    "CountryCode": "AL",
+    "Name": "Albania",
+    "CallingCode": "355",
+    "EmojiUnicode": "U+1F1E6 U+1F1F1",
+    "Language": "sq",
+    "Translations": {
+      "DE": "Albanien",
+      "ES": "Albania",
+      "FR": "Albanie",
+      "JA": "アルバニア",
+      "IT": "Albania"
+    }
+  },
+  {
+    "CountryCode": "DZ",
+    "Name": "Algeria",
+    "CallingCode": "213",
+    "EmojiUnicode": "U+1F1E9 U+1F1FF",
+    "Language": "ar",
+    "Translations": {
+      "DE": "Algerien",
+      "ES": "Argelia",
+      "FR": "Algérie",
+      "JA": "アルジェリア",
+      "IT": "Algeria"
+    }
+  },
+  {
+    "CountryCode": "AS",
+    "Name": "American Samoa",
+    "CallingCode": "1684",
+    "EmojiUnicode": "U+1F1E6 U+1F1F8",
+    "Language": "en",
+    "Translations": {
+      "DE": "Amerikanisch-Samoa",
+      "ES": "Samoa Americana",
+      "FR": "Samoa américaines",
+      "JA": "アメリカ領サモア",
+      "IT": "Samoa Americane"
+    }
+  },
+  {
+    "CountryCode": "AD",
+    "Name": "Andorra",
+    "CallingCode": "376",
+    "EmojiUnicode": "U+1F1E6 U+1F1E9",
+    "Language": "ca",
+    "Translations": {
+      "DE": "Andorra",
+      "ES": "Andorra",
+      "FR": "Andorre",
+      "JA": "アンドラ",
+      "IT": "Andorra"
+    }
+  },
+  {
+    "CountryCode": "AO",
+    "Name": "Angola",
+    "CallingCode": "244",
+    "EmojiUnicode": "U+1F1E6 U+1F1F4",
+    "Language": "pt",
+    "Translations": {
+      "DE": "Angola",
+      "ES": "Angola",
+      "FR": "Angola",
+      "JA": "アンゴラ",
+      "IT": "Angola"
+    }
+  },
+  {
+    "CountryCode": "AI",
+    "Name": "Anguilla",
+    "CallingCode": "1264",
+    "EmojiUnicode": "U+1F1E6 U+1F1EE",
+    "Language": "en",
+    "Translations": {
+      "DE": "Anguilla",
+      "ES": "Anguilla",
+      "FR": "Anguilla",
+      "JA": "アンギラ",
+      "IT": "Anguilla"
+    }
+  },
+  {
+    "CountryCode": "AQ",
+    "Name": "Antarctica",
+    "CallingCode": "",
+    "EmojiUnicode": "U+1F1E6 U+1F1F6",
+    "Language": "en",
+    "Translations": {
+      "DE": "Antarktika",
+      "ES": "Antártida",
+      "FR": "Antarctique",
+      "JA": "南極大陸",
+      "IT": "Antartide"
+    }
+  },
+  {
+    "CountryCode": "AG",
+    "Name": "Antigua and Barbuda",
+    "CallingCode": "1268",
+    "EmojiUnicode": "U+1F1E6 U+1F1EC",
+    "Language": "en",
+    "Translations": {
+      "DE": "Antigua und Barbuda",
+      "ES": "Antigua y Barbuda",
+      "FR": "Antigua-et-Barbuda",
+      "JA": "アンティグア・バーブーダ",
+      "IT": "Antigua e Barbuda"
+    }
+  },
+  {
+    "CountryCode": "AR",
+    "Name": "Argentina",
+    "CallingCode": "54",
+    "EmojiUnicode": "U+1F1E6 U+1F1F7",
+    "Language": "es",
+    "Translations": {
+      "DE": "Argentinien",
+      "ES": "Argentina",
+      "FR": "Argentine",
+      "JA": "アルゼンチン",
+      "IT": "Argentina"
+    }
+  },
+  {
+    "CountryCode": "AM",
+    "Name": "Armenia",
+    "CallingCode": "374",
+    "EmojiUnicode": "U+1F1E6 U+1F1F2",
+    "Language": "hy",
+    "Translations": {
+      "DE": "Armenien",
+      "ES": "Armenia",
+      "FR": "Arménie",
+      "JA": "アルメニア",
+      "IT": "Armenia"
+    }
+  },
+  {
+    "CountryCode": "AW",
+    "Name": "Aruba",
+    "CallingCode": "297",
+    "EmojiUnicode": "U+1F1E6 U+1F1FC",
+    "Language": "nl",
+    "Translations": {
+      "DE": "Aruba",
+      "ES": "Aruba",
+      "FR": "Aruba",
+      "JA": "アルバ",
+      "IT": "Aruba"
+    }
+  },
+  {
+    "CountryCode": "AU",
+    "Name": "Australia",
+    "CallingCode": "61",
+    "EmojiUnicode": "U+1F1E6 U+1F1FA",
+    "Language": "en",
+    "Translations": {
+      "DE": "Australien",
+      "ES": "Australia",
+      "FR": "Australie",
+      "JA": "オーストラリア",
+      "IT": "Australia"
+    }
+  },
+  {
+    "CountryCode": "AT",
+    "Name": "Austria",
+    "CallingCode": "43",
+    "EmojiUnicode": "U+1F1E6 U+1F1F9",
+    "Language": "de",
+    "Translations": {
+      "DE": "Österreich",
+      "ES": "Austria",
+      "FR": "Autriche",
+      "JA": "オーストリア",
+      "IT": "Austria"
+    }
+  },
+  {
+    "CountryCode": "AZ",
+    "Name": "Azerbaijan",
+    "CallingCode": "994",
+    "EmojiUnicode": "U+1F1E6 U+1F1FF",
+    "Language": "az",
+    "Translations": {
+      "DE": "Aserbaidschan",
+      "ES": "Azerbaiyán",
+      "FR": "Azerbaïdjan",
+      "JA": "アゼルバイジャン",
+      "IT": "Azerbaijan"
+    }
+  },
+  {
+    "CountryCode": "BS",
+    "Name": "The Bahamas",
+    "CallingCode": "1242",
+    "EmojiUnicode": "U+1F1E7 U+1F1F8",
+    "Language": "en",
+    "Translations": {
+      "DE": "Bahamas",
+      "ES": "Bahamas",
+      "FR": "Bahamas",
+      "JA": "バハマ",
+      "IT": "Bahamas"
+    }
+  },
+  {
+    "CountryCode": "BH",
+    "Name": "Bahrain",
+    "CallingCode": "973",
+    "EmojiUnicode": "U+1F1E7 U+1F1ED",
+    "Language": "ar",
+    "Translations": {
+      "DE": "Bahrain",
+      "ES": "Bahrein",
+      "FR": "Bahreïn",
+      "JA": "バーレーン",
+      "IT": "Bahrein"
+    }
+  },
+  {
+    "CountryCode": "BD",
+    "Name": "Bangladesh",
+    "CallingCode": "880",
+    "EmojiUnicode": "U+1F1E7 U+1F1E9",
+    "Language": "bn",
+    "Translations": {
+      "DE": "Bangladesch",
+      "ES": "Bangladesh",
+      "FR": "Bangladesh",
+      "JA": "バングラデシュ",
+      "IT": "Bangladesh"
+    }
+  },
+  {
+    "CountryCode": "BB",
+    "Name": "Barbados",
+    "CallingCode": "1246",
+    "EmojiUnicode": "U+1F1E7 U+1F1E7",
+    "Language": "en",
+    "Translations": {
+      "DE": "Barbados",
+      "ES": "Barbados",
+      "FR": "Barbade",
+      "JA": "バルバドス",
+      "IT": "Barbados"
+    }
+  },
+  {
+    "CountryCode": "BY",
+    "Name": "Belarus",
+    "CallingCode": "375",
+    "EmojiUnicode": "U+1F1E7 U+1F1FE",
+    "Language": "be",
+    "Translations": {
+      "DE": "Weißrussland",
+      "ES": "Bielorrusia",
+      "FR": "Biélorussie",
+      "JA": "ベラルーシ",
+      "IT": "Bielorussia"
+    }
+  },
+  {
+    "CountryCode": "BE",
+    "Name": "Belgium",
+    "CallingCode": "32",
+    "EmojiUnicode": "U+1F1E7 U+1F1EA",
+    "Language": "nl",
+    "Translations": {
+      "DE": "Belgien",
+      "ES": "Bélgica",
+      "FR": "Belgique",
+      "JA": "ベルギー",
+      "IT": "Belgio"
+    }
+  },
+  {
+    "CountryCode": "BZ",
+    "Name": "Belize",
+    "CallingCode": "501",
+    "EmojiUnicode": "U+1F1E7 U+1F1FF",
+    "Language": "en",
+    "Translations": {
+      "DE": "Belize",
+      "ES": "Belice",
+      "FR": "Belize",
+      "JA": "ベリーズ",
+      "IT": "Belize"
+    }
+  },
+  {
+    "CountryCode": "BJ",
+    "Name": "Benin",
+    "CallingCode": "229",
+    "EmojiUnicode": "U+1F1E7 U+1F1EF",
+    "Language": "fr",
+    "Translations": {
+      "DE": "Benin",
+      "ES": "Benín",
+      "FR": "Bénin",
+      "JA": "ベナン",
+      "IT": "Benin"
+    }
+  },
+  {
+    "CountryCode": "BM",
+    "Name": "Bermuda",
+    "CallingCode": "1441",
+    "EmojiUnicode": "U+1F1E7 U+1F1F2",
+    "Language": "en",
+    "Translations": {
+      "DE": "Bermuda",
+      "ES": "Bermudas",
+      "FR": "Bermudes",
+      "JA": "バミューダ",
+      "IT": "Bermuda"
+    }
+  },
+  {
+    "CountryCode": "BT",
+    "Name": "Bhutan",
+    "CallingCode": "975",
+    "EmojiUnicode": "U+1F1E7 U+1F1F9",
+    "Language": "dz",
+    "Translations": {
+      "DE": "Bhutan",
+      "ES": "Bután",
+      "FR": "Bhoutan",
+      "JA": "ブータン",
+      "IT": "Bhutan"
+    }
+  },
+  {
+    "CountryCode": "BO",
+    "Name": "Bolivia",
+    "CallingCode": "591",
+    "EmojiUnicode": "U+1F1E7 U+1F1F4",
+    "Language": "es",
+    "Translations": {
+      "DE": "Bolivien",
+      "ES": "Bolivia",
+      "FR": "Bolivie",
+      "JA": "ボリビア多民族国",
+      "IT": "Bolivia"
+    }
+  },
+  {
+    "CountryCode": "BQ",
+    "Name": "Bonaire",
+    "CallingCode": "5997",
+    "EmojiUnicode": "U+1F1E7 U+1F1F6",
+    "Language": "nl",
+    "Translations": {
+      "DE": null,
+      "ES": null,
+      "FR": null,
+      "JA": null,
+      "IT": null
+    }
+  },
+  {
+    "CountryCode": "BA",
+    "Name": "Bosnia and Herzegovina",
+    "CallingCode": "387",
+    "EmojiUnicode": "U+1F1E7 U+1F1E6",
+    "Language": "bs",
+    "Translations": {
+      "DE": "Bosnien und Herzegowina",
+      "ES": "Bosnia y Herzegovina",
+      "FR": "Bosnie-Herzégovine",
+      "JA": "ボスニア・ヘルツェゴビナ",
+      "IT": "Bosnia ed Erzegovina"
+    }
+  },
+  {
+    "CountryCode": "BW",
+    "Name": "Botswana",
+    "CallingCode": "267",
+    "EmojiUnicode": "U+1F1E7 U+1F1FC",
+    "Language": "en",
+    "Translations": {
+      "DE": "Botswana",
+      "ES": "Botswana",
+      "FR": "Botswana",
+      "JA": "ボツワナ",
+      "IT": "Botswana"
+    }
+  },
+  {
+    "CountryCode": "BV",
+    "Name": "Bouvet Island",
+    "CallingCode": "",
+    "EmojiUnicode": "U+1F1E7 U+1F1FB",
+    "Language": "en",
+    "Translations": {
+      "DE": "Bouvetinsel",
+      "ES": "Isla Bouvet",
+      "FR": "Île Bouvet",
+      "JA": "ブーベ島",
+      "IT": "Isola Bouvet"
+    }
+  },
+  {
+    "CountryCode": "BR",
+    "Name": "Brazil",
+    "CallingCode": "55",
+    "EmojiUnicode": "U+1F1E7 U+1F1F7",
+    "Language": "pt",
+    "Translations": {
+      "DE": "Brasilien",
+      "ES": "Brasil",
+      "FR": "Brésil",
+      "JA": "ブラジル",
+      "IT": "Brasile"
+    }
+  },
+  {
+    "CountryCode": "IO",
+    "Name": "British Indian Ocean Territory",
+    "CallingCode": "246",
+    "EmojiUnicode": "U+1F1EE U+1F1F4",
+    "Language": "en",
+    "Translations": {
+      "DE": "Britisches Territorium im Indischen Ozean",
+      "ES": "Territorio Británico del Océano Índico",
+      "FR": "Territoire britannique de l'océan Indien",
+      "JA": "イギリス領インド洋地域",
+      "IT": "Territorio britannico dell'oceano indiano"
+    }
+  },
+  {
+    "CountryCode": "UM",
+    "Name": "United States Minor Outlying Islands",
+    "CallingCode": "",
+    "EmojiUnicode": "U+1F1FA U+1F1F2",
+    "Language": "en",
+    "Translations": {
+      "DE": "Kleinere Inselbesitzungen der Vereinigten Staaten",
+      "ES": "Islas Ultramarinas Menores de Estados Unidos",
+      "FR": "Îles mineures éloignées des États-Unis",
+      "JA": "合衆国領有小離島",
+      "IT": "Isole minori esterne degli Stati Uniti d'America"
+    }
+  },
+  {
+    "CountryCode": "VG",
+    "Name": "Virgin Islands (British)",
+    "CallingCode": "1284",
+    "EmojiUnicode": "U+1F1FB U+1F1EC",
+    "Language": "en",
+    "Translations": {
+      "DE": "Britische Jungferninseln",
+      "ES": "Islas Vírgenes del Reino Unido",
+      "FR": "Îles Vierges britanniques",
+      "JA": "イギリス領ヴァージン諸島",
+      "IT": "Isole Vergini Britanniche"
+    }
+  },
+  {
+    "CountryCode": "VI",
+    "Name": "Virgin Islands (U.S.)",
+    "CallingCode": "1 340",
+    "EmojiUnicode": "U+1F1FB U+1F1EE",
+    "Language": "en",
+    "Translations": {
+      "DE": "Amerikanische Jungferninseln",
+      "ES": "Islas Vírgenes de los Estados Unidos",
+      "FR": "Îles Vierges des États-Unis",
+      "JA": "アメリカ領ヴァージン諸島",
+      "IT": "Isole Vergini americane"
+    }
+  },
+  {
+    "CountryCode": "BN",
+    "Name": "Brunei",
+    "CallingCode": "673",
+    "EmojiUnicode": "U+1F1E7 U+1F1F3",
+    "Language": "ms",
+    "Translations": {
+      "DE": "Brunei",
+      "ES": "Brunei",
+      "FR": "Brunei",
+      "JA": "ブルネイ・ダルサラーム",
+      "IT": "Brunei"
+    }
+  },
+  {
+    "CountryCode": "BG",
+    "Name": "Bulgaria",
+    "CallingCode": "359",
+    "EmojiUnicode": "U+1F1E7 U+1F1EC",
+    "Language": "bg",
+    "Translations": {
+      "DE": "Bulgarien",
+      "ES": "Bulgaria",
+      "FR": "Bulgarie",
+      "JA": "ブルガリア",
+      "IT": "Bulgaria"
+    }
+  },
+  {
+    "CountryCode": "BF",
+    "Name": "Burkina Faso",
+    "CallingCode": "226",
+    "EmojiUnicode": "U+1F1E7 U+1F1EB",
+    "Language": "fr",
+    "Translations": {
+      "DE": "Burkina Faso",
+      "ES": "Burkina Faso",
+      "FR": "Burkina Faso",
+      "JA": "ブルキナファソ",
+      "IT": "Burkina Faso"
+    }
+  },
+  {
+    "CountryCode": "BI",
+    "Name": "Burundi",
+    "CallingCode": "257",
+    "EmojiUnicode": "U+1F1E7 U+1F1EE",
+    "Language": "fr",
+    "Translations": {
+      "DE": "Burundi",
+      "ES": "Burundi",
+      "FR": "Burundi",
+      "JA": "ブルンジ",
+      "IT": "Burundi"
+    }
+  },
+  {
+    "CountryCode": "KH",
+    "Name": "Cambodia",
+    "CallingCode": "855",
+    "EmojiUnicode": "U+1F1F0 U+1F1ED",
+    "Language": "km",
+    "Translations": {
+      "DE": "Kambodscha",
+      "ES": "Camboya",
+      "FR": "Cambodge",
+      "JA": "カンボジア",
+      "IT": "Cambogia"
+    }
+  },
+  {
+    "CountryCode": "CM",
+    "Name": "Cameroon",
+    "CallingCode": "237",
+    "EmojiUnicode": "U+1F1E8 U+1F1F2",
+    "Language": "en",
+    "Translations": {
+      "DE": "Kamerun",
+      "ES": "Camerún",
+      "FR": "Cameroun",
+      "JA": "カメルーン",
+      "IT": "Camerun"
+    }
+  },
+  {
+    "CountryCode": "CA",
+    "Name": "Canada",
+    "CallingCode": "1",
+    "EmojiUnicode": "U+1F1E8 U+1F1E6",
+    "Language": "en",
+    "Translations": {
+      "DE": "Kanada",
+      "ES": "Canadá",
+      "FR": "Canada",
+      "JA": "カナダ",
+      "IT": "Canada"
+    }
+  },
+  {
+    "CountryCode": "CV",
+    "Name": "Cape Verde",
+    "CallingCode": "238",
+    "EmojiUnicode": "U+1F1E8 U+1F1FB",
+    "Language": "pt",
+    "Translations": {
+      "DE": "Kap Verde",
+      "ES": "Cabo Verde",
+      "FR": "Cap Vert",
+      "JA": "カーボベルデ",
+      "IT": "Capo Verde"
+    }
+  },
+  {
+    "CountryCode": "KY",
+    "Name": "Cayman Islands",
+    "CallingCode": "1345",
+    "EmojiUnicode": "U+1F1F0 U+1F1FE",
+    "Language": "en",
+    "Translations": {
+      "DE": "Kaimaninseln",
+      "ES": "Islas Caimán",
+      "FR": "Îles Caïmans",
+      "JA": "ケイマン諸島",
+      "IT": "Isole Cayman"
+    }
+  },
+  {
+    "CountryCode": "CF",
+    "Name": "Central African Republic",
+    "CallingCode": "236",
+    "EmojiUnicode": "U+1F1E8 U+1F1EB",
+    "Language": "fr",
+    "Translations": {
+      "DE": "Zentralafrikanische Republik",
+      "ES": "República Centroafricana",
+      "FR": "République centrafricaine",
+      "JA": "中央アフリカ共和国",
+      "IT": "Repubblica Centrafricana"
+    }
+  },
+  {
+    "CountryCode": "TD",
+    "Name": "Chad",
+    "CallingCode": "235",
+    "EmojiUnicode": "U+1F1F9 U+1F1E9",
+    "Language": "fr",
+    "Translations": {
+      "DE": "Tschad",
+      "ES": "Chad",
+      "FR": "Tchad",
+      "JA": "チャド",
+      "IT": "Ciad"
+    }
+  },
+  {
+    "CountryCode": "CL",
+    "Name": "Chile",
+    "CallingCode": "56",
+    "EmojiUnicode": "U+1F1E8 U+1F1F1",
+    "Language": "es",
+    "Translations": {
+      "DE": "Chile",
+      "ES": "Chile",
+      "FR": "Chili",
+      "JA": "チリ",
+      "IT": "Cile"
+    }
+  },
+  {
+    "CountryCode": "CN",
+    "Name": "China",
+    "CallingCode": "86",
+    "EmojiUnicode": "U+1F1E8 U+1F1F3",
+    "Language": "zh",
+    "Translations": {
+      "DE": "China",
+      "ES": "China",
+      "FR": "Chine",
+      "JA": "中国",
+      "IT": "Cina"
+    }
+  },
+  {
+    "CountryCode": "CX",
+    "Name": "Christmas Island",
+    "CallingCode": "61",
+    "EmojiUnicode": "U+1F1E8 U+1F1FD",
+    "Language": "en",
+    "Translations": {
+      "DE": "Weihnachtsinsel",
+      "ES": "Isla de Navidad",
+      "FR": "Île Christmas",
+      "JA": "クリスマス島",
+      "IT": "Isola di Natale"
+    }
+  },
+  {
+    "CountryCode": "CC",
+    "Name": "Cocos (Keeling) Islands",
+    "CallingCode": "61",
+    "EmojiUnicode": "U+1F1E8 U+1F1E8",
+    "Language": "en",
+    "Translations": {
+      "DE": "Kokosinseln",
+      "ES": "Islas Cocos o Islas Keeling",
+      "FR": "Îles Cocos",
+      "JA": "ココス（キーリング）諸島",
+      "IT": "Isole Cocos e Keeling"
+    }
+  },
+  {
+    "CountryCode": "CO",
+    "Name": "Colombia",
+    "CallingCode": "57",
+    "EmojiUnicode": "U+1F1E8 U+1F1F4",
+    "Language": "es",
+    "Translations": {
+      "DE": "Kolumbien",
+      "ES": "Colombia",
+      "FR": "Colombie",
+      "JA": "コロンビア",
+      "IT": "Colombia"
+    }
+  },
+  {
+    "CountryCode": "KM",
+    "Name": "Comoros",
+    "CallingCode": "269",
+    "EmojiUnicode": "U+1F1F0 U+1F1F2",
+    "Language": "ar",
+    "Translations": {
+      "DE": "Union der Komoren",
+      "ES": "Comoras",
+      "FR": "Comores",
+      "JA": "コモロ",
+      "IT": "Comore"
+    }
+  },
+  {
+    "CountryCode": "CG",
+    "Name": "Republic of the Congo",
+    "CallingCode": "242",
+    "EmojiUnicode": "U+1F1E8 U+1F1EC",
+    "Language": "fr",
+    "Translations": {
+      "DE": "Kongo",
+      "ES": "Congo",
+      "FR": "Congo",
+      "JA": "コンゴ共和国",
+      "IT": "Congo"
+    }
+  },
+  {
+    "CountryCode": "CD",
+    "Name": "Democratic Republic of the Congo",
+    "CallingCode": "243",
+    "EmojiUnicode": "U+1F1E8 U+1F1E9",
+    "Language": "fr",
+    "Translations": {
+      "DE": "Kongo (Dem. Rep.)",
+      "ES": "Congo (Rep. Dem.)",
+      "FR": "Congo (Rép. dém.)",
+      "JA": "コンゴ民主共和国",
+      "IT": "Congo (Rep. Dem.)"
+    }
+  },
+  {
+    "CountryCode": "CK",
+    "Name": "Cook Islands",
+    "CallingCode": "682",
+    "EmojiUnicode": "U+1F1E8 U+1F1F0",
+    "Language": "en",
+    "Translations": {
+      "DE": "Cookinseln",
+      "ES": "Islas Cook",
+      "FR": "Îles Cook",
+      "JA": "クック諸島",
+      "IT": "Isole Cook"
+    }
+  },
+  {
+    "CountryCode": "CR",
+    "Name": "Costa Rica",
+    "CallingCode": "506",
+    "EmojiUnicode": "U+1F1E8 U+1F1F7",
+    "Language": "es",
+    "Translations": {
+      "DE": "Costa Rica",
+      "ES": "Costa Rica",
+      "FR": "Costa Rica",
+      "JA": "コスタリカ",
+      "IT": "Costa Rica"
+    }
+  },
+  {
+    "CountryCode": "HR",
+    "Name": "Croatia",
+    "CallingCode": "385",
+    "EmojiUnicode": "U+1F1ED U+1F1F7",
+    "Language": "hr",
+    "Translations": {
+      "DE": "Kroatien",
+      "ES": "Croacia",
+      "FR": "Croatie",
+      "JA": "クロアチア",
+      "IT": "Croazia"
+    }
+  },
+  {
+    "CountryCode": "CU",
+    "Name": "Cuba",
+    "CallingCode": "53",
+    "EmojiUnicode": "U+1F1E8 U+1F1FA",
+    "Language": "es",
+    "Translations": {
+      "DE": "Kuba",
+      "ES": "Cuba",
+      "FR": "Cuba",
+      "JA": "キューバ",
+      "IT": "Cuba"
+    }
+  },
+  {
+    "CountryCode": "CW",
+    "Name": "Curaçao",
+    "CallingCode": "599",
+    "EmojiUnicode": "U+1F1E8 U+1F1FC",
+    "Language": "nl",
+    "Translations": {
+      "DE": null,
+      "ES": null,
+      "FR": null,
+      "JA": null,
+      "IT": null
+    }
+  },
+  {
+    "CountryCode": "CY",
+    "Name": "Cyprus",
+    "CallingCode": "357",
+    "EmojiUnicode": "U+1F1E8 U+1F1FE",
+    "Language": "el",
+    "Translations": {
+      "DE": "Zypern",
+      "ES": "Chipre",
+      "FR": "Chypre",
+      "JA": "キプロス",
+      "IT": "Cipro"
+    }
+  },
+  {
+    "CountryCode": "CZ",
+    "Name": "Czech Republic",
+    "CallingCode": "420",
+    "EmojiUnicode": "U+1F1E8 U+1F1FF",
+    "Language": "cs",
+    "Translations": {
+      "DE": "Tschechische Republik",
+      "ES": "República Checa",
+      "FR": "République tchèque",
+      "JA": "チェコ",
+      "IT": "Repubblica Ceca"
+    }
+  },
+  {
+    "CountryCode": "DK",
+    "Name": "Denmark",
+    "CallingCode": "45",
+    "EmojiUnicode": "U+1F1E9 U+1F1F0",
+    "Language": "da",
+    "Translations": {
+      "DE": "Dänemark",
+      "ES": "Dinamarca",
+      "FR": "Danemark",
+      "JA": "デンマーク",
+      "IT": "Danimarca"
+    }
+  },
+  {
+    "CountryCode": "DJ",
+    "Name": "Djibouti",
+    "CallingCode": "253",
+    "EmojiUnicode": "U+1F1E9 U+1F1EF",
+    "Language": "fr",
+    "Translations": {
+      "DE": "Dschibuti",
+      "ES": "Yibuti",
+      "FR": "Djibouti",
+      "JA": "ジブチ",
+      "IT": "Gibuti"
+    }
+  },
+  {
+    "CountryCode": "DM",
+    "Name": "Dominica",
+    "CallingCode": "1767",
+    "EmojiUnicode": "U+1F1E9 U+1F1F2",
+    "Language": "en",
+    "Translations": {
+      "DE": "Dominica",
+      "ES": "Dominica",
+      "FR": "Dominique",
+      "JA": "ドミニカ国",
+      "IT": "Dominica"
+    }
+  },
+  {
+    "CountryCode": "DO",
+    "Name": "Dominican Republic",
+    "CallingCode": "1809",
+    "EmojiUnicode": "U+1F1E9 U+1F1F4",
+    "Language": "es",
+    "Translations": {
+      "DE": "Dominikanische Republik",
+      "ES": "República Dominicana",
+      "FR": "République dominicaine",
+      "JA": "ドミニカ共和国",
+      "IT": "Repubblica Dominicana"
+    }
+  },
+  {
+    "CountryCode": "EC",
+    "Name": "Ecuador",
+    "CallingCode": "593",
+    "EmojiUnicode": "U+1F1EA U+1F1E8",
+    "Language": "es",
+    "Translations": {
+      "DE": "Ecuador",
+      "ES": "Ecuador",
+      "FR": "Équateur",
+      "JA": "エクアドル",
+      "IT": "Ecuador"
+    }
+  },
+  {
+    "CountryCode": "EG",
+    "Name": "Egypt",
+    "CallingCode": "20",
+    "EmojiUnicode": "U+1F1EA U+1F1EC",
+    "Language": "ar",
+    "Translations": {
+      "DE": "Ägypten",
+      "ES": "Egipto",
+      "FR": "Égypte",
+      "JA": "エジプト",
+      "IT": "Egitto"
+    }
+  },
+  {
+    "CountryCode": "SV",
+    "Name": "El Salvador",
+    "CallingCode": "503",
+    "EmojiUnicode": "U+1F1F8 U+1F1FB",
+    "Language": "es",
+    "Translations": {
+      "DE": "El Salvador",
+      "ES": "El Salvador",
+      "FR": "Salvador",
+      "JA": "エルサルバドル",
+      "IT": "El Salvador"
+    }
+  },
+  {
+    "CountryCode": "GQ",
+    "Name": "Equatorial Guinea",
+    "CallingCode": "240",
+    "EmojiUnicode": "U+1F1EC U+1F1F6",
+    "Language": "es",
+    "Translations": {
+      "DE": "Äquatorial-Guinea",
+      "ES": "Guinea Ecuatorial",
+      "FR": "Guinée-Équatoriale",
+      "JA": "赤道ギニア",
+      "IT": "Guinea Equatoriale"
+    }
+  },
+  {
+    "CountryCode": "ER",
+    "Name": "Eritrea",
+    "CallingCode": "291",
+    "EmojiUnicode": "U+1F1EA U+1F1F7",
+    "Language": "ti",
+    "Translations": {
+      "DE": "Eritrea",
+      "ES": "Eritrea",
+      "FR": "Érythrée",
+      "JA": "エリトリア",
+      "IT": "Eritrea"
+    }
+  },
+  {
+    "CountryCode": "EE",
+    "Name": "Estonia",
+    "CallingCode": "372",
+    "EmojiUnicode": "U+1F1EA U+1F1EA",
+    "Language": "et",
+    "Translations": {
+      "DE": "Estland",
+      "ES": "Estonia",
+      "FR": "Estonie",
+      "JA": "エストニア",
+      "IT": "Estonia"
+    }
+  },
+  {
+    "CountryCode": "ET",
+    "Name": "Ethiopia",
+    "CallingCode": "251",
+    "EmojiUnicode": "U+1F1EA U+1F1F9",
+    "Language": "am",
+    "Translations": {
+      "DE": "Äthiopien",
+      "ES": "Etiopía",
+      "FR": "Éthiopie",
+      "JA": "エチオピア",
+      "IT": "Etiopia"
+    }
+  },
+  {
+    "CountryCode": "FK",
+    "Name": "Falkland Islands",
+    "CallingCode": "500",
+    "EmojiUnicode": "U+1F1EB U+1F1F0",
+    "Language": "en",
+    "Translations": {
+      "DE": "Falklandinseln",
+      "ES": "Islas Malvinas",
+      "FR": "Îles Malouines",
+      "JA": "フォークランド（マルビナス）諸島",
+      "IT": "Isole Falkland o Isole Malvine"
+    }
+  },
+  {
+    "CountryCode": "FO",
+    "Name": "Faroe Islands",
+    "CallingCode": "298",
+    "EmojiUnicode": "U+1F1EB U+1F1F4",
+    "Language": "fo",
+    "Translations": {
+      "DE": "Färöer-Inseln",
+      "ES": "Islas Faroe",
+      "FR": "Îles Féroé",
+      "JA": "フェロー諸島",
+      "IT": "Isole Far Oer"
+    }
+  },
+  {
+    "CountryCode": "FJ",
+    "Name": "Fiji",
+    "CallingCode": "679",
+    "EmojiUnicode": "U+1F1EB U+1F1EF",
+    "Language": "en",
+    "Translations": {
+      "DE": "Fidschi",
+      "ES": "Fiyi",
+      "FR": "Fidji",
+      "JA": "フィジー",
+      "IT": "Figi"
+    }
+  },
+  {
+    "CountryCode": "FI",
+    "Name": "Finland",
+    "CallingCode": "358",
+    "EmojiUnicode": "U+1F1EB U+1F1EE",
+    "Language": "fi",
+    "Translations": {
+      "DE": "Finnland",
+      "ES": "Finlandia",
+      "FR": "Finlande",
+      "JA": "フィンランド",
+      "IT": "Finlandia"
+    }
+  },
+  {
+    "CountryCode": "FR",
+    "Name": "France",
+    "CallingCode": "33",
+    "EmojiUnicode": "U+1F1EB U+1F1F7",
+    "Language": "fr",
+    "Translations": {
+      "DE": "Frankreich",
+      "ES": "Francia",
+      "FR": "France",
+      "JA": "フランス",
+      "IT": "Francia"
+    }
+  },
+  {
+    "CountryCode": "GF",
+    "Name": "French Guiana",
+    "CallingCode": "594",
+    "EmojiUnicode": "U+1F1EC U+1F1EB",
+    "Language": "fr",
+    "Translations": {
+      "DE": "Französisch Guyana",
+      "ES": "Guayana Francesa",
+      "FR": "Guayane",
+      "JA": "フランス領ギアナ",
+      "IT": "Guyana francese"
+    }
+  },
+  {
+    "CountryCode": "PF",
+    "Name": "French Polynesia",
+    "CallingCode": "689",
+    "EmojiUnicode": "U+1F1F5 U+1F1EB",
+    "Language": "fr",
+    "Translations": {
+      "DE": "Französisch-Polynesien",
+      "ES": "Polinesia Francesa",
+      "FR": "Polynésie française",
+      "JA": "フランス領ポリネシア",
+      "IT": "Polinesia Francese"
+    }
+  },
+  {
+    "CountryCode": "TF",
+    "Name": "French Southern and Antarctic Lands",
+    "CallingCode": "",
+    "EmojiUnicode": "U+1F1F9 U+1F1EB",
+    "Language": "fr",
+    "Translations": {
+      "DE": "Französische Süd- und Antarktisgebiete",
+      "ES": "Tierras Australes y Antárticas Francesas",
+      "FR": "Terres australes et antarctiques françaises",
+      "JA": "フランス領南方・南極地域",
+      "IT": "Territori Francesi del Sud"
+    }
+  },
+  {
+    "CountryCode": "GA",
+    "Name": "Gabon",
+    "CallingCode": "241",
+    "EmojiUnicode": "U+1F1EC U+1F1E6",
+    "Language": "fr",
+    "Translations": {
+      "DE": "Gabun",
+      "ES": "Gabón",
+      "FR": "Gabon",
+      "JA": "ガボン",
+      "IT": "Gabon"
+    }
+  },
+  {
+    "CountryCode": "GM",
+    "Name": "The Gambia",
+    "CallingCode": "220",
+    "EmojiUnicode": "U+1F1EC U+1F1F2",
+    "Language": "en",
+    "Translations": {
+      "DE": "Gambia",
+      "ES": "Gambia",
+      "FR": "Gambie",
+      "JA": "ガンビア",
+      "IT": "Gambia"
+    }
+  },
+  {
+    "CountryCode": "GE",
+    "Name": "Georgia",
+    "CallingCode": "995",
+    "EmojiUnicode": "U+1F1EC U+1F1EA",
+    "Language": "ka",
+    "Translations": {
+      "DE": "Georgien",
+      "ES": "Georgia",
+      "FR": "Géorgie",
+      "JA": "グルジア",
+      "IT": "Georgia"
+    }
+  },
+  {
+    "CountryCode": "DE",
+    "Name": "Germany",
+    "CallingCode": "49",
+    "EmojiUnicode": "U+1F1E9 U+1F1EA",
+    "Language": "de",
+    "Translations": {
+      "DE": "Deutschland",
+      "ES": "Alemania",
+      "FR": "Allemagne",
+      "JA": "ドイツ",
+      "IT": "Germania"
+    }
+  },
+  {
+    "CountryCode": "GH",
+    "Name": "Ghana",
+    "CallingCode": "233",
+    "EmojiUnicode": "U+1F1EC U+1F1ED",
+    "Language": "en",
+    "Translations": {
+      "DE": "Ghana",
+      "ES": "Ghana",
+      "FR": "Ghana",
+      "JA": "ガーナ",
+      "IT": "Ghana"
+    }
+  },
+  {
+    "CountryCode": "GI",
+    "Name": "Gibraltar",
+    "CallingCode": "350",
+    "EmojiUnicode": "U+1F1EC U+1F1EE",
+    "Language": "en",
+    "Translations": {
+      "DE": "Gibraltar",
+      "ES": "Gibraltar",
+      "FR": "Gibraltar",
+      "JA": "ジブラルタル",
+      "IT": "Gibilterra"
+    }
+  },
+  {
+    "CountryCode": "GR",
+    "Name": "Greece",
+    "CallingCode": "30",
+    "EmojiUnicode": "U+1F1EC U+1F1F7",
+    "Language": "el",
+    "Translations": {
+      "DE": "Griechenland",
+      "ES": "Grecia",
+      "FR": "Grèce",
+      "JA": "ギリシャ",
+      "IT": "Grecia"
+    }
+  },
+  {
+    "CountryCode": "GL",
+    "Name": "Greenland",
+    "CallingCode": "299",
+    "EmojiUnicode": "U+1F1EC U+1F1F1",
+    "Language": "kl",
+    "Translations": {
+      "DE": "Grönland",
+      "ES": "Groenlandia",
+      "FR": "Groenland",
+      "JA": "グリーンランド",
+      "IT": "Groenlandia"
+    }
+  },
+  {
+    "CountryCode": "GD",
+    "Name": "Grenada",
+    "CallingCode": "1473",
+    "EmojiUnicode": "U+1F1EC U+1F1E9",
+    "Language": "en",
+    "Translations": {
+      "DE": "Grenada",
+      "ES": "Grenada",
+      "FR": "Grenade",
+      "JA": "グレナダ",
+      "IT": "Grenada"
+    }
+  },
+  {
+    "CountryCode": "GP",
+    "Name": "Guadeloupe",
+    "CallingCode": "590",
+    "EmojiUnicode": "U+1F1EC U+1F1F5",
+    "Language": "fr",
+    "Translations": {
+      "DE": "Guadeloupe",
+      "ES": "Guadalupe",
+      "FR": "Guadeloupe",
+      "JA": "グアドループ",
+      "IT": "Guadeloupa"
+    }
+  },
+  {
+    "CountryCode": "GU",
+    "Name": "Guam",
+    "CallingCode": "1671",
+    "EmojiUnicode": "U+1F1EC U+1F1FA",
+    "Language": "en",
+    "Translations": {
+      "DE": "Guam",
+      "ES": "Guam",
+      "FR": "Guam",
+      "JA": "グアム",
+      "IT": "Guam"
+    }
+  },
+  {
+    "CountryCode": "GT",
+    "Name": "Guatemala",
+    "CallingCode": "502",
+    "EmojiUnicode": "U+1F1EC U+1F1F9",
+    "Language": "es",
+    "Translations": {
+      "DE": "Guatemala",
+      "ES": "Guatemala",
+      "FR": "Guatemala",
+      "JA": "グアテマラ",
+      "IT": "Guatemala"
+    }
+  },
+  {
+    "CountryCode": "GG",
+    "Name": "Guernsey",
+    "CallingCode": "44",
+    "EmojiUnicode": "U+1F1EC U+1F1EC",
+    "Language": "en",
+    "Translations": {
+      "DE": "Guernsey",
+      "ES": "Guernsey",
+      "FR": "Guernesey",
+      "JA": "ガーンジー",
+      "IT": "Guernsey"
+    }
+  },
+  {
+    "CountryCode": "GN",
+    "Name": "Guinea",
+    "CallingCode": "224",
+    "EmojiUnicode": "U+1F1EC U+1F1F3",
+    "Language": "fr",
+    "Translations": {
+      "DE": "Guinea",
+      "ES": "Guinea",
+      "FR": "Guinée",
+      "JA": "ギニア",
+      "IT": "Guinea"
+    }
+  },
+  {
+    "CountryCode": "GW",
+    "Name": "Guinea-Bissau",
+    "CallingCode": "245",
+    "EmojiUnicode": "U+1F1EC U+1F1FC",
+    "Language": "pt",
+    "Translations": {
+      "DE": "Guinea-Bissau",
+      "ES": "Guinea-Bisáu",
+      "FR": "Guinée-Bissau",
+      "JA": "ギニアビサウ",
+      "IT": "Guinea-Bissau"
+    }
+  },
+  {
+    "CountryCode": "GY",
+    "Name": "Guyana",
+    "CallingCode": "592",
+    "EmojiUnicode": "U+1F1EC U+1F1FE",
+    "Language": "en",
+    "Translations": {
+      "DE": "Guyana",
+      "ES": "Guyana",
+      "FR": "Guyane",
+      "JA": "ガイアナ",
+      "IT": "Guyana"
+    }
+  },
+  {
+    "CountryCode": "HT",
+    "Name": "Haiti",
+    "CallingCode": "509",
+    "EmojiUnicode": "U+1F1ED U+1F1F9",
+    "Language": "fr",
+    "Translations": {
+      "DE": "Haiti",
+      "ES": "Haiti",
+      "FR": "Haïti",
+      "JA": "ハイチ",
+      "IT": "Haiti"
+    }
+  },
+  {
+    "CountryCode": "HM",
+    "Name": "Heard Island and McDonald Islands",
+    "CallingCode": "",
+    "EmojiUnicode": "U+1F1ED U+1F1F2",
+    "Language": "en",
+    "Translations": {
+      "DE": "Heard und die McDonaldinseln",
+      "ES": "Islas Heard y McDonald",
+      "FR": "Îles Heard-et-MacDonald",
+      "JA": "ハード島とマクドナルド諸島",
+      "IT": "Isole Heard e McDonald"
+    }
+  },
+  {
+    "CountryCode": "VA",
+    "Name": "Holy See",
+    "CallingCode": "379",
+    "EmojiUnicode": "U+1F1FB U+1F1E6",
+    "Language": "la",
+    "Translations": {
+      "DE": "Heiliger Stuhl",
+      "ES": "Santa Sede",
+      "FR": "voir Saint",
+      "JA": "聖座",
+      "IT": "Santa Sede"
+    }
+  },
+  {
+    "CountryCode": "HN",
+    "Name": "Honduras",
+    "CallingCode": "504",
+    "EmojiUnicode": "U+1F1ED U+1F1F3",
+    "Language": "es",
+    "Translations": {
+      "DE": "Honduras",
+      "ES": "Honduras",
+      "FR": "Honduras",
+      "JA": "ホンジュラス",
+      "IT": "Honduras"
+    }
+  },
+  {
+    "CountryCode": "HK",
+    "Name": "Hong Kong",
+    "CallingCode": "852",
+    "EmojiUnicode": "U+1F1ED U+1F1F0",
+    "Language": "en",
+    "Translations": {
+      "DE": "Hong Kong",
+      "ES": "Hong Kong",
+      "FR": "Hong Kong",
+      "JA": "香港",
+      "IT": "Hong Kong"
+    }
+  },
+  {
+    "CountryCode": "HU",
+    "Name": "Hungary",
+    "CallingCode": "36",
+    "EmojiUnicode": "U+1F1ED U+1F1FA",
+    "Language": "hu",
+    "Translations": {
+      "DE": "Ungarn",
+      "ES": "Hungría",
+      "FR": "Hongrie",
+      "JA": "ハンガリー",
+      "IT": "Ungheria"
+    }
+  },
+  {
+    "CountryCode": "IS",
+    "Name": "Iceland",
+    "CallingCode": "354",
+    "EmojiUnicode": "U+1F1EE U+1F1F8",
+    "Language": "is",
+    "Translations": {
+      "DE": "Island",
+      "ES": "Islandia",
+      "FR": "Islande",
+      "JA": "アイスランド",
+      "IT": "Islanda"
+    }
+  },
+  {
+    "CountryCode": "IN",
+    "Name": "India",
+    "CallingCode": "91",
+    "EmojiUnicode": "U+1F1EE U+1F1F3",
+    "Language": "hi",
+    "Translations": {
+      "DE": "Indien",
+      "ES": "India",
+      "FR": "Inde",
+      "JA": "インド",
+      "IT": "India"
+    }
+  },
+  {
+    "CountryCode": "ID",
+    "Name": "Indonesia",
+    "CallingCode": "62",
+    "EmojiUnicode": "U+1F1EE U+1F1E9",
+    "Language": "id",
+    "Translations": {
+      "DE": "Indonesien",
+      "ES": "Indonesia",
+      "FR": "Indonésie",
+      "JA": "インドネシア",
+      "IT": "Indonesia"
+    }
+  },
+  {
+    "CountryCode": "CI",
+    "Name": "Ivory Coast",
+    "CallingCode": "225",
+    "EmojiUnicode": "U+1F1E8 U+1F1EE",
+    "Language": "fr",
+    "Translations": {
+      "DE": "Elfenbeinküste",
+      "ES": "Costa de Marfil",
+      "FR": "Côte d'Ivoire",
+      "JA": "コートジボワール",
+      "IT": "Costa D'Avorio"
+    }
+  },
+  {
+    "CountryCode": "IR",
+    "Name": "Iran",
+    "CallingCode": "98",
+    "EmojiUnicode": "U+1F1EE U+1F1F7",
+    "Language": "fa",
+    "Translations": {
+      "DE": "Iran",
+      "ES": "Iran",
+      "FR": "Iran",
+      "JA": "イラン・イスラム共和国",
+      "IT": "Iran"
+    }
+  },
+  {
+    "CountryCode": "IQ",
+    "Name": "Iraq",
+    "CallingCode": "964",
+    "EmojiUnicode": "U+1F1EE U+1F1F6",
+    "Language": "ar",
+    "Translations": {
+      "DE": "Irak",
+      "ES": "Irak",
+      "FR": "Irak",
+      "JA": "イラク",
+      "IT": "Iraq"
+    }
+  },
+  {
+    "CountryCode": "IE",
+    "Name": "Republic of Ireland",
+    "CallingCode": "353",
+    "EmojiUnicode": "U+1F1EE U+1F1EA",
+    "Language": "ga",
+    "Translations": {
+      "DE": "Irland",
+      "ES": "Irlanda",
+      "FR": "Irlande",
+      "JA": "アイルランド",
+      "IT": "Irlanda"
+    }
+  },
+  {
+    "CountryCode": "IM",
+    "Name": "Isle of Man",
+    "CallingCode": "44",
+    "EmojiUnicode": "U+1F1EE U+1F1F2",
+    "Language": "en",
+    "Translations": {
+      "DE": "Insel Man",
+      "ES": "Isla de Man",
+      "FR": "Île de Man",
+      "JA": "マン島",
+      "IT": "Isola di Man"
+    }
+  },
+  {
+    "CountryCode": "IL",
+    "Name": "Israel",
+    "CallingCode": "972",
+    "EmojiUnicode": "U+1F1EE U+1F1F1",
+    "Language": "he",
+    "Translations": {
+      "DE": "Israel",
+      "ES": "Israel",
+      "FR": "Israël",
+      "JA": "イスラエル",
+      "IT": "Israele"
+    }
+  },
+  {
+    "CountryCode": "IT",
+    "Name": "Italy",
+    "CallingCode": "39",
+    "EmojiUnicode": "U+1F1EE U+1F1F9",
+    "Language": "it",
+    "Translations": {
+      "DE": "Italien",
+      "ES": "Italia",
+      "FR": "Italie",
+      "JA": "イタリア",
+      "IT": "Italia"
+    }
+  },
+  {
+    "CountryCode": "JM",
+    "Name": "Jamaica",
+    "CallingCode": "1876",
+    "EmojiUnicode": "U+1F1EF U+1F1F2",
+    "Language": "en",
+    "Translations": {
+      "DE": "Jamaika",
+      "ES": "Jamaica",
+      "FR": "Jamaïque",
+      "JA": "ジャマイカ",
+      "IT": "Giamaica"
+    }
+  },
+  {
+    "CountryCode": "JP",
+    "Name": "Japan",
+    "CallingCode": "81",
+    "EmojiUnicode": "U+1F1EF U+1F1F5",
+    "Language": "ja",
+    "Translations": {
+      "DE": "Japan",
+      "ES": "Japón",
+      "FR": "Japon",
+      "JA": "日本",
+      "IT": "Giappone"
+    }
+  },
+  {
+    "CountryCode": "JE",
+    "Name": "Jersey",
+    "CallingCode": "44",
+    "EmojiUnicode": "U+1F1EF U+1F1EA",
+    "Language": "en",
+    "Translations": {
+      "DE": "Jersey",
+      "ES": "Jersey",
+      "FR": "Jersey",
+      "JA": "ジャージー",
+      "IT": "Isola di Jersey"
+    }
+  },
+  {
+    "CountryCode": "JO",
+    "Name": "Jordan",
+    "CallingCode": "962",
+    "EmojiUnicode": "U+1F1EF U+1F1F4",
+    "Language": "ar",
+    "Translations": {
+      "DE": "Jordanien",
+      "ES": "Jordania",
+      "FR": "Jordanie",
+      "JA": "ヨルダン",
+      "IT": "Giordania"
+    }
+  },
+  {
+    "CountryCode": "KZ",
+    "Name": "Kazakhstan",
+    "CallingCode": "76",
+    "EmojiUnicode": "U+1F1F0 U+1F1FF",
+    "Language": "kk",
+    "Translations": {
+      "DE": "Kasachstan",
+      "ES": "Kazajistán",
+      "FR": "Kazakhstan",
+      "JA": "カザフスタン",
+      "IT": "Kazakistan"
+    }
+  },
+  {
+    "CountryCode": "KE",
+    "Name": "Kenya",
+    "CallingCode": "254",
+    "EmojiUnicode": "U+1F1F0 U+1F1EA",
+    "Language": "en",
+    "Translations": {
+      "DE": "Kenia",
+      "ES": "Kenia",
+      "FR": "Kenya",
+      "JA": "ケニア",
+      "IT": "Kenya"
+    }
+  },
+  {
+    "CountryCode": "KI",
+    "Name": "Kiribati",
+    "CallingCode": "686",
+    "EmojiUnicode": "U+1F1F0 U+1F1EE",
+    "Language": "en",
+    "Translations": {
+      "DE": "Kiribati",
+      "ES": "Kiribati",
+      "FR": "Kiribati",
+      "JA": "キリバス",
+      "IT": "Kiribati"
+    }
+  },
+  {
+    "CountryCode": "KW",
+    "Name": "Kuwait",
+    "CallingCode": "965",
+    "EmojiUnicode": "U+1F1F0 U+1F1FC",
+    "Language": "ar",
+    "Translations": {
+      "DE": "Kuwait",
+      "ES": "Kuwait",
+      "FR": "Koweït",
+      "JA": "クウェート",
+      "IT": "Kuwait"
+    }
+  },
+  {
+    "CountryCode": "KG",
+    "Name": "Kyrgyzstan",
+    "CallingCode": "996",
+    "EmojiUnicode": "U+1F1F0 U+1F1EC",
+    "Language": "ky",
+    "Translations": {
+      "DE": "Kirgisistan",
+      "ES": "Kirguizistán",
+      "FR": "Kirghizistan",
+      "JA": "キルギス",
+      "IT": "Kirghizistan"
+    }
+  },
+  {
+    "CountryCode": "LA",
+    "Name": "Laos",
+    "CallingCode": "856",
+    "EmojiUnicode": "U+1F1F1 U+1F1E6",
+    "Language": "lo",
+    "Translations": {
+      "DE": "Laos",
+      "ES": "Laos",
+      "FR": "Laos",
+      "JA": "ラオス人民民主共和国",
+      "IT": "Laos"
+    }
+  },
+  {
+    "CountryCode": "LV",
+    "Name": "Latvia",
+    "CallingCode": "371",
+    "EmojiUnicode": "U+1F1F1 U+1F1FB",
+    "Language": "lv",
+    "Translations": {
+      "DE": "Lettland",
+      "ES": "Letonia",
+      "FR": "Lettonie",
+      "JA": "ラトビア",
+      "IT": "Lettonia"
+    }
+  },
+  {
+    "CountryCode": "LB",
+    "Name": "Lebanon",
+    "CallingCode": "961",
+    "EmojiUnicode": "U+1F1F1 U+1F1E7",
+    "Language": "ar",
+    "Translations": {
+      "DE": "Libanon",
+      "ES": "Líbano",
+      "FR": "Liban",
+      "JA": "レバノン",
+      "IT": "Libano"
+    }
+  },
+  {
+    "CountryCode": "LS",
+    "Name": "Lesotho",
+    "CallingCode": "266",
+    "EmojiUnicode": "U+1F1F1 U+1F1F8",
+    "Language": "en",
+    "Translations": {
+      "DE": "Lesotho",
+      "ES": "Lesotho",
+      "FR": "Lesotho",
+      "JA": "レソト",
+      "IT": "Lesotho"
+    }
+  },
+  {
+    "CountryCode": "LR",
+    "Name": "Liberia",
+    "CallingCode": "231",
+    "EmojiUnicode": "U+1F1F1 U+1F1F7",
+    "Language": "en",
+    "Translations": {
+      "DE": "Liberia",
+      "ES": "Liberia",
+      "FR": "Liberia",
+      "JA": "リベリア",
+      "IT": "Liberia"
+    }
+  },
+  {
+    "CountryCode": "LY",
+    "Name": "Libya",
+    "CallingCode": "218",
+    "EmojiUnicode": "U+1F1F1 U+1F1FE",
+    "Language": "ar",
+    "Translations": {
+      "DE": "Libyen",
+      "ES": "Libia",
+      "FR": "Libye",
+      "JA": "リビア",
+      "IT": "Libia"
+    }
+  },
+  {
+    "CountryCode": "LI",
+    "Name": "Liechtenstein",
+    "CallingCode": "423",
+    "EmojiUnicode": "U+1F1F1 U+1F1EE",
+    "Language": "de",
+    "Translations": {
+      "DE": "Liechtenstein",
+      "ES": "Liechtenstein",
+      "FR": "Liechtenstein",
+      "JA": "リヒテンシュタイン",
+      "IT": "Liechtenstein"
+    }
+  },
+  {
+    "CountryCode": "LT",
+    "Name": "Lithuania",
+    "CallingCode": "370",
+    "EmojiUnicode": "U+1F1F1 U+1F1F9",
+    "Language": "lt",
+    "Translations": {
+      "DE": "Litauen",
+      "ES": "Lituania",
+      "FR": "Lituanie",
+      "JA": "リトアニア",
+      "IT": "Lituania"
+    }
+  },
+  {
+    "CountryCode": "LU",
+    "Name": "Luxembourg",
+    "CallingCode": "352",
+    "EmojiUnicode": "U+1F1F1 U+1F1FA",
+    "Language": "fr",
+    "Translations": {
+      "DE": "Luxemburg",
+      "ES": "Luxemburgo",
+      "FR": "Luxembourg",
+      "JA": "ルクセンブルク",
+      "IT": "Lussemburgo"
+    }
+  },
+  {
+    "CountryCode": "MO",
+    "Name": "Macau",
+    "CallingCode": "853",
+    "EmojiUnicode": "U+1F1F2 U+1F1F4",
+    "Language": "zh",
+    "Translations": {
+      "DE": "Macao",
+      "ES": "Macao",
+      "FR": "Macao",
+      "JA": "マカオ",
+      "IT": "Macao"
+    }
+  },
+  {
+    "CountryCode": "MK",
+    "Name": "Republic of Macedonia",
+    "CallingCode": "389",
+    "EmojiUnicode": "U+1F1F2 U+1F1F0",
+    "Language": "mk",
+    "Translations": {
+      "DE": "Mazedonien",
+      "ES": "Macedonia",
+      "FR": "Macédoine",
+      "JA": "マケドニア旧ユーゴスラビア共和国",
+      "IT": "Macedonia"
+    }
+  },
+  {
+    "CountryCode": "MG",
+    "Name": "Madagascar",
+    "CallingCode": "261",
+    "EmojiUnicode": "U+1F1F2 U+1F1EC",
+    "Language": "fr",
+    "Translations": {
+      "DE": "Madagaskar",
+      "ES": "Madagascar",
+      "FR": "Madagascar",
+      "JA": "マダガスカル",
+      "IT": "Madagascar"
+    }
+  },
+  {
+    "CountryCode": "MW",
+    "Name": "Malawi",
+    "CallingCode": "265",
+    "EmojiUnicode": "U+1F1F2 U+1F1FC",
+    "Language": "en",
+    "Translations": {
+      "DE": "Malawi",
+      "ES": "Malawi",
+      "FR": "Malawi",
+      "JA": "マラウイ",
+      "IT": "Malawi"
+    }
+  },
+  {
+    "CountryCode": "MY",
+    "Name": "Malaysia",
+    "CallingCode": "60",
+    "EmojiUnicode": "U+1F1F2 U+1F1FE",
+    "Language": "ms",
+    "Translations": {
+      "DE": "Malaysia",
+      "ES": "Malasia",
+      "FR": "Malaisie",
+      "JA": "マレーシア",
+      "IT": "Malesia"
+    }
+  },
+  {
+    "CountryCode": "MV",
+    "Name": "Maldives",
+    "CallingCode": "960",
+    "EmojiUnicode": "U+1F1F2 U+1F1FB",
+    "Language": "dv",
+    "Translations": {
+      "DE": "Malediven",
+      "ES": "Maldivas",
+      "FR": "Maldives",
+      "JA": "モルディブ",
+      "IT": "Maldive"
+    }
+  },
+  {
+    "CountryCode": "ML",
+    "Name": "Mali",
+    "CallingCode": "223",
+    "EmojiUnicode": "U+1F1F2 U+1F1F1",
+    "Language": "fr",
+    "Translations": {
+      "DE": "Mali",
+      "ES": "Mali",
+      "FR": "Mali",
+      "JA": "マリ",
+      "IT": "Mali"
+    }
+  },
+  {
+    "CountryCode": "MT",
+    "Name": "Malta",
+    "CallingCode": "356",
+    "EmojiUnicode": "U+1F1F2 U+1F1F9",
+    "Language": "mt",
+    "Translations": {
+      "DE": "Malta",
+      "ES": "Malta",
+      "FR": "Malte",
+      "JA": "マルタ",
+      "IT": "Malta"
+    }
+  },
+  {
+    "CountryCode": "MH",
+    "Name": "Marshall Islands",
+    "CallingCode": "692",
+    "EmojiUnicode": "U+1F1F2 U+1F1ED",
+    "Language": "en",
+    "Translations": {
+      "DE": "Marshallinseln",
+      "ES": "Islas Marshall",
+      "FR": "Îles Marshall",
+      "JA": "マーシャル諸島",
+      "IT": "Isole Marshall"
+    }
+  },
+  {
+    "CountryCode": "MQ",
+    "Name": "Martinique",
+    "CallingCode": "596",
+    "EmojiUnicode": "U+1F1F2 U+1F1F6",
+    "Language": "fr",
+    "Translations": {
+      "DE": "Martinique",
+      "ES": "Martinica",
+      "FR": "Martinique",
+      "JA": "マルティニーク",
+      "IT": "Martinica"
+    }
+  },
+  {
+    "CountryCode": "MR",
+    "Name": "Mauritania",
+    "CallingCode": "222",
+    "EmojiUnicode": "U+1F1F2 U+1F1F7",
+    "Language": "ar",
+    "Translations": {
+      "DE": "Mauretanien",
+      "ES": "Mauritania",
+      "FR": "Mauritanie",
+      "JA": "モーリタニア",
+      "IT": "Mauritania"
+    }
+  },
+  {
+    "CountryCode": "MU",
+    "Name": "Mauritius",
+    "CallingCode": "230",
+    "EmojiUnicode": "U+1F1F2 U+1F1FA",
+    "Language": "en",
+    "Translations": {
+      "DE": "Mauritius",
+      "ES": "Mauricio",
+      "FR": "Île Maurice",
+      "JA": "モーリシャス",
+      "IT": "Mauritius"
+    }
+  },
+  {
+    "CountryCode": "YT",
+    "Name": "Mayotte",
+    "CallingCode": "262",
+    "EmojiUnicode": "U+1F1FE U+1F1F9",
+    "Language": "fr",
+    "Translations": {
+      "DE": "Mayotte",
+      "ES": "Mayotte",
+      "FR": "Mayotte",
+      "JA": "マヨット",
+      "IT": "Mayotte"
+    }
+  },
+  {
+    "CountryCode": "MX",
+    "Name": "Mexico",
+    "CallingCode": "52",
+    "EmojiUnicode": "U+1F1F2 U+1F1FD",
+    "Language": "es",
+    "Translations": {
+      "DE": "Mexiko",
+      "ES": "México",
+      "FR": "Mexique",
+      "JA": "メキシコ",
+      "IT": "Messico"
+    }
+  },
+  {
+    "CountryCode": "FM",
+    "Name": "Federated States of Micronesia",
+    "CallingCode": "691",
+    "EmojiUnicode": "U+1F1EB U+1F1F2",
+    "Language": "en",
+    "Translations": {
+      "DE": "Mikronesien",
+      "ES": "Micronesia",
+      "FR": "Micronésie",
+      "JA": "ミクロネシア連邦",
+      "IT": "Micronesia"
+    }
+  },
+  {
+    "CountryCode": "MD",
+    "Name": "Moldova",
+    "CallingCode": "373",
+    "EmojiUnicode": "U+1F1F2 U+1F1E9",
+    "Language": "ro",
+    "Translations": {
+      "DE": "Moldawie",
+      "ES": "Moldavia",
+      "FR": "Moldavie",
+      "JA": "モルドバ共和国",
+      "IT": "Moldavia"
+    }
+  },
+  {
+    "CountryCode": "MC",
+    "Name": "Monaco",
+    "CallingCode": "377",
+    "EmojiUnicode": "U+1F1F2 U+1F1E8",
+    "Language": "fr",
+    "Translations": {
+      "DE": "Monaco",
+      "ES": "Mónaco",
+      "FR": "Monaco",
+      "JA": "モナコ",
+      "IT": "Principato di Monaco"
+    }
+  },
+  {
+    "CountryCode": "MN",
+    "Name": "Mongolia",
+    "CallingCode": "976",
+    "EmojiUnicode": "U+1F1F2 U+1F1F3",
+    "Language": "mn",
+    "Translations": {
+      "DE": "Mongolei",
+      "ES": "Mongolia",
+      "FR": "Mongolie",
+      "JA": "モンゴル",
+      "IT": "Mongolia"
+    }
+  },
+  {
+    "CountryCode": "ME",
+    "Name": "Montenegro",
+    "CallingCode": "382",
+    "EmojiUnicode": "U+1F1F2 U+1F1EA",
+    "Language": "sr",
+    "Translations": {
+      "DE": "Montenegro",
+      "ES": "Montenegro",
+      "FR": "Monténégro",
+      "JA": "モンテネグロ",
+      "IT": "Montenegro"
+    }
+  },
+  {
+    "CountryCode": "MS",
+    "Name": "Montserrat",
+    "CallingCode": "1664",
+    "EmojiUnicode": "U+1F1F2 U+1F1F8",
+    "Language": "en",
+    "Translations": {
+      "DE": "Montserrat",
+      "ES": "Montserrat",
+      "FR": "Montserrat",
+      "JA": "モントセラト",
+      "IT": "Montserrat"
+    }
+  },
+  {
+    "CountryCode": "MA",
+    "Name": "Morocco",
+    "CallingCode": "212",
+    "EmojiUnicode": "U+1F1F2 U+1F1E6",
+    "Language": "ar",
+    "Translations": {
+      "DE": "Marokko",
+      "ES": "Marruecos",
+      "FR": "Maroc",
+      "JA": "モロッコ",
+      "IT": "Marocco"
+    }
+  },
+  {
+    "CountryCode": "MZ",
+    "Name": "Mozambique",
+    "CallingCode": "258",
+    "EmojiUnicode": "U+1F1F2 U+1F1FF",
+    "Language": "pt",
+    "Translations": {
+      "DE": "Mosambik",
+      "ES": "Mozambique",
+      "FR": "Mozambique",
+      "JA": "モザンビーク",
+      "IT": "Mozambico"
+    }
+  },
+  {
+    "CountryCode": "MM",
+    "Name": "Myanmar",
+    "CallingCode": "95",
+    "EmojiUnicode": "U+1F1F2 U+1F1F2",
+    "Language": "my",
+    "Translations": {
+      "DE": "Myanmar",
+      "ES": "Myanmar",
+      "FR": "Myanmar",
+      "JA": "ミャンマー",
+      "IT": "Birmania"
+    }
+  },
+  {
+    "CountryCode": "NA",
+    "Name": "Namibia",
+    "CallingCode": "264",
+    "EmojiUnicode": "U+1F1F3 U+1F1E6",
+    "Language": "en",
+    "Translations": {
+      "DE": "Namibia",
+      "ES": "Namibia",
+      "FR": "Namibie",
+      "JA": "ナミビア",
+      "IT": "Namibia"
+    }
+  },
+  {
+    "CountryCode": "NR",
+    "Name": "Nauru",
+    "CallingCode": "674",
+    "EmojiUnicode": "U+1F1F3 U+1F1F7",
+    "Language": "en",
+    "Translations": {
+      "DE": "Nauru",
+      "ES": "Nauru",
+      "FR": "Nauru",
+      "JA": "ナウル",
+      "IT": "Nauru"
+    }
+  },
+  {
+    "CountryCode": "NP",
+    "Name": "Nepal",
+    "CallingCode": "977",
+    "EmojiUnicode": "U+1F1F3 U+1F1F5",
+    "Language": "ne",
+    "Translations": {
+      "DE": "Népal",
+      "ES": "Nepal",
+      "FR": "Népal",
+      "JA": "ネパール",
+      "IT": "Nepal"
+    }
+  },
+  {
+    "CountryCode": "NL",
+    "Name": "Netherlands",
+    "CallingCode": "31",
+    "EmojiUnicode": "U+1F1F3 U+1F1F1",
+    "Language": "nl",
+    "Translations": {
+      "DE": "Niederlande",
+      "ES": "Países Bajos",
+      "FR": "Pays-Bas",
+      "JA": "オランダ",
+      "IT": "Paesi Bassi"
+    }
+  },
+  {
+    "CountryCode": "NC",
+    "Name": "New Caledonia",
+    "CallingCode": "687",
+    "EmojiUnicode": "U+1F1F3 U+1F1E8",
+    "Language": "fr",
+    "Translations": {
+      "DE": "Neukaledonien",
+      "ES": "Nueva Caledonia",
+      "FR": "Nouvelle-Calédonie",
+      "JA": "ニューカレドニア",
+      "IT": "Nuova Caledonia"
+    }
+  },
+  {
+    "CountryCode": "NZ",
+    "Name": "New Zealand",
+    "CallingCode": "64",
+    "EmojiUnicode": "U+1F1F3 U+1F1FF",
+    "Language": "en",
+    "Translations": {
+      "DE": "Neuseeland",
+      "ES": "Nueva Zelanda",
+      "FR": "Nouvelle-Zélande",
+      "JA": "ニュージーランド",
+      "IT": "Nuova Zelanda"
+    }
+  },
+  {
+    "CountryCode": "NI",
+    "Name": "Nicaragua",
+    "CallingCode": "505",
+    "EmojiUnicode": "U+1F1F3 U+1F1EE",
+    "Language": "es",
+    "Translations": {
+      "DE": "Nicaragua",
+      "ES": "Nicaragua",
+      "FR": "Nicaragua",
+      "JA": "ニカラグア",
+      "IT": "Nicaragua"
+    }
+  },
+  {
+    "CountryCode": "NE",
+    "Name": "Niger",
+    "CallingCode": "227",
+    "EmojiUnicode": "U+1F1F3 U+1F1EA",
+    "Language": "fr",
+    "Translations": {
+      "DE": "Niger",
+      "ES": "Níger",
+      "FR": "Niger",
+      "JA": "ニジェール",
+      "IT": "Niger"
+    }
+  },
+  {
+    "CountryCode": "NG",
+    "Name": "Nigeria",
+    "CallingCode": "234",
+    "EmojiUnicode": "U+1F1F3 U+1F1EC",
+    "Language": "en",
+    "Translations": {
+      "DE": "Nigeria",
+      "ES": "Nigeria",
+      "FR": "Nigéria",
+      "JA": "ナイジェリア",
+      "IT": "Nigeria"
+    }
+  },
+  {
+    "CountryCode": "NU",
+    "Name": "Niue",
+    "CallingCode": "683",
+    "EmojiUnicode": "U+1F1F3 U+1F1FA",
+    "Language": "en",
+    "Translations": {
+      "DE": "Niue",
+      "ES": "Niue",
+      "FR": "Niue",
+      "JA": "ニウエ",
+      "IT": "Niue"
+    }
+  },
+  {
+    "CountryCode": "NF",
+    "Name": "Norfolk Island",
+    "CallingCode": "672",
+    "EmojiUnicode": "U+1F1F3 U+1F1EB",
+    "Language": "en",
+    "Translations": {
+      "DE": "Norfolkinsel",
+      "ES": "Isla de Norfolk",
+      "FR": "Île de Norfolk",
+      "JA": "ノーフォーク島",
+      "IT": "Isola Norfolk"
+    }
+  },
+  {
+    "CountryCode": "KP",
+    "Name": "North Korea",
+    "CallingCode": "850",
+    "EmojiUnicode": "U+1F1F0 U+1F1F5",
+    "Language": "ko",
+    "Translations": {
+      "DE": "Nordkorea",
+      "ES": "Corea del Norte",
+      "FR": "Corée du Nord",
+      "JA": "朝鮮民主主義人民共和国",
+      "IT": "Corea del Nord"
+    }
+  },
+  {
+    "CountryCode": "MP",
+    "Name": "Northern Mariana Islands",
+    "CallingCode": "1670",
+    "EmojiUnicode": "U+1F1F2 U+1F1F5",
+    "Language": "en",
+    "Translations": {
+      "DE": "Nördliche Marianen",
+      "ES": "Islas Marianas del Norte",
+      "FR": "Îles Mariannes du Nord",
+      "JA": "北マリアナ諸島",
+      "IT": "Isole Marianne Settentrionali"
+    }
+  },
+  {
+    "CountryCode": "NO",
+    "Name": "Norway",
+    "CallingCode": "47",
+    "EmojiUnicode": "U+1F1F3 U+1F1F4",
+    "Language": "no",
+    "Translations": {
+      "DE": "Norwegen",
+      "ES": "Noruega",
+      "FR": "Norvège",
+      "JA": "ノルウェー",
+      "IT": "Norvegia"
+    }
+  },
+  {
+    "CountryCode": "OM",
+    "Name": "Oman",
+    "CallingCode": "968",
+    "EmojiUnicode": "U+1F1F4 U+1F1F2",
+    "Language": "ar",
+    "Translations": {
+      "DE": "Oman",
+      "ES": "Omán",
+      "FR": "Oman",
+      "JA": "オマーン",
+      "IT": "oman"
+    }
+  },
+  {
+    "CountryCode": "PK",
+    "Name": "Pakistan",
+    "CallingCode": "92",
+    "EmojiUnicode": "U+1F1F5 U+1F1F0",
+    "Language": "en",
+    "Translations": {
+      "DE": "Pakistan",
+      "ES": "Pakistán",
+      "FR": "Pakistan",
+      "JA": "パキスタン",
+      "IT": "Pakistan"
+    }
+  },
+  {
+    "CountryCode": "PW",
+    "Name": "Palau",
+    "CallingCode": "680",
+    "EmojiUnicode": "U+1F1F5 U+1F1FC",
+    "Language": "en",
+    "Translations": {
+      "DE": "Palau",
+      "ES": "Palau",
+      "FR": "Palaos",
+      "JA": "パラオ",
+      "IT": "Palau"
+    }
+  },
+  {
+    "CountryCode": "PS",
+    "Name": "Palestine",
+    "CallingCode": "970",
+    "EmojiUnicode": "U+1F1F5 U+1F1F8",
+    "Language": "ar",
+    "Translations": {
+      "DE": "Palästina",
+      "ES": "Palestina",
+      "FR": "Palestine",
+      "JA": "パレスチナ",
+      "IT": "Palestina"
+    }
+  },
+  {
+    "CountryCode": "PA",
+    "Name": "Panama",
+    "CallingCode": "507",
+    "EmojiUnicode": "U+1F1F5 U+1F1E6",
+    "Language": "es",
+    "Translations": {
+      "DE": "Panama",
+      "ES": "Panamá",
+      "FR": "Panama",
+      "JA": "パナマ",
+      "IT": "Panama"
+    }
+  },
+  {
+    "CountryCode": "PG",
+    "Name": "Papua New Guinea",
+    "CallingCode": "675",
+    "EmojiUnicode": "U+1F1F5 U+1F1EC",
+    "Language": "en",
+    "Translations": {
+      "DE": "Papua-Neuguinea",
+      "ES": "Papúa Nueva Guinea",
+      "FR": "Papouasie-Nouvelle-Guinée",
+      "JA": "パプアニューギニア",
+      "IT": "Papua Nuova Guinea"
+    }
+  },
+  {
+    "CountryCode": "PY",
+    "Name": "Paraguay",
+    "CallingCode": "595",
+    "EmojiUnicode": "U+1F1F5 U+1F1FE",
+    "Language": "es",
+    "Translations": {
+      "DE": "Paraguay",
+      "ES": "Paraguay",
+      "FR": "Paraguay",
+      "JA": "パラグアイ",
+      "IT": "Paraguay"
+    }
+  },
+  {
+    "CountryCode": "PE",
+    "Name": "Peru",
+    "CallingCode": "51",
+    "EmojiUnicode": "U+1F1F5 U+1F1EA",
+    "Language": "es",
+    "Translations": {
+      "DE": "Peru",
+      "ES": "Perú",
+      "FR": "Pérou",
+      "JA": "ペルー",
+      "IT": "Perù"
+    }
+  },
+  {
+    "CountryCode": "PH",
+    "Name": "Philippines",
+    "CallingCode": "63",
+    "EmojiUnicode": "U+1F1F5 U+1F1ED",
+    "Language": "en",
+    "Translations": {
+      "DE": "Philippinen",
+      "ES": "Filipinas",
+      "FR": "Philippines",
+      "JA": "フィリピン",
+      "IT": "Filippine"
+    }
+  },
+  {
+    "CountryCode": "PN",
+    "Name": "Pitcairn Islands",
+    "CallingCode": "64",
+    "EmojiUnicode": "U+1F1F5 U+1F1F3",
+    "Language": "en",
+    "Translations": {
+      "DE": "Pitcairn",
+      "ES": "Islas Pitcairn",
+      "FR": "Îles Pitcairn",
+      "JA": "ピトケアン",
+      "IT": "Isole Pitcairn"
+    }
+  },
+  {
+    "CountryCode": "PL",
+    "Name": "Poland",
+    "CallingCode": "48",
+    "EmojiUnicode": "U+1F1F5 U+1F1F1",
+    "Language": "pl",
+    "Translations": {
+      "DE": "Polen",
+      "ES": "Polonia",
+      "FR": "Pologne",
+      "JA": "ポーランド",
+      "IT": "Polonia"
+    }
+  },
+  {
+    "CountryCode": "PT",
+    "Name": "Portugal",
+    "CallingCode": "351",
+    "EmojiUnicode": "U+1F1F5 U+1F1F9",
+    "Language": "pt",
+    "Translations": {
+      "DE": "Portugal",
+      "ES": "Portugal",
+      "FR": "Portugal",
+      "JA": "ポルトガル",
+      "IT": "Portogallo"
+    }
+  },
+  {
+    "CountryCode": "PR",
+    "Name": "Puerto Rico",
+    "CallingCode": "1787",
+    "EmojiUnicode": "U+1F1F5 U+1F1F7",
+    "Language": "es",
+    "Translations": {
+      "DE": "Puerto Rico",
+      "ES": "Puerto Rico",
+      "FR": "Porto Rico",
+      "JA": "プエルトリコ",
+      "IT": "Porto Rico"
+    }
+  },
+  {
+    "CountryCode": "QA",
+    "Name": "Qatar",
+    "CallingCode": "974",
+    "EmojiUnicode": "U+1F1F6 U+1F1E6",
+    "Language": "ar",
+    "Translations": {
+      "DE": "Katar",
+      "ES": "Catar",
+      "FR": "Qatar",
+      "JA": "カタール",
+      "IT": "Qatar"
+    }
+  },
+  {
+    "CountryCode": "XK",
+    "Name": "Republic of Kosovo",
+    "CallingCode": "383",
+    "EmojiUnicode": "U+1F1FD U+1F1F0",
+    "Language": "sq",
+    "Translations": {
+      "DE": null,
+      "ES": "Kosovo",
+      "FR": null,
+      "JA": null,
+      "IT": null
+    }
+  },
+  {
+    "CountryCode": "RE",
+    "Name": "Réunion",
+    "CallingCode": "262",
+    "EmojiUnicode": "U+1F1F7 U+1F1EA",
+    "Language": "fr",
+    "Translations": {
+      "DE": "Réunion",
+      "ES": "Reunión",
+      "FR": "Réunion",
+      "JA": "レユニオン",
+      "IT": "Riunione"
+    }
+  },
+  {
+    "CountryCode": "RO",
+    "Name": "Romania",
+    "CallingCode": "40",
+    "EmojiUnicode": "U+1F1F7 U+1F1F4",
+    "Language": "ro",
+    "Translations": {
+      "DE": "Rumänien",
+      "ES": "Rumania",
+      "FR": "Roumanie",
+      "JA": "ルーマニア",
+      "IT": "Romania"
+    }
+  },
+  {
+    "CountryCode": "RU",
+    "Name": "Russia",
+    "CallingCode": "7",
+    "EmojiUnicode": "U+1F1F7 U+1F1FA",
+    "Language": "ru",
+    "Translations": {
+      "DE": "Russland",
+      "ES": "Rusia",
+      "FR": "Russie",
+      "JA": "ロシア連邦",
+      "IT": "Russia"
+    }
+  },
+  {
+    "CountryCode": "RW",
+    "Name": "Rwanda",
+    "CallingCode": "250",
+    "EmojiUnicode": "U+1F1F7 U+1F1FC",
+    "Language": "rw",
+    "Translations": {
+      "DE": "Ruanda",
+      "ES": "Ruanda",
+      "FR": "Rwanda",
+      "JA": "ルワンダ",
+      "IT": "Ruanda"
+    }
+  },
+  {
+    "CountryCode": "BL",
+    "Name": "Saint Barthélemy",
+    "CallingCode": "590",
+    "EmojiUnicode": "U+1F1E7 U+1F1F1",
+    "Language": "fr",
+    "Translations": {
+      "DE": "Saint-Barthélemy",
+      "ES": "San Bartolomé",
+      "FR": "Saint-Barthélemy",
+      "JA": "サン・バルテルミー",
+      "IT": "Antille Francesi"
+    }
+  },
+  {
+    "CountryCode": "SH",
+    "Name": "Saint Helena",
+    "CallingCode": "290",
+    "EmojiUnicode": "U+1F1F8 U+1F1ED",
+    "Language": "en",
+    "Translations": {
+      "DE": "Sankt Helena",
+      "ES": "Santa Helena",
+      "FR": "Sainte-Hélène",
+      "JA": "セントヘレナ・アセンションおよびトリスタンダクーニャ",
+      "IT": "Sant'Elena"
+    }
+  },
+  {
+    "CountryCode": "KN",
+    "Name": "Saint Kitts and Nevis",
+    "CallingCode": "1869",
+    "EmojiUnicode": "U+1F1F0 U+1F1F3",
+    "Language": "en",
+    "Translations": {
+      "DE": "St. Kitts und Nevis",
+      "ES": "San Cristóbal y Nieves",
+      "FR": "Saint-Christophe-et-Niévès",
+      "JA": "セントクリストファー・ネイビス",
+      "IT": "Saint Kitts e Nevis"
+    }
+  },
+  {
+    "CountryCode": "LC",
+    "Name": "Saint Lucia",
+    "CallingCode": "1758",
+    "EmojiUnicode": "U+1F1F1 U+1F1E8",
+    "Language": "en",
+    "Translations": {
+      "DE": "Saint Lucia",
+      "ES": "Santa Lucía",
+      "FR": "Saint-Lucie",
+      "JA": "セントルシア",
+      "IT": "Santa Lucia"
+    }
+  },
+  {
+    "CountryCode": "MF",
+    "Name": "Saint Martin",
+    "CallingCode": "590",
+    "EmojiUnicode": "U+1F1F2 U+1F1EB",
+    "Language": "en",
+    "Translations": {
+      "DE": "Saint Martin",
+      "ES": "Saint Martin",
+      "FR": "Saint-Martin",
+      "JA": "サン・マルタン（フランス領）",
+      "IT": "Saint Martin"
+    }
+  },
+  {
+    "CountryCode": "PM",
+    "Name": "Saint Pierre and Miquelon",
+    "CallingCode": "508",
+    "EmojiUnicode": "U+1F1F5 U+1F1F2",
+    "Language": "fr",
+    "Translations": {
+      "DE": "Saint-Pierre und Miquelon",
+      "ES": "San Pedro y Miquelón",
+      "FR": "Saint-Pierre-et-Miquelon",
+      "JA": "サンピエール島・ミクロン島",
+      "IT": "Saint-Pierre e Miquelon"
+    }
+  },
+  {
+    "CountryCode": "VC",
+    "Name": "Saint Vincent and the Grenadines",
+    "CallingCode": "1784",
+    "EmojiUnicode": "U+1F1FB U+1F1E8",
+    "Language": "en",
+    "Translations": {
+      "DE": "Saint Vincent und die Grenadinen",
+      "ES": "San Vicente y Granadinas",
+      "FR": "Saint-Vincent-et-les-Grenadines",
+      "JA": "セントビンセントおよびグレナディーン諸島",
+      "IT": "Saint Vincent e Grenadine"
+    }
+  },
+  {
+    "CountryCode": "WS",
+    "Name": "Samoa",
+    "CallingCode": "685",
+    "EmojiUnicode": "U+1F1FC U+1F1F8",
+    "Language": "sm",
+    "Translations": {
+      "DE": "Samoa",
+      "ES": "Samoa",
+      "FR": "Samoa",
+      "JA": "サモア",
+      "IT": "Samoa"
+    }
+  },
+  {
+    "CountryCode": "SM",
+    "Name": "San Marino",
+    "CallingCode": "378",
+    "EmojiUnicode": "U+1F1F8 U+1F1F2",
+    "Language": "it",
+    "Translations": {
+      "DE": "San Marino",
+      "ES": "San Marino",
+      "FR": "Saint-Marin",
+      "JA": "サンマリノ",
+      "IT": "San Marino"
+    }
+  },
+  {
+    "CountryCode": "ST",
+    "Name": "São Tomé and Príncipe",
+    "CallingCode": "239",
+    "EmojiUnicode": "U+1F1F8 U+1F1F9",
+    "Language": "pt",
+    "Translations": {
+      "DE": "São Tomé und Príncipe",
+      "ES": "Santo Tomé y Príncipe",
+      "FR": "Sao Tomé-et-Principe",
+      "JA": "サントメ・プリンシペ",
+      "IT": "São Tomé e Príncipe"
+    }
+  },
+  {
+    "CountryCode": "SA",
+    "Name": "Saudi Arabia",
+    "CallingCode": "966",
+    "EmojiUnicode": "U+1F1F8 U+1F1E6",
+    "Language": "ar",
+    "Translations": {
+      "DE": "Saudi-Arabien",
+      "ES": "Arabia Saudí",
+      "FR": "Arabie Saoudite",
+      "JA": "サウジアラビア",
+      "IT": "Arabia Saudita"
+    }
+  },
+  {
+    "CountryCode": "SN",
+    "Name": "Senegal",
+    "CallingCode": "221",
+    "EmojiUnicode": "U+1F1F8 U+1F1F3",
+    "Language": "fr",
+    "Translations": {
+      "DE": "Senegal",
+      "ES": "Senegal",
+      "FR": "Sénégal",
+      "JA": "セネガル",
+      "IT": "Senegal"
+    }
+  },
+  {
+    "CountryCode": "RS",
+    "Name": "Serbia",
+    "CallingCode": "381",
+    "EmojiUnicode": "U+1F1F7 U+1F1F8",
+    "Language": "sr",
+    "Translations": {
+      "DE": "Serbien",
+      "ES": "Serbia",
+      "FR": "Serbie",
+      "JA": "セルビア",
+      "IT": "Serbia"
+    }
+  },
+  {
+    "CountryCode": "SC",
+    "Name": "Seychelles",
+    "CallingCode": "248",
+    "EmojiUnicode": "U+1F1F8 U+1F1E8",
+    "Language": "fr",
+    "Translations": {
+      "DE": "Seychellen",
+      "ES": "Seychelles",
+      "FR": "Seychelles",
+      "JA": "セーシェル",
+      "IT": "Seychelles"
+    }
+  },
+  {
+    "CountryCode": "SL",
+    "Name": "Sierra Leone",
+    "CallingCode": "232",
+    "EmojiUnicode": "U+1F1F8 U+1F1F1",
+    "Language": "en",
+    "Translations": {
+      "DE": "Sierra Leone",
+      "ES": "Sierra Leone",
+      "FR": "Sierra Leone",
+      "JA": "シエラレオネ",
+      "IT": "Sierra Leone"
+    }
+  },
+  {
+    "CountryCode": "SG",
+    "Name": "Singapore",
+    "CallingCode": "65",
+    "EmojiUnicode": "U+1F1F8 U+1F1EC",
+    "Language": "en",
+    "Translations": {
+      "DE": "Singapur",
+      "ES": "Singapur",
+      "FR": "Singapour",
+      "JA": "シンガポール",
+      "IT": "Singapore"
+    }
+  },
+  {
+    "CountryCode": "SX",
+    "Name": "Sint Maarten",
+    "CallingCode": "1721",
+    "EmojiUnicode": "U+1F1F8 U+1F1FD",
+    "Language": "nl",
+    "Translations": {
+      "DE": null,
+      "ES": null,
+      "FR": null,
+      "JA": null,
+      "IT": null
+    }
+  },
+  {
+    "CountryCode": "SK",
+    "Name": "Slovakia",
+    "CallingCode": "421",
+    "EmojiUnicode": "U+1F1F8 U+1F1F0",
+    "Language": "sk",
+    "Translations": {
+      "DE": "Slowakei",
+      "ES": "República Eslovaca",
+      "FR": "Slovaquie",
+      "JA": "スロバキア",
+      "IT": "Slovacchia"
+    }
+  },
+  {
+    "CountryCode": "SI",
+    "Name": "Slovenia",
+    "CallingCode": "386",
+    "EmojiUnicode": "U+1F1F8 U+1F1EE",
+    "Language": "sl",
+    "Translations": {
+      "DE": "Slowenien",
+      "ES": "Eslovenia",
+      "FR": "Slovénie",
+      "JA": "スロベニア",
+      "IT": "Slovenia"
+    }
+  },
+  {
+    "CountryCode": "SB",
+    "Name": "Solomon Islands",
+    "CallingCode": "677",
+    "EmojiUnicode": "U+1F1F8 U+1F1E7",
+    "Language": "en",
+    "Translations": {
+      "DE": "Salomonen",
+      "ES": "Islas Salomón",
+      "FR": "Îles Salomon",
+      "JA": "ソロモン諸島",
+      "IT": "Isole Salomone"
+    }
+  },
+  {
+    "CountryCode": "SO",
+    "Name": "Somalia",
+    "CallingCode": "252",
+    "EmojiUnicode": "U+1F1F8 U+1F1F4",
+    "Language": "so",
+    "Translations": {
+      "DE": "Somalia",
+      "ES": "Somalia",
+      "FR": "Somalie",
+      "JA": "ソマリア",
+      "IT": "Somalia"
+    }
+  },
+  {
+    "CountryCode": "ZA",
+    "Name": "South Africa",
+    "CallingCode": "27",
+    "EmojiUnicode": "U+1F1FF U+1F1E6",
+    "Language": "af",
+    "Translations": {
+      "DE": "Republik Südafrika",
+      "ES": "República de Sudáfrica",
+      "FR": "Afrique du Sud",
+      "JA": "南アフリカ",
+      "IT": "Sud Africa"
+    }
+  },
+  {
+    "CountryCode": "GS",
+    "Name": "South Georgia",
+    "CallingCode": "500",
+    "EmojiUnicode": "U+1F1EC U+1F1F8",
+    "Language": "en",
+    "Translations": {
+      "DE": "Südgeorgien und die Südlichen Sandwichinseln",
+      "ES": "Islas Georgias del Sur y Sandwich del Sur",
+      "FR": "Géorgie du Sud-et-les Îles Sandwich du Sud",
+      "JA": "サウスジョージア・サウスサンドウィッチ諸島",
+      "IT": "Georgia del Sud e Isole Sandwich Meridionali"
+    }
+  },
+  {
+    "CountryCode": "KR",
+    "Name": "South Korea",
+    "CallingCode": "82",
+    "EmojiUnicode": "U+1F1F0 U+1F1F7",
+    "Language": "ko",
+    "Translations": {
+      "DE": "Südkorea",
+      "ES": "Corea del Sur",
+      "FR": "Corée du Sud",
+      "JA": "大韓民国",
+      "IT": "Corea del Sud"
+    }
+  },
+  {
+    "CountryCode": "SS",
+    "Name": "South Sudan",
+    "CallingCode": "211",
+    "EmojiUnicode": "U+1F1F8 U+1F1F8",
+    "Language": "en",
+    "Translations": {
+      "DE": "Südsudan",
+      "ES": "Sudán del Sur",
+      "FR": "Soudan du Sud",
+      "JA": "南スーダン",
+      "IT": "Sudan del sud"
+    }
+  },
+  {
+    "CountryCode": "ES",
+    "Name": "Spain",
+    "CallingCode": "34",
+    "EmojiUnicode": "U+1F1EA U+1F1F8",
+    "Language": "es",
+    "Translations": {
+      "DE": "Spanien",
+      "ES": "España",
+      "FR": "Espagne",
+      "JA": "スペイン",
+      "IT": "Spagna"
+    }
+  },
+  {
+    "CountryCode": "LK",
+    "Name": "Sri Lanka",
+    "CallingCode": "94",
+    "EmojiUnicode": "U+1F1F1 U+1F1F0",
+    "Language": "si",
+    "Translations": {
+      "DE": "Sri Lanka",
+      "ES": "Sri Lanka",
+      "FR": "Sri Lanka",
+      "JA": "スリランカ",
+      "IT": "Sri Lanka"
+    }
+  },
+  {
+    "CountryCode": "SD",
+    "Name": "Sudan",
+    "CallingCode": "249",
+    "EmojiUnicode": "U+1F1F8 U+1F1E9",
+    "Language": "ar",
+    "Translations": {
+      "DE": "Sudan",
+      "ES": "Sudán",
+      "FR": "Soudan",
+      "JA": "スーダン",
+      "IT": "Sudan"
+    }
+  },
+  {
+    "CountryCode": "SR",
+    "Name": "Suriname",
+    "CallingCode": "597",
+    "EmojiUnicode": "U+1F1F8 U+1F1F7",
+    "Language": "nl",
+    "Translations": {
+      "DE": "Suriname",
+      "ES": "Surinam",
+      "FR": "Surinam",
+      "JA": "スリナム",
+      "IT": "Suriname"
+    }
+  },
+  {
+    "CountryCode": "SJ",
+    "Name": "Svalbard and Jan Mayen",
+    "CallingCode": "4779",
+    "EmojiUnicode": "U+1F1F8 U+1F1EF",
+    "Language": "no",
+    "Translations": {
+      "DE": "Svalbard und Jan Mayen",
+      "ES": "Islas Svalbard y Jan Mayen",
+      "FR": "Svalbard et Jan Mayen",
+      "JA": "スヴァールバル諸島およびヤンマイエン島",
+      "IT": "Svalbard e Jan Mayen"
+    }
+  },
+  {
+    "CountryCode": "SZ",
+    "Name": "Swaziland",
+    "CallingCode": "268",
+    "EmojiUnicode": "U+1F1F8 U+1F1FF",
+    "Language": "en",
+    "Translations": {
+      "DE": "Swasiland",
+      "ES": "Suazilandia",
+      "FR": "Swaziland",
+      "JA": "スワジランド",
+      "IT": "Swaziland"
+    }
+  },
+  {
+    "CountryCode": "SE",
+    "Name": "Sweden",
+    "CallingCode": "46",
+    "EmojiUnicode": "U+1F1F8 U+1F1EA",
+    "Language": "sv",
+    "Translations": {
+      "DE": "Schweden",
+      "ES": "Suecia",
+      "FR": "Suède",
+      "JA": "スウェーデン",
+      "IT": "Svezia"
+    }
+  },
+  {
+    "CountryCode": "CH",
+    "Name": "Switzerland",
+    "CallingCode": "41",
+    "EmojiUnicode": "U+1F1E8 U+1F1ED",
+    "Language": "de",
+    "Translations": {
+      "DE": "Schweiz",
+      "ES": "Suiza",
+      "FR": "Suisse",
+      "JA": "スイス",
+      "IT": "Svizzera"
+    }
+  },
+  {
+    "CountryCode": "SY",
+    "Name": "Syria",
+    "CallingCode": "963",
+    "EmojiUnicode": "U+1F1F8 U+1F1FE",
+    "Language": "ar",
+    "Translations": {
+      "DE": "Syrien",
+      "ES": "Siria",
+      "FR": "Syrie",
+      "JA": "シリア・アラブ共和国",
+      "IT": "Siria"
+    }
+  },
+  {
+    "CountryCode": "TW",
+    "Name": "Taiwan",
+    "CallingCode": "886",
+    "EmojiUnicode": "U+1F1F9 U+1F1FC",
+    "Language": "zh",
+    "Translations": {
+      "DE": "Taiwan",
+      "ES": "Taiwán",
+      "FR": "Taïwan",
+      "JA": "台湾（台湾省/中華民国）",
+      "IT": "Taiwan"
+    }
+  },
+  {
+    "CountryCode": "TJ",
+    "Name": "Tajikistan",
+    "CallingCode": "992",
+    "EmojiUnicode": "U+1F1F9 U+1F1EF",
+    "Language": "tg",
+    "Translations": {
+      "DE": "Tadschikistan",
+      "ES": "Tayikistán",
+      "FR": "Tadjikistan",
+      "JA": "タジキスタン",
+      "IT": "Tagikistan"
+    }
+  },
+  {
+    "CountryCode": "TZ",
+    "Name": "Tanzania",
+    "CallingCode": "255",
+    "EmojiUnicode": "U+1F1F9 U+1F1FF",
+    "Language": "sw",
+    "Translations": {
+      "DE": "Tansania",
+      "ES": "Tanzania",
+      "FR": "Tanzanie",
+      "JA": "タンザニア",
+      "IT": "Tanzania"
+    }
+  },
+  {
+    "CountryCode": "TH",
+    "Name": "Thailand",
+    "CallingCode": "66",
+    "EmojiUnicode": "U+1F1F9 U+1F1ED",
+    "Language": "th",
+    "Translations": {
+      "DE": "Thailand",
+      "ES": "Tailandia",
+      "FR": "Thaïlande",
+      "JA": "タイ",
+      "IT": "Tailandia"
+    }
+  },
+  {
+    "CountryCode": "TL",
+    "Name": "East Timor",
+    "CallingCode": "670",
+    "EmojiUnicode": "U+1F1F9 U+1F1F1",
+    "Language": "pt",
+    "Translations": {
+      "DE": "Timor-Leste",
+      "ES": "Timor Oriental",
+      "FR": "Timor oriental",
+      "JA": "東ティモール",
+      "IT": "Timor Est"
+    }
+  },
+  {
+    "CountryCode": "TG",
+    "Name": "Togo",
+    "CallingCode": "228",
+    "EmojiUnicode": "U+1F1F9 U+1F1EC",
+    "Language": "fr",
+    "Translations": {
+      "DE": "Togo",
+      "ES": "Togo",
+      "FR": "Togo",
+      "JA": "トーゴ",
+      "IT": "Togo"
+    }
+  },
+  {
+    "CountryCode": "TK",
+    "Name": "Tokelau",
+    "CallingCode": "690",
+    "EmojiUnicode": "U+1F1F9 U+1F1F0",
+    "Language": "en",
+    "Translations": {
+      "DE": "Tokelau",
+      "ES": "Islas Tokelau",
+      "FR": "Tokelau",
+      "JA": "トケラウ",
+      "IT": "Isole Tokelau"
+    }
+  },
+  {
+    "CountryCode": "TO",
+    "Name": "Tonga",
+    "CallingCode": "676",
+    "EmojiUnicode": "U+1F1F9 U+1F1F4",
+    "Language": "en",
+    "Translations": {
+      "DE": "Tonga",
+      "ES": "Tonga",
+      "FR": "Tonga",
+      "JA": "トンガ",
+      "IT": "Tonga"
+    }
+  },
+  {
+    "CountryCode": "TT",
+    "Name": "Trinidad and Tobago",
+    "CallingCode": "1868",
+    "EmojiUnicode": "U+1F1F9 U+1F1F9",
+    "Language": "en",
+    "Translations": {
+      "DE": "Trinidad und Tobago",
+      "ES": "Trinidad y Tobago",
+      "FR": "Trinité et Tobago",
+      "JA": "トリニダード・トバゴ",
+      "IT": "Trinidad e Tobago"
+    }
+  },
+  {
+    "CountryCode": "TN",
+    "Name": "Tunisia",
+    "CallingCode": "216",
+    "EmojiUnicode": "U+1F1F9 U+1F1F3",
+    "Language": "ar",
+    "Translations": {
+      "DE": "Tunesien",
+      "ES": "Túnez",
+      "FR": "Tunisie",
+      "JA": "チュニジア",
+      "IT": "Tunisia"
+    }
+  },
+  {
+    "CountryCode": "TR",
+    "Name": "Turkey",
+    "CallingCode": "90",
+    "EmojiUnicode": "U+1F1F9 U+1F1F7",
+    "Language": "tr",
+    "Translations": {
+      "DE": "Türkei",
+      "ES": "Turquía",
+      "FR": "Turquie",
+      "JA": "トルコ",
+      "IT": "Turchia"
+    }
+  },
+  {
+    "CountryCode": "TM",
+    "Name": "Turkmenistan",
+    "CallingCode": "993",
+    "EmojiUnicode": "U+1F1F9 U+1F1F2",
+    "Language": "tk",
+    "Translations": {
+      "DE": "Turkmenistan",
+      "ES": "Turkmenistán",
+      "FR": "Turkménistan",
+      "JA": "トルクメニスタン",
+      "IT": "Turkmenistan"
+    }
+  },
+  {
+    "CountryCode": "TC",
+    "Name": "Turks and Caicos Islands",
+    "CallingCode": "1649",
+    "EmojiUnicode": "U+1F1F9 U+1F1E8",
+    "Language": "en",
+    "Translations": {
+      "DE": "Turks- und Caicosinseln",
+      "ES": "Islas Turks y Caicos",
+      "FR": "Îles Turques-et-Caïques",
+      "JA": "タークス・カイコス諸島",
+      "IT": "Isole Turks e Caicos"
+    }
+  },
+  {
+    "CountryCode": "TV",
+    "Name": "Tuvalu",
+    "CallingCode": "688",
+    "EmojiUnicode": "U+1F1F9 U+1F1FB",
+    "Language": "en",
+    "Translations": {
+      "DE": "Tuvalu",
+      "ES": "Tuvalu",
+      "FR": "Tuvalu",
+      "JA": "ツバル",
+      "IT": "Tuvalu"
+    }
+  },
+  {
+    "CountryCode": "UG",
+    "Name": "Uganda",
+    "CallingCode": "256",
+    "EmojiUnicode": "U+1F1FA U+1F1EC",
+    "Language": "en",
+    "Translations": {
+      "DE": "Uganda",
+      "ES": "Uganda",
+      "FR": "Uganda",
+      "JA": "ウガンダ",
+      "IT": "Uganda"
+    }
+  },
+  {
+    "CountryCode": "UA",
+    "Name": "Ukraine",
+    "CallingCode": "380",
+    "EmojiUnicode": "U+1F1FA U+1F1E6",
+    "Language": "uk",
+    "Translations": {
+      "DE": "Ukraine",
+      "ES": "Ucrania",
+      "FR": "Ukraine",
+      "JA": "ウクライナ",
+      "IT": "Ucraina"
+    }
+  },
+  {
+    "CountryCode": "AE",
+    "Name": "United Arab Emirates",
+    "CallingCode": "971",
+    "EmojiUnicode": "U+1F1E6 U+1F1EA",
+    "Language": "ar",
+    "Translations": {
+      "DE": "Vereinigte Arabische Emirate",
+      "ES": "Emiratos Árabes Unidos",
+      "FR": "Émirats arabes unis",
+      "JA": "アラブ首長国連邦",
+      "IT": "Emirati Arabi Uniti"
+    }
+  },
+  {
+    "CountryCode": "GB",
+    "Name": "United Kingdom",
+    "CallingCode": "44",
+    "EmojiUnicode": "U+1F1EC U+1F1E7",
+    "Language": "en",
+    "Translations": {
+      "DE": "Vereinigtes Königreich",
+      "ES": "Reino Unido",
+      "FR": "Royaume-Uni",
+      "JA": "イギリス",
+      "IT": "Regno Unito"
+    }
+  },
+  {
+    "CountryCode": "US",
+    "Name": "United States",
+    "CallingCode": "1",
+    "EmojiUnicode": "U+1F1FA U+1F1F8",
+    "Language": "en",
+    "Translations": {
+      "DE": "Vereinigte Staaten von Amerika",
+      "ES": "Estados Unidos",
+      "FR": "États-Unis",
+      "JA": "アメリカ合衆国",
+      "IT": "Stati Uniti D'America"
+    }
+  },
+  {
+    "CountryCode": "UY",
+    "Name": "Uruguay",
+    "CallingCode": "598",
+    "EmojiUnicode": "U+1F1FA U+1F1FE",
+    "Language": "es",
+    "Translations": {
+      "DE": "Uruguay",
+      "ES": "Uruguay",
+      "FR": "Uruguay",
+      "JA": "ウルグアイ",
+      "IT": "Uruguay"
+    }
+  },
+  {
+    "CountryCode": "UZ",
+    "Name": "Uzbekistan",
+    "CallingCode": "998",
+    "EmojiUnicode": "U+1F1FA U+1F1FF",
+    "Language": "uz",
+    "Translations": {
+      "DE": "Usbekistan",
+      "ES": "Uzbekistán",
+      "FR": "Ouzbékistan",
+      "JA": "ウズベキスタン",
+      "IT": "Uzbekistan"
+    }
+  },
+  {
+    "CountryCode": "VU",
+    "Name": "Vanuatu",
+    "CallingCode": "678",
+    "EmojiUnicode": "U+1F1FB U+1F1FA",
+    "Language": "bi",
+    "Translations": {
+      "DE": "Vanuatu",
+      "ES": "Vanuatu",
+      "FR": "Vanuatu",
+      "JA": "バヌアツ",
+      "IT": "Vanuatu"
+    }
+  },
+  {
+    "CountryCode": "VE",
+    "Name": "Venezuela",
+    "CallingCode": "58",
+    "EmojiUnicode": "U+1F1FB U+1F1EA",
+    "Language": "es",
+    "Translations": {
+      "DE": "Venezuela",
+      "ES": "Venezuela",
+      "FR": "Venezuela",
+      "JA": "ベネズエラ・ボリバル共和国",
+      "IT": "Venezuela"
+    }
+  },
+  {
+    "CountryCode": "VN",
+    "Name": "Vietnam",
+    "CallingCode": "84",
+    "EmojiUnicode": "U+1F1FB U+1F1F3",
+    "Language": "vi",
+    "Translations": {
+      "DE": "Vietnam",
+      "ES": "Vietnam",
+      "FR": "Viêt Nam",
+      "JA": "ベトナム",
+      "IT": "Vietnam"
+    }
+  },
+  {
+    "CountryCode": "WF",
+    "Name": "Wallis and Futuna",
+    "CallingCode": "681",
+    "EmojiUnicode": "U+1F1FC U+1F1EB",
+    "Language": "fr",
+    "Translations": {
+      "DE": "Wallis und Futuna",
+      "ES": "Wallis y Futuna",
+      "FR": "Wallis-et-Futuna",
+      "JA": "ウォリス・フツナ",
+      "IT": "Wallis e Futuna"
+    }
+  },
+  {
+    "CountryCode": "EH",
+    "Name": "Western Sahara",
+    "CallingCode": "212",
+    "EmojiUnicode": "U+1F1EA U+1F1ED",
+    "Language": "es",
+    "Translations": {
+      "DE": "Westsahara",
+      "ES": "Sahara Occidental",
+      "FR": "Sahara Occidental",
+      "JA": "西サハラ",
+      "IT": "Sahara Occidentale"
+    }
+  },
+  {
+    "CountryCode": "YE",
+    "Name": "Yemen",
+    "CallingCode": "967",
+    "EmojiUnicode": "U+1F1FE U+1F1EA",
+    "Language": "ar",
+    "Translations": {
+      "DE": "Jemen",
+      "ES": "Yemen",
+      "FR": "Yémen",
+      "JA": "イエメン",
+      "IT": "Yemen"
+    }
+  },
+  {
+    "CountryCode": "ZM",
+    "Name": "Zambia",
+    "CallingCode": "260",
+    "EmojiUnicode": "U+1F1FF U+1F1F2",
+    "Language": "en",
+    "Translations": {
+      "DE": "Sambia",
+      "ES": "Zambia",
+      "FR": "Zambie",
+      "JA": "ザンビア",
+      "IT": "Zambia"
+    }
+  },
+  {
+    "CountryCode": "ZW",
+    "Name": "Zimbabwe",
+    "CallingCode": "263",
+    "EmojiUnicode": "U+1F1FF U+1F1FC",
+    "Language": "en",
+    "Translations": {
+      "DE": "Simbabwe",
+      "ES": "Zimbabue",
+      "FR": "Zimbabwe",
+      "JA": "ジンバブエ",
+      "IT": "Zimbabwe"
+    }
+  }
+]

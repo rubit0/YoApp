@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="YoApp.Clients.Pages.Setup.CompletePage"
+             NavigationPage.HasBackButton="False"
+             NavigationPage.HasNavigationBar="True"
+             Title="Setup complete">
+  <StackLayout>
+    <Label Text="Enjoy YoApp for one year!" />
+    <Button Text="Done" Clicked="OnDoneClicked" />
+  </StackLayout>
+  
+</ContentPage>

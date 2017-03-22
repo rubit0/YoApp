@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:behaviors="clr-namespace:YoApp.Clients.Behaviors;assembly=YoApp.Clients"
+             x:Class="YoApp.Clients.Pages.Setup.WaitVerificationPage"
+             Title="Verification"
+             NavigationPage.HasNavigationBar="True"
+             NavigationPage.HasBackButton="True">
+  <StackLayout>
+    <Label Text="Waiting to automaticaly detect the incomming SMS."/>
+    <Label Text="{Binding PhoneNumber}" />
+    <Label Text="Automatic SMS detection not working? Type in the code manualy." />
+    <Entry x:Name="CodeEntry" 
+           Keyboard="Numeric" 
+           Placeholder="Enter verification code" 
+           Text="{Binding VerificationCode, Mode=TwoWay, StringFormat='{0:###-###}'}">
+      <Entry.Behaviors>
+        <behaviors:EntryNumericClamp />
+        <behaviors:EntryLengthClamp MaxLength="6" />
+      </Entry.Behaviors>
+    </Entry>
+    <Button Text="Verify me" 
+            Command="{Binding VerifyCommand}"/>
+  </StackLayout>
+</ContentPage>

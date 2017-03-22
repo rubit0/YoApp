@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="YoApp.Clients.Pages.Chats.ChatsListPage"
+             xmlns:attached="clr-namespace:YoApp.Clients.Helpers.Attached;assembly=YoApp.Clients"
+             Title="Chats"
+             NavigationPage.HasBackButton="False" >
+  <ContentPage.ToolbarItems>
+    <ToolbarItem Text="✍️" Command="{Binding OpenFriendsListCommand}"/>
+  </ContentPage.ToolbarItems>
+  <ListView x:Name="ListView" 
+            ItemsSource="{Binding Pages}"
+            attached:TapGestureAttached.Command="{Binding OpenChatCommand}">
+    <ListView.ItemTemplate>
+      <DataTemplate>
+        <ViewCell>
+          <StackLayout>
+            <Label Text="{Binding Friend.DisplayName}"/>
+            <Label FontSize="10" TextColor="Blue" Text="{Binding Friend.StatusMessage}"/>
+          </StackLayout>
+        </ViewCell>
+      </DataTemplate>
+    </ListView.ItemTemplate>
+  </ListView>
+</ContentPage>

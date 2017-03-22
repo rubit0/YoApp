@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="YoApp.Clients.Pages.Chats.ChatPage"
+             xmlns:behaviors="clr-namespace:YoApp.Clients.Behaviors"
+             xmlns:triggers="clr-namespace:YoApp.Clients.Forms.Triggers;assembly=YoApp.Clients"
+             Title="{Binding Name}"
+             NavigationPage.HasBackButton="True" >
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="52"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <ListView SeparatorVisibility="None" 
+                  HasUnevenRows="True" 
+                  Grid.Row="0" 
+                  Grid.Column="0" 
+                  Grid.ColumnSpan="2"
+                  x:Name="ListView"
+                  ItemsSource="{Binding Messages}">
+            <ListView.Behaviors>
+                <behaviors:ListViewAutoScroll />
+            </ListView.Behaviors>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextCell Text="{Binding Message}"/>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <Entry x:Name="Entry" Grid.Row="1" Grid.Column="0" />
+        <Button Grid.Row="1" Grid.Column="1"
+                Text="Send"
+                Command="{Binding PostMessageCommand}"
+                CommandParameter="{Binding Source={x:Reference Entry}, Path=Text}">
+            <Button.Triggers>
+                <EventTrigger Event="Clicked" >
+                    <triggers:ClearEntryTrigger TargetEntry="{x:Reference Entry}" />
+                </EventTrigger>
+            </Button.Triggers>
+        </Button>
+    </Grid>
+</ContentPage>

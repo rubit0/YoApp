@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:jpc="clr-namespace:JPC.BindablePicker;assembly=JPC.BindablePicker"
+             xmlns:behaviors="clr-namespace:YoApp.Clients.Behaviors;assembly=YoApp.Clients"
+             xmlns:attached="clr-namespace:YoApp.Clients.Helpers.Attached;assembly=YoApp.Clients"
+             x:Class="YoApp.Clients.Pages.Setup.EnterNumberPage"
+             Title="Verify your Phone"
+             NavigationPage.HasNavigationBar="True"
+             NavigationPage.HasBackButton="False" >
+  <StackLayout>
+    <Label Text="Just one step before you cant start with YoApp."></Label>
+    <Label Text="Please verify your country code and enter your phone number" />
+    <jpc:BindablePicker x:Name="CountryPicker" 
+                        Title="Select country" 
+                        ItemsSource="{Binding Countries, Mode=OneWay}" 
+                        SelectedIndex="{Binding SelectedCountry, Mode=TwoWay}"/>
+
+    <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+      <Label Text="{Binding CallingCode, StringFormat='+{0:+###}'}"/>
+      <Entry attached:EntryCompleteAttached.Command="{Binding CompleteCommand}" 
+             x:Name="NumberEntry" 
+             Text="{Binding UserPhoneNumber}" 
+             Placeholder="Your phone number" 
+             Keyboard="Numeric">
+        <Entry.Behaviors>
+          <behaviors:EntryPhoneValidation SubmitButton="{x:Reference SubmitButton}"/>
+        </Entry.Behaviors>
+      </Entry>
+      <Button x:Name="SubmitButton" IsEnabled="False" Text="Done" Command="{Binding CompleteCommand}" />
+    </StackLayout>
+  </StackLayout>
+</ContentPage>

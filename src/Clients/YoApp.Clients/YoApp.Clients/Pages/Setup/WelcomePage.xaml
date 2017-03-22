@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="YoApp.Clients.Pages.Setup.WelcomePage"
+             NavigationPage.HasNavigationBar="True"
+             Title="Welcome" >
+  <StackLayout>
+    <Label Text="Welcome to YoApp" VerticalOptions="Center" HorizontalOptions="Center" />
+    <Label Text="Message all your friends from around the world!" />
+    <Button x:Name="ButtonContinue" Command="{Binding ConnectCommand}" Text="Continue"/>
+  </StackLayout>
+</ContentPage>
