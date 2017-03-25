@@ -10,11 +10,12 @@ namespace YoApp.Utils.Extensions
         /// <summary>
         /// Configures data protection to use azure blob storage.
         /// </summary>
-        /// <param name="services">Target service.</param>
+        /// <param name="services">Target service instance.</param>
         /// <param name="applicationName">Must be same accross all Services</param>
         /// <param name="accountName">Account name of the blob storage</param>
         /// <param name="accountKey">Key of the account</param>
         /// <param name="containerName">Blob target container.</param>
+        /// <param name="isLocal">Check if the current app instance is running localy.</param>
         public static void ConfigureDataProtectionOnAzure(this IServiceCollection services, 
             string applicationName, string accountName, string accountKey, string containerName = "ringkeys")
         {
@@ -30,6 +31,16 @@ namespace YoApp.Utils.Extensions
             services.AddDataProtection()
                 .SetApplicationName(applicationName)
                 .PersistKeysToAzureBlobStorage(container, "keys.xml");
+        }
+
+        /// <summary>
+        /// Configures data protection to use local storage.
+        /// </summary>
+        /// <param name="services">Target service instance.</param>
+        /// <param name="applicationName">Must be same accross all Services</param>
+        public static void ConfigureDataProtectionLocal(this IServiceCollection services, string applicationName)
+        {
+            services.AddDataProtection().SetApplicationName(applicationName);
         }
     }
 }

@@ -8,6 +8,7 @@ using YoApp.DataObjects.Verification;
 using YoApp.Utils.Misc;
 using YoApp.Data;
 using YoApp.Data.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace YoApp.Identity.Controllers
 {
@@ -17,30 +18,32 @@ namespace YoApp.Identity.Controllers
         private readonly ILogger _logger;
         private readonly IUnitOfWork _unitOfWork;
         private readonly ISmsSender _messageSender;
-        private readonly IConfigurationService _configurationService;
+        private readonly IConfigurationService _configuration;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public VerificationController(ILogger<VerificationController> logger, IUnitOfWork unitOfWork, ISmsSender messageSender, IConfigurationService configurationService)
+        public VerificationController(ILogger<VerificationController> logger, IUnitOfWork unitOfWork, ISmsSender messageSender, IConfigurationService configuration, UserManager<ApplicationUser> userManager)
         {
             _logger = logger;
             _unitOfWork = unitOfWork;
             _messageSender = messageSender;
-            _configurationService = configurationService;
+            _configuration = configuration;
+            _userManager = userManager;
         }
 
-        [HttpPost("Challenge")]
+        [HttpPost("challenge")]
         public async Task<IActionResult> ChallengeVerification([FromForm]VerificationChallengeDto challenge)
         {
             if (!ModelState.IsValid)
                 return BadRequest();
 
-            if(!_configurationService.ValidCountryCallCodes.Contains(challenge.CountryCodeToInt()))
+            if(!_configuration.ValidCountryCallCodes.Contains(challenge.CountryCodeToInt()))
                 return BadRequest($"Country [{challenge.CountryCode}] is not supported.");
 
             var number = challenge.ToString();
             _logger.LogInformation($"The PhoneNumber [{number}] is requesting an verification code.");
 
             //Generate request object
-            var request = new VerificationToken(number, _configurationService.VerificationDuration, CodeGenerator.GetCode());
+            var request = new VerificationToken(number, _configuration.VerificationDuration, CodeGenerator.GetCode());
 
             //Send SMS message with code to client
             var clientMessage = $"Hello from YoApp!\nYour verification Code is:\n{request.Code}";
@@ -56,7 +59,7 @@ namespace YoApp.Identity.Controllers
             return Ok();
         }
 
-        [HttpPost("Resolve")]
+        [HttpPost("resolve")]
         public async Task<IActionResult> ResolveVerification([FromForm]VerificationResolveDto resolve)
         {
             if (!ModelState.IsValid)
@@ -78,11 +81,12 @@ namespace YoApp.Identity.Controllers
             }
 
             //Check if the user already has an account, otherwise create and persist a new one
-            var user = await _unitOfWork.UserRepository.GetByNameAsync(resolve.PhoneNumber);
+            var user = await _userManager.FindByNameAsync(resolve.PhoneNumber);
             if (user == null)
             {
                 user = new ApplicationUser { UserName = resolve.PhoneNumber, Nickname = string.Empty };
-                var creationResult = await _unitOfWork.UserRepository.AddAsync(user, resolve.Password);
+
+                var creationResult = await _userManager.CreateAsync(user, resolve.Password);
                 if (!creationResult.Succeeded)
                     return StatusCode(500);
 
@@ -90,7 +94,8 @@ namespace YoApp.Identity.Controllers
             }
             else
             {
-                await _unitOfWork.UserRepository.UpdatePasswordAsync(user, resolve.Password);
+                await _userManager.RemovePasswordAsync(user);
+                await _userManager.AddPasswordAsync(user, resolve.Password);
             }
 
             //At this step the user is verified and persistet, remove obsolet request from db

@@ -25,8 +25,8 @@ namespace YoApp.Identity.Controllers
             _mapper = mapper;
         }
 
-        [HttpGet]
-        public async Task<IActionResult> GetUser([FromQuery]string phoneNumber)
+        [HttpGet("{phoneNumber}")]
+        public async Task<IActionResult> FindUser(string phoneNumber)
         {
             if (string.IsNullOrWhiteSpace(phoneNumber))
                 return BadRequest();
@@ -43,9 +43,8 @@ namespace YoApp.Identity.Controllers
             return Ok(dto);
         }
 
-        //Using POST Verb due to long querry object
-        [HttpPost]
-        public async Task<IActionResult> GetUsers([FromBody]IEnumerable<string> phoneNumbers)
+        [HttpPost("{phoneNumbers}")]
+        public async Task<IActionResult> FindUsers([FromBody]IEnumerable<string> phoneNumbers)
         {
             if (!ModelState.IsValid)
                 return BadRequest();
@@ -62,7 +61,39 @@ namespace YoApp.Identity.Controllers
             return Ok(matches);
         }
 
-        [HttpGet("IsMember")]
+        [HttpGet("{phoneNumber}/name")]
+        public async Task<IActionResult> GetName(string phoneNumber)
+        {
+            if (string.IsNullOrWhiteSpace(phoneNumber))
+                return BadRequest();
+
+            var userInDb = await _unitOfWork.UserRepository.GetByNameAsync(phoneNumber);
+            if (userInDb == null)
+            {
+                _logger.LogError($"User by {phoneNumber} requested by [{User.Identity.Name}] was not found.");
+                return NotFound();
+            }
+
+            return Ok(userInDb.Nickname);
+        }
+
+        [HttpGet("{phoneNumber}/status")]
+        public async Task<IActionResult> GetStatus(string phoneNumber)
+        {
+            if (string.IsNullOrWhiteSpace(phoneNumber))
+                return BadRequest();
+
+            var userInDb = await _unitOfWork.UserRepository.GetByNameAsync(phoneNumber);
+            if (userInDb == null)
+            {
+                _logger.LogError($"User by {phoneNumber} requested by [{User.Identity.Name}] was not found.");
+                return NotFound();
+            }
+
+            return Ok(userInDb.Status);
+        }
+
+        [HttpGet("check/{phoneNumber}")]
         public async Task<IActionResult> IsMember(string phoneNumber)
         {
             if (string.IsNullOrWhiteSpace(phoneNumber))
@@ -74,6 +105,17 @@ namespace YoApp.Identity.Controllers
                 return Ok();
             else
                 return NotFound();
+        }
+
+        [HttpPost("check/{phoneNumbers}")]
+        public async Task<IActionResult> AreMember([FromBody]IEnumerable<string> phoneNumbers)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest();
+
+            var usersInDb = await _unitOfWork.UserRepository.GetByNamesAsync(phoneNumbers);
+
+            return Ok(usersInDb);
         }
     }
 }

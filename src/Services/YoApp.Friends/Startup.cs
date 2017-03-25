@@ -7,6 +7,9 @@ using YoApp.Data.Extensions;
 using YoApp.Utils.Extensions;
 using YoApp.Data;
 using YoApp.Data.Repositories;
+using YoApp.Data.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.DataProtection;
 
 namespace YoApp.Friends
 {
@@ -31,9 +34,21 @@ namespace YoApp.Friends
             //Persistence and connection strings.
             services.AddEntityFramework(Configuration["ConnectionStrings:DefaultConnection"]);
 
+            //Identity persitence.
+            services.AddIdentity<ApplicationUser, IdentityRole>()
+                .AddEntityFrameworkStores<ApplicationDbContext>()
+                .AddDefaultTokenProviders();
+
             //Set App wide protection keyring.
-            var section = Configuration.GetSection("Blobs:keyring");
-            services.ConfigureDataProtectionOnAzure("YoApp", section["Account"], section["Secret"]);
+            if (Configuration.IsLocalInstance())
+            {
+                services.ConfigureDataProtectionLocal("YoApp");
+            }
+            else
+            {
+                var section = Configuration.GetSection("Blobs:keyring");
+                services.ConfigureDataProtectionOnAzure("YoApp", section["Account"], section["Secret"]);
+            }
 
             // Add framework services.
             services.AddMvc();

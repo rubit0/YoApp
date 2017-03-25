@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using YoApp.DataObjects.Account;
 using YoApp.Data;
+using YoApp.Data.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace YoApp.Identity.Controllers
 {
@@ -12,12 +14,28 @@ namespace YoApp.Identity.Controllers
     public class AccountController : Controller
     {
         private readonly ILogger _logger;
-        private readonly IUnitOfWork _unitOfWork;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public AccountController(ILogger<AccountController> logger, IUnitOfWork unitOfWork)
+        public AccountController(ILogger<AccountController> logger, UserManager<ApplicationUser> userManager)
         {
             _logger = logger;
-            _unitOfWork = unitOfWork;
+            _userManager = userManager;
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetAccount()
+        {
+            var userInDb = await _userManager.FindByNameAsync(User.Identity.Name);
+            if (userInDb == null)
+                return StatusCode(500);
+
+            var dto = new UpdatedAccountDto
+            {
+                Nickname = userInDb.Nickname,
+                StatusMessage = userInDb.Status
+            };
+
+            return Ok(dto);
         }
 
         [HttpPost]
@@ -26,7 +44,7 @@ namespace YoApp.Identity.Controllers
             if (!ModelState.IsValid)
                 return BadRequest();
 
-            var userInDb = await _unitOfWork.UserRepository.GetByNameAsync(User.Identity.Name);
+            var userInDb = await _userManager.FindByNameAsync(User.Identity.Name);
             if (userInDb == null)
                 return NotFound();
 
@@ -42,25 +60,56 @@ namespace YoApp.Identity.Controllers
                 _logger.LogInformation($"{userInDb.Status} changed Status to: {dto.StatusMessage}");
             }
 
-            await _unitOfWork.CompleteAsync();
+            await _userManager.UpdateAsync(userInDb);
 
             return Ok();
         }
 
-        [HttpGet]
-        public async Task<IActionResult> GetAccount()
+        [HttpGet("/name")]
+        public async Task<IActionResult> GetName()
         {
-            var userInDb = await _unitOfWork.UserRepository.GetByNameAsync(User.Identity.Name);
+            var userInDb = await _userManager.FindByNameAsync(User.Identity.Name);
             if (userInDb == null)
                 return StatusCode(500);
 
-            var dto = new UpdatedAccountDto
-            {
-                Nickname = userInDb.Nickname,
-                StatusMessage = userInDb.Status
-            };
+            return Ok(userInDb.Nickname);
+        }
 
-            return Ok(dto);
+        [HttpPatch("/name/{name}")]
+        public async Task<IActionResult> UpdateName([FromForm]string name)
+        {
+            var userInDb = await _userManager.FindByNameAsync(User.Identity.Name);
+            if (userInDb == null)
+                return StatusCode(500);
+
+            userInDb.Nickname = name;
+            await _userManager.UpdateAsync(userInDb);
+            _logger.LogInformation($"{userInDb.Nickname} updated nickname to: {userInDb.Nickname}");
+
+            return Ok();
+        }
+
+        [HttpGet("/status")]
+        public async Task<IActionResult> GetStatus()
+        {
+            var userInDb = await _userManager.FindByNameAsync(User.Identity.Name);
+            if (userInDb == null)
+                return StatusCode(500);
+
+            return Ok(userInDb.Status);
+        }
+
+        [HttpPatch("/status/{status}")]
+        public async Task<IActionResult> UpdateStatus([FromForm]string status)
+        {
+            var userInDb = await _userManager.FindByNameAsync(User.Identity.Name);
+            if (userInDb == null)
+                return StatusCode(500);
+
+            userInDb.Status = status;
+            await _userManager.UpdateAsync(userInDb);
+
+            return Ok();
         }
     }
 }

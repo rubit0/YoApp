@@ -62,8 +62,15 @@ namespace YoApp.Identity
             });
 
             //Set App wide protection keyring.
-            var section = Configuration.GetSection("Blobs:keyring");
-            services.ConfigureDataProtectionOnAzure("YoApp", section["Account"], section["Secret"]);
+            if (Configuration.IsLocalInstance())
+            {
+                services.ConfigureDataProtectionLocal("YoApp");
+            }
+            else
+            {
+                var section = Configuration.GetSection("Blobs:keyring");
+                services.ConfigureDataProtectionOnAzure("YoApp", section["Account"], section["Secret"]);
+            }
 
             //Add OpenIddict.
             services.AddOpenIddict()
@@ -72,8 +79,8 @@ namespace YoApp.Identity
                 .EnableTokenEndpoint("/connect/token")
                 .AllowPasswordFlow()
                 .ChainIf(_environment.IsDevelopment(), 
-                    (oid) => oid.DisableHttpsRequirement()
-                                .AddEphemeralSigningKey());
+                    (builder) => builder.DisableHttpsRequirement()
+                    .AddEphemeralSigningKey());
 
             // Add framework services.
             services.AddMvc();
@@ -86,7 +93,7 @@ namespace YoApp.Identity
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddSingleton<IConfigurationService, ConfigurationService>();
 
-            if (_environment.IsDevelopment())
+            if (Configuration.IsLocalInstance())
                 services.AddSingleton<ISmsSender, DummyMessageService>();
             else
                 services.AddSingleton<ISmsSender, TwilioMessageService>();

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using YoApp.Data.Models;
@@ -49,28 +50,18 @@ namespace YoApp.Data.Repositories
             return user != null;
         }
 
-        public IdentityResult Add(ApplicationUser user, string password)
+        public async Task<IEnumerable<string>> AreMemberAsync(IEnumerable<string> names)
         {
-            return AddAsync(user, password).Result;
-        }
+            var users = new List<string>();
 
-        public async Task<IdentityResult> AddAsync(ApplicationUser user, string password)
-        {
-            if (user == null || string.IsNullOrWhiteSpace(password))
-                return IdentityResult.Failed();
+            foreach (var name in names)
+            {
+                var user = await _userManager.FindByNameAsync(name);
+                if (user != null)
+                    users.Add(user.UserName);
+            }
 
-            return await _userManager.CreateAsync(user, password);
-        }
-
-        public void UpdatePassword(ApplicationUser user, string password)
-        {
-            UpdatePasswordAsync(user, password).RunSynchronously();
-        }
-
-        public async Task UpdatePasswordAsync(ApplicationUser user, string password)
-        {
-            await _userManager.RemovePasswordAsync(user);
-            await _userManager.AddPasswordAsync(user, password);
+            return users;
         }
     }
 }
