@@ -6,10 +6,10 @@ namespace YoApp.Data
     public class UnitOfWork : IUnitOfWork
     {
         private readonly ApplicationDbContext _context;
-        public IUserRepository UserRepository { get; }
+        public IFriendsRepository UserRepository { get; }
         public IVerificationTokensRepository VerificationTokensRepository { get; }
 
-        public UnitOfWork(ApplicationDbContext context, IUserRepository userRepository, IVerificationTokensRepository verificationTokensRepository)
+        public UnitOfWork(ApplicationDbContext context, IFriendsRepository userRepository, IVerificationTokensRepository verificationTokensRepository)
         {
             _context = context;
             UserRepository = userRepository;

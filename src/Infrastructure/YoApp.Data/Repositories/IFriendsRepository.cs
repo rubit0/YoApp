@@ -4,7 +4,7 @@ using YoApp.Data.Models;
 
 namespace YoApp.Data.Repositories
 {
-    public interface IUserRepository
+    public interface IFriendsRepository
     {
         ApplicationUser GetByName(string name);
         Task<ApplicationUser> GetByNameAsync(string name);

@@ -9,13 +9,11 @@
   },
   "profiles": {
     "IIS Express": {
-      "commandName": "Project",
-      "launchUrl": "api/values",
+      "commandName": "IISExpress",
+      "launchBrowser": true,
       "environmentVariables": {
-        " RUN_LOCAL": "true",
         "ASPNETCORE_ENVIRONMENT": "Development"
-      },
-      "applicationUrl": "http://localhost:5010"
+      }
     },
     "YoApp.Friends": {
       "commandName": "Project",

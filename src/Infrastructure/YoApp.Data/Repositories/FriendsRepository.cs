@@ -6,11 +6,11 @@ using YoApp.Data.Models;
 
 namespace YoApp.Data.Repositories
 {
-    public class UserRepository : IUserRepository
+    public class FriendsRepository : IFriendsRepository
     {
         private readonly UserManager<ApplicationUser> _userManager;
 
-        public UserRepository(UserManager<ApplicationUser> userManager)
+        public FriendsRepository(UserManager<ApplicationUser> userManager)
         {
             _userManager = userManager;
         }

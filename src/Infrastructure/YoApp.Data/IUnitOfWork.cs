@@ -5,7 +5,7 @@ namespace YoApp.Data
 {
     public interface IUnitOfWork
     {
-        IUserRepository UserRepository { get; }
+        IFriendsRepository UserRepository { get; }
         IVerificationTokensRepository VerificationTokensRepository { get; }
 
         void Complete();
