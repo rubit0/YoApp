@@ -25,17 +25,17 @@ namespace YoApp.Data.Models
 
         public bool IsExpired()
         {
-            return Expires < DateTime.Now;
+            return DateTime.Compare(Expires, DateTime.Now) < 0;
         }
 
-        public bool VerifyFromRequest(VerificationResolveDto reponse)
+        public bool ResolveToken(VerificationResolveDto dto)
         {
-            if (reponse == null)
+            if (dto == null)
                 throw new ArgumentNullException();
 
-            if (string.CompareOrdinal(this.User, reponse.PhoneNumber) != 0)
+            if (string.CompareOrdinal(this.User, dto.PhoneNumber) != 0)
                 return false;
-            if (string.CompareOrdinal(this.Code, reponse.VerificationCode) != 0)
+            if (string.CompareOrdinal(this.Code, dto.VerificationCode) != 0)
                 return false;
 
             return true;

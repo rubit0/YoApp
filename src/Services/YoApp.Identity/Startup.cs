@@ -78,9 +78,9 @@ namespace YoApp.Identity
                 .AddMvcBinders()
                 .EnableTokenEndpoint("/connect/token")
                 .AllowPasswordFlow()
-                .ChainIf(_environment.IsDevelopment(), 
-                    (builder) => builder.DisableHttpsRequirement()
-                    .AddEphemeralSigningKey());
+                .ChainIf(_environment.IsDevelopment(), (b) => 
+                b.DisableHttpsRequirement()
+                .AddEphemeralSigningKey());
 
             // Add framework services.
             services.AddMvc();
@@ -93,7 +93,7 @@ namespace YoApp.Identity
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddSingleton<IConfigurationService, ConfigurationService>();
 
-            if (Configuration.IsLocalInstance())
+            if (Configuration.IsLocalInstance() || _environment.IsDevelopment())
                 services.AddSingleton<ISmsSender, DummyMessageService>();
             else
                 services.AddSingleton<ISmsSender, TwilioMessageService>();

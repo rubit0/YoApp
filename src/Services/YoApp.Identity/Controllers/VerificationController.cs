@@ -36,13 +36,13 @@ namespace YoApp.Identity.Controllers
             if (!ModelState.IsValid)
                 return BadRequest();
 
-            if(!_configuration.ValidCountryCallCodes.Contains(challenge.CountryCodeToInt()))
+            if(_configuration.CountriesBlackList.Contains(challenge.CountryCodeToInt()))
                 return BadRequest($"Country [{challenge.CountryCode}] is not supported.");
 
             var number = challenge.ToString();
             _logger.LogInformation($"The PhoneNumber [{number}] is requesting an verification code.");
 
-            //Generate request object
+            //Create request object
             var request = new VerificationToken(number, _configuration.VerificationDuration, CodeGenerator.GetCode());
 
             //Send SMS message with code to client
@@ -74,10 +74,19 @@ namespace YoApp.Identity.Controllers
                 return BadRequest($"No verification request found for {resolve.PhoneNumber}.");
 
             //Verify if code matches
-            if (!request.VerifyFromRequest(resolve))
+            if (!request.ResolveToken(resolve))
             {
                 _logger.LogInformation($"Code verification failed for [+{resolve.PhoneNumber}.\nExpected ({request.Code}) but got ({resolve.VerificationCode}).]");
                 return BadRequest("Verification code does not match.");
+            }
+
+            if (request.IsExpired())
+            {
+                _logger.LogWarning($"Token has expired, challenge again.");
+                _unitOfWork.VerificationTokensRepository.RemoveById(request.Id);
+                await _unitOfWork.CompleteAsync();
+
+                return BadRequest("Token expired");
             }
 
             //Check if the user already has an account, otherwise create and persist a new one

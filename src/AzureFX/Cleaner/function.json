@@ -1,0 +1,11 @@
+{
+  "bindings": [
+    {
+      "name": "CleanupTimer",
+      "type": "timerTrigger",
+      "direction": "in",
+      "schedule": "0 0 0/6 1/1 * *"
+    }
+  ],
+  "disabled": false
+}

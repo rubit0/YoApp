@@ -240,9 +240,9 @@ ModelManifest.xml
 
 # FAKE - F# Make
 .fake/
-/src/YoApp.Backend/appsettings.Development.json
-/src/YoApp.Backend/Properties/PublishProfiles
 /src/Services/YoApp.Chat/appsettings.Development.json
-/src/Services/YoApp.Chat/Properties/PublishProfiles/YoAppChat - Web Deploy.pubxml
+/src/Services/YoApp.Chat/Properties/PublishProfiles
 /src/Services/YoApp.Friends/appsettings.Development.json
+/src/Services/YoApp.Friends/Properties/PublishProfiles
 /src/Services/YoApp.Identity/appsettings.Development.json
+/src/Services/YoApp.Identity/Properties/PublishProfiles

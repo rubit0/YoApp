@@ -8,7 +8,7 @@ namespace YoApp.Identity.Helper
     public class ConfigurationService : IConfigurationService
     {
         public TimeSpan VerificationDuration { get; private set; }
-        public IEnumerable<int> ValidCountryCallCodes { get; private set; }
+        public IEnumerable<int> CountriesBlackList { get; private set; }
         public TwillioSettings Twillio { get; private set; }
 
         private readonly IConfigurationRoot _configurationRoot;
@@ -35,7 +35,7 @@ namespace YoApp.Identity.Helper
                 VerificationDuration = TimeSpan.FromSeconds(duration);
             }
 
-            ValidCountryCallCodes = _configurationRoot
+            CountriesBlackList = _configurationRoot
                 .GetSection("CountryCodes")
                 .Get<IEnumerable<CountryCode>>()
                 .Select(cc => cc.Code)
