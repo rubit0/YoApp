@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using YoApp.DataObjects.Account;
-using YoApp.Data;
 using YoApp.Data.Models;
 using Microsoft.AspNetCore.Identity;
 

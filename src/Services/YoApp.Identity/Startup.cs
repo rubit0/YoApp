@@ -88,9 +88,8 @@ namespace YoApp.Identity
             //IoC
             services.AddSingleton<ILoggerFactory, LoggerFactory>();
             services.AddSingleton(typeof(ILogger<>), typeof(Logger<>));
-            services.AddScoped<IFriendsRepository, FriendsRepository>();
             services.AddScoped<IVerificationTokensRepository, VerificationTokensRepository>();
-            services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<DataWorker>();
             services.AddSingleton<IConfigurationService, ConfigurationService>();
 
             if (Configuration.IsLocalInstance() || _environment.IsDevelopment())

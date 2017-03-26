@@ -9,7 +9,8 @@ using YoApp.Data;
 using YoApp.Data.Repositories;
 using YoApp.Data.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Microsoft.AspNetCore.DataProtection;
+using AutoMapper;
+using YoApp.Friends.Helper;
 
 namespace YoApp.Friends
 {
@@ -52,13 +53,13 @@ namespace YoApp.Friends
 
             // Add framework services.
             services.AddMvc();
+            services.AddAutoMapper(typeof(Startup));
 
             //IoC
             services.AddSingleton<ILoggerFactory, LoggerFactory>();
             services.AddSingleton(typeof(ILogger<>), typeof(Logger<>));
             services.AddScoped<IFriendsRepository, FriendsRepository>();
-            services.AddScoped<IVerificationTokensRepository, VerificationTokensRepository>();
-            services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<DataWorker>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

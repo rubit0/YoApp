@@ -6,13 +6,9 @@ namespace YoApp.Data.Repositories
 {
     public interface IFriendsRepository
     {
-        ApplicationUser GetByName(string name);
-        Task<ApplicationUser> GetByNameAsync(string name);
-
-        IEnumerable<ApplicationUser> GetByNames(IEnumerable<string> names);
-        Task<IEnumerable<ApplicationUser>> GetByNamesAsync(IEnumerable<string> names);
-
+        Task<ApplicationUser> FindByNameAsync(string name);
+        Task<IEnumerable<ApplicationUser>> FindByNameRangeAsync(IEnumerable<string> names);
         Task<bool> IsMemberAsync(string name);
-        Task<IEnumerable<string>> AreMemberAsync(IEnumerable<string> names);
+        Task<IEnumerable<string>> IsMemberRangeAsync(IEnumerable<string> names);
     }
 }

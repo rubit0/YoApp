@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using YoApp.Data.Models;
@@ -15,22 +14,12 @@ namespace YoApp.Data.Repositories
             _userManager = userManager;
         }
 
-        public ApplicationUser GetByName(string name)
-        {
-            return this.GetByNameAsync(name).Result;
-        }
-
-        public async Task<ApplicationUser> GetByNameAsync(string name)
+        public async Task<ApplicationUser> FindByNameAsync(string name)
         {
             return await _userManager.FindByNameAsync(name);
         }
 
-        public IEnumerable<ApplicationUser> GetByNames(IEnumerable<string> names)
-        {
-            return this.GetByNamesAsync(names).Result;
-        }
-
-        public async Task<IEnumerable<ApplicationUser>> GetByNamesAsync(IEnumerable<string> names)
+        public async Task<IEnumerable<ApplicationUser>> FindByNameRangeAsync(IEnumerable<string> names)
         {
             var usersInDb = new List<ApplicationUser>();
 
@@ -50,7 +39,7 @@ namespace YoApp.Data.Repositories
             return user != null;
         }
 
-        public async Task<IEnumerable<string>> AreMemberAsync(IEnumerable<string> names)
+        public async Task<IEnumerable<string>> IsMemberRangeAsync(IEnumerable<string> names)
         {
             var users = new List<string>();
 

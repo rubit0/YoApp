@@ -6,7 +6,8 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using YoApp.DataObjects.Users;
-using YoApp.Data;
+using YoApp.Data.Models;
+using YoApp.Friends.Helper;
 
 namespace YoApp.Identity.Controllers
 {
@@ -15,13 +16,13 @@ namespace YoApp.Identity.Controllers
     public class FriendsController : Controller
     {
         private readonly ILogger _logger;
-        private readonly IUnitOfWork _unitOfWork;
+        private readonly DataWorker _dataWorker;
         private readonly IMapper _mapper;
 
-        public FriendsController(ILogger<FriendsController> logger, IUnitOfWork unitOfWork, IMapper mapper)
+        public FriendsController(ILogger<FriendsController> logger, DataWorker dataWorker, IMapper mapper)
         {
             _logger = logger;
-            _unitOfWork = unitOfWork;
+            _dataWorker = dataWorker;
             _mapper = mapper;
         }
 
@@ -31,7 +32,7 @@ namespace YoApp.Identity.Controllers
             if (string.IsNullOrWhiteSpace(phoneNumber))
                 return BadRequest();
 
-            var userInDb = await _unitOfWork.UserRepository.GetByNameAsync(phoneNumber);
+            var userInDb = await _dataWorker.Friends.FindByNameAsync(phoneNumber);
             if (userInDb == null)
             {
                 _logger.LogError($"User by {phoneNumber} requested by [{User.Identity.Name}] was not found.");
@@ -43,13 +44,13 @@ namespace YoApp.Identity.Controllers
             return Ok(dto);
         }
 
-        [HttpPost("{phoneNumbers}")]
+        [HttpPost]
         public async Task<IActionResult> FindUsers([FromBody]IEnumerable<string> phoneNumbers)
         {
             if (!ModelState.IsValid)
                 return BadRequest();
 
-            var usersInDb = await _unitOfWork.UserRepository.GetByNamesAsync(phoneNumbers);
+            var usersInDb = await _dataWorker.Friends.FindByNameRangeAsync(phoneNumbers);
             if (!usersInDb.Any())
             {
                 _logger.LogError($"No matching Users found for [{User.Identity.Name}] request.");
@@ -67,7 +68,7 @@ namespace YoApp.Identity.Controllers
             if (string.IsNullOrWhiteSpace(phoneNumber))
                 return BadRequest();
 
-            var userInDb = await _unitOfWork.UserRepository.GetByNameAsync(phoneNumber);
+            var userInDb = await _dataWorker.Friends.FindByNameAsync(phoneNumber);
             if (userInDb == null)
             {
                 _logger.LogError($"User by {phoneNumber} requested by [{User.Identity.Name}] was not found.");
@@ -83,7 +84,7 @@ namespace YoApp.Identity.Controllers
             if (string.IsNullOrWhiteSpace(phoneNumber))
                 return BadRequest();
 
-            var userInDb = await _unitOfWork.UserRepository.GetByNameAsync(phoneNumber);
+            var userInDb = await _dataWorker.Friends.FindByNameAsync(phoneNumber);
             if (userInDb == null)
             {
                 _logger.LogError($"User by {phoneNumber} requested by [{User.Identity.Name}] was not found.");
@@ -99,7 +100,7 @@ namespace YoApp.Identity.Controllers
             if (string.IsNullOrWhiteSpace(phoneNumber))
                 return BadRequest();
 
-            var result = await _unitOfWork.UserRepository.IsMemberAsync(phoneNumber);
+            var result = await _dataWorker.Friends.IsMemberAsync(phoneNumber);
 
             if (result)
                 return Ok();
@@ -107,15 +108,16 @@ namespace YoApp.Identity.Controllers
                 return NotFound();
         }
 
-        [HttpPost("check/{phoneNumbers}")]
+        [HttpPost("check/")]
         public async Task<IActionResult> AreMember([FromBody]IEnumerable<string> phoneNumbers)
         {
             if (!ModelState.IsValid)
                 return BadRequest();
 
-            var usersInDb = await _unitOfWork.UserRepository.GetByNamesAsync(phoneNumbers);
+            var usersInDb = await _dataWorker.Friends.FindByNameRangeAsync(phoneNumbers);
+            var dto = _mapper.Map<IEnumerable<ApplicationUser>, IEnumerable<UserDto>>(usersInDb);
 
-            return Ok(usersInDb);
+            return Ok(dto);
         }
     }
 }
