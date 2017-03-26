@@ -12,7 +12,7 @@ using YoApp.Friends.Helper;
 namespace YoApp.Identity.Controllers
 {
     [Authorize]
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     public class FriendsController : Controller
     {
         private readonly ILogger _logger;

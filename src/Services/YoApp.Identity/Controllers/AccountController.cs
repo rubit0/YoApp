@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Identity;
 namespace YoApp.Identity.Controllers
 {
     [Authorize]
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     public class AccountController : Controller
     {
         private readonly ILogger _logger;
@@ -64,7 +64,7 @@ namespace YoApp.Identity.Controllers
             return Ok();
         }
 
-        [HttpGet("/name")]
+        [HttpGet("name")]
         public async Task<IActionResult> GetName()
         {
             var userInDb = await _userManager.FindByNameAsync(User.Identity.Name);
@@ -74,8 +74,8 @@ namespace YoApp.Identity.Controllers
             return Ok(userInDb.Nickname);
         }
 
-        [HttpPatch("/name/{name}")]
-        public async Task<IActionResult> UpdateName([FromForm]string name)
+        [HttpPatch("name/{name}")]
+        public async Task<IActionResult> UpdateName(string name)
         {
             var userInDb = await _userManager.FindByNameAsync(User.Identity.Name);
             if (userInDb == null)
@@ -88,7 +88,7 @@ namespace YoApp.Identity.Controllers
             return Ok();
         }
 
-        [HttpGet("/status")]
+        [HttpGet("status")]
         public async Task<IActionResult> GetStatus()
         {
             var userInDb = await _userManager.FindByNameAsync(User.Identity.Name);
@@ -98,8 +98,8 @@ namespace YoApp.Identity.Controllers
             return Ok(userInDb.Status);
         }
 
-        [HttpPatch("/status/{status}")]
-        public async Task<IActionResult> UpdateStatus([FromForm]string status)
+        [HttpPatch("status/{status}")]
+        public async Task<IActionResult> UpdateStatus(string status)
         {
             var userInDb = await _userManager.FindByNameAsync(User.Identity.Name);
             if (userInDb == null)
@@ -107,6 +107,7 @@ namespace YoApp.Identity.Controllers
 
             userInDb.Status = status;
             await _userManager.UpdateAsync(userInDb);
+            _logger.LogInformation($"{userInDb.UserName} updated status to: {userInDb.Status}");
 
             return Ok();
         }

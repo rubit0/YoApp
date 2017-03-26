@@ -6,13 +6,12 @@ using YoApp.Identity.Helper;
 using YoApp.Identity.Services.Interfaces;
 using YoApp.DataObjects.Verification;
 using YoApp.Utils.Misc;
-using YoApp.Data;
 using YoApp.Data.Models;
 using Microsoft.AspNetCore.Identity;
 
 namespace YoApp.Identity.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     public class VerificationController : Controller
     {
         private readonly ILogger _logger;
