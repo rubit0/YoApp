@@ -1,0 +1,549 @@
+{
+	"variables": [],
+	"info": {
+		"name": "YoApp",
+		"_postman_id": "a1762507-15ca-a325-3751-6a51e1034f57",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Account",
+			"description": "",
+			"item": [
+				{
+					"name": "Get Account",
+					"request": {
+						"url": "http://localhost:5000/api/account/",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer CfDJ8MpR36F5iIZBgtzOLV2uIlYuFyK-3GStznVva54ernyKJ6oTltmOacFOhx1f-x5B30JPcRtP6FpBka5NG1QW5EoifX0bvvx3Z41cW0raMf2t6m9rF1Su05W0pIFXIKrCS82YvpTQFdckIb-8H2bEwrsr3s9QqbR0nkKmlm2FqJaniIzTqlK4aNn9L9lo-ZJqOmZ83PBhQEPTODFZ1h5eui1AsDsqUFNMSYx0tVLit48mEyEMp3h0KAIbt6NnNfaE6Fip7AD4T7m-qNzidCr4f8FlaxAEod0qZG_zNxtAb2doxkNr5pAi4EFbRhlnjvBNCqa_DxbSziffLET7XrQEpfJay10OKhg3YChZ7tM0c37P1vB8CffJoXnriak4qxpRaNtiZUTtvvBK_CP25m0wY-zg_vkWZ-58UwctuUWcprhD8dc5cH-4tGMq8AWgABi6udftQQPb2GI2Klp0zjwcHGd2rTf3ZtahQGZG_zB1WOtQSjuIyzOAB_MRLTgpaKDfDBPokqOMAsE-w46mdyyvEsnmHbqvNfapYFraeywYP0Ta6bSANGGytwOdV0RrhQBVGg",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "Nickname",
+									"value": "TestUser",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "StatusMessage",
+									"value": "YoApp Rocks!",
+									"type": "text",
+									"enabled": true
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Get Name",
+					"request": {
+						"url": "http://localhost:5000/api/account/name",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer CfDJ8MpR36F5iIZBgtzOLV2uIlYuFyK-3GStznVva54ernyKJ6oTltmOacFOhx1f-x5B30JPcRtP6FpBka5NG1QW5EoifX0bvvx3Z41cW0raMf2t6m9rF1Su05W0pIFXIKrCS82YvpTQFdckIb-8H2bEwrsr3s9QqbR0nkKmlm2FqJaniIzTqlK4aNn9L9lo-ZJqOmZ83PBhQEPTODFZ1h5eui1AsDsqUFNMSYx0tVLit48mEyEMp3h0KAIbt6NnNfaE6Fip7AD4T7m-qNzidCr4f8FlaxAEod0qZG_zNxtAb2doxkNr5pAi4EFbRhlnjvBNCqa_DxbSziffLET7XrQEpfJay10OKhg3YChZ7tM0c37P1vB8CffJoXnriak4qxpRaNtiZUTtvvBK_CP25m0wY-zg_vkWZ-58UwctuUWcprhD8dc5cH-4tGMq8AWgABi6udftQQPb2GI2Klp0zjwcHGd2rTf3ZtahQGZG_zB1WOtQSjuIyzOAB_MRLTgpaKDfDBPokqOMAsE-w46mdyyvEsnmHbqvNfapYFraeywYP0Ta6bSANGGytwOdV0RrhQBVGg",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "Nickname",
+									"value": "TestUser",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "StatusMessage",
+									"value": "YoApp Rocks!",
+									"type": "text",
+									"enabled": true
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Get Status",
+					"request": {
+						"url": "http://localhost:5000/api/account/status",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer CfDJ8MpR36F5iIZBgtzOLV2uIlYuFyK-3GStznVva54ernyKJ6oTltmOacFOhx1f-x5B30JPcRtP6FpBka5NG1QW5EoifX0bvvx3Z41cW0raMf2t6m9rF1Su05W0pIFXIKrCS82YvpTQFdckIb-8H2bEwrsr3s9QqbR0nkKmlm2FqJaniIzTqlK4aNn9L9lo-ZJqOmZ83PBhQEPTODFZ1h5eui1AsDsqUFNMSYx0tVLit48mEyEMp3h0KAIbt6NnNfaE6Fip7AD4T7m-qNzidCr4f8FlaxAEod0qZG_zNxtAb2doxkNr5pAi4EFbRhlnjvBNCqa_DxbSziffLET7XrQEpfJay10OKhg3YChZ7tM0c37P1vB8CffJoXnriak4qxpRaNtiZUTtvvBK_CP25m0wY-zg_vkWZ-58UwctuUWcprhD8dc5cH-4tGMq8AWgABi6udftQQPb2GI2Klp0zjwcHGd2rTf3ZtahQGZG_zB1WOtQSjuIyzOAB_MRLTgpaKDfDBPokqOMAsE-w46mdyyvEsnmHbqvNfapYFraeywYP0Ta6bSANGGytwOdV0RrhQBVGg",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "Nickname",
+									"value": "TestUser",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "StatusMessage",
+									"value": "YoApp Rocks!",
+									"type": "text",
+									"enabled": true
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Update Account",
+					"request": {
+						"url": "http://localhost:5000/api/account/",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer CfDJ8MpR36F5iIZBgtzOLV2uIlYuFyK-3GStznVva54ernyKJ6oTltmOacFOhx1f-x5B30JPcRtP6FpBka5NG1QW5EoifX0bvvx3Z41cW0raMf2t6m9rF1Su05W0pIFXIKrCS82YvpTQFdckIb-8H2bEwrsr3s9QqbR0nkKmlm2FqJaniIzTqlK4aNn9L9lo-ZJqOmZ83PBhQEPTODFZ1h5eui1AsDsqUFNMSYx0tVLit48mEyEMp3h0KAIbt6NnNfaE6Fip7AD4T7m-qNzidCr4f8FlaxAEod0qZG_zNxtAb2doxkNr5pAi4EFbRhlnjvBNCqa_DxbSziffLET7XrQEpfJay10OKhg3YChZ7tM0c37P1vB8CffJoXnriak4qxpRaNtiZUTtvvBK_CP25m0wY-zg_vkWZ-58UwctuUWcprhD8dc5cH-4tGMq8AWgABi6udftQQPb2GI2Klp0zjwcHGd2rTf3ZtahQGZG_zB1WOtQSjuIyzOAB_MRLTgpaKDfDBPokqOMAsE-w46mdyyvEsnmHbqvNfapYFraeywYP0Ta6bSANGGytwOdV0RrhQBVGg",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"Nickname\": \"Ruben\",\n\t\"StatusMessage\": \"YoApp rocks!\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Update Name",
+					"request": {
+						"url": "http://localhost:5000/api/account/name/Tom",
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer CfDJ8MpR36F5iIZBgtzOLV2uIlYuFyK-3GStznVva54ernyKJ6oTltmOacFOhx1f-x5B30JPcRtP6FpBka5NG1QW5EoifX0bvvx3Z41cW0raMf2t6m9rF1Su05W0pIFXIKrCS82YvpTQFdckIb-8H2bEwrsr3s9QqbR0nkKmlm2FqJaniIzTqlK4aNn9L9lo-ZJqOmZ83PBhQEPTODFZ1h5eui1AsDsqUFNMSYx0tVLit48mEyEMp3h0KAIbt6NnNfaE6Fip7AD4T7m-qNzidCr4f8FlaxAEod0qZG_zNxtAb2doxkNr5pAi4EFbRhlnjvBNCqa_DxbSziffLET7XrQEpfJay10OKhg3YChZ7tM0c37P1vB8CffJoXnriak4qxpRaNtiZUTtvvBK_CP25m0wY-zg_vkWZ-58UwctuUWcprhD8dc5cH-4tGMq8AWgABi6udftQQPb2GI2Klp0zjwcHGd2rTf3ZtahQGZG_zB1WOtQSjuIyzOAB_MRLTgpaKDfDBPokqOMAsE-w46mdyyvEsnmHbqvNfapYFraeywYP0Ta6bSANGGytwOdV0RrhQBVGg",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Update Status",
+					"request": {
+						"url": "http://localhost:5000/api/account/status/YoApp_Rocks",
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer CfDJ8MpR36F5iIZBgtzOLV2uIlYuFyK-3GStznVva54ernyKJ6oTltmOacFOhx1f-x5B30JPcRtP6FpBka5NG1QW5EoifX0bvvx3Z41cW0raMf2t6m9rF1Su05W0pIFXIKrCS82YvpTQFdckIb-8H2bEwrsr3s9QqbR0nkKmlm2FqJaniIzTqlK4aNn9L9lo-ZJqOmZ83PBhQEPTODFZ1h5eui1AsDsqUFNMSYx0tVLit48mEyEMp3h0KAIbt6NnNfaE6Fip7AD4T7m-qNzidCr4f8FlaxAEod0qZG_zNxtAb2doxkNr5pAi4EFbRhlnjvBNCqa_DxbSziffLET7XrQEpfJay10OKhg3YChZ7tM0c37P1vB8CffJoXnriak4qxpRaNtiZUTtvvBK_CP25m0wY-zg_vkWZ-58UwctuUWcprhD8dc5cH-4tGMq8AWgABi6udftQQPb2GI2Klp0zjwcHGd2rTf3ZtahQGZG_zB1WOtQSjuIyzOAB_MRLTgpaKDfDBPokqOMAsE-w46mdyyvEsnmHbqvNfapYFraeywYP0Ta6bSANGGytwOdV0RrhQBVGg",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Authorization",
+			"description": "",
+			"item": [
+				{
+					"name": "Request Token via Password",
+					"request": {
+						"url": "http://localhost:5000/connect/token",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "grant_type",
+									"value": "password",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "username",
+									"value": "491736399027",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "password",
+									"value": "BE4A0B0F-6476-4C4D-84FE-878F8D45A1CP",
+									"type": "text",
+									"enabled": true
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Friends",
+			"description": "",
+			"item": [
+				{
+					"name": "Find Friend",
+					"request": {
+						"url": "http://localhost:5010/api/friends/?phoneNumber=491736399027",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer CfDJ8IPYoUSDDE5HtVEDKg9kz65mzjzcuqvtz43J4BdXbkZcgbErEeAQbw2c1pxglpc4Z4_QpDUEYAUcPeCsfv9V3XWMm1tfasLcj7Yc1E_f9Hfq_pob2NalwiVmiyp7kS7aelQ5His50a7TAJBNiJhIbd0c6FP-rpFPMkFtkGrF1aMXzwSI7ZyKaplorxIrx6MT5wf9lvADM8eX_RZtP3rm_asoFFqLdfJkAdSl1di05IJjMATjMrGt5oZiUJDPS2wEE-L_MR6u_43gMwD1aH2z5-Ih99mOoLtCbmvZ2ZxGA2OHise6IAZM9_vnu6D3r3uFZfnotcAu4tsB1hHmQmlCQ8g02fUZ_UfzlkOnTGg58CVHn0k7UNTyfWQAD8xtmr_N4YRFVc4aZ8rW-TVNmLvN9RGdwN2urf4YWETFm7_oeSopLIOM-4edxmRb3oQNcRq8vsSEJBIF1sc_09IK1fJBBKnzIy-sakt28wl3FKd5N0mglAWtzGZThx9VyGoyR7jOyMNoYq7kGagPoUG_wHEb5Ai3XMJkiRik7TDRZVGhzot2pQrwvUEY0J42SKRG2mHMyg",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Find Friends",
+					"request": {
+						"url": "http://localhost:5010/api/friends/",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer CfDJ8IPYoUSDDE5HtVEDKg9kz66L1y8tm33utz_wZeT1jEtUZhPOYgaee4Cvze2lCDPkWFJaz74ObB9Ch4FQfp9BtKnxVWvDq0uWUO--SNi9vs_wfae3jFfCLoL-JDS6z0NAyZi7HDFl_vIQYx1Ucuz5-PL0kr8XZbNLgSF7IeOAXuTeXvnJ6fosssfrqaauDDPM1lH4fz2r_4RLsD7fCoJ6RqvDvAyBMpP4L5BQtILOx5CmkV7c9-Du4p-Usgwiij32j4WRGus2q5dGYCqlDXjXMfWh6Wws_Hwu4KR1UqCNMOzvR2fxwaxTG4WGMLqbni71yWhK_rz1Piiq78PN778qkIDHXYtZL96dU6zjnPz5Y3JgDxisoFvwfUly6p3SpyA2VKmixySWA6P6X8rA5Q0GDvRh53P5h1xZDb3Wvw45kmJ2qLpNePyk8y2ug9cB_QW9cqHR3y8bf6q2fRqEqRb-Gq5hm4qcNSAtnscW-wdXxz8CjEJ0mKNe6iKcl2O6nIt4YCwBOArKVTwHD-_vPpNHA4MTGLYb530olrGu5fBHRAD_ofa-EuX2_ntSZT1RJOKlj3IyuXmViakALb0HNrwdzfZlcReO-AeneIRhwBF0yjHEJrInjwINOyKvm9kgKlbEq_4AuhuGC_KYvMGIpCq7kqLRZx_hiD8BwhiBXONZmwXGR43jUthTi3e_BaKsmYnSPIfbcAFrM29ZjpeSzRM8LD68IQLGmUv4c7kb3FTl1b-h8jLXnUOdU_qHKM400IvtCqXpB4ZCNfD3o-l6rH6IYKUbGIeRgn8cIj2YquVvQwN-",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"phoneNumbers\" : [\"491736399027\", \"491731631772\"]\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Get Friend Username",
+					"request": {
+						"url": "http://localhost:5010/api/friends/?phoneNumber=491736399027/name",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer CfDJ8IPYoUSDDE5HtVEDKg9kz66L1y8tm33utz_wZeT1jEtUZhPOYgaee4Cvze2lCDPkWFJaz74ObB9Ch4FQfp9BtKnxVWvDq0uWUO--SNi9vs_wfae3jFfCLoL-JDS6z0NAyZi7HDFl_vIQYx1Ucuz5-PL0kr8XZbNLgSF7IeOAXuTeXvnJ6fosssfrqaauDDPM1lH4fz2r_4RLsD7fCoJ6RqvDvAyBMpP4L5BQtILOx5CmkV7c9-Du4p-Usgwiij32j4WRGus2q5dGYCqlDXjXMfWh6Wws_Hwu4KR1UqCNMOzvR2fxwaxTG4WGMLqbni71yWhK_rz1Piiq78PN778qkIDHXYtZL96dU6zjnPz5Y3JgDxisoFvwfUly6p3SpyA2VKmixySWA6P6X8rA5Q0GDvRh53P5h1xZDb3Wvw45kmJ2qLpNePyk8y2ug9cB_QW9cqHR3y8bf6q2fRqEqRb-Gq5hm4qcNSAtnscW-wdXxz8CjEJ0mKNe6iKcl2O6nIt4YCwBOArKVTwHD-_vPpNHA4MTGLYb530olrGu5fBHRAD_ofa-EuX2_ntSZT1RJOKlj3IyuXmViakALb0HNrwdzfZlcReO-AeneIRhwBF0yjHEJrInjwINOyKvm9kgKlbEq_4AuhuGC_KYvMGIpCq7kqLRZx_hiD8BwhiBXONZmwXGR43jUthTi3e_BaKsmYnSPIfbcAFrM29ZjpeSzRM8LD68IQLGmUv4c7kb3FTl1b-h8jLXnUOdU_qHKM400IvtCqXpB4ZCNfD3o-l6rH6IYKUbGIeRgn8cIj2YquVvQwN-",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Get Friend Status",
+					"request": {
+						"url": "http://localhost:5010/api/friends/?phoneNumber=491736399027/status",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer CfDJ8IPYoUSDDE5HtVEDKg9kz66L1y8tm33utz_wZeT1jEtUZhPOYgaee4Cvze2lCDPkWFJaz74ObB9Ch4FQfp9BtKnxVWvDq0uWUO--SNi9vs_wfae3jFfCLoL-JDS6z0NAyZi7HDFl_vIQYx1Ucuz5-PL0kr8XZbNLgSF7IeOAXuTeXvnJ6fosssfrqaauDDPM1lH4fz2r_4RLsD7fCoJ6RqvDvAyBMpP4L5BQtILOx5CmkV7c9-Du4p-Usgwiij32j4WRGus2q5dGYCqlDXjXMfWh6Wws_Hwu4KR1UqCNMOzvR2fxwaxTG4WGMLqbni71yWhK_rz1Piiq78PN778qkIDHXYtZL96dU6zjnPz5Y3JgDxisoFvwfUly6p3SpyA2VKmixySWA6P6X8rA5Q0GDvRh53P5h1xZDb3Wvw45kmJ2qLpNePyk8y2ug9cB_QW9cqHR3y8bf6q2fRqEqRb-Gq5hm4qcNSAtnscW-wdXxz8CjEJ0mKNe6iKcl2O6nIt4YCwBOArKVTwHD-_vPpNHA4MTGLYb530olrGu5fBHRAD_ofa-EuX2_ntSZT1RJOKlj3IyuXmViakALb0HNrwdzfZlcReO-AeneIRhwBF0yjHEJrInjwINOyKvm9kgKlbEq_4AuhuGC_KYvMGIpCq7kqLRZx_hiD8BwhiBXONZmwXGR43jUthTi3e_BaKsmYnSPIfbcAFrM29ZjpeSzRM8LD68IQLGmUv4c7kb3FTl1b-h8jLXnUOdU_qHKM400IvtCqXpB4ZCNfD3o-l6rH6IYKUbGIeRgn8cIj2YquVvQwN-",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Check is Friend",
+					"request": {
+						"url": "http://localhost:5010/api/friends/check/?phoneNumber=491736399027",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer CfDJ8IPYoUSDDE5HtVEDKg9kz66L1y8tm33utz_wZeT1jEtUZhPOYgaee4Cvze2lCDPkWFJaz74ObB9Ch4FQfp9BtKnxVWvDq0uWUO--SNi9vs_wfae3jFfCLoL-JDS6z0NAyZi7HDFl_vIQYx1Ucuz5-PL0kr8XZbNLgSF7IeOAXuTeXvnJ6fosssfrqaauDDPM1lH4fz2r_4RLsD7fCoJ6RqvDvAyBMpP4L5BQtILOx5CmkV7c9-Du4p-Usgwiij32j4WRGus2q5dGYCqlDXjXMfWh6Wws_Hwu4KR1UqCNMOzvR2fxwaxTG4WGMLqbni71yWhK_rz1Piiq78PN778qkIDHXYtZL96dU6zjnPz5Y3JgDxisoFvwfUly6p3SpyA2VKmixySWA6P6X8rA5Q0GDvRh53P5h1xZDb3Wvw45kmJ2qLpNePyk8y2ug9cB_QW9cqHR3y8bf6q2fRqEqRb-Gq5hm4qcNSAtnscW-wdXxz8CjEJ0mKNe6iKcl2O6nIt4YCwBOArKVTwHD-_vPpNHA4MTGLYb530olrGu5fBHRAD_ofa-EuX2_ntSZT1RJOKlj3IyuXmViakALb0HNrwdzfZlcReO-AeneIRhwBF0yjHEJrInjwINOyKvm9kgKlbEq_4AuhuGC_KYvMGIpCq7kqLRZx_hiD8BwhiBXONZmwXGR43jUthTi3e_BaKsmYnSPIfbcAFrM29ZjpeSzRM8LD68IQLGmUv4c7kb3FTl1b-h8jLXnUOdU_qHKM400IvtCqXpB4ZCNfD3o-l6rH6IYKUbGIeRgn8cIj2YquVvQwN-",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Check are Friends",
+					"request": {
+						"url": "http://localhost:5010/api/friends/check/",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer CfDJ8IPYoUSDDE5HtVEDKg9kz66L1y8tm33utz_wZeT1jEtUZhPOYgaee4Cvze2lCDPkWFJaz74ObB9Ch4FQfp9BtKnxVWvDq0uWUO--SNi9vs_wfae3jFfCLoL-JDS6z0NAyZi7HDFl_vIQYx1Ucuz5-PL0kr8XZbNLgSF7IeOAXuTeXvnJ6fosssfrqaauDDPM1lH4fz2r_4RLsD7fCoJ6RqvDvAyBMpP4L5BQtILOx5CmkV7c9-Du4p-Usgwiij32j4WRGus2q5dGYCqlDXjXMfWh6Wws_Hwu4KR1UqCNMOzvR2fxwaxTG4WGMLqbni71yWhK_rz1Piiq78PN778qkIDHXYtZL96dU6zjnPz5Y3JgDxisoFvwfUly6p3SpyA2VKmixySWA6P6X8rA5Q0GDvRh53P5h1xZDb3Wvw45kmJ2qLpNePyk8y2ug9cB_QW9cqHR3y8bf6q2fRqEqRb-Gq5hm4qcNSAtnscW-wdXxz8CjEJ0mKNe6iKcl2O6nIt4YCwBOArKVTwHD-_vPpNHA4MTGLYb530olrGu5fBHRAD_ofa-EuX2_ntSZT1RJOKlj3IyuXmViakALb0HNrwdzfZlcReO-AeneIRhwBF0yjHEJrInjwINOyKvm9kgKlbEq_4AuhuGC_KYvMGIpCq7kqLRZx_hiD8BwhiBXONZmwXGR43jUthTi3e_BaKsmYnSPIfbcAFrM29ZjpeSzRM8LD68IQLGmUv4c7kb3FTl1b-h8jLXnUOdU_qHKM400IvtCqXpB4ZCNfD3o-l6rH6IYKUbGIeRgn8cIj2YquVvQwN-",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"phoneNumbers\" : [\"491736399027\", \"491731631772\"]\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Misc",
+			"description": "",
+			"item": [
+				{
+					"name": "Get Chat Test Values",
+					"request": {
+						"url": "http://localhost:5010/api/values/",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer CfDJ8MpR36F5iIZBgtzOLV2uIlZHdae83LpKvcGx0oDY8khkJkZFxV4C92jIOvhPSvuZJo3W7rVuf2yIUiA4yUBEpylFQHKKoHebyOs7lY9S861FDQ6Uh2WNuSSSjj2FLRz2wn0nhkRJ6vFmR0bXPalbflKF2_s0pluaLRUBHo2MibVlhnZjnjwNLFOWD6lrn1F2rgkdNCK6riTpPnNpfxu0YvkAdfgyMUwpit2kfqNCyqlOr_hg-Mn5lrCIH5_FErXMrM6sGOvLP5yX8kdypoYTyExVMJ44qtIxESgnh4TU5tdaTirLA08LJ85Mg9NAjfxVb3e321bkndGrA6V0y3x8SNF2JdJnQxb-I8_qh_UVcOrt-Hf3RMHw_6XFjixziRiGap4Witgw8Wh1GPx0W80n3qD7hr91GnDGXipP9qP7XY3KftiGz2fyk7u_V891_oLB--SxGyGR-M56ijPBb7W1NWPmMlQ9h5pAqwhGWLgr-suW9-jLTNKUVFcSkXHtxU5K5TMtWs0ZnNBIzkdLXXydfdXhKbY9Is60cO_EfWH2MkZQSTD6Zz_CmALCVG1nNo3XmQ",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "Nickname",
+									"value": "TestUser",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "StatusMessage",
+									"value": "YoApp Rocks!",
+									"type": "text",
+									"enabled": true
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "SignalR",
+					"request": {
+						"url": "http://localhost:5010/hubs/main/",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer CfDJ8MpR36F5iIZBgtzOLV2uIlZHdae83LpKvcGx0oDY8khkJkZFxV4C92jIOvhPSvuZJo3W7rVuf2yIUiA4yUBEpylFQHKKoHebyOs7lY9S861FDQ6Uh2WNuSSSjj2FLRz2wn0nhkRJ6vFmR0bXPalbflKF2_s0pluaLRUBHo2MibVlhnZjnjwNLFOWD6lrn1F2rgkdNCK6riTpPnNpfxu0YvkAdfgyMUwpit2kfqNCyqlOr_hg-Mn5lrCIH5_FErXMrM6sGOvLP5yX8kdypoYTyExVMJ44qtIxESgnh4TU5tdaTirLA08LJ85Mg9NAjfxVb3e321bkndGrA6V0y3x8SNF2JdJnQxb-I8_qh_UVcOrt-Hf3RMHw_6XFjixziRiGap4Witgw8Wh1GPx0W80n3qD7hr91GnDGXipP9qP7XY3KftiGz2fyk7u_V891_oLB--SxGyGR-M56ijPBb7W1NWPmMlQ9h5pAqwhGWLgr-suW9-jLTNKUVFcSkXHtxU5K5TMtWs0ZnNBIzkdLXXydfdXhKbY9Is60cO_EfWH2MkZQSTD6Zz_CmALCVG1nNo3XmQ",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "Nickname",
+									"value": "TestUser",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "StatusMessage",
+									"value": "YoApp Rocks!",
+									"type": "text",
+									"enabled": true
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Verification",
+			"description": "",
+			"item": [
+				{
+					"name": "Challenge",
+					"request": {
+						"url": "http://localhost:5000/api/verification/challenge",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "CountryCode",
+									"value": "49",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "PhoneNumber",
+									"value": "1736399027",
+									"type": "text",
+									"enabled": true
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Resolve",
+					"request": {
+						"url": "http://localhost:5000/api/verification/resolve",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "PhoneNumber",
+									"value": "491736399027",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "VerificationCode",
+									"value": "511160",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "Password",
+									"value": "BE4A0B0F-6476-4C4D-84FE-878F8D45A1CP",
+									"type": "text",
+									"enabled": true
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
