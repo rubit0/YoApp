@@ -19,13 +19,17 @@ namespace YoApp.Clients.Helpers
 
         public AppUser User { get; private set; }
         public ConventionsPreferences Conventions { get; private set; }
-        public BackendPreferences Backend { get; private set; }
+        public BackendHost Identity { get; private set; }
+        public BackendHost Friends { get; private set; }
+        public BackendHost Chat { get; private set; }
 
         public AppSettings()
         {
             User = new AppUser();
             Conventions = new ConventionsPreferences();
-            Backend = new BackendPreferences();
+            Identity = new BackendHost();
+            Friends = new BackendHost();
+            Chat = new BackendHost();
         }
 
         /// <summary>
@@ -38,7 +42,7 @@ namespace YoApp.Clients.Helpers
             SetupFinished = fresh.SetupFinished;
             ServiceId = fresh.ServiceId;
             Conventions = fresh.Conventions;
-            Backend = fresh.Backend;
+            Identity = fresh.Identity;
         }
 
         public class AppUser
@@ -56,7 +60,7 @@ namespace YoApp.Clients.Helpers
             public int PhoneNumberMaxLength { get; set; }
         }
 
-        public class BackendPreferences
+        public class BackendHost
         {
             public int TimeOut { get; set; }
             public bool Secure { get; set; }
@@ -84,17 +88,22 @@ namespace YoApp.Clients.Helpers
         {
             var store = App.StorageResolver.Resolve<IKeyValueStore>();
             var settings = store.GetObservable<AppSettings>(nameof(AppSettings)).Wait();
+            if (settings != null)
+                return settings;
 
-            return settings ?? LoadAppSettingsFromRessource();
+            return LoadAppSettingsFromRessource();
         }
 
         /// <summary>
         /// Load from an embedded json ressource.
         /// </summary>
-        /// <param name="name"></param>
         /// <returns></returns>
-        public static AppSettings LoadAppSettingsFromRessource(string name = "YoApp.Clients.Ressources.appsettings.json")
+        public static AppSettings LoadAppSettingsFromRessource(string relativePath = "YoApp.Clients.Ressources")
         {
+            var name = (!ResourceKeys.IsDebug) 
+                ? $"{relativePath}.appsettings.json" 
+                : $"{relativePath}.appsettings.Development.json";
+
             var assembly = typeof(AppSettings).GetTypeInfo().Assembly;
             var stream = assembly.GetManifestResourceStream(name);
             if (stream == null)
@@ -119,11 +128,23 @@ namespace YoApp.Clients.Helpers
                 appPreferences.Conventions.DefaultStatusMessage = (string)conventionsToken["DefaultStatusMessage"];
 
                 //Backend
-                var backendToken = intermediate["Backend"];
-                appPreferences.Backend.TimeOut = (int)backendToken["TimeOut"];
-                appPreferences.Backend.Secure = (bool)backendToken["Secure"];
-                appPreferences.Backend.Host = (string)backendToken["Host"];
-                appPreferences.Backend.Port = (int)backendToken["Port"];
+                var backendTokenIdentity = intermediate["Backend"]["Identity"];
+                appPreferences.Identity.TimeOut = (int)backendTokenIdentity["TimeOut"];
+                appPreferences.Identity.Secure = (bool)backendTokenIdentity["Secure"];
+                appPreferences.Identity.Host = (string)backendTokenIdentity["Host"];
+                appPreferences.Identity.Port = (int)backendTokenIdentity["Port"];
+
+                var backendTokenFriends = intermediate["Backend"]["Friends"];
+                appPreferences.Friends.TimeOut = (int)backendTokenFriends["TimeOut"];
+                appPreferences.Friends.Secure = (bool)backendTokenFriends["Secure"];
+                appPreferences.Friends.Host = (string)backendTokenFriends["Host"];
+                appPreferences.Friends.Port = (int)backendTokenFriends["Port"];
+
+                var backendTokenChat = intermediate["Backend"]["Chat"];
+                appPreferences.Chat.TimeOut = (int)backendTokenChat["TimeOut"];
+                appPreferences.Chat.Secure = (bool)backendTokenChat["Secure"];
+                appPreferences.Chat.Host = (string)backendTokenChat["Host"];
+                appPreferences.Chat.Port = (int)backendTokenChat["Port"];
             }
 
             return appPreferences;

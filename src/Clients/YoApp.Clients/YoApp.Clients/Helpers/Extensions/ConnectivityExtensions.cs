@@ -12,11 +12,11 @@ namespace YoApp.Clients.Helpers.Extensions
         /// <returns>Is backend onine?</returns>
         public static async Task<bool> IsServiceOnlineAsync(this IConnectivity current)
         {
-            var url = $"http://{App.Settings.Backend.Host}";
+            var url = $"http://{App.Settings.Identity.Host}";
             var status = await current
                 .IsRemoteReachable(url,
-                App.Settings.Backend.Port,
-                App.Settings.Backend.TimeOut);
+                App.Settings.Identity.Port,
+                App.Settings.Identity.TimeOut);
 
             return status;
         }

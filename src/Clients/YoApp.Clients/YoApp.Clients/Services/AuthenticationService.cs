@@ -21,7 +21,7 @@ namespace YoApp.Clients.Services
 
         static AuthenticationService()
         {
-            _tokenEndpoint = new Uri(App.Settings.Backend.Url + "connect/token");
+            _tokenEndpoint = new Uri($"{App.Settings.Identity.Url}connect/token");
             _accountStore = AccountStore.Create();
             AuthAccount = _accountStore
                 .FindAccountsForService(App.Settings.ServiceId)
@@ -93,7 +93,8 @@ namespace YoApp.Clients.Services
         {
             var guidBytes = new byte[16];
             new Random().NextBytes(guidBytes);
-            return new Guid(guidBytes).ToString().ToUpperInvariant();
+
+            return new Guid(guidBytes).ToString();
         }
     }
 }

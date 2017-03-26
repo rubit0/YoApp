@@ -246,3 +246,5 @@ ModelManifest.xml
 /src/Services/YoApp.Friends/Properties/PublishProfiles
 /src/Services/YoApp.Identity/appsettings.Development.json
 /src/Services/YoApp.Identity/Properties/PublishProfiles
+/src/Clients/YoApp.Clients/YoApp.Clients/Ressources/appsettings.Development.json
+/src/Clients/YoApp.Clients/YoApp.Clients/Ressources/appsettings.Development.json

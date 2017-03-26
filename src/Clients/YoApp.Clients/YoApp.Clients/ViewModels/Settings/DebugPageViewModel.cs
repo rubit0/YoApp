@@ -26,9 +26,9 @@ namespace YoApp.Clients.ViewModels.Settings
         public DateTime TokenCreation => AuthenticationService.AuthAccount?.Created() ?? DateTime.MinValue;
         public DateTime TokenExpiration => AuthenticationService.AuthAccount?.ExpiresIn() ?? DateTime.MinValue;
 
-        public string BackendEndpoint => App.Settings.Backend.Url.ToString();
-        public int BackendPort => App.Settings.Backend.Port;
-        public int BackendTimeout => App.Settings.Backend.TimeOut;
+        public string BackendEndpoint => App.Settings.Identity.Url.ToString();
+        public int BackendPort => App.Settings.Identity.Port;
+        public int BackendTimeout => App.Settings.Identity.TimeOut;
 
         public ICommand ExitCommand { get; private set; }
         public ICommand StartSetupCommand { get; private set; }

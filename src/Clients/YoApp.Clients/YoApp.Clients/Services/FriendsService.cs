@@ -19,8 +19,8 @@ namespace YoApp.Clients.Services
 
         static FriendsService()
         {
-            _usersAddress = new Uri(App.Settings.Backend.Url + "api/Friends/");
-            _isMemberAddress = new Uri(_usersAddress, "IsMember");
+            _usersAddress = new Uri(App.Settings.Friends.Url + "friends/");
+            _isMemberAddress = new Uri(_usersAddress, "check");
         }
 
         /// <summary>
@@ -32,13 +32,9 @@ namespace YoApp.Clients.Services
         {
             await AuthenticationService.RequestToken();
 
-            var param = new Dictionary<string, string>
-                {
-                    {"phoneNumber", phoneNumber}
-                };
             var request = new OAuth2BearerRequest("GET",
-                _isMemberAddress,
-                param,
+                new Uri(_isMemberAddress, phoneNumber),
+                null,
                 AuthenticationService.AuthAccount);
 
             var response = await request.GetResponseAsync();
@@ -65,13 +61,9 @@ namespace YoApp.Clients.Services
 
             await AuthenticationService.RequestToken();
 
-            var param = new Dictionary<string, string>
-            {
-                { "phoneNumber", phoneNumber }
-            };
             var request = new OAuth2BearerRequest("GET",
-                _usersAddress,
-                param,
+                new Uri(_usersAddress, phoneNumber),
+                null,
                 AuthenticationService.AuthAccount);
 
             var response = await request.GetResponseAsync();

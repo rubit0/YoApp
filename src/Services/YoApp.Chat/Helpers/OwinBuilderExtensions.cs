@@ -32,6 +32,7 @@ namespace YoApp.Chat.Helpers
                     return appBuilder.Build<AppFunc>();
                 });
             });
+
             return app;
         }
     }

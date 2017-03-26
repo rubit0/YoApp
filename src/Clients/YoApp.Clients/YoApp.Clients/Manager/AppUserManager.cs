@@ -20,7 +20,7 @@ namespace YoApp.Clients.Manager
         public AppUserManager()
         {
             _keyValueStore = App.StorageResolver.Resolve<IKeyValueStore>();
-            _backendAddress = new Uri(App.Settings.Backend.Url, "Api/Account/");
+            _backendAddress = new Uri(App.Settings.Identity.Url, "Api/Account/");
         }
 
         /// <summary>

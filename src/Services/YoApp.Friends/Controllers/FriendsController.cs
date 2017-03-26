@@ -35,7 +35,7 @@ namespace YoApp.Identity.Controllers
             var userInDb = await _dataWorker.Friends.FindByNameAsync(phoneNumber);
             if (userInDb == null)
             {
-                _logger.LogError($"User by {phoneNumber} requested by [{User.Identity.Name}] was not found.");
+                _logger.LogError($"Request by [{User.Identity.Name}].\nNo User found by phone number [{phoneNumber}].");
                 return NotFound();
             }
 
@@ -53,7 +53,7 @@ namespace YoApp.Identity.Controllers
             var usersInDb = await _dataWorker.Friends.FindByNameRangeAsync(phoneNumbers);
             if (!usersInDb.Any())
             {
-                _logger.LogError($"No matching Users found for [{User.Identity.Name}] request.");
+                _logger.LogError($"Request by [{User.Identity.Name}].\nNo matching Users found.");
                 return NotFound();
             }
 
@@ -71,7 +71,7 @@ namespace YoApp.Identity.Controllers
             var userInDb = await _dataWorker.Friends.FindByNameAsync(phoneNumber);
             if (userInDb == null)
             {
-                _logger.LogError($"User by {phoneNumber} requested by [{User.Identity.Name}] was not found.");
+                _logger.LogError($"Request by [{User.Identity.Name}].\nUser name for {phoneNumber} was not found.");
                 return NotFound();
             }
 
@@ -87,7 +87,7 @@ namespace YoApp.Identity.Controllers
             var userInDb = await _dataWorker.Friends.FindByNameAsync(phoneNumber);
             if (userInDb == null)
             {
-                _logger.LogError($"User by {phoneNumber} requested by [{User.Identity.Name}] was not found.");
+                _logger.LogError($"Request by [{User.Identity.Name}].\nStatus for {phoneNumber} was not found.");
                 return NotFound();
             }
 
@@ -101,6 +101,7 @@ namespace YoApp.Identity.Controllers
                 return BadRequest();
 
             var result = await _dataWorker.Friends.IsMemberAsync(phoneNumber);
+            _logger.LogInformation($"Request by [{User.Identity.Name}].\nPhonenumber {phoneNumber} is member: {result}.");
 
             if (result)
                 return Ok();
