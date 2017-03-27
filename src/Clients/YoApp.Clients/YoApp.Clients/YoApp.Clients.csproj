@@ -313,7 +313,6 @@
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
-    <EmbeddedResource Include="Ressources\appsettings.Development.json" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Pages\Setup\ProfilePage.xaml">
