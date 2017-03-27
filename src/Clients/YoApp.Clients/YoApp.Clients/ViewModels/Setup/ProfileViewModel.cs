@@ -16,14 +16,14 @@ namespace YoApp.Clients.ViewModels.Setup
 
         public string NickName
         {
-            get { return App.Settings.User.Nickname; }
-            set { App.Settings.User.Nickname = value; }
+            get { return _appUserManager.User.Nickname; }
+            set { _appUserManager.User.Nickname = value; }
         }
 
         public string StatusMessage
         {
-            get { return App.Settings.User.Status; }
-            set { App.Settings.User.Status = value; }
+            get { return _appUserManager.User.Status; }
+            set { _appUserManager.User.Status = value; }
         }
 
         public ICommand SubmitCommand { get; }

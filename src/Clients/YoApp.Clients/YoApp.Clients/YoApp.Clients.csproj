@@ -57,12 +57,14 @@
     <Compile Include="Helpers\ContactComparer.cs" />
     <Compile Include="Helpers\AppSettings.cs" />
     <Compile Include="Manager\IVerificationManager.cs" />
+    <Compile Include="Models\AppUser.cs" />
     <Compile Include="Models\LocalContact.cs" />
     <Compile Include="Persistence\AkavacheContext.cs" />
     <Compile Include="Persistence\IKeyProvider.cs" />
     <Compile Include="Persistence\IKeyValueStore.cs" />
     <Compile Include="Persistence\IRealmStore.cs" />
     <Compile Include="Persistence\RealmContext.cs" />
+    <Compile Include="Services\AccountService.cs" />
     <Compile Include="StateMachine\States\LifeCycleState.cs" />
     <Compile Include="StateMachine\StateMachine.cs" />
     <Compile Include="Manager\FriendsManager.cs" />

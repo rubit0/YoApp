@@ -22,8 +22,7 @@ namespace YoApp.Clients
         public App()
         {
             InitializeComponent();
-
-            Init();
+            InitApp();
 
             if (Settings.SetupFinished || ResourceKeys.IsDebug)
                 MainPage = new NavigationPage(new Pages.MainPage());
@@ -31,7 +30,7 @@ namespace YoApp.Clients
                 MainPage = new NavigationPage(new Pages.Setup.WelcomePage());
         }
 
-        private void Init()
+        private void InitApp()
         {
             StorageResolver = SetupStorageContainer().GetResolver();
             Settings = AppSettings.InitAppSettings();

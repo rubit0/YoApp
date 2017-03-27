@@ -37,7 +37,7 @@ namespace YoApp.Identity.Controllers
             return Ok(dto);
         }
 
-        [HttpPost]
+        [HttpPatch]
         public async Task<IActionResult> UpdateAccount([FromBody] UpdatedAccountDto dto)
         {
             if (!ModelState.IsValid)

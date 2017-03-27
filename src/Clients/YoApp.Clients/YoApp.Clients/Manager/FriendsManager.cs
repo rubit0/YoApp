@@ -93,7 +93,7 @@ namespace YoApp.Clients.Manager
                 if (!contact.IsValidPhoneNumber)
                     continue;
 
-                if (!await FriendsService.IsMember(contact.NormalizedPhoneNumber))
+                if (!await FriendsService.CheckMembership(contact.NormalizedPhoneNumber))
                     continue;
 
                 var friend = await FriendsService.FetchFriend(contact.NormalizedPhoneNumber);

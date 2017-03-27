@@ -20,7 +20,10 @@ namespace YoApp.Clients.Pages.Chats
         protected override void OnAppearing()
         {
             ListView.SelectedItem = null;
-            ListView.ScrollTo(ListView.ItemsSource.Cast<object>().Last(), ScrollToPosition.End, false);
+
+            var items = ListView.ItemsSource.Cast<object>();
+            if(items.Count() > 0)
+                ListView.ScrollTo(items.Last(), ScrollToPosition.End, false);
         }
 
         protected override void OnDisappearing()

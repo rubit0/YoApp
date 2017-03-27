@@ -4,7 +4,6 @@ using System.Runtime.CompilerServices;
 using Xamarin.Forms;
 using YoApp.Clients.Helpers;
 using YoApp.Clients.Manager;
-using YoApp.Clients.Models;
 using YoApp.Clients.ViewModels.ListViewGroups;
 
 namespace YoApp.Clients.ViewModels.Settings

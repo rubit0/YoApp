@@ -44,8 +44,8 @@ namespace YoApp.Clients.ViewModels.Settings
         {
             _appUserManager = App.Resolver.Resolve<IAppUserManager>();
 
-            _nickName = App.Settings.User.Nickname;
-            _statusMessage = App.Settings.User.Status;
+            _nickName = _appUserManager.User.Nickname;
+            _statusMessage = _appUserManager.User.Status;
             _pageService = pageService;
 
             UpdateCommand = new Command(async () => await UpdateUser(),
@@ -58,8 +58,8 @@ namespace YoApp.Clients.ViewModels.Settings
 
             var oldNick = _nickName;
             var oldStatus = _statusMessage;
-            App.Settings.User.Nickname = _nickName;
-            App.Settings.User.Status = _statusMessage;
+            _appUserManager.User.Nickname = _nickName;
+            _appUserManager.User.Status = _statusMessage;
 
             var result = await _appUserManager.SyncUpAsync();
             await _pageService.Navigation.PopModalAsync();
@@ -67,8 +67,8 @@ namespace YoApp.Clients.ViewModels.Settings
             if (!result)
             {
                 //revert changes
-                App.Settings.User.Nickname = oldNick;
-                App.Settings.User.Status = _statusMessage;
+                _appUserManager.User.Nickname = oldNick;
+                _appUserManager.User.Status = _statusMessage;
                 Nickname = oldNick;
                 StatusMessage = oldStatus;
             }

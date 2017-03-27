@@ -14,13 +14,13 @@ namespace YoApp.Clients.Services
     /// </summary>
     public static class FriendsService
     {
-        private static readonly Uri _usersAddress;
+        private static readonly Uri _baseAddress;
         private static readonly Uri _isMemberAddress;
 
         static FriendsService()
         {
-            _usersAddress = new Uri(App.Settings.Friends.Url + "friends/");
-            _isMemberAddress = new Uri(_usersAddress, "check");
+            _baseAddress = new Uri(App.Settings.Friends.Url + "friends/");
+            _isMemberAddress = new Uri(_baseAddress, "check");
         }
 
         /// <summary>
@@ -28,7 +28,7 @@ namespace YoApp.Clients.Services
         /// </summary>
         /// <param name="phoneNumber">Check by this.</param>
         /// <returns>Is this a member.</returns>
-        public static async Task<bool> IsMember(string phoneNumber)
+        public static async Task<bool> CheckMembership(string phoneNumber)
         {
             await AuthenticationService.RequestToken();
 
@@ -42,15 +42,35 @@ namespace YoApp.Clients.Services
             return (response.StatusCode == HttpStatusCode.OK);
         }
 
-        public static async Task<Dictionary<string, bool>> AreMember(Dictionary<string, bool> phoneNumber)
+        /// <summary>
+        /// Check the range of given phonenumbers and returns only those who are members.
+        /// </summary>
+        /// <param name="phoneNumbers">Targets to check</param>
+        /// <returns>Members</returns>
+        public static async Task<IEnumerable<string>> CheckMembershipRange(IEnumerable<string> phoneNumbers)
         {
-            throw new NotImplementedException();
+            if(phoneNumbers == null)
+                throw new ArgumentNullException(nameof(phoneNumbers));
+
+            await AuthenticationService.RequestToken();
+
+            var request = new OAuth2BearerRequest("POST", 
+                _isMemberAddress, 
+                null, 
+                AuthenticationService.AuthAccount);
+
+            var serialized = JsonConvert.SerializeObject(phoneNumbers);
+            request.SetRequestBody(serialized);
+
+            var response = await request.GetResponseAsync();
+            var text = response.GetResponseText();
+            var deserialized = JsonConvert.DeserializeObject<IEnumerable<string>>(text);
+
+            return deserialized;
         }
 
         /// <summary>
-        /// Fetch an Friend from the backend by the given phone number.
-        /// Also stores it after fetching to the local db and Friends property.
-        /// Make sure to check before if it is a Member.
+        /// Fetch a Friend from the backend by the given phone number.
         /// </summary>
         /// <param name="phoneNumber">A validated phoneNumber.</param>
         /// <returns>Friend from backend.</returns>
@@ -62,12 +82,11 @@ namespace YoApp.Clients.Services
             await AuthenticationService.RequestToken();
 
             var request = new OAuth2BearerRequest("GET",
-                new Uri(_usersAddress, phoneNumber),
+                new Uri(_baseAddress, phoneNumber),
                 null,
                 AuthenticationService.AuthAccount);
 
             var response = await request.GetResponseAsync();
-
             if (response.StatusCode != HttpStatusCode.OK)
                 return null;
 
@@ -77,9 +96,84 @@ namespace YoApp.Clients.Services
             return Friend.CreateFromDto(dto);
         }
 
+        /// <summary>
+        /// Fetch friends by the given phonenumbers. Non matching phoneNumbers will be ignored.
+        /// </summary>
+        /// <param name="phoneNumbers">Source phonenumbers.</param>
+        /// <returns>Friends matching to given phoneNumbers.</returns>
         public static async Task<IEnumerable<Friend>> FetchFriends(IEnumerable<string> phoneNumbers)
         {
-            throw new NotImplementedException();
+            if (phoneNumbers == null)
+                throw new ArgumentNullException(nameof(phoneNumbers));
+
+            await AuthenticationService.RequestToken();
+
+            var request = new OAuth2BearerRequest("POST",
+                _baseAddress,
+                null,
+                AuthenticationService.AuthAccount);
+
+            var serialized = JsonConvert.SerializeObject(phoneNumbers);
+            request.SetRequestBody(serialized);
+
+            var response = await request.GetResponseAsync();
+            if (response.StatusCode != HttpStatusCode.OK)
+                return null;
+
+            var body = await response.GetResponseTextAsync();
+            var dtos = JsonConvert.DeserializeObject<IEnumerable<UserDto>>(body);
+
+            var friends = new List<Friend>();
+            foreach (var dto in dtos)
+                friends.Add(Friend.CreateFromDto(dto));
+
+            return friends;
+        }
+
+        /// <summary>
+        /// Get nickname for the given user.
+        /// </summary>
+        /// <param name="phoneNumber">Target user to check by phoneNumber.</param>
+        /// <returns>Users current nickname.</returns>
+        public static async Task<string> GetName(string phoneNumber)
+        {
+            if (string.IsNullOrWhiteSpace(phoneNumber))
+                throw new ArgumentNullException(nameof(phoneNumber));
+
+            await AuthenticationService.RequestToken();
+
+            var request = new OAuth2BearerRequest("GET", 
+                new Uri(_baseAddress, $"{phoneNumber}/name"),
+                null,
+                AuthenticationService.AuthAccount);
+
+            var response = await request.GetResponseAsync();
+            var body = await response.GetResponseTextAsync();
+
+            return JsonConvert.DeserializeObject<string>(body);
+        }
+
+        /// <summary>
+        /// Get status message for the given user.
+        /// </summary>
+        /// <param name="phoneNumber">Target user to check by phoneNumber.</param>
+        /// <returns>Users current status message.</returns>
+        public static async Task<string> GetStatus(string phoneNumber)
+        {
+            if (string.IsNullOrWhiteSpace(phoneNumber))
+                throw new ArgumentNullException(nameof(phoneNumber));
+
+            await AuthenticationService.RequestToken();
+
+            var request = new OAuth2BearerRequest("GET",
+                new Uri(_baseAddress, $"{phoneNumber}/status"),
+                null,
+                AuthenticationService.AuthAccount);
+
+            var response = await request.GetResponseAsync();
+            var body = await response.GetResponseTextAsync();
+
+            return JsonConvert.DeserializeObject<string>(body);
         }
     }
 }

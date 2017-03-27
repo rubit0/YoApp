@@ -1,6 +1,7 @@
 ﻿using System.Windows.Input;
 using Xamarin.Forms;
 using YoApp.Clients.Helpers;
+using YoApp.Clients.Manager;
 using YoApp.Clients.Pages.Settings;
 using YoApp.Clients.Services;
 
@@ -8,15 +9,19 @@ namespace YoApp.Clients.ViewModels.Settings
 {
     public class SettingsPageViewModel
     {
-        public string Nickname => App.Settings.User.Nickname;
-        public string StatusMessage => App.Settings.User.Status;
+        public string Nickname => _userManager.User?.Nickname ?? "";
+        public string StatusMessage => _userManager.User?.Status ?? "";
 
         public ICommand OpenDebugMenuCommand { get; private set; }
         public ICommand OpenContactsListCommand { get; private set; }
         public ICommand OpenUserPage { get; private set; }
 
+        private readonly IAppUserManager _userManager;
+
         public SettingsPageViewModel(IPageService pageService)
         {
+            _userManager = App.Resolver.Resolve<IAppUserManager>();
+
             if (ResourceKeys.IsDebug)
                 OpenDebugMenuCommand = new Command(async () =>
                     await pageService.Navigation.PushAsync(new DebugPage()));

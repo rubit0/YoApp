@@ -18,6 +18,9 @@ namespace YoApp.Clients.Models
 
         public static Friend CreateFromDto(UserDto dto)
         {
+            if (dto == null)
+                return null;
+
             return new Friend
             {
                 PhoneNumber = dto.Username,

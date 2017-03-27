@@ -1,8 +1,5 @@
-﻿using Newtonsoft.Json;
-using Rubito.SimpleFormsAuth;
-using System;
-using System.Net;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using YoApp.Clients.Models;
 using YoApp.Clients.Persistence;
 using YoApp.Clients.Services;
 using YoApp.DataObjects.Account;
@@ -14,13 +11,27 @@ namespace YoApp.Clients.Manager
     /// </summary>
     public class AppUserManager : IAppUserManager
     {
-        private readonly Uri _backendAddress;
-        private readonly IKeyValueStore _keyValueStore;
+        public AppUser User { get; private set; }
+        private readonly IKeyValueStore _store;
 
         public AppUserManager()
         {
-            _keyValueStore = App.StorageResolver.Resolve<IKeyValueStore>();
-            _backendAddress = new Uri(App.Settings.Identity.Url, "Api/Account/");
+            _store = App.StorageResolver.Resolve<IKeyValueStore>();
+        }
+
+        public async Task<AppUser> LoadUser()
+        {
+            User = await _store.Get<AppUser>(nameof(AppUser));
+            return User;
+        }
+
+        public async Task PersistUser()
+        {
+            if (User == null)
+                return;
+
+            await _store.Insert(User);
+            await _store.Persist();
         }
 
         /// <summary>
@@ -31,22 +42,16 @@ namespace YoApp.Clients.Manager
         {
             var dto = new UpdatedAccountDto
             {
-                Nickname = App.Settings.User.Nickname,
-                StatusMessage = App.Settings.User.Status
+                Nickname = this.User.Nickname,
+                StatusMessage = this.User.Status
             };
 
-            var requestBody = JsonConvert.SerializeObject(dto);
-            var request = new OAuth2BearerRequest("POST",
-                _backendAddress,
-                null,
-                AuthenticationService.AuthAccount);
+            var result = await AccountService.SyncUpAsync(dto);
+            if (result == null)
+                return false;
 
-            request.SetRequestBody(requestBody);
-
-            var response = await request.GetResponseAsync();
-            await _keyValueStore.Persist();
-
-            return (response.StatusCode == HttpStatusCode.OK);
+            await PersistUser();
+            return true;
         }
 
         /// <summary>
@@ -55,20 +60,13 @@ namespace YoApp.Clients.Manager
         /// <returns>Was Sync successful</returns>
         public async Task<bool> SyncDownAsync()
         {
-            var request = new OAuth2BearerRequest("GET", _backendAddress, null, AuthenticationService.AuthAccount);
-            var response = await request.GetResponseAsync();
-            if (response.StatusCode != HttpStatusCode.OK)
+            var dto = await AccountService.SyncDownAsync();
+            if (dto == null)
                 return false;
 
-            var body = await response.GetResponseTextAsync();
-            var dto = JsonConvert.DeserializeObject<UpdatedAccountDto>(body);
-
-            if (dto == null)
-                throw new NullReferenceException("Bad Json response when expecting an account dto.");
-
-            App.Settings.User.Nickname = dto.Nickname;
-            App.Settings.User.Status = dto.StatusMessage;
-            await _keyValueStore.Persist();
+            User.Nickname = dto.Nickname;
+            User.Status = dto.StatusMessage;
+            await PersistUser();
 
             return true;
         }
@@ -77,12 +75,14 @@ namespace YoApp.Clients.Manager
         /// Creates the local AppUser. Only use this at the setup story.
         /// </summary>
         /// <param name="phoneNumber">Will be treated like an username</param>
-        public async Task InitUserAsync(string phoneNumber)
+        public void InitUser(string phoneNumber)
         {
-            App.Settings.User.PhoneNumber = phoneNumber;
-            App.Settings.User.Status = App.Settings.Conventions.DefaultStatusMessage;
-
-            await _keyValueStore.Persist();
+            this.User = new AppUser
+            {
+                Nickname = "",
+                PhoneNumber = phoneNumber,
+                Status = App.Settings.Conventions.DefaultStatusMessage
+            };
         }
     }
 }

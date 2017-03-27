@@ -62,9 +62,10 @@ namespace YoApp.Clients.ViewModels.Setup
             {
                 var userManager = App.Resolver.Resolve<IAppUserManager>();
                 App.Settings.SetupFinished = true;
-                await userManager.InitUserAsync(PhoneNumber);
-                await AuthenticationService.RequestToken(PhoneNumber, password);
+                userManager.InitUser(PhoneNumber);
 
+                await userManager.PersistUser();
+                await AuthenticationService.RequestToken(PhoneNumber, password);
                 await Task.Run(() => MessagingCenter.Send(this, MessagingEvents.UserCreated));
 
                 await _pageService.Navigation.PushAsync(new ProfilePage());

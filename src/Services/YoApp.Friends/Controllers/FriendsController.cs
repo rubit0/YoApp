@@ -110,7 +110,7 @@ namespace YoApp.Identity.Controllers
         }
 
         [HttpPost("check/")]
-        public async Task<IActionResult> AreMember([FromBody]IEnumerable<string> phoneNumbers)
+        public async Task<IActionResult> IsMemberRange([FromBody]IEnumerable<string> phoneNumbers)
         {
             if (!ModelState.IsValid)
                 return BadRequest();

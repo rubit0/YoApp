@@ -18,8 +18,8 @@ namespace YoApp.Clients.Manager
         public VerificationManager()
         {
             _timeOut = TimeSpan.FromSeconds(App.Settings.Identity.TimeOut);
-            _challengeAddress = new Uri(App.Settings.Identity.Url, "api/Verification/Challenge");
-            _resolveAddress = new Uri(App.Settings.Identity.Url, "api/Verification/Resolve");
+            _challengeAddress = new Uri(App.Settings.Identity.Url, "verification/challenge");
+            _resolveAddress = new Uri(App.Settings.Identity.Url, "verification/resolve");
         }
 
         /// <summary>

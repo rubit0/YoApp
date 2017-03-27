@@ -3,6 +3,7 @@ using Newtonsoft.Json.Linq;
 using System;
 using System.Reactive.Linq;
 using System.Reflection;
+using System.Threading.Tasks;
 using YoApp.Clients.Persistence;
 
 namespace YoApp.Clients.Helpers
@@ -17,7 +18,6 @@ namespace YoApp.Clients.Helpers
         public bool SetupFinished { get; set; }
         public string ServiceId { get; set; }
 
-        public AppUser User { get; private set; }
         public ConventionsPreferences Conventions { get; private set; }
         public BackendHost Identity { get; private set; }
         public BackendHost Friends { get; private set; }
@@ -25,7 +25,6 @@ namespace YoApp.Clients.Helpers
 
         public AppSettings()
         {
-            User = new AppUser();
             Conventions = new ConventionsPreferences();
             Identity = new BackendHost();
             Friends = new BackendHost();
@@ -43,13 +42,6 @@ namespace YoApp.Clients.Helpers
             ServiceId = fresh.ServiceId;
             Conventions = fresh.Conventions;
             Identity = fresh.Identity;
-        }
-
-        public class AppUser
-        {
-            public string PhoneNumber { get; set; }
-            public string Nickname { get; set; }
-            public string Status { get; set; }
         }
 
         public class ConventionsPreferences
@@ -105,8 +97,12 @@ namespace YoApp.Clients.Helpers
                 : $"{relativePath}.appsettings.Development.json";
 
             var assembly = typeof(AppSettings).GetTypeInfo().Assembly;
+
             var stream = assembly.GetManifestResourceStream(name);
-            if (stream == null)
+
+            if (stream == null && ResourceKeys.IsDebug)
+                stream = assembly.GetManifestResourceStream($"{relativePath}.appsettings.json");
+            else if (stream == null)
                 return null;
 
             var appPreferences = new AppSettings();
@@ -148,6 +144,17 @@ namespace YoApp.Clients.Helpers
             }
 
             return appPreferences;
+        }
+
+        public async Task Persist()
+        {
+            var store = App.StorageResolver.Resolve<IKeyValueStore>();
+
+            var instance = await store.Get<AppSettings>(Key);
+            if(instance == null)
+                await store.Insert(this);
+
+            await store.Persist();
         }
     }
 }

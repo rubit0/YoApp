@@ -14,12 +14,13 @@ namespace YoApp.Clients.StateMachine.States
         private readonly IContactsManager _contactsManager;
         private readonly IFriendsManager _friendsManager;
         private readonly IKeyValueStore _keyValueStore;
-
+        private readonly IAppUserManager _userManager;
         public LifeCycleState()
         {
             _contactsManager = App.Resolver.Resolve<IContactsManager>();
             _friendsManager = App.Resolver.Resolve<IFriendsManager>();
             _keyValueStore = App.StorageResolver.Resolve<IKeyValueStore>();
+            _userManager = App.Resolver.Resolve<IAppUserManager>();
         }
 
         public async Task HandleState(Lifecycle state)
@@ -42,6 +43,8 @@ namespace YoApp.Clients.StateMachine.States
 
         private async Task Start()
         {
+            await _userManager.LoadUser();
+
             if (await AuthenticationService.CanRequest())
                 await AuthenticationService.RequestToken(true);
 

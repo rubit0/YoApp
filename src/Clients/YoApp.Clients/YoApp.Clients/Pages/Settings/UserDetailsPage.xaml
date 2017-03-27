@@ -9,16 +9,16 @@
              NavigationPage.HasNavigationBar="True">
   <StackLayout>
     <Entry Text="{Binding Nickname}">
-      <Entry.Behaviors>
+      <!--<Entry.Behaviors>
         <behaviors:EntryLengthClamp 
-          MaxLength="{x:Static helpers:Settings+UserConventions.NicknameMaxLength}"/>
-      </Entry.Behaviors>
+          MaxLength="{x:Static helpers:AppSettings+Conventions.NicknameMaxLength}"/>
+      </Entry.Behaviors>-->
     </Entry>
     <Entry Text="{Binding StatusMessage, Mode=TwoWay}">
-      <Entry.Behaviors>
+      <!--<Entry.Behaviors>
         <behaviors:EntryLengthClamp 
-          MaxLength="{x:Static helpers:Settings+UserConventions.StatusMessageMaxLength}" />
-      </Entry.Behaviors>
+          MaxLength="{x:Static helpers:AppSettings+Conventions.StatusMessageMaxLength}" />
+      </Entry.Behaviors>-->
     </Entry>
     <Button Text="Change" Command="{Binding UpdateCommand}" />
   </StackLayout>
