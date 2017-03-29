@@ -5,7 +5,6 @@ using YoApp.Clients.Helpers;
 using YoApp.Clients.Helpers.EventArgs;
 using YoApp.Clients.Manager;
 using YoApp.Clients.Persistence;
-using YoApp.Clients.Services;
 
 namespace YoApp.Clients
 {
@@ -14,7 +13,6 @@ namespace YoApp.Clients
         public static AppSettings Settings { get; private set; }
         public static IResolver Resolver { get; private set; }
         public static IResolver StorageResolver { get; private set; }
-        public static ChatService ChatService { get; private set; }
 
         private StateMachine.StateMachine _stateMachine;
         private bool _canResume;
@@ -37,7 +35,6 @@ namespace YoApp.Clients
             Resolver = SetupContainer().GetResolver();
 
             _stateMachine = new StateMachine.StateMachine();
-            ChatService = new ChatService();
         }
 
         protected override async void OnStart()
@@ -78,7 +75,7 @@ namespace YoApp.Clients
 
         private IDependencyContainer SetupStorageContainer()
         {
-            var container = new XLabs.Ioc.SimpleContainer();
+            var container = new SimpleContainer();
 
             container.RegisterSingle<IKeyValueStore, AkavacheContext>();
             container.RegisterSingle<IRealmStore, RealmContext>();
@@ -93,6 +90,7 @@ namespace YoApp.Clients
             container.RegisterSingle<IAppUserManager, AppUserManager>();
             container.RegisterSingle<IContactsManager, ContactsManager>();
             container.RegisterSingle<IFriendsManager, FriendsManager>();
+            container.RegisterSingle<IChatManager, ChatManager>();
             container.Register<IVerificationManager>(typeof(VerificationManager));
 
             return container;

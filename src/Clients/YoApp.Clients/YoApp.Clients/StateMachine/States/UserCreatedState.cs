@@ -24,7 +24,6 @@ namespace YoApp.Clients.StateMachine.States
         {
             await App.Settings.Persist();
             await _friendsManager.ManageFriends(_contactsManager.Contacts);
-            await App.ChatService.Connect();
         }
     }
 }

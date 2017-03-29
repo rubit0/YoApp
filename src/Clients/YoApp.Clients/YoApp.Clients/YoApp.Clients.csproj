@@ -57,6 +57,7 @@
     <Compile Include="Helpers\ContactComparer.cs" />
     <Compile Include="Helpers\AppSettings.cs" />
     <Compile Include="Manager\ChatManager.cs" />
+    <Compile Include="Manager\IChatManager.cs" />
     <Compile Include="Manager\IVerificationManager.cs" />
     <Compile Include="Models\AppUser.cs" />
     <Compile Include="Models\LocalContact.cs" />
