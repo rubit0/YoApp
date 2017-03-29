@@ -1,6 +1,4 @@
-﻿using System.Reactive.Linq;
-using System.Threading.Tasks;
-using YoApp.Clients.Helpers;
+﻿using System.Threading.Tasks;
 using YoApp.Clients.Manager;
 using YoApp.Clients.Persistence;
 
@@ -26,6 +24,7 @@ namespace YoApp.Clients.StateMachine.States
         {
             await App.Settings.Persist();
             await _friendsManager.ManageFriends(_contactsManager.Contacts);
+            await App.ChatService.Connect();
         }
     }
 }

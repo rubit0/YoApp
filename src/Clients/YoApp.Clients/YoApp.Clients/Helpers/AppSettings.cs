@@ -62,7 +62,7 @@ namespace YoApp.Clients.Helpers
 
             private Uri _url;
 
-            public Uri GetUrl()
+            private Uri GetUrl()
             {
                 if (_url != null)
                     return _url;

@@ -50,6 +50,9 @@ namespace YoApp.Clients.StateMachine.States
 
             if (await _contactsManager.LoadContactsAsync())
                 await _friendsManager.ManageFriends(_contactsManager.Contacts);
+
+            if (App.Settings.SetupFinished)
+                await App.ChatService.Connect();
         }
 
         private async Task Sleep()

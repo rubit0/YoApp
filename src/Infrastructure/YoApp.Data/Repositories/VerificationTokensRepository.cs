@@ -44,7 +44,7 @@ namespace YoApp.Data.Repositories
 
         public async Task AddOrReplaceAsync(VerificationToken request)
         {
-            var requestInDb = await FindByIdAsync(request.Id);
+            var requestInDb = await FindByUserAsync(request.User);
             if(requestInDb != null)
                 Remove(requestInDb);
 
