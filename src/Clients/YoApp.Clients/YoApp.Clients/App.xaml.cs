@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Reactive.Linq;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 using XLabs.Ioc;
 using YoApp.Clients.Helpers;
@@ -23,21 +24,25 @@ namespace YoApp.Clients
         {
             InitializeComponent();
             InitApp();
-
-            if (Settings.SetupFinished || ResourceKeys.IsDebug)
-                MainPage = new NavigationPage(new Pages.MainPage());
-            else
-                MainPage = new NavigationPage(new Pages.Setup.WelcomePage());
+            SetMainPage();
         }
 
         private void InitApp()
         {
             StorageResolver = SetupStorageContainer().GetResolver();
-            Settings = AppSettings.InitAppSettings();
             Resolver = SetupContainer().GetResolver();
 
+            Settings = AppSettings.InitAppSettings();
             _stateMachine = new StateMachine.StateMachine();
             ChatService = new ChatService();
+        }
+
+        private void SetMainPage()
+        {
+            if (Settings.SetupFinished || ResourceKeys.IsDebug)
+                MainPage = new NavigationPage(new Pages.MainPage());
+            else
+                MainPage = new NavigationPage(new Pages.Setup.WelcomePage());
         }
 
         protected override async void OnStart()

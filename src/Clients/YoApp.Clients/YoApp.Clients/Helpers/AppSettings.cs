@@ -89,8 +89,8 @@ namespace YoApp.Clients.Helpers
         /// <summary>
         /// Load from an embedded json ressource.
         /// </summary>
-        /// <returns></returns>
-        public static AppSettings LoadAppSettingsFromRessource(string relativePath = "YoApp.Clients.Ressources")
+        /// <returns>AppSettings instance.</returns>
+        private static AppSettings LoadAppSettingsFromRessource(string relativePath = "YoApp.Clients.Ressources")
         {
             var name = (!ResourceKeys.IsDebug) 
                 ? $"{relativePath}.appsettings.json" 
