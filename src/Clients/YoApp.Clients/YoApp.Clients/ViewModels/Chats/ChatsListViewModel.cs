@@ -2,23 +2,26 @@
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using YoApp.Clients.Helpers;
+using YoApp.Clients.Manager;
 using YoApp.Clients.Pages.Chats;
 
 namespace YoApp.Clients.ViewModels.Chats
 {
     public class ChatsListViewModel
     {
-        public ObservableCollection<ChatPage> Pages => App.ChatService.Pages;
+        public ObservableCollection<ChatPage> Pages => _chatManager.Pages;
         public Command OpenFriendsListCommand { get; private set; }
         public Command OpenChatCommand { get; private set; }
 
         private bool _canOpenFriend = true;
         private bool _canOpenChat = true;
         private readonly IPageService _pageService;
+        private readonly IChatManager _chatManager;
 
         public ChatsListViewModel(IPageService pageService)
         {
             _pageService = pageService;
+            _chatManager = App.Resolver.Resolve<IChatManager>();
 
             OpenFriendsListCommand = new Command(async
                 () => await OpenFriendsListPage(),
@@ -46,7 +49,7 @@ namespace YoApp.Clients.ViewModels.Chats
             if (chatPage != null)
             {
                 _canOpenChat = false;
-                await App.ChatService.OpenChat(chatPage.Friend);
+                await _chatManager.OpenChat(chatPage.Friend);
                 _canOpenChat = true;
             }
         }

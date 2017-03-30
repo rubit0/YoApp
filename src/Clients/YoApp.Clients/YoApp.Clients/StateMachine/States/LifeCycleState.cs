@@ -15,6 +15,7 @@ namespace YoApp.Clients.StateMachine.States
         private readonly IFriendsManager _friendsManager;
         private readonly IKeyValueStore _keyValueStore;
         private readonly IAppUserManager _userManager;
+
         public LifeCycleState()
         {
             _contactsManager = App.Resolver.Resolve<IContactsManager>();
@@ -50,9 +51,6 @@ namespace YoApp.Clients.StateMachine.States
 
             if (await _contactsManager.LoadContactsAsync())
                 await _friendsManager.ManageFriends(_contactsManager.Contacts);
-
-            if (App.Settings.SetupFinished)
-                await App.ChatService.Connect();
         }
 
         private async Task Sleep()
