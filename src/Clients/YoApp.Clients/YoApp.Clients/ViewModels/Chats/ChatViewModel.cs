@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Windows.Input;
 using Xamarin.Forms;
 using YoApp.Clients.Models;
+using YoApp.Clients.Services;
 
 namespace YoApp.Clients.ViewModels.Chats
 {
@@ -14,26 +15,28 @@ namespace YoApp.Clients.ViewModels.Chats
 
         private readonly ChatBook _chatBook;
         private readonly Friend _friend;
+        private readonly ChatService _chatService;
 
         public ChatViewModel(Friend friend, ChatBook chatBook)
         {
             _friend = friend;
             _chatBook = chatBook;
+            _chatService = App.Services.Resolve<ChatService>();
 
             PostMessageCommand = new Command<string>(PostMessage);
         }
 
-        private void PostMessage(string message)
+        private async void PostMessage(string message)
         {
-            var fake = new ChatMessage
+            var pending = new ChatMessage
             {
                 Message = message,
-                Date = DateTimeOffset.UtcNow,
                 DeliveryState = 0,
                 IsIncomming = false
             };
 
-            _chatBook.PushMessage(fake);
+            _chatBook.PushMessage(pending);
+            var result = await _chatService.SendMessage(_friend, message);
         }
     }
 }

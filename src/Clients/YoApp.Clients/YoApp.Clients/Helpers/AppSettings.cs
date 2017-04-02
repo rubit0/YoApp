@@ -78,7 +78,7 @@ namespace YoApp.Clients.Helpers
         /// <returns>AppSettings from either the store or embedded json ressource.</returns>
         public static AppSettings InitAppSettings()
         {
-            var store = App.StorageResolver.Resolve<IKeyValueStore>();
+            var store = App.Persistence.Resolve<IKeyValueStore>();
             var settings = store.GetObservable<AppSettings>(nameof(AppSettings)).Wait();
             if (settings != null)
                 return settings;
@@ -148,7 +148,7 @@ namespace YoApp.Clients.Helpers
 
         public async Task Persist()
         {
-            var store = App.StorageResolver.Resolve<IKeyValueStore>();
+            var store = App.Persistence.Resolve<IKeyValueStore>();
 
             var instance = await store.Get<AppSettings>(Key);
             if(instance == null)

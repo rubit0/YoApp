@@ -14,7 +14,7 @@ namespace YoApp.Clients.Models
 
         public ChatBook()
         {
-            _store = App.StorageResolver.Resolve<IRealmStore>();
+            _store = App.Persistence.Resolve<IRealmStore>();
         }
         
         public void PushMessage(ChatMessage message)

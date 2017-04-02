@@ -27,7 +27,7 @@ namespace YoApp.Clients.ViewModels.Setup
 
             PhoneNumber = phoneNumber;
             _pageService = pageService;
-            _verificationManager = App.Resolver.Resolve<IVerificationManager>();
+            _verificationManager = App.Managers.Resolve<IVerificationManager>();
 
             VerifyCommand = new Command(async () => await StartVerification(),
                 () => _canVerify
@@ -60,7 +60,7 @@ namespace YoApp.Clients.ViewModels.Setup
             }
             else
             {
-                var userManager = App.Resolver.Resolve<IAppUserManager>();
+                var userManager = App.Managers.Resolve<IAppUserManager>();
                 App.Settings.SetupFinished = true;
                 userManager.InitUser(PhoneNumber);
 

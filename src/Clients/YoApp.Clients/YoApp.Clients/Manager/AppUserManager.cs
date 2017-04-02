@@ -13,10 +13,12 @@ namespace YoApp.Clients.Manager
     {
         public AppUser User { get; private set; }
         private readonly IKeyValueStore _store;
+        private readonly IAccountService _accountService;
 
         public AppUserManager()
         {
-            _store = App.StorageResolver.Resolve<IKeyValueStore>();
+            _store = App.Persistence.Resolve<IKeyValueStore>();
+            _accountService = App.Services.Resolve<IAccountService>();
         }
 
         public async Task<AppUser> LoadUser()
@@ -46,8 +48,8 @@ namespace YoApp.Clients.Manager
                 StatusMessage = this.User.Status
             };
 
-            var result = await AccountService.SyncUpAsync(dto);
-            if (result == null)
+            var result = await _accountService.SyncUpAsync(dto);
+            if (result == false)
                 return false;
 
             await PersistUser();
@@ -60,7 +62,7 @@ namespace YoApp.Clients.Manager
         /// <returns>Was Sync successful</returns>
         public async Task<bool> SyncDownAsync()
         {
-            var dto = await AccountService.SyncDownAsync();
+            var dto = await _accountService.SyncDownAsync();
             if (dto == null)
                 return false;
 

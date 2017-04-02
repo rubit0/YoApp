@@ -78,5 +78,10 @@ namespace YoApp.Clients.Helpers.Extensions
                 return false;
             }
         }
+
+        public static int RemainingSeconds(this Account account)
+        {
+            return (int)(account.ExpiresIn() - DateTime.Now).TotalSeconds;
+        }
     }
 }

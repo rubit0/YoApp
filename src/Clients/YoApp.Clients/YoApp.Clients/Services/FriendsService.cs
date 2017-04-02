@@ -12,12 +12,12 @@ namespace YoApp.Clients.Services
     /// <summary>
     /// Service to handle friends on the backend.
     /// </summary>
-    public static class FriendsService
+    public class FriendsService : IFriendsService
     {
-        private static readonly Uri _baseAddress;
-        private static readonly Uri _isMemberAddress;
+        private readonly Uri _baseAddress;
+        private readonly Uri _isMemberAddress;
 
-        static FriendsService()
+        public FriendsService()
         {
             _baseAddress = new Uri(App.Settings.Friends.Url + "friends/");
             _isMemberAddress = new Uri(_baseAddress, "check");
@@ -28,9 +28,10 @@ namespace YoApp.Clients.Services
         /// </summary>
         /// <param name="phoneNumber">Check by this.</param>
         /// <returns>Is this a member.</returns>
-        public static async Task<bool> CheckMembership(string phoneNumber)
+        public async Task<bool> CheckMembership(string phoneNumber)
         {
-            await AuthenticationService.RequestToken();
+            if(string.IsNullOrWhiteSpace(phoneNumber))
+                throw new ArgumentNullException(nameof(phoneNumber));
 
             var request = new OAuth2BearerRequest("GET",
                 new Uri(_isMemberAddress, phoneNumber),
@@ -47,12 +48,10 @@ namespace YoApp.Clients.Services
         /// </summary>
         /// <param name="phoneNumbers">Targets to check</param>
         /// <returns>Members</returns>
-        public static async Task<IEnumerable<string>> CheckMembershipRange(IEnumerable<string> phoneNumbers)
+        public async Task<IEnumerable<string>> CheckMembershipRange(IEnumerable<string> phoneNumbers)
         {
             if(phoneNumbers == null)
                 throw new ArgumentNullException(nameof(phoneNumbers));
-
-            await AuthenticationService.RequestToken();
 
             var request = new OAuth2BearerRequest("POST", 
                 _isMemberAddress, 
@@ -74,12 +73,10 @@ namespace YoApp.Clients.Services
         /// </summary>
         /// <param name="phoneNumber">A validated phoneNumber.</param>
         /// <returns>Friend from backend.</returns>
-        public static async Task<Friend> FetchFriend(string phoneNumber)
+        public async Task<Friend> FetchFriend(string phoneNumber)
         {
             if (string.IsNullOrWhiteSpace(phoneNumber))
                 throw new ArgumentNullException(nameof(phoneNumber));
-
-            await AuthenticationService.RequestToken();
 
             var request = new OAuth2BearerRequest("GET",
                 new Uri(_baseAddress, phoneNumber),
@@ -101,12 +98,10 @@ namespace YoApp.Clients.Services
         /// </summary>
         /// <param name="phoneNumbers">Source phonenumbers.</param>
         /// <returns>Friends matching to given phoneNumbers.</returns>
-        public static async Task<IEnumerable<Friend>> FetchFriends(IEnumerable<string> phoneNumbers)
+        public async Task<IEnumerable<Friend>> FetchFriends(IEnumerable<string> phoneNumbers)
         {
             if (phoneNumbers == null)
                 throw new ArgumentNullException(nameof(phoneNumbers));
-
-            await AuthenticationService.RequestToken();
 
             var request = new OAuth2BearerRequest("POST",
                 _baseAddress,
@@ -135,12 +130,10 @@ namespace YoApp.Clients.Services
         /// </summary>
         /// <param name="phoneNumber">Target user to check by phoneNumber.</param>
         /// <returns>Users current nickname.</returns>
-        public static async Task<string> GetName(string phoneNumber)
+        public async Task<string> GetName(string phoneNumber)
         {
             if (string.IsNullOrWhiteSpace(phoneNumber))
                 throw new ArgumentNullException(nameof(phoneNumber));
-
-            await AuthenticationService.RequestToken();
 
             var request = new OAuth2BearerRequest("GET", 
                 new Uri(_baseAddress, $"{phoneNumber}/name"),
@@ -158,12 +151,10 @@ namespace YoApp.Clients.Services
         /// </summary>
         /// <param name="phoneNumber">Target user to check by phoneNumber.</param>
         /// <returns>Users current status message.</returns>
-        public static async Task<string> GetStatus(string phoneNumber)
+        public async Task<string> GetStatus(string phoneNumber)
         {
             if (string.IsNullOrWhiteSpace(phoneNumber))
                 throw new ArgumentNullException(nameof(phoneNumber));
-
-            await AuthenticationService.RequestToken();
 
             var request = new OAuth2BearerRequest("GET",
                 new Uri(_baseAddress, $"{phoneNumber}/status"),

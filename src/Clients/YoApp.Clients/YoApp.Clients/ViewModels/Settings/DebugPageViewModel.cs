@@ -45,8 +45,8 @@ namespace YoApp.Clients.ViewModels.Settings
         public DebugPageViewModel(IPageService pageService)
         {
             _pageService = pageService;
-            _friendsManager = App.Resolver.Resolve<IFriendsManager>();
-            _keyValueStore = App.StorageResolver.Resolve<IKeyValueStore>();
+            _friendsManager = App.Managers.Resolve<IFriendsManager>();
+            _keyValueStore = App.Persistence.Resolve<IKeyValueStore>();
             Initcommands();
         }
 

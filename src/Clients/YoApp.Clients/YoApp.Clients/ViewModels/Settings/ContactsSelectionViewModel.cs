@@ -31,7 +31,7 @@ namespace YoApp.Clients.ViewModels.Settings
         public ContactsSelectionViewModel(IPageService pageService)
         {
             _pageService = pageService;
-            _contactsManager = App.Resolver.Resolve<IContactsManager>();
+            _contactsManager = App.Managers.Resolve<IContactsManager>();
 
             ContactGroups = _contactsManager.BuildContactGroup();
 

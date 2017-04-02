@@ -21,7 +21,7 @@ namespace YoApp.Clients.ViewModels.Chats
         public ChatsListViewModel(IPageService pageService)
         {
             _pageService = pageService;
-            _chatManager = App.Resolver.Resolve<IChatManager>();
+            _chatManager = App.Managers.Resolve<IChatManager>();
 
             OpenFriendsListCommand = new Command(async
                 () => await OpenFriendsListPage(),

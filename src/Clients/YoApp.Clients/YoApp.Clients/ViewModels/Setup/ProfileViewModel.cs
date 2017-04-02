@@ -35,7 +35,7 @@ namespace YoApp.Clients.ViewModels.Setup
         public ProfileViewModel(IPageService pageService)
         {
             _pageService = pageService;
-            _appUserManager = App.Resolver.Resolve<IAppUserManager>();
+            _appUserManager = App.Managers.Resolve<IAppUserManager>();
 
             SubmitCommand = new Command(async () => await UpdateAndPersistUser(),
                 () => CanSubmit);

@@ -20,7 +20,7 @@ namespace YoApp.Clients.ViewModels.Settings
 
         public SettingsPageViewModel(IPageService pageService)
         {
-            _userManager = App.Resolver.Resolve<IAppUserManager>();
+            _userManager = App.Managers.Resolve<IAppUserManager>();
 
             if (ResourceKeys.IsDebug)
                 OpenDebugMenuCommand = new Command(async () =>

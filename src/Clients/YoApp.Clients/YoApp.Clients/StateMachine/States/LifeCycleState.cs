@@ -13,15 +13,17 @@ namespace YoApp.Clients.StateMachine.States
     {
         private readonly IContactsManager _contactsManager;
         private readonly IFriendsManager _friendsManager;
-        private readonly IKeyValueStore _keyValueStore;
+        private readonly ChatService _chatService;
+        private readonly IKeyValueStore _store;
         private readonly IAppUserManager _userManager;
 
         public LifeCycleState()
         {
-            _contactsManager = App.Resolver.Resolve<IContactsManager>();
-            _friendsManager = App.Resolver.Resolve<IFriendsManager>();
-            _keyValueStore = App.StorageResolver.Resolve<IKeyValueStore>();
-            _userManager = App.Resolver.Resolve<IAppUserManager>();
+            _contactsManager = App.Managers.Resolve<IContactsManager>();
+            _friendsManager = App.Managers.Resolve<IFriendsManager>();
+            _store = App.Persistence.Resolve<IKeyValueStore>();
+            _userManager = App.Managers.Resolve<IAppUserManager>();
+            _chatService = App.Services.Resolve<ChatService>();
         }
 
         public async Task HandleState(Lifecycle state)
@@ -46,21 +48,24 @@ namespace YoApp.Clients.StateMachine.States
         {
             await _userManager.LoadUser();
 
-            if (await AuthenticationService.CanRequest())
+            if (AuthenticationService.CanRequestToken())
                 await AuthenticationService.RequestToken(true);
 
             if (await _contactsManager.LoadContactsAsync())
                 await _friendsManager.ManageFriends(_contactsManager.Contacts);
+
+            if (App.Settings.SetupFinished)
+                await _chatService.Connect();
         }
 
         private async Task Sleep()
         {
-            await _keyValueStore.Persist();
+            await _store.Persist();
         }
 
         private async Task Resume()
         {
-            if (await AuthenticationService.CanRequest())
+            if (AuthenticationService.CanRequestToken())
                 await AuthenticationService.RequestToken(true);
 
             if (await _contactsManager.LoadContactsAsync())

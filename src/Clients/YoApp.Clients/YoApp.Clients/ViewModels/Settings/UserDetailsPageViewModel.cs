@@ -42,7 +42,7 @@ namespace YoApp.Clients.ViewModels.Settings
 
         public UserDetailsPageViewModel(IPageService pageService)
         {
-            _appUserManager = App.Resolver.Resolve<IAppUserManager>();
+            _appUserManager = App.Managers.Resolve<IAppUserManager>();
 
             _nickName = _appUserManager.User.Nickname;
             _statusMessage = _appUserManager.User.Status;

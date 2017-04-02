@@ -1,66 +1,93 @@
 ﻿using System;
-using System.Collections.ObjectModel;
-using System.Linq;
 using System.Threading.Tasks;
-using YoApp.Clients.Models;
-using YoApp.Clients.Pages.Chats;
-using YoApp.Clients.Persistence;
 using Microsoft.AspNet.SignalR.Client;
+using YoApp.Clients.Models;
+using Rubito.SimpleFormsAuth;
+using System.Collections.Generic;
+using System.Net;
+using Xamarin.Forms;
+using YoApp.Clients.Helpers.EventArgs;
 
 namespace YoApp.Clients.Services
 {
-    //public class ChatService
-    //{
-    //    public ObservableCollection<ChatPage> Pages { get; set; }
+    public class ChatService
+    {
+        public event EventHandler<ChatMessageReceivedEventArgs> OnChatMessageReceived;
 
-    //    private readonly IRealmStore _store;
-    //    private readonly Uri _baseAddress;
-    //    private HubConnection _connection;
-    //    private IHubProxy _mainProxy;
+        private readonly Uri _baseAddress;
+        private readonly Uri _sendMessageEndpoint;
+        private HubConnection _connection;
+        private IHubProxy _chatProxy;
 
-    //    public ChatService()
-    //    {
-    //        _store = App.StorageResolver.Resolve<IRealmStore>();
-    //        Pages = new ObservableCollection<ChatPage>();
-    //        _baseAddress = App.Settings.Identity.Url;
-    //    }
+        public ChatService()
+        {
+            _baseAddress = App.Settings.Chat.Url;
+            _sendMessageEndpoint = new Uri(App.Settings.Chat.Url, "/messages/send");
 
-    //    public async Task OpenChat(Friend friend)
-    //    {
-    //        if (App.Current.MainPage.Navigation.ModalStack.Any())
-    //            await App.Current.MainPage.Navigation.PopModalAsync();
+            SetupSignalR();
+        }
 
-    //        if (GetPageByFriend(friend) == null)
-    //        {
-    //            var chatBook = _store.Find<ChatBook>(friend.Key);
-    //            Pages.Add(new ChatPage(friend, chatBook));
-    //        }
+        private void OnTokenUpdatedHandler(object sender, string e)
+        {
+            if (_connection != null)
+                _connection.Headers["Authorization"] = $"Bearer {e}";
+        }
 
-    //        await App.Current.MainPage.Navigation.PopToRootAsync(false);
-    //        await App.Current.MainPage.Navigation.PushAsync(GetPageByFriend(friend));
-    //    }
+        public async Task<bool> Connect()
+        {
+            try
+            {
+                await _connection.Start();
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
 
-    //    public ChatPage GetPageByFriend(Friend friend)
-    //    {
-    //        return Pages.FirstOrDefault(p => p.Friend.Equals(friend));
-    //    }
+        public async Task<bool> SendMessage(Friend friend, string message)
+        {
+            var param = new Dictionary<string, string>
+            {
+                { "receiver", friend.PhoneNumber },
+                { "message", message }
+            };
 
-    //    public async Task Connect()
-    //    {
-    //        SetupSignalR();
-    //        await _connection.Start();
-    //    }
+            var request = new OAuth2BearerRequest("POST",
+                _sendMessageEndpoint,
+                param,
+                AuthenticationService.AuthAccount);
 
-    //    private void SetupSignalR()
-    //    {
-    //        _connection = new HubConnection(_baseAddress.ToString());
-    //        _connection.Headers.Add("Authorization", $"Bearer {AuthenticationService.AuthAccount.Properties["access_token"]}");
+            var response = await request.GetResponseAsync();
 
-    //        _mainProxy = _connection.CreateHubProxy("MainHub");
-    //        _mainProxy.On("OnWelcome", async (string s) =>
-    //        {
-    //            await App.Current.MainPage.DisplayAlert("SignalR Message", s, "Ok");
-    //        });
-    //    }
-    //}
+            return (response.StatusCode == HttpStatusCode.OK);
+        }
+
+        private void SetupSignalR()
+        {
+            _connection = new HubConnection(_baseAddress.ToString());
+
+            var token = AuthenticationService.AuthAccount?.Properties["access_token"] ?? "";
+            _connection.Headers.Add("Authorization", $"Bearer token");
+
+            _chatProxy = _connection.CreateHubProxy("MainHub");
+            _chatProxy.On("OnReceiveMessage", (string sender, string message) =>
+            {
+                ChatMessageReceivedHandler(sender, message);
+            });
+
+            AuthenticationService.OnTokenUpdated += OnTokenUpdatedHandler;
+        }
+
+        private void ChatMessageReceivedHandler(string sender, string message)
+        {
+            var args = new ChatMessageReceivedEventArgs {
+                Sender = sender,
+                Message = message
+            };
+
+            OnChatMessageReceived?.Invoke(this, args);
+        }
+    }
 }

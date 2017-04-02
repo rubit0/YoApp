@@ -49,7 +49,7 @@ namespace YoApp.Clients.ViewModels.Setup
         public EnterNumberViewModel(IPageService pageService)
         {
             _pageService = pageService;
-            _verificationManager = App.Resolver.Resolve<IVerificationManager>();
+            _verificationManager = App.Managers.Resolve<IVerificationManager>();
             _countryCodesRepository = new CountriesRepository();
             InitCountriesList();
 

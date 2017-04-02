@@ -20,7 +20,8 @@ namespace YoApp.Identity.Controllers
         private readonly IConfigurationService _configuration;
         private readonly UserManager<ApplicationUser> _userManager;
 
-        public VerificationController(ILogger<VerificationController> logger, DataWorker dataWorker, ISmsSender messageSender, IConfigurationService configuration, UserManager<ApplicationUser> userManager)
+        public VerificationController(ILogger<VerificationController> logger, DataWorker dataWorker, ISmsSender messageSender, 
+            IConfigurationService configuration, UserManager<ApplicationUser> userManager)
         {
             _logger = logger;
             _dataWorker = dataWorker;
@@ -29,8 +30,8 @@ namespace YoApp.Identity.Controllers
             _userManager = userManager;
         }
 
-        [HttpPost("challenge")]
-        public async Task<IActionResult> ChallengeVerification([FromForm]VerificationChallengeDto dto)
+        [HttpPost("request")]
+        public async Task<IActionResult> RequestVerification([FromForm]VerificationChallengeDto dto)
         {
             if (!ModelState.IsValid)
                 return BadRequest();

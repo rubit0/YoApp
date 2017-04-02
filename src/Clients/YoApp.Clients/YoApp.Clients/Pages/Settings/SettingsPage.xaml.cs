@@ -10,6 +10,7 @@ namespace YoApp.Clients.Pages.Settings
         {
             InitializeComponent();
             BindingContext = new SettingsPageViewModel(this);
+            DebugButton.IsVisible = ResourceKeys.IsDebug;
         }
     }
 }

@@ -17,13 +17,16 @@ namespace YoApp.Clients.Manager
     public class FriendsManager : IFriendsManager
     {
         public ObservableCollection<Friend> Friends { get; private set; }
+
         private readonly IKeyValueStore _store;
         private readonly IRealmStore _realmStore;
+        private readonly IFriendsService _friendsService;
 
         public FriendsManager()
         {
-            _store = App.StorageResolver.Resolve<IKeyValueStore>();
-            _realmStore = App.StorageResolver.Resolve<IRealmStore>();
+            _store = App.Persistence.Resolve<IKeyValueStore>();
+            _realmStore = App.Persistence.Resolve<IRealmStore>();
+            _friendsService = App.Services.Resolve<IFriendsService>();
 
             _store.GetAllObservable<Friend>()
                 .Subscribe(friends =>
@@ -49,7 +52,10 @@ namespace YoApp.Clients.Manager
                 .ToList();
 
             MatchFriendsToContacts(looseFriends, contacts);
-            await DiscoverFriendsAsync(contacts);
+
+            if (CrossConnectivity.Current.IsConnected 
+                && App.Settings.SetupFinished)
+                await DiscoverFriendsAsync(contacts);
 
             //Persist
             await _store.Persist();
@@ -79,11 +85,6 @@ namespace YoApp.Clients.Manager
         /// </summary>
         public async Task DiscoverFriendsAsync(List<LocalContact> contacts)
         {
-            if (AuthenticationService.AuthAccount == null
-                || !CrossConnectivity.Current.IsConnected
-                || !await CrossConnectivity.Current.IsServiceOnlineAsync())
-                return;
-
             //Find unassociated contacts
             var contactsFromFriends = Friends.Select(f => f.LocalContact);
             var unassociatedContacts = contacts.Except(contactsFromFriends, new ContactComparer());
@@ -93,15 +94,18 @@ namespace YoApp.Clients.Manager
                 if (!contact.IsValidPhoneNumber)
                     continue;
 
-                if (!await FriendsService.CheckMembership(contact.NormalizedPhoneNumber))
+                if (!await _friendsService.CheckMembership(contact.NormalizedPhoneNumber))
                     continue;
 
-                var friend = await FriendsService.FetchFriend(contact.NormalizedPhoneNumber);
+                var friend = await _friendsService.FetchFriend(contact.NormalizedPhoneNumber);
                 if (friend == null)
                     continue;
 
+                friend.LocalContact = contact;
+
                 //Persist friend
                 await _store.Insert(friend);
+
                 Friends.Add(friend);
 
                 //Persist chatbook
@@ -124,7 +128,7 @@ namespace YoApp.Clients.Manager
 
             foreach (var friend in stale)
             {
-                await _store.Remove<Friend>(friend);
+                await _store.Remove(friend);
                 Friends.Remove(friend);
 
                 //Remove Chatbook

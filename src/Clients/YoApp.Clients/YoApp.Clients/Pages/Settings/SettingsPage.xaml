@@ -5,7 +5,7 @@
              Title="Settings"
              NavigationPage.HasBackButton="False" >
   <StackLayout>
-    <Button IsVisible="{StaticResource isDebug}" 
+    <Button x:Name="DebugButton" IsVisible="{StaticResource isDebug}" 
             Text="🔨 Debug Menu" 
             Command="{Binding OpenDebugMenuCommand}" />
 
