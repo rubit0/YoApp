@@ -80,10 +80,13 @@ namespace YoApp.Clients.Helpers
         {
             var store = App.Persistence.Resolve<IKeyValueStore>();
             var settings = store.GetObservable<AppSettings>(nameof(AppSettings)).Wait();
-            if (settings != null)
-                return settings;
+            if (settings == null)
+                settings = LoadAppSettingsFromRessource();
 
-            return LoadAppSettingsFromRessource();
+            ResourceKeys.NicknameMaxLength = settings.Conventions.NicknameMaxLength;
+            ResourceKeys.StatusMessageMaxLength = settings.Conventions.StatusMessageMaxLength;
+
+            return settings;
         }
 
         /// <summary>

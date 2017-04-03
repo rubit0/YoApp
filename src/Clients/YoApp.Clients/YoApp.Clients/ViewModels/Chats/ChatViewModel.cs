@@ -36,6 +36,8 @@ namespace YoApp.Clients.ViewModels.Chats
             };
 
             _chatBook.PushMessage(pending);
+
+            //TODO Handle failed delivery
             var result = await _chatService.SendMessage(_friend, message);
         }
     }

@@ -5,7 +5,6 @@ using YoApp.Clients.Models;
 using Rubito.SimpleFormsAuth;
 using System.Collections.Generic;
 using System.Net;
-using Xamarin.Forms;
 using YoApp.Clients.Helpers.EventArgs;
 
 namespace YoApp.Clients.Services
@@ -60,7 +59,6 @@ namespace YoApp.Clients.Services
                 AuthenticationService.AuthAccount);
 
             var response = await request.GetResponseAsync();
-
             return (response.StatusCode == HttpStatusCode.OK);
         }
 

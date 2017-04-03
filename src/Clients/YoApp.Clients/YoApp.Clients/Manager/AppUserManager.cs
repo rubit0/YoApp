@@ -79,7 +79,7 @@ namespace YoApp.Clients.Manager
         /// <param name="phoneNumber">Will be treated like an username</param>
         public void InitUser(string phoneNumber)
         {
-            this.User = new AppUser
+            User = new AppUser
             {
                 Nickname = "",
                 PhoneNumber = phoneNumber,
