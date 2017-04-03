@@ -41,19 +41,26 @@ namespace YoApp.Clients.Services
             var authenticator = new OAuth2PasswordCredentialsAuthenticator(_tokenEndpoint);
             authenticator.SetCredentials(username, password);
 
-            var account = await authenticator.SignInAsync();
-            if (account == null)
+            try
+            {
+                var account = await authenticator.SignInAsync();
+                if (account == null)
+                    return false;
+
+                account.Properties.Add("password", password);
+                account.Properties.Add("date", DateTime.Now.ToString());
+
+                await _accountStore.SaveAsync(account, App.Settings.ServiceId);
+
+                AuthAccount = account;
+                OnTokenUpdated?.Invoke(null, (string)account.Properties["access_token"]);
+
+                return true;
+            }
+            catch (Exception)
+            {
                 return false;
-
-            account.Properties.Add("password", password);
-            account.Properties.Add("date", DateTime.Now.ToString());
-
-            await _accountStore.SaveAsync(account, App.Settings.ServiceId);
-
-            AuthAccount = account;
-            OnTokenUpdated?.Invoke(null, (string)account.Properties["access_token"]);
-
-            return true;
+            }
         }
 
         /// <summary>

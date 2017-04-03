@@ -33,14 +33,21 @@ namespace YoApp.Clients.Services
             if(string.IsNullOrWhiteSpace(phoneNumber))
                 throw new ArgumentNullException(nameof(phoneNumber));
 
-            var request = new OAuth2BearerRequest("GET",
-                new Uri(_isMemberAddress, phoneNumber),
-                null,
-                AuthenticationService.AuthAccount);
+            try
+            {
+                var request = new OAuth2BearerRequest("GET", 
+                    new Uri(_isMemberAddress, phoneNumber),
+                    null,
+                    AuthenticationService.AuthAccount);
 
-            var response = await request.GetResponseAsync();
+                var response = await request.GetResponseAsync();
 
-            return (response.StatusCode == HttpStatusCode.OK);
+                return (response.StatusCode == HttpStatusCode.OK);
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
 
         /// <summary>
@@ -61,11 +68,18 @@ namespace YoApp.Clients.Services
             var serialized = JsonConvert.SerializeObject(phoneNumbers);
             request.SetRequestBody(serialized);
 
-            var response = await request.GetResponseAsync();
-            var text = response.GetResponseText();
-            var deserialized = JsonConvert.DeserializeObject<IEnumerable<string>>(text);
+            try
+            {
+                var response = await request.GetResponseAsync();
+                var text = response.GetResponseText();
+                var deserialized = JsonConvert.DeserializeObject<IEnumerable<string>>(text);
 
-            return deserialized;
+                return deserialized;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
         }
 
         /// <summary>
@@ -83,14 +97,21 @@ namespace YoApp.Clients.Services
                 null,
                 AuthenticationService.AuthAccount);
 
-            var response = await request.GetResponseAsync();
-            if (response.StatusCode != HttpStatusCode.OK)
+            try
+            {
+                var response = await request.GetResponseAsync();
+                if (response.StatusCode != HttpStatusCode.OK)
+                    return null;
+
+                var body = await response.GetResponseTextAsync();
+
+                var dto = JsonConvert.DeserializeObject<UserDto>(body);
+                return Friend.CreateFromDto(dto);
+            }
+            catch (Exception)
+            {
                 return null;
-
-            var body = await response.GetResponseTextAsync();
-
-            var dto = JsonConvert.DeserializeObject<UserDto>(body);
-            return Friend.CreateFromDto(dto);
+            }
         }
 
         /// <summary>
@@ -111,18 +132,25 @@ namespace YoApp.Clients.Services
             var serialized = JsonConvert.SerializeObject(phoneNumbers);
             request.SetRequestBody(serialized);
 
-            var response = await request.GetResponseAsync();
-            if (response.StatusCode != HttpStatusCode.OK)
+            try
+            {
+                var response = await request.GetResponseAsync();
+                if (response.StatusCode != HttpStatusCode.OK)
+                    return null;
+
+                var body = await response.GetResponseTextAsync();
+                var dtos = JsonConvert.DeserializeObject<IEnumerable<UserDto>>(body);
+
+                var friends = new List<Friend>();
+                foreach (var dto in dtos)
+                    friends.Add(Friend.CreateFromDto(dto));
+
+                return friends;
+            }
+            catch (Exception)
+            {
                 return null;
-
-            var body = await response.GetResponseTextAsync();
-            var dtos = JsonConvert.DeserializeObject<IEnumerable<UserDto>>(body);
-
-            var friends = new List<Friend>();
-            foreach (var dto in dtos)
-                friends.Add(Friend.CreateFromDto(dto));
-
-            return friends;
+            }
         }
 
         /// <summary>
@@ -140,10 +168,17 @@ namespace YoApp.Clients.Services
                 null,
                 AuthenticationService.AuthAccount);
 
-            var response = await request.GetResponseAsync();
-            var body = await response.GetResponseTextAsync();
+            try
+            {
+                var response = await request.GetResponseAsync();
+                var body = await response.GetResponseTextAsync();
 
-            return JsonConvert.DeserializeObject<string>(body);
+                return JsonConvert.DeserializeObject<string>(body);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
         }
 
         /// <summary>
@@ -161,10 +196,17 @@ namespace YoApp.Clients.Services
                 null,
                 AuthenticationService.AuthAccount);
 
-            var response = await request.GetResponseAsync();
-            var body = await response.GetResponseTextAsync();
+            try
+            {
+                var response = await request.GetResponseAsync();
+                var body = await response.GetResponseTextAsync();
 
-            return JsonConvert.DeserializeObject<string>(body);
+                return JsonConvert.DeserializeObject<string>(body);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
         }
     }
 }
