@@ -15,12 +15,12 @@ namespace YoApp.Identity.Controllers
     public class VerificationController : Controller
     {
         private readonly ILogger _logger;
-        private readonly DataWorker _dataWorker;
+        private readonly Persistence _dataWorker;
         private readonly ISmsSender _messageSender;
         private readonly IConfigurationService _configuration;
         private readonly UserManager<ApplicationUser> _userManager;
 
-        public VerificationController(ILogger<VerificationController> logger, DataWorker dataWorker, ISmsSender messageSender, 
+        public VerificationController(ILogger<VerificationController> logger, Persistence dataWorker, ISmsSender messageSender, 
             IConfigurationService configuration, UserManager<ApplicationUser> userManager)
         {
             _logger = logger;
