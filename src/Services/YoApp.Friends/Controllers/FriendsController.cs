@@ -16,10 +16,10 @@ namespace YoApp.Identity.Controllers
     public class FriendsController : Controller
     {
         private readonly ILogger _logger;
-        private readonly DataWorker _dataWorker;
+        private readonly IFriendsPersistence _dataWorker;
         private readonly IMapper _mapper;
 
-        public FriendsController(ILogger<FriendsController> logger, DataWorker dataWorker, IMapper mapper)
+        public FriendsController(ILogger<FriendsController> logger, IFriendsPersistence dataWorker, IMapper mapper)
         {
             _logger = logger;
             _dataWorker = dataWorker;

@@ -59,7 +59,7 @@ namespace YoApp.Friends
             services.AddSingleton<ILoggerFactory, LoggerFactory>();
             services.AddSingleton(typeof(ILogger<>), typeof(Logger<>));
             services.AddScoped<IFriendsRepository, FriendsRepository>();
-            services.AddScoped<DataWorker>();
+            services.AddScoped<IFriendsPersistence, Persistence>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

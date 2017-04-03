@@ -36,8 +36,6 @@ namespace YoApp.Chat.Controllers
 
             _logger.LogInformation($"Sending chat message from{User.Identity.Name} to {receiver}");
 
-            var isReceiverOnline = _hubContext.
-
             await _hubContext.Clients.User(receiver).OnReceiveMessage(User.Identity.Name, message);
             return Ok();
         }
