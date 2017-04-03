@@ -11,6 +11,8 @@ using YoApp.Identity.Services.Interfaces;
 using YoApp.Identity.Helper;
 using Microsoft.AspNetCore.Identity;
 using YoApp.Data.Models;
+using System.Linq;
+using System;
 
 namespace YoApp.Tests.Services.Identity.Controller
 {
@@ -33,16 +35,15 @@ namespace YoApp.Tests.Services.Identity.Controller
                 PhoneNumber = "1730456789"
             };
 
-            var unitOfWorkMock = new Mock<Persistence>();
+            var persistenceMock = new Mock<IIdentityPersistence>();
             var messageSenderMock = new Mock<ISmsSender>();
-            var userManagerMock = new Mock<UserManager<ApplicationUser>>();
+            var userManagerMock = MockHelpers.GetMockUserManager();
 
             var configurationMock = new Mock<IConfigurationService>();
-            var validCountryCode = new List<int> { 1, 11, 111 };
             configurationMock
-                .SetupGet(c => c.CountriesBlackList).Returns(validCountryCode);
+                .SetupGet(c => c.CountriesBlackList).Returns(new List<int> { 1, 12, 49 });
 
-            var controller = new VerificationController(_logger, unitOfWorkMock.Object, messageSenderMock.Object, configurationMock.Object, userManagerMock.Object);
+            var controller = new VerificationController(_logger, persistenceMock.Object, messageSenderMock.Object, configurationMock.Object, userManagerMock.Object);
 
             //Act
             var response = await controller.RequestVerification(form);
@@ -51,197 +52,181 @@ namespace YoApp.Tests.Services.Identity.Controller
             Assert.IsType<BadRequestObjectResult>(response);
         }
 
-        //[Fact]
-        //public async void ChallengeVerification_OnSmsSendingFailure_ReturnsStatusCode500()
-        //{
-        //    //Arrange
-        //    var form = new VerificationChallengeDto
-        //    {
-        //        CountryCode = "49",
-        //        PhoneNumber = "1730456789"
-        //    };
+        [Fact]
+        public async void RequestVerification_OnSmsSendingFailure_ReturnsStatusCode500()
+        {
+            //Arrange
+            var form = new VerificationChallengeDto
+            {
+                PhoneNumber = "1730456789",
+                CountryCode = "49"
+            };
 
-        //    var unitOfWorkMock = new Mock<IUnitOfWork>();
-        //    var messageSenderMock = new Mock<ISmsSender>();
-        //    messageSenderMock
-        //        .Setup(ms => ms.SendMessageAsync(It.IsAny<string>(), It.IsAny<string>()))
-        //        .ReturnsAsync(false);
+            var userManagerMock = MockHelpers.GetMockUserManager();
+            var persistenceMock = new Mock<IIdentityPersistence>();
+            var messageSenderMock = new Mock<ISmsSender>();
+            messageSenderMock
+                .Setup(ms => ms.SendMessageAsync(It.IsAny<string>(), It.IsAny<string>()))
+                .ReturnsAsync(false);
 
-        //    var configurationMock = new Mock<IConfigurationService>();
-        //    var validCountryCode = new List<int> { 49 };
-        //    configurationMock
-        //        .SetupGet(c => c.ValidCountryCallCodes).Returns(validCountryCode);
+            var configurationMock = new Mock<IConfigurationService>();
+            configurationMock
+                .SetupGet(c => c.CountriesBlackList).Returns(new int[]{ });
 
-        //    var controller = new VerificationController(_logger, unitOfWorkMock.Object, messageSenderMock.Object, configurationMock.Object);
+            var controller = new VerificationController(_logger, persistenceMock.Object, messageSenderMock.Object, configurationMock.Object, userManagerMock.Object);
 
-        //    //Act
-        //    var response = await controller.ChallengeVerification(form);
+            //Act
+            var response = await controller.RequestVerification(form);
 
-        //    //Assert
-        //    Assert.IsType<StatusCodeResult>(response);
-        //}
+            //Assert
+            Assert.IsType<StatusCodeResult>(response);
+        }
 
-        //[Fact]
-        //public async void ChallengeVerification_OnValidForm_ReturnsOk()
-        //{
-        //    //Arrange
-        //    var form = new VerificationChallengeDto
-        //    {
-        //        CountryCode = "49",
-        //        PhoneNumber = "1730456789"
-        //    };
+        [Fact]
+        public async void RequestVerification_OnValidForm_ReturnsOk()
+        {
+            //Arrange
+            var form = new VerificationChallengeDto
+            {
+                CountryCode = "49",
+                PhoneNumber = "1730456789"
+            };
 
-        //    var unitOfWorkMock = new Mock<IUnitOfWork>();
-        //    unitOfWorkMock
-        //        .Setup(r => r.VerificationRequestsRepository
-        //        .FindByPhone(It.IsAny<string>()));
+            var userManagerMock = MockHelpers.GetMockUserManager();
+            var persistenceMock = new Mock<IIdentityPersistence>();
+            persistenceMock
+                .Setup(r => r.VerificationTokens
+                .FindByUserAsync(It.IsAny<string>()));
 
-        //    unitOfWorkMock
-        //        .Setup(r => r.VerificationRequestsRepository
-        //        .AddAsync(It.IsAny<VerificationtRequest>()))
-        //        .Returns(Task.FromResult(false));
+            persistenceMock
+                .Setup(r => r.VerificationTokens
+                .AddAsync(It.IsAny<VerificationToken>()))
+                .Returns(Task.FromResult(false));
 
-        //    var messageSenderMock = new Mock<ISmsSender>();
-        //    messageSenderMock
-        //        .Setup(ms => ms.SendMessageAsync(It.IsAny<string>(), It.IsAny<string>()))
-        //        .ReturnsAsync(true);
+            var messageSenderMock = new Mock<ISmsSender>();
+            messageSenderMock
+                .Setup(ms => ms.SendMessageAsync(It.IsAny<string>(), It.IsAny<string>()))
+                .ReturnsAsync(true);
 
-        //    var configurationMock = new Mock<IConfigurationService>();
-        //    var validCountryCode = new List<int> { 49 };
-        //    configurationMock
-        //        .SetupGet(c => c.ValidCountryCallCodes).Returns(validCountryCode);
+            var configurationMock = new Mock<IConfigurationService>();
+            configurationMock
+                .SetupGet(c => c.CountriesBlackList).Returns(new int[] { });
 
-        //    var controller = new VerificationController(_logger, unitOfWorkMock.Object, messageSenderMock.Object, configurationMock.Object);
+            var controller = new VerificationController(_logger, persistenceMock.Object, messageSenderMock.Object, configurationMock.Object, userManagerMock.Object);
 
-        //    //Act
-        //    var response = await controller.ChallengeVerification(form);
+            //Act
+            var response = await controller.RequestVerification(form);
 
-        //    //Assert
-        //    Assert.IsType<OkResult>(response);
-        //}
+            //Assert
+            Assert.IsType<OkResult>(response);
+        }
 
-        //[Fact]
-        //public async void ResolveVerification_OnNullVerificationRequests_ReturnsBadRequest()
-        //{
-        //    //Arrange
-        //    var verificationResponseDto = new VerificationResolveDto
-        //    {
-        //        PhoneNumber = "491736890",
-        //        Password = "123456789",
-        //        VerificationCode = "789-789"
-        //    };
+        [Fact]
+        public async void ResolveVerification_OnNullVerificationRequests_ReturnsBadRequest()
+        {
+            //Arrange
+            var verificationResponseDto = new VerificationResolveDto
+            {
+                PhoneNumber = "491736890",
+                Password = "123456789",
+                VerificationCode = "789-789"
+            };
 
-        //    var unitOfWorkMock = new Mock<IUnitOfWork>();
-        //    unitOfWorkMock
-        //        .Setup(r => r.VerificationRequestsRepository
-        //        .FindByPhoneAsync(It.IsAny<string>()))
-        //        .ReturnsAsync(null);
+            var userManagerMock = MockHelpers.GetMockUserManager();
+            var persistenceMock = new Mock<IIdentityPersistence>();
+            persistenceMock
+                .Setup(r => r.VerificationTokens
+                .FindByUserAsync(It.IsAny<string>()))
+                .Returns(Task.FromResult<VerificationToken>(null));
 
-        //    var messageSenderMock = new Mock<ISmsSender>();
-        //    var configurationMock = new Mock<IConfigurationService>();
+            var messageSenderMock = new Mock<ISmsSender>();
+            var configurationMock = new Mock<IConfigurationService>();
 
-        //    var controller = new VerificationController(_logger, unitOfWorkMock.Object, messageSenderMock.Object, configurationMock.Object);
+            var controller = new VerificationController(_logger, persistenceMock.Object, messageSenderMock.Object, configurationMock.Object, userManagerMock.Object);
 
-        //    //Act
-        //    var response = await controller.ResolveVerification(verificationResponseDto);
+            //Act
+            var response = await controller.ResolveVerification(verificationResponseDto);
 
-        //    //Assert
-        //    Assert.IsType<BadRequestObjectResult>(response);
-        //}
+            //Assert
+            Assert.IsType<BadRequestObjectResult>(response);
+        }
 
-        //[Fact]
-        //public async void ResolveVerification_OnNotMatchingCode_ReturnsBadRequest()
-        //{
-        //    //Arrange
-        //    var verificationResponseDto = new VerificationResolveDto
-        //    {
-        //        PhoneNumber = "491736890",
-        //        Password = "123456789",
-        //        VerificationCode = "123-456"
-        //    };
+        [Fact]
+        public async void ResolveVerification_OnNotMatchingCode_ReturnsBadRequest()
+        {
+            //Arrange
+            var resolveDto = new VerificationResolveDto
+            {
+                PhoneNumber = "491736890",
+                Password = "123456789",
+                VerificationCode = "123456"
+            };
 
-        //    var requestDto = new VerificationtRequest { VerificationCode = "456-789" };
+            var token = new VerificationToken { Expires = DateTime.MaxValue };
 
-        //    var unitOfWorkMock = new Mock<IUnitOfWork>();
-        //    unitOfWorkMock
-        //        .Setup(r => r.VerificationRequestsRepository
-        //        .FindByPhoneAsync(It.IsAny<string>()))
-        //        .ReturnsAsync(requestDto);
+            var userManagerMock = MockHelpers.GetMockUserManager();
+            var persistenceMock = new Mock<IIdentityPersistence>();
+            persistenceMock
+                .Setup(r => r.VerificationTokens
+                .FindByUserAsync(It.IsAny<string>()))
+                .ReturnsAsync(token);
 
-        //    var messageSenderMock = new Mock<ISmsSender>();
-        //    var configurationMock = new Mock<IConfigurationService>();
+            var messageSenderMock = new Mock<ISmsSender>();
+            var configurationMock = new Mock<IConfigurationService>();
 
-        //    var controller = new VerificationController(_logger, unitOfWorkMock.Object, messageSenderMock.Object, configurationMock.Object);
+            var controller = new VerificationController(_logger, persistenceMock.Object, messageSenderMock.Object, configurationMock.Object, userManagerMock.Object);
 
-        //    //Act
-        //    var response = await controller.ResolveVerification(verificationResponseDto);
+            //Act
+            var response = await controller.ResolveVerification(resolveDto);
 
-        //    //Assert
-        //    Assert.IsType<BadRequestObjectResult>(response);
-        //}
+            //Assert
+            Assert.IsType<BadRequestObjectResult>(response);
+        }
 
-        //[Fact]
-        //public async void ResolveVerification_OnMatchingCode_ReturnsOk()
-        //{
-        //    //Arrange
-        //    var verificationResponseDto = new VerificationResolveDto
-        //    {
-        //        PhoneNumber = "491736890",
-        //        Password = "123456789",
-        //        VerificationCode = "123-456"
-        //    };
+        [Fact]
+        public async void ResolveVerification_OnMatchingCode_ReturnsOk()
+        {
+            //Arrange
+            var verificationResponseDto = new VerificationResolveDto
+            {
+                PhoneNumber = "491736890",
+                Password = "123456789",
+                VerificationCode = "123456"
+            };
 
-        //    var requestDto = new VerificationtRequest
-        //    {
-        //        PhoneNumber = "491736890",
-        //        VerificationCode = "123-456"
-        //    };
+            var token = new VerificationToken
+            {
+                User = "491736890",
+                Code = "123456",
+                Expires = DateTime.MaxValue
+            };
 
-        //    var appUser = new ApplicationUser();
+            var appUser = new ApplicationUser();
 
-        //    var unitOfWorkMock = new Mock<IUnitOfWork>();
-        //    unitOfWorkMock
-        //        .Setup(r => r.VerificationRequestsRepository
-        //        .FindByPhoneAsync(It.IsAny<string>()))
-        //        .ReturnsAsync(requestDto);
+            var persistenceMock = new Mock<IIdentityPersistence>();
+            persistenceMock
+                .Setup(r => r.VerificationTokens
+                .FindByUserAsync(It.IsAny<string>()))
+                .ReturnsAsync(token);
 
-        //    unitOfWorkMock
-        //        .Setup(r => r.UserRepository.GetByUsernameAsync(It.IsAny<string>()))
-        //        .ReturnsAsync(appUser);
-        //    unitOfWorkMock.Setup(r => r.VerificationRequestsRepository.RemoveById(It.IsAny<int>()));
+            persistenceMock
+                .Setup(r => r.VerificationTokens.Remove(token));
 
-        //    var messageSenderMock = new Mock<ISmsSender>();
-        //    var configurationMock = new Mock<IConfigurationService>();
+            var userManagerMock = MockHelpers.GetMockUserManager();
+            userManagerMock
+                .Setup(r => r.FindByNameAsync(It.IsAny<string>()))
+                .ReturnsAsync(appUser);
 
-        //    var controller = new VerificationController(_logger, unitOfWorkMock.Object, messageSenderMock.Object, configurationMock.Object);
+            var messageSenderMock = new Mock<ISmsSender>();
+            var configurationMock = new Mock<IConfigurationService>();
 
-        //    //Act
-        //    var response = await controller.ResolveVerification(verificationResponseDto);
+            var controller = new VerificationController(_logger, persistenceMock.Object, messageSenderMock.Object, configurationMock.Object, userManagerMock.Object);
 
-        //    //Assert
-        //    Assert.IsType<OkResult>(response);
-        //}
+            //Act
+            var response = await controller.ResolveVerification(verificationResponseDto);
 
-        //[Theory]
-        //[InlineData(50)]
-        //public void GenerateVerificationCode_ReturnsValidCodes(int times)
-        //{
-        //    //Arrange
-        //    var result = true;
-
-        //    //Act
-        //    for (int i = 0; i < times; i++)
-        //    {
-        //        var code = Utils.Misc.CodeGenerator.GetCode();
-        //        if (code.Length < 6)
-        //        {
-        //            result = false;
-        //            break;
-        //        }
-        //    }
-
-        //    //Assert
-        //    Assert.True(result);
-        //}
+            //Assert
+            Assert.IsType<OkResult>(response);
+        }
     }
 }

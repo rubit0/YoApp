@@ -5,7 +5,6 @@ using Moq;
 using Xunit;
 using YoApp.Identity.Controllers;
 using YoApp.Friends.Helper;
-using YoApp.Data.Repositories;
 using Microsoft.AspNetCore.Http;
 using YoApp.Data.Models;
 using System.Threading.Tasks;
@@ -109,11 +108,8 @@ namespace YoApp.Tests.Services.Friends.Controller
                 new ApplicationUser { UserName = "456" }
             };
 
-            var fakeDtos = new List<UserDto>
-            {
-                new UserDto{ Username = fakeUsers[0].UserName },
-                new UserDto{ Username = fakeUsers[1].UserName },
-            };
+            var fakeDtos = new List<UserDto>();
+            fakeUsers.ForEach(a => fakeDtos.Add(new UserDto { Username = a.UserName }));
 
             var persistenceMock = new Mock<IFriendsPersistence>();
             persistenceMock

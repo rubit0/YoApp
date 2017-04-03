@@ -15,12 +15,12 @@ namespace YoApp.Identity.Controllers
     public class VerificationController : Controller
     {
         private readonly ILogger _logger;
-        private readonly Persistence _dataWorker;
+        private readonly IIdentityPersistence _dataWorker;
         private readonly ISmsSender _messageSender;
         private readonly IConfigurationService _configuration;
         private readonly UserManager<ApplicationUser> _userManager;
 
-        public VerificationController(ILogger<VerificationController> logger, Persistence dataWorker, ISmsSender messageSender, 
+        public VerificationController(ILogger<VerificationController> logger, IIdentityPersistence dataWorker, ISmsSender messageSender, 
             IConfigurationService configuration, UserManager<ApplicationUser> userManager)
         {
             _logger = logger;
@@ -36,7 +36,7 @@ namespace YoApp.Identity.Controllers
             if (!ModelState.IsValid)
                 return BadRequest();
 
-            if(_configuration.CountriesBlackList.Contains(dto.CountryCodeToInt()))
+            if(_configuration.CountriesBlackList.Contains(dto.ParseCountryCode()))
                 return BadRequest($"Country [{dto.CountryCode}] is not supported.");
 
             var number = dto.ToString();

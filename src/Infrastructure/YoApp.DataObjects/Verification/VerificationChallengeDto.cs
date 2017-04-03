@@ -18,7 +18,7 @@ namespace YoApp.DataObjects.Verification
         /// Rerturns the CountryCode as an int.
         /// </summary>
         /// <returns></returns>
-        public int CountryCodeToInt()
+        public int ParseCountryCode()
         {
             var result = 0;
             int.TryParse(this.CountryCode, out result);
