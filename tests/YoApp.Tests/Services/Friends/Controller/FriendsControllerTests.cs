@@ -10,6 +10,7 @@ using YoApp.Data.Models;
 using System.Threading.Tasks;
 using YoApp.DataObjects.Users;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace YoApp.Tests.Services.Friends.Controller
 {
@@ -67,7 +68,7 @@ namespace YoApp.Tests.Services.Friends.Controller
 
         [Theory]
         [InlineData("Bob")]
-        public async void FindFriend_OnOkResponse_ReturnsUserDtoWithValidProperties(string phoneNumber)
+        public async void FindFriend_OnOkResponse_ReturnsOkWithUserDtoWithValidProperties(string phoneNumber)
         {
             //Arrange
             var fakeUser = new ApplicationUser { UserName = phoneNumber };
@@ -97,7 +98,7 @@ namespace YoApp.Tests.Services.Friends.Controller
         }
 
         [Fact]
-        public async void FindFriends_OnAnyFindingMatches_ReturnsOk()
+        public async void FindFriends_OnAnyFindingMatches_ReturnsOkWithUserDtos()
         {
             //Arrange
             var requestPhoneNumbers = new List<string> { "123", "456", "789" };
@@ -126,9 +127,11 @@ namespace YoApp.Tests.Services.Friends.Controller
 
             //Act
             var response = await controller.FindUsers(requestPhoneNumbers);
+            var dtos = ((OkObjectResult)response).Value as IEnumerable<UserDto>;
 
             //Assert
             Assert.IsType<OkObjectResult>(response);
+            Assert.Equal(fakeUsers.Count, dtos.Count());
         }
     }
 }
