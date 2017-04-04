@@ -9,9 +9,7 @@ using YoApp.Identity.Controllers;
 using YoApp.Identity;
 using YoApp.Identity.Services.Interfaces;
 using YoApp.Identity.Helper;
-using Microsoft.AspNetCore.Identity;
 using YoApp.Data.Models;
-using System.Linq;
 using System;
 
 namespace YoApp.Tests.Services.Identity.Controller
@@ -26,7 +24,7 @@ namespace YoApp.Tests.Services.Identity.Controller
         }
 
         [Fact]
-        public async void RequestVerification_OnBlackListedCountryCode_ReturnsBadRequest()
+        public async void RequestVerification_OnBlackListedCountryCode_BadRequest()
         {
             //Arrange
             var form = new VerificationChallengeDto
@@ -43,9 +41,10 @@ namespace YoApp.Tests.Services.Identity.Controller
             configurationMock
                 .SetupGet(c => c.CountriesBlackList).Returns(new List<int> { 1, 12, 49 });
 
-            var controller = new VerificationController(_logger, persistenceMock.Object, messageSenderMock.Object, configurationMock.Object, userManagerMock.Object);
-
             //Act
+            var controller = new VerificationController(_logger, persistenceMock.Object, 
+                messageSenderMock.Object, configurationMock.Object, userManagerMock.Object);
+
             var response = await controller.RequestVerification(form);
 
             //Assert
@@ -53,7 +52,7 @@ namespace YoApp.Tests.Services.Identity.Controller
         }
 
         [Fact]
-        public async void RequestVerification_OnSmsSendingFailure_ReturnsStatusCode500()
+        public async void RequestVerification_OnSmsSendingFailure_StatusCode500()
         {
             //Arrange
             var form = new VerificationChallengeDto
@@ -73,9 +72,10 @@ namespace YoApp.Tests.Services.Identity.Controller
             configurationMock
                 .SetupGet(c => c.CountriesBlackList).Returns(new int[]{ });
 
-            var controller = new VerificationController(_logger, persistenceMock.Object, messageSenderMock.Object, configurationMock.Object, userManagerMock.Object);
-
             //Act
+            var controller = new VerificationController(_logger, persistenceMock.Object, 
+                messageSenderMock.Object, configurationMock.Object, userManagerMock.Object);
+
             var response = await controller.RequestVerification(form);
 
             //Assert
@@ -83,7 +83,7 @@ namespace YoApp.Tests.Services.Identity.Controller
         }
 
         [Fact]
-        public async void RequestVerification_OnValidForm_ReturnsOk()
+        public async void RequestVerification_OnValidForm_Ok()
         {
             //Arrange
             var form = new VerificationChallengeDto
@@ -112,9 +112,10 @@ namespace YoApp.Tests.Services.Identity.Controller
             configurationMock
                 .SetupGet(c => c.CountriesBlackList).Returns(new int[] { });
 
-            var controller = new VerificationController(_logger, persistenceMock.Object, messageSenderMock.Object, configurationMock.Object, userManagerMock.Object);
-
             //Act
+            var controller = new VerificationController(_logger, persistenceMock.Object, 
+                messageSenderMock.Object, configurationMock.Object, userManagerMock.Object);
+
             var response = await controller.RequestVerification(form);
 
             //Assert
@@ -122,7 +123,7 @@ namespace YoApp.Tests.Services.Identity.Controller
         }
 
         [Fact]
-        public async void ResolveVerification_OnNullVerificationRequests_ReturnsBadRequest()
+        public async void ResolveVerification_OnNullVerificationRequests_BadRequest()
         {
             //Arrange
             var verificationResponseDto = new VerificationResolveDto
@@ -142,9 +143,10 @@ namespace YoApp.Tests.Services.Identity.Controller
             var messageSenderMock = new Mock<ISmsSender>();
             var configurationMock = new Mock<IConfigurationService>();
 
-            var controller = new VerificationController(_logger, persistenceMock.Object, messageSenderMock.Object, configurationMock.Object, userManagerMock.Object);
-
             //Act
+            var controller = new VerificationController(_logger, persistenceMock.Object, 
+                messageSenderMock.Object, configurationMock.Object, userManagerMock.Object);
+
             var response = await controller.ResolveVerification(verificationResponseDto);
 
             //Assert
@@ -152,7 +154,7 @@ namespace YoApp.Tests.Services.Identity.Controller
         }
 
         [Fact]
-        public async void ResolveVerification_OnNotMatchingCode_ReturnsBadRequest()
+        public async void ResolveVerification_OnNotMatchingCode_BadRequest()
         {
             //Arrange
             var resolveDto = new VerificationResolveDto
@@ -174,9 +176,10 @@ namespace YoApp.Tests.Services.Identity.Controller
             var messageSenderMock = new Mock<ISmsSender>();
             var configurationMock = new Mock<IConfigurationService>();
 
-            var controller = new VerificationController(_logger, persistenceMock.Object, messageSenderMock.Object, configurationMock.Object, userManagerMock.Object);
-
             //Act
+            var controller = new VerificationController(_logger, persistenceMock.Object, 
+                messageSenderMock.Object, configurationMock.Object, userManagerMock.Object);
+
             var response = await controller.ResolveVerification(resolveDto);
 
             //Assert
@@ -184,7 +187,7 @@ namespace YoApp.Tests.Services.Identity.Controller
         }
 
         [Fact]
-        public async void ResolveVerification_OnMatchingCode_ReturnsOk()
+        public async void ResolveVerification_OnMatchingCode_Ok()
         {
             //Arrange
             var verificationResponseDto = new VerificationResolveDto
@@ -220,9 +223,10 @@ namespace YoApp.Tests.Services.Identity.Controller
             var messageSenderMock = new Mock<ISmsSender>();
             var configurationMock = new Mock<IConfigurationService>();
 
-            var controller = new VerificationController(_logger, persistenceMock.Object, messageSenderMock.Object, configurationMock.Object, userManagerMock.Object);
-
             //Act
+            var controller = new VerificationController(_logger, persistenceMock.Object, 
+                messageSenderMock.Object, configurationMock.Object, userManagerMock.Object);
+
             var response = await controller.ResolveVerification(verificationResponseDto);
 
             //Assert

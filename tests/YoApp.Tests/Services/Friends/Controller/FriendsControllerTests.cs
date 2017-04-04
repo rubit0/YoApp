@@ -24,15 +24,15 @@ namespace YoApp.Tests.Services.Friends.Controller
         }
 
         [Fact]
-        public async void FindFriend_OnEmptyPhoneNumber_ReturnsBadRequest()
+        public async void FindFriend_OnEmptyPhoneNumber_BadRequest()
         {
             //Arrange
             var mapperMock = new Mock<IMapper>();
             var persistenceMock = new Mock<IFriendsPersistence>();
 
-            var controller = new FriendsController(_logger, persistenceMock.Object, mapperMock.Object);
 
             //Act
+            var controller = new FriendsController(_logger, persistenceMock.Object, mapperMock.Object);
             var response = await controller.FindUser(string.Empty);
 
             //Assert
@@ -41,7 +41,7 @@ namespace YoApp.Tests.Services.Friends.Controller
 
         [Theory]
         [InlineData("Bob")]
-        public async void FindFriend_OnUnknownPhoneNumber_ReturnsNotFound(string phoneNumber)
+        public async void FindFriend_OnUnknownPhoneNumber_NotFound(string phoneNumber)
         {
             //Arrange
             var mapperMock = new Mock<IMapper>();
@@ -56,10 +56,10 @@ namespace YoApp.Tests.Services.Friends.Controller
                 .SetupGet(am => am.User.Identity.Name)
                 .Returns("Somebody");
 
-            var controller = new FriendsController(_logger, persistenceMock.Object, mapperMock.Object);
-            controller.ControllerContext.HttpContext = httpContextMock.Object;
 
             //Act
+            var controller = new FriendsController(_logger, persistenceMock.Object, mapperMock.Object);
+            controller.ControllerContext.HttpContext = httpContextMock.Object;
             var respone = await controller.FindUser(phoneNumber);
 
             //Assert
@@ -68,7 +68,7 @@ namespace YoApp.Tests.Services.Friends.Controller
 
         [Theory]
         [InlineData("Bob")]
-        public async void FindFriend_OnOkResponse_ReturnsOkWithUserDtoWithValidProperties(string phoneNumber)
+        public async void FindFriend_OnOkResponse_OkWithValidUserDto(string phoneNumber)
         {
             //Arrange
             var fakeUser = new ApplicationUser { UserName = phoneNumber };
@@ -85,9 +85,9 @@ namespace YoApp.Tests.Services.Friends.Controller
                 .FindByNameAsync(phoneNumber))
                 .ReturnsAsync(fakeUser);
 
-            var controller = new FriendsController(_logger, persistenceMock.Object, mapperMock.Object);
 
             //Act
+            var controller = new FriendsController(_logger, persistenceMock.Object, mapperMock.Object);
             var respone = await controller.FindUser(phoneNumber);
             var dto = ((OkObjectResult)respone).Value as UserDto;
 
@@ -98,7 +98,7 @@ namespace YoApp.Tests.Services.Friends.Controller
         }
 
         [Fact]
-        public async void FindFriends_OnAnyFindingMatches_ReturnsOkWithMatchingUserDtos()
+        public async void FindFriends_OnAnyFindingMatches_OkWithMatchingUserDto()
         {
             //Arrange
             var requestPhoneNumbers = new List<string> { "123", "456", "789" };
@@ -123,9 +123,9 @@ namespace YoApp.Tests.Services.Friends.Controller
                 .Setup(m => m.Map<IEnumerable<UserDto>>(usersInDb))
                 .Returns(fakeDtos);
 
-            var controller = new FriendsController(_logger, persistenceMock.Object, mapperMock.Object);
 
             //Act
+            var controller = new FriendsController(_logger, persistenceMock.Object, mapperMock.Object);
             var response = await controller.FindUsers(requestPhoneNumbers);
             var dtos = ((OkObjectResult)response).Value as IEnumerable<UserDto>;
 
@@ -140,9 +140,9 @@ namespace YoApp.Tests.Services.Friends.Controller
             //Arrange
             var persistenceMock = new Mock<IFriendsPersistence>();
             var mapperMock = new Mock<IMapper>();
-            var controller = new FriendsController(_logger, persistenceMock.Object, mapperMock.Object);
 
             //Act
+            var controller = new FriendsController(_logger, persistenceMock.Object, mapperMock.Object);
             var response = await controller.FindUsers(null);
 
             //Assert
@@ -155,9 +155,9 @@ namespace YoApp.Tests.Services.Friends.Controller
             //Arrange
             var persistenceMock = new Mock<IFriendsPersistence>();
             var mapperMock = new Mock<IMapper>();
-            var controller = new FriendsController(_logger, persistenceMock.Object, mapperMock.Object);
 
             //Act
+            var controller = new FriendsController(_logger, persistenceMock.Object, mapperMock.Object);
             var response = await controller.GetName(null);
 
             //Assert
@@ -177,9 +177,9 @@ namespace YoApp.Tests.Services.Friends.Controller
                 .ReturnsAsync(dto);
 
             var mapperMock = new Mock<IMapper>();
-            var controller = new FriendsController(_logger, persistenceMock.Object, mapperMock.Object);
 
             //Act
+            var controller = new FriendsController(_logger, persistenceMock.Object, mapperMock.Object);
             var response = await controller.GetName(query);
 
             //Assert
@@ -192,9 +192,9 @@ namespace YoApp.Tests.Services.Friends.Controller
             //Arrange
             var persistenceMock = new Mock<IFriendsPersistence>();
             var mapperMock = new Mock<IMapper>();
-            var controller = new FriendsController(_logger, persistenceMock.Object, mapperMock.Object);
 
             //Act
+            var controller = new FriendsController(_logger, persistenceMock.Object, mapperMock.Object);
             var response = await controller.GetStatus(null);
 
             //Assert
@@ -214,9 +214,9 @@ namespace YoApp.Tests.Services.Friends.Controller
                 .ReturnsAsync(dto);
 
             var mapperMock = new Mock<IMapper>();
-            var controller = new FriendsController(_logger, persistenceMock.Object, mapperMock.Object);
 
             //Act
+            var controller = new FriendsController(_logger, persistenceMock.Object, mapperMock.Object);
             var response = await controller.GetStatus(query);
 
             //Assert
@@ -229,9 +229,9 @@ namespace YoApp.Tests.Services.Friends.Controller
             //Arrange
             var persistenceMock = new Mock<IFriendsPersistence>();
             var mapperMock = new Mock<IMapper>();
-            var controller = new FriendsController(_logger, persistenceMock.Object, mapperMock.Object);
 
             //Act
+            var controller = new FriendsController(_logger, persistenceMock.Object, mapperMock.Object);
             var response = await controller.IsMember(null);
 
             //Assert
@@ -256,9 +256,9 @@ namespace YoApp.Tests.Services.Friends.Controller
                 .SetupGet(am => am.User.Identity.Name)
                 .Returns(query);
 
-            controller.ControllerContext.HttpContext = httpContextMock.Object;
 
             //Act
+            controller.ControllerContext.HttpContext = httpContextMock.Object;
             var response = await controller.IsMember(query);
 
             //Assert
@@ -271,9 +271,9 @@ namespace YoApp.Tests.Services.Friends.Controller
             //Arrange
             var persistenceMock = new Mock<IFriendsPersistence>();
             var mapperMock = new Mock<IMapper>();
-            var controller = new FriendsController(_logger, persistenceMock.Object, mapperMock.Object);
 
             //Act
+            var controller = new FriendsController(_logger, persistenceMock.Object, mapperMock.Object);
             var response = await controller.IsMemberRange(null);
 
             //Assert
@@ -298,9 +298,9 @@ namespace YoApp.Tests.Services.Friends.Controller
                 .Setup(m => m.Map<IEnumerable<ApplicationUser>, IEnumerable<UserDto>>(usersFromDb))
                 .Returns(dtos);
 
-            var controller = new FriendsController(_logger, persistenceMock.Object, mapperMock.Object);
 
             //Act
+            var controller = new FriendsController(_logger, persistenceMock.Object, mapperMock.Object);
             var response = await controller.IsMemberRange(query);
             
             //Assert

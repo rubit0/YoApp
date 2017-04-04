@@ -59,7 +59,9 @@ namespace YoApp.Identity.Controllers
                 _logger.LogInformation($"{userInDb.Status} changed Status to: {dto.StatusMessage}");
             }
 
-            await _userManager.UpdateAsync(userInDb);
+            var result = await _userManager.UpdateAsync(userInDb);
+            if (!result.Succeeded)
+                return StatusCode(500);
 
             return Ok();
         }
@@ -82,9 +84,11 @@ namespace YoApp.Identity.Controllers
                 return StatusCode(500);
 
             userInDb.Nickname = name;
-            await _userManager.UpdateAsync(userInDb);
-            _logger.LogInformation($"{userInDb.Nickname} updated nickname to: {userInDb.Nickname}");
+            var result = await _userManager.UpdateAsync(userInDb);
+            if (!result.Succeeded)
+                return StatusCode(500);
 
+            _logger.LogInformation($"Updated nickname for {userInDb.Nickname} to: {userInDb.Nickname}");
             return Ok();
         }
 
@@ -106,9 +110,11 @@ namespace YoApp.Identity.Controllers
                 return StatusCode(500);
 
             userInDb.Status = status;
-            await _userManager.UpdateAsync(userInDb);
-            _logger.LogInformation($"{userInDb.UserName} updated status to: {userInDb.Status}");
+            var result = await _userManager.UpdateAsync(userInDb);
+            if (!result.Succeeded)
+                return StatusCode(500);
 
+            _logger.LogInformation($"Updated {userInDb.UserName} status to: {userInDb.Status}");
             return Ok();
         }
     }
