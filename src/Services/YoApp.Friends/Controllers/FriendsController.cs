@@ -16,13 +16,13 @@ namespace YoApp.Identity.Controllers
     public class FriendsController : Controller
     {
         private readonly ILogger _logger;
-        private readonly IFriendsPersistence _dataWorker;
+        private readonly IFriendsPersistence _repository;
         private readonly IMapper _mapper;
 
         public FriendsController(ILogger<FriendsController> logger, IFriendsPersistence dataWorker, IMapper mapper)
         {
             _logger = logger;
-            _dataWorker = dataWorker;
+            _repository = dataWorker;
             _mapper = mapper;
         }
 
@@ -32,7 +32,7 @@ namespace YoApp.Identity.Controllers
             if (string.IsNullOrWhiteSpace(phoneNumber))
                 return BadRequest();
 
-            var userInDb = await _dataWorker.Friends.FindByNameAsync(phoneNumber);
+            var userInDb = await _repository.Friends.FindByNameAsync(phoneNumber);
             if (userInDb == null)
             {
                 _logger.LogError($"Request by [{User.Identity.Name}].\nNo User found by phone number [{phoneNumber}].");
@@ -47,10 +47,10 @@ namespace YoApp.Identity.Controllers
         [HttpPost]
         public async Task<IActionResult> FindUsers([FromBody]IEnumerable<string> phoneNumbers)
         {
-            if (!ModelState.IsValid)
+            if (phoneNumbers == null || phoneNumbers.Count() == 0)
                 return BadRequest();
 
-            var usersInDb = await _dataWorker.Friends.FindByNameRangeAsync(phoneNumbers);
+            var usersInDb = await _repository.Friends.FindByNameRangeAsync(phoneNumbers);
             if (!usersInDb.Any())
             {
                 _logger.LogError($"Request by [{User.Identity.Name}].\nNo matching Users found.");
@@ -68,7 +68,7 @@ namespace YoApp.Identity.Controllers
             if (string.IsNullOrWhiteSpace(phoneNumber))
                 return BadRequest();
 
-            var userInDb = await _dataWorker.Friends.FindByNameAsync(phoneNumber);
+            var userInDb = await _repository.Friends.FindByNameAsync(phoneNumber);
             if (userInDb == null)
             {
                 _logger.LogError($"Request by [{User.Identity.Name}].\nUser name for {phoneNumber} was not found.");
@@ -84,7 +84,7 @@ namespace YoApp.Identity.Controllers
             if (string.IsNullOrWhiteSpace(phoneNumber))
                 return BadRequest();
 
-            var userInDb = await _dataWorker.Friends.FindByNameAsync(phoneNumber);
+            var userInDb = await _repository.Friends.FindByNameAsync(phoneNumber);
             if (userInDb == null)
             {
                 _logger.LogError($"Request by [{User.Identity.Name}].\nStatus for {phoneNumber} was not found.");
@@ -100,7 +100,7 @@ namespace YoApp.Identity.Controllers
             if (string.IsNullOrWhiteSpace(phoneNumber))
                 return BadRequest();
 
-            var result = await _dataWorker.Friends.IsMemberAsync(phoneNumber);
+            var result = await _repository.Friends.IsMemberAsync(phoneNumber);
             _logger.LogInformation($"Request by [{User.Identity.Name}].\nPhonenumber {phoneNumber} is member: {result}.");
 
             if (result)
@@ -112,10 +112,10 @@ namespace YoApp.Identity.Controllers
         [HttpPost("check/")]
         public async Task<IActionResult> IsMemberRange([FromBody]IEnumerable<string> phoneNumbers)
         {
-            if (!ModelState.IsValid)
+            if (phoneNumbers == null || phoneNumbers.Count() == 0)
                 return BadRequest();
 
-            var usersInDb = await _dataWorker.Friends.FindByNameRangeAsync(phoneNumbers);
+            var usersInDb = await _repository.Friends.FindByNameRangeAsync(phoneNumbers);
             var dto = _mapper.Map<IEnumerable<ApplicationUser>, IEnumerable<UserDto>>(usersInDb);
 
             return Ok(dto);

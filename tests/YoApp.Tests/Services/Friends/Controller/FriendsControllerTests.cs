@@ -98,29 +98,29 @@ namespace YoApp.Tests.Services.Friends.Controller
         }
 
         [Fact]
-        public async void FindFriends_OnAnyFindingMatches_ReturnsOkWithUserDtos()
+        public async void FindFriends_OnAnyFindingMatches_ReturnsOkWithMatchingUserDtos()
         {
             //Arrange
             var requestPhoneNumbers = new List<string> { "123", "456", "789" };
 
-            var fakeUsers = new List<ApplicationUser>
+            var usersInDb = new List<ApplicationUser>
             {
                 new ApplicationUser { UserName = "123"},
                 new ApplicationUser { UserName = "456" }
             };
 
             var fakeDtos = new List<UserDto>();
-            fakeUsers.ForEach(a => fakeDtos.Add(new UserDto { Username = a.UserName }));
+            usersInDb.ForEach(a => fakeDtos.Add(new UserDto { Username = a.UserName }));
 
             var persistenceMock = new Mock<IFriendsPersistence>();
             persistenceMock
                 .Setup(r => r.Friends
                 .FindByNameRangeAsync(requestPhoneNumbers))
-                .ReturnsAsync(fakeUsers);
+                .ReturnsAsync(usersInDb);
 
             var mapperMock = new Mock<IMapper>();
             mapperMock
-                .Setup(m => m.Map<IEnumerable<UserDto>>(fakeUsers))
+                .Setup(m => m.Map<IEnumerable<UserDto>>(usersInDb))
                 .Returns(fakeDtos);
 
             var controller = new FriendsController(_logger, persistenceMock.Object, mapperMock.Object);
@@ -131,7 +131,180 @@ namespace YoApp.Tests.Services.Friends.Controller
 
             //Assert
             Assert.IsType<OkObjectResult>(response);
-            Assert.Equal(fakeUsers.Count, dtos.Count());
+            Assert.Equal(usersInDb.Count, dtos.Count());
+        }
+
+        [Fact]
+        public async void FindFriends_OnInvalidQuery_BadRequest()
+        {
+            //Arrange
+            var persistenceMock = new Mock<IFriendsPersistence>();
+            var mapperMock = new Mock<IMapper>();
+            var controller = new FriendsController(_logger, persistenceMock.Object, mapperMock.Object);
+
+            //Act
+            var response = await controller.FindUsers(null);
+
+            //Assert
+            Assert.IsType<BadRequestResult>(response);
+        }
+
+        [Fact]
+        public async void GetName_OnEmptyQuery_BadRequest()
+        {
+            //Arrange
+            var persistenceMock = new Mock<IFriendsPersistence>();
+            var mapperMock = new Mock<IMapper>();
+            var controller = new FriendsController(_logger, persistenceMock.Object, mapperMock.Object);
+
+            //Act
+            var response = await controller.GetName(null);
+
+            //Assert
+            Assert.IsType<BadRequestResult>(response);
+        }
+
+        [Fact]
+        public async void GetName_OnValidQuery_OkRequestWithName()
+        {
+            //Arrange
+            var query = "0123456789";
+            var dto = new ApplicationUser { UserName = query, Nickname = "I'm Mock!" };
+
+            var persistenceMock = new Mock<IFriendsPersistence>();
+            persistenceMock
+                .Setup(p => p.Friends.FindByNameAsync(It.IsAny<string>()))
+                .ReturnsAsync(dto);
+
+            var mapperMock = new Mock<IMapper>();
+            var controller = new FriendsController(_logger, persistenceMock.Object, mapperMock.Object);
+
+            //Act
+            var response = await controller.GetName(query);
+
+            //Assert
+            Assert.IsType<OkObjectResult>(response);
+        }
+
+        [Fact]
+        public async void GetStatus_OnEmptyQuery_BadRequest()
+        {
+            //Arrange
+            var persistenceMock = new Mock<IFriendsPersistence>();
+            var mapperMock = new Mock<IMapper>();
+            var controller = new FriendsController(_logger, persistenceMock.Object, mapperMock.Object);
+
+            //Act
+            var response = await controller.GetStatus(null);
+
+            //Assert
+            Assert.IsType<BadRequestResult>(response);
+        }
+
+        [Fact]
+        public async void GetStatus_OnValidQuery_OkRequestWithStatus()
+        {
+            //Arrange
+            var query = "0123456789";
+            var dto = new ApplicationUser { UserName = query, Status = "I'm mocking you!" };
+
+            var persistenceMock = new Mock<IFriendsPersistence>();
+            persistenceMock
+                .Setup(p => p.Friends.FindByNameAsync(It.IsAny<string>()))
+                .ReturnsAsync(dto);
+
+            var mapperMock = new Mock<IMapper>();
+            var controller = new FriendsController(_logger, persistenceMock.Object, mapperMock.Object);
+
+            //Act
+            var response = await controller.GetStatus(query);
+
+            //Assert
+            Assert.IsType<OkObjectResult>(response);
+        }
+
+        [Fact]
+        public async void CheckIsMember_OnEmptyQuery_BadRequest()
+        {
+            //Arrange
+            var persistenceMock = new Mock<IFriendsPersistence>();
+            var mapperMock = new Mock<IMapper>();
+            var controller = new FriendsController(_logger, persistenceMock.Object, mapperMock.Object);
+
+            //Act
+            var response = await controller.IsMember(null);
+
+            //Assert
+            Assert.IsType<BadRequestResult>(response);
+        }
+
+        [Fact]
+        public async void CheckIsMember_OnValidQuery_OkRequest()
+        {
+            //Arrange
+            var query = "123456789";
+
+            var persistenceMock = new Mock<IFriendsPersistence>();
+            persistenceMock
+                .Setup(p => p.Friends.IsMemberAsync(query))
+                .ReturnsAsync(true);
+
+            var mapperMock = new Mock<IMapper>();
+            var controller = new FriendsController(_logger, persistenceMock.Object, mapperMock.Object);
+            var httpContextMock = new Mock<DefaultHttpContext>(null);
+            httpContextMock
+                .SetupGet(am => am.User.Identity.Name)
+                .Returns(query);
+
+            controller.ControllerContext.HttpContext = httpContextMock.Object;
+
+            //Act
+            var response = await controller.IsMember(query);
+
+            //Assert
+            Assert.IsType<OkResult>(response);
+        }
+
+        [Fact]
+        public async void CheckAreMember_OnEmptyQuery_BadRequest()
+        {
+            //Arrange
+            var persistenceMock = new Mock<IFriendsPersistence>();
+            var mapperMock = new Mock<IMapper>();
+            var controller = new FriendsController(_logger, persistenceMock.Object, mapperMock.Object);
+
+            //Act
+            var response = await controller.IsMemberRange(null);
+
+            //Assert
+            Assert.IsType<BadRequestResult>(response);
+        }
+
+        [Fact]
+        public async void CheckAreMember_OnAnyFindingMatches_OkResultWithDto()
+        {
+            //Arrange
+            var query = new List<string> { "123", "456", "789" };
+            var usersFromDb = new List<ApplicationUser> { new ApplicationUser { UserName = query[0] } };
+            var dtos = new List<UserDto> { new UserDto { Username = usersFromDb[0].UserName } };
+
+            var persistenceMock = new Mock<IFriendsPersistence>();
+            persistenceMock
+                .Setup(p => p.Friends.FindByNameRangeAsync(query))
+                .ReturnsAsync(usersFromDb);
+
+            var mapperMock = new Mock<IMapper>();
+            mapperMock
+                .Setup(m => m.Map<IEnumerable<ApplicationUser>, IEnumerable<UserDto>>(usersFromDb))
+                .Returns(dtos);
+
+            var controller = new FriendsController(_logger, persistenceMock.Object, mapperMock.Object);
+
+            //Act
+            var response = await controller.IsMemberRange(query);
+            
+            //Assert
+            Assert.IsType<OkObjectResult>(response);
         }
     }
 }
