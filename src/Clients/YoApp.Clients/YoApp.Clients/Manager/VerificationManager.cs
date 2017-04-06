@@ -2,6 +2,7 @@
 using System;
 using System.Net.Http;
 using System.Threading.Tasks;
+using YoApp.Clients.Helpers;
 using YoApp.DataObjects.Verification;
 
 namespace YoApp.Clients.Manager
@@ -15,11 +16,11 @@ namespace YoApp.Clients.Manager
         private readonly Uri _challengeAddress;
         private readonly Uri _resolveAddress;
 
-        public VerificationManager()
+        public VerificationManager(AppSettings settings)
         {
-            _timeOut = TimeSpan.FromSeconds(App.Settings.Identity.TimeOut);
-            _challengeAddress = new Uri(App.Settings.Identity.Url, "verification/request");
-            _resolveAddress = new Uri(App.Settings.Identity.Url, "verification/resolve");
+            _timeOut = TimeSpan.FromSeconds(settings.Identity.TimeOut);
+            _challengeAddress = new Uri(settings.Identity.Url, "verification/request");
+            _resolveAddress = new Uri(settings.Identity.Url, "verification/resolve");
         }
 
         /// <summary>
@@ -30,6 +31,9 @@ namespace YoApp.Clients.Manager
         /// <returns>Rrequest accepted by server?</returns>
         public async Task<bool> RequestVerificationCodeAsync(string countryCode, string phonenumber)
         {
+            if(string.IsNullOrWhiteSpace(countryCode) || string.IsNullOrWhiteSpace(phonenumber))
+                throw new ArgumentNullException("You must provide an countrycode and phonenumber");
+
             using (var client = new HttpClient(new NativeMessageHandler()))
             {
                 client.Timeout = _timeOut;
@@ -63,6 +67,11 @@ namespace YoApp.Clients.Manager
         /// <returns></returns>
         public async Task<bool> ResolveVerificationCodeAsync(string verificationCode, string phoneNumber, string password)
         {
+            if (string.IsNullOrWhiteSpace(verificationCode) 
+                || string.IsNullOrWhiteSpace(phoneNumber) 
+                || string.IsNullOrWhiteSpace(password))
+                throw new ArgumentNullException("You must provide all parameters");
+
             using (var client = new HttpClient(new NativeMessageHandler()))
             {
                 client.Timeout = _timeOut;

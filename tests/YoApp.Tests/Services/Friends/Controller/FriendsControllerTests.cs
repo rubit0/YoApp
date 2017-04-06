@@ -56,7 +56,6 @@ namespace YoApp.Tests.Services.Friends.Controller
                 .SetupGet(am => am.User.Identity.Name)
                 .Returns("Somebody");
 
-
             //Act
             var controller = new FriendsController(_logger, persistenceMock.Object, mapperMock.Object);
             controller.ControllerContext.HttpContext = httpContextMock.Object;
@@ -84,7 +83,6 @@ namespace YoApp.Tests.Services.Friends.Controller
                 .Setup(r => r.Friends
                 .FindByNameAsync(phoneNumber))
                 .ReturnsAsync(fakeUser);
-
 
             //Act
             var controller = new FriendsController(_logger, persistenceMock.Object, mapperMock.Object);
@@ -122,7 +120,6 @@ namespace YoApp.Tests.Services.Friends.Controller
             mapperMock
                 .Setup(m => m.Map<IEnumerable<UserDto>>(usersInDb))
                 .Returns(fakeDtos);
-
 
             //Act
             var controller = new FriendsController(_logger, persistenceMock.Object, mapperMock.Object);
@@ -255,7 +252,6 @@ namespace YoApp.Tests.Services.Friends.Controller
             httpContextMock
                 .SetupGet(am => am.User.Identity.Name)
                 .Returns(query);
-
 
             //Act
             controller.ControllerContext.HttpContext = httpContextMock.Object;

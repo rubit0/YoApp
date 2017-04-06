@@ -21,12 +21,19 @@ namespace YoApp.Clients.Manager
             _accountService = accountService;
         }
 
+        /// <summary>
+        /// Load AppUser from the store.
+        /// </summary>
+        /// <returns></returns>
         public async Task<AppUser> LoadUser()
         {
             User = await _store.Get<AppUser>(nameof(AppUser));
             return User;
         }
 
+        /// <summary>
+        /// Persist User properties.
+        /// </summary>
         public async Task PersistUser()
         {
             if (User == null)
@@ -44,8 +51,8 @@ namespace YoApp.Clients.Manager
         {
             var dto = new UpdatedAccountDto
             {
-                Nickname = this.User.Nickname,
-                StatusMessage = this.User.Status
+                Nickname = User.Nickname,
+                StatusMessage = User.Status
             };
 
             var result = await _accountService.SyncUpAsync(dto);
@@ -83,7 +90,7 @@ namespace YoApp.Clients.Manager
             {
                 Nickname = "",
                 PhoneNumber = phoneNumber,
-                Status = App.Settings.Conventions.DefaultStatusMessage
+                Status = App.Settings?.Conventions?.DefaultStatusMessage ?? ""
             };
         }
     }
