@@ -1,6 +1,5 @@
 ﻿using System.Threading.Tasks;
 using YoApp.Clients.Manager;
-using YoApp.Clients.Persistence;
 using YoApp.Clients.Services;
 
 namespace YoApp.Clients.StateMachine.States
@@ -12,15 +11,13 @@ namespace YoApp.Clients.StateMachine.States
     {
         private readonly IContactsManager _contactsManager;
         private readonly IFriendsManager _friendsManager;
-        private readonly ChatService _chatService;
-        private readonly IKeyValueStore _store;
+        private readonly IChatService _chatService;
 
-        public UserCreatedState()
+        public UserCreatedState(IContactsManager contactsManager, IFriendsManager friendsManager, IChatService chatService)
         {
-            _store = App.Managers.Resolve<IKeyValueStore>();
-            _contactsManager = App.Managers.Resolve<IContactsManager>();
-            _friendsManager = App.Managers.Resolve<IFriendsManager>();
-            _chatService = App.Services.Resolve<ChatService>();
+            _contactsManager = contactsManager;
+            _friendsManager = friendsManager;
+            _chatService = chatService;
         }
 
         public async Task Execute()

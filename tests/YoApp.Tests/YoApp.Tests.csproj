@@ -18,11 +18,18 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\src\Clients\YoApp.Clients\YoApp.Clients\YoApp.Clients.csproj" />
     <ProjectReference Include="..\..\src\Infrastructure\YoApp.DataObjects\YoApp.DataObjects.csproj" />
     <ProjectReference Include="..\..\src\Infrastructure\YoApp.Data\YoApp.Data.csproj" />
     <ProjectReference Include="..\..\src\Services\YoApp.Friends\YoApp.Friends.csproj" />
     <ProjectReference Include="..\..\src\Services\YoApp.Identity\YoApp.Identity.csproj" />
     <ProjectReference Include="..\..\src\YoApp.Utils\YoApp.Utils.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="FluentScheduler">
+      <HintPath>..\..\libs\FluentScheduler\FluentScheduler.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
   <ItemGroup>

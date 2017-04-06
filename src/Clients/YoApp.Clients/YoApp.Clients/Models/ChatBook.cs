@@ -1,5 +1,6 @@
 ﻿using Realms;
 using System.Collections.Generic;
+using Autofac;
 using YoApp.Clients.Persistence;
 
 namespace YoApp.Clients.Models
@@ -9,17 +10,10 @@ namespace YoApp.Clients.Models
         [PrimaryKey]
         public string FriendKey { get; set; }
         public IList<ChatMessage> Messages { get; }
-
-        private readonly IRealmStore _store;
-
-        public ChatBook()
-        {
-            _store = App.Persistence.Resolve<IRealmStore>();
-        }
         
-        public void PushMessage(ChatMessage message)
+        public void PushMessage(IRealmStore store, ChatMessage message)
         {
-            _store.Instance.Write(() =>
+            store.Instance.Write(() =>
             {
                 Messages.Add(message);
             });

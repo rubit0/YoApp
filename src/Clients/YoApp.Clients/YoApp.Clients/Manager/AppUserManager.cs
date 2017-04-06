@@ -15,10 +15,10 @@ namespace YoApp.Clients.Manager
         private readonly IKeyValueStore _store;
         private readonly IAccountService _accountService;
 
-        public AppUserManager()
+        public AppUserManager(IKeyValueStore store, IAccountService accountService)
         {
-            _store = App.Persistence.Resolve<IKeyValueStore>();
-            _accountService = App.Services.Resolve<IAccountService>();
+            _store = store;
+            _accountService = accountService;
         }
 
         public async Task<AppUser> LoadUser()

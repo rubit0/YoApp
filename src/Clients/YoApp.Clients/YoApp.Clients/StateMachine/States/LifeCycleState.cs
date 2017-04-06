@@ -11,19 +11,20 @@ namespace YoApp.Clients.StateMachine.States
     /// </summary>
     public class LifeCycleState
     {
-        private readonly IContactsManager _contactsManager;
-        private readonly IFriendsManager _friendsManager;
-        private readonly ChatService _chatService;
         private readonly IKeyValueStore _store;
         private readonly IAppUserManager _userManager;
+        private readonly IContactsManager _contactsManager;
+        private readonly IFriendsManager _friendsManager;
+        private readonly IChatService _chatService;
 
-        public LifeCycleState()
+        public LifeCycleState(IKeyValueStore store, IAppUserManager appUserManager, 
+            IContactsManager contactsManager, IFriendsManager friendsManager, IChatService chatService)
         {
-            _contactsManager = App.Managers.Resolve<IContactsManager>();
-            _friendsManager = App.Managers.Resolve<IFriendsManager>();
-            _store = App.Persistence.Resolve<IKeyValueStore>();
-            _userManager = App.Managers.Resolve<IAppUserManager>();
-            _chatService = App.Services.Resolve<ChatService>();
+            _store = store;
+            _userManager = appUserManager;
+            _contactsManager = contactsManager;
+            _friendsManager = friendsManager;
+            _chatService = chatService;
         }
 
         public async Task HandleState(Lifecycle state)

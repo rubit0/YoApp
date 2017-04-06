@@ -1,6 +1,5 @@
 ﻿using System.Threading.Tasks;
 using YoApp.Clients.Services;
-using YoApp.Clients.Helpers.Extensions;
 
 namespace YoApp.Clients.StateMachine.States
 {

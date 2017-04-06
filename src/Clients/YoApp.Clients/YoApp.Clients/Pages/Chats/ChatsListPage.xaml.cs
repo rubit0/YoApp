@@ -1,4 +1,5 @@
-﻿using Xamarin.Forms;
+﻿using Autofac;
+using Xamarin.Forms;
 using YoApp.Clients.Helpers;
 using YoApp.Clients.ViewModels.Chats;
 
@@ -9,7 +10,8 @@ namespace YoApp.Clients.Pages.Chats
         public ChatsListPage()
         {
             InitializeComponent();
-            BindingContext = new ChatsListViewModel(this);
+            BindingContext = App.Container.Resolve<ChatsListViewModel>(
+                new TypedParameter(typeof(IPageService), this));
         }
 
         protected override void OnAppearing()

@@ -9,7 +9,7 @@ using YoApp.Clients.Helpers.EventArgs;
 
 namespace YoApp.Clients.Services
 {
-    public class ChatService
+    public class ChatService : IChatService
     {
         public event EventHandler<ChatMessageReceivedEventArgs> OnChatMessageReceived;
 

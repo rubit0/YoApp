@@ -23,25 +23,21 @@ namespace YoApp.Clients.ViewModels.Settings
         public Command TappedCommand { get; private set; }
 
         private List<ContactGroup> _contactGroups;
-        private readonly IPageService _pageService;
-        private readonly IContactsManager _contactsManager;
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public ContactsSelectionViewModel(IPageService pageService)
+        public ContactsSelectionViewModel(IPageService pageService, IContactsManager contactsManager)
         {
-            _pageService = pageService;
-            _contactsManager = App.Managers.Resolve<IContactsManager>();
-
-            ContactGroups = _contactsManager.BuildContactGroup();
+            var contactsManager1 = contactsManager;
+            ContactGroups = contactsManager1.BuildContactGroup();
 
             TappedCommand = new Command(async
-                (o) => await _pageService.DisplayAlert("Clicked", o.ToString(), "Ok"));
+                (o) => await pageService.DisplayAlert("Clicked", o.ToString(), "Ok"));
 
-            _contactsManager.PropertyChanged += (sender, args) =>
+            contactsManager1.PropertyChanged += (sender, args) =>
             {
-                if (string.CompareOrdinal(args.PropertyName, nameof(_contactsManager.Contacts)) == 0)
-                    ContactGroups = _contactsManager.BuildContactGroup();
+                if (string.CompareOrdinal(args.PropertyName, nameof(contactsManager1.Contacts)) == 0)
+                    ContactGroups = contactsManager1.BuildContactGroup();
             };
         }
 

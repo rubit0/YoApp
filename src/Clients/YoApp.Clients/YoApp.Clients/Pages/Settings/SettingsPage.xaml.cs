@@ -1,4 +1,5 @@
-﻿using Xamarin.Forms;
+﻿using Autofac;
+using Xamarin.Forms;
 using YoApp.Clients.Helpers;
 using YoApp.Clients.ViewModels.Settings;
 
@@ -9,7 +10,8 @@ namespace YoApp.Clients.Pages.Settings
         public SettingsTablePage()
         {
             InitializeComponent();
-            BindingContext = new SettingsPageViewModel(this);
+            BindingContext = App.Container.Resolve<SettingsPageViewModel>(
+                new TypedParameter(typeof(IPageService), this));
             DebugButton.IsVisible = ResourceKeys.IsDebug;
         }
     }

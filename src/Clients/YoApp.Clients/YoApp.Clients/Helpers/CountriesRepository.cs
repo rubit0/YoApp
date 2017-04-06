@@ -2,7 +2,6 @@
 using System.Linq;
 using System.Reflection;
 using Newtonsoft.Json;
-using YoApp.Clients.Models;
 using YoApp.Clients.ViewModels.Setup;
 
 namespace YoApp.Clients.Helpers

@@ -17,17 +17,19 @@ namespace YoApp.Clients.ViewModels.Setup
         public Command VerifyCommand { get; }
 
         private readonly IVerificationManager _verificationManager;
+        private readonly IAppUserManager _appUserManager;
         private readonly IPageService _pageService;
         private bool _canVerify = true;
 
-        public VerificationViewModel(string phoneNumber, IPageService pageService)
+        public VerificationViewModel(string phoneNumber, IPageService pageService, IVerificationManager verificationManager, IAppUserManager appUserManager)
         {
             if (string.IsNullOrWhiteSpace(phoneNumber))
                 throw new ArgumentNullException(nameof(phoneNumber), "You must provide a phone number");
 
             PhoneNumber = phoneNumber;
             _pageService = pageService;
-            _verificationManager = App.Managers.Resolve<IVerificationManager>();
+            _verificationManager = verificationManager;
+            _appUserManager = appUserManager;
 
             VerifyCommand = new Command(async () => await StartVerification(),
                 () => _canVerify
@@ -60,11 +62,10 @@ namespace YoApp.Clients.ViewModels.Setup
             }
             else
             {
-                var userManager = App.Managers.Resolve<IAppUserManager>();
                 App.Settings.SetupFinished = true;
-                userManager.InitUser(PhoneNumber);
+                _appUserManager.InitUser(PhoneNumber);
 
-                await userManager.PersistUser();
+                await _appUserManager.PersistUser();
                 await AuthenticationService.RequestToken(PhoneNumber, password);
                 await Task.Run(() => MessagingCenter.Send(this, MessagingEvents.UserCreated));
 

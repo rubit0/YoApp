@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Windows.Input;
 using Xamarin.Forms;
 using YoApp.Clients.Models;
+using YoApp.Clients.Persistence;
 using YoApp.Clients.Services;
 
 namespace YoApp.Clients.ViewModels.Chats
@@ -15,13 +16,15 @@ namespace YoApp.Clients.ViewModels.Chats
 
         private readonly ChatBook _chatBook;
         private readonly Friend _friend;
-        private readonly ChatService _chatService;
+        private readonly IChatService _chatService;
+        private readonly IRealmStore _realmStore;
 
-        public ChatViewModel(Friend friend, ChatBook chatBook)
+        public ChatViewModel(Friend friend, ChatBook chatBook, IChatService chatService, IRealmStore realmStore)
         {
             _friend = friend;
             _chatBook = chatBook;
-            _chatService = App.Services.Resolve<ChatService>();
+            _chatService = chatService;
+            _realmStore = realmStore;
 
             PostMessageCommand = new Command<string>(PostMessage);
         }
@@ -35,7 +38,7 @@ namespace YoApp.Clients.ViewModels.Chats
                 IsIncomming = false
             };
 
-            _chatBook.PushMessage(pending);
+            _chatBook.PushMessage(_realmStore, pending);
 
             //TODO Handle failed delivery
             var result = await _chatService.SendMessage(_friend, message);

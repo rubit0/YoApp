@@ -1,4 +1,5 @@
-﻿using Xamarin.Forms;
+﻿using Autofac;
+using Xamarin.Forms;
 using YoApp.Clients.Helpers;
 using YoApp.Clients.ViewModels.Setup;
 
@@ -9,8 +10,8 @@ namespace YoApp.Clients.Pages.Setup
         public WelcomePage()
         {
             InitializeComponent();
-            var viewModel = new WelcomeViewModel(this);
-            BindingContext = viewModel;
+            BindingContext = App.Container.Resolve<WelcomeViewModel>(
+                new TypedParameter(typeof(IPageService), this));
         }
 
         protected override bool OnBackButtonPressed()

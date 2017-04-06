@@ -10,18 +10,18 @@ using YoApp.Clients.Services;
 
 namespace YoApp.Clients.Manager
 {
-    public class ChatManager : IChatManager
+    public class ChatManager : IChatManager, IDisposable
     {
         public ObservableCollection<ChatPage> Pages { get; set; }
 
         private readonly IRealmStore _store;
-        private readonly ChatService _chatService;
+        private readonly IChatService _chatService;
 
-        public ChatManager()
+        public ChatManager(IRealmStore store, IChatService chatService)
         {
-            _store = App.Persistence.Resolve<IRealmStore>();
+            _store = store;
+            _chatService = chatService;
             Pages = new ObservableCollection<ChatPage>();
-            _chatService = App.Services.Resolve<ChatService>();
 
             _chatService.OnChatMessageReceived += OnChatMessageReceivedHandler;
         }
@@ -38,7 +38,7 @@ namespace YoApp.Clients.Manager
                 Message = e.Message
             };
 
-            chatBook.PushMessage(chatMessage);
+            chatBook.PushMessage(_store, chatMessage);
         }
 
         public async Task OpenChat(Friend friend)
@@ -59,6 +59,11 @@ namespace YoApp.Clients.Manager
         public ChatPage GetPageByFriend(Friend friend)
         {
             return Pages.FirstOrDefault(p => p.Friend.Equals(friend));
+        }
+
+        public void Dispose()
+        {
+            _chatService.OnChatMessageReceived -= OnChatMessageReceivedHandler;
         }
     }
 }

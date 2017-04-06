@@ -19,11 +19,11 @@ namespace YoApp.Clients.ViewModels.Chats
         private readonly IFriendsManager _friendsManager;
         private readonly IChatManager _chatManager;
 
-        public FriendSelectionViewModel(IPageService pageService)
+        public FriendSelectionViewModel(IPageService pageService, IFriendsManager friendsManager, IChatManager chatManager)
         {
             _pageService = pageService;
-            _friendsManager = App.Managers.Resolve<IFriendsManager>();
-            _chatManager = App.Managers.Resolve<IChatManager>();
+            _friendsManager = friendsManager;
+            _chatManager = chatManager;
 
             CloseCommand = new Command(async () => await _pageService.Navigation.PopModalAsync());
             SelectCommand = new Command(async (o) => await SelectFriend(o));

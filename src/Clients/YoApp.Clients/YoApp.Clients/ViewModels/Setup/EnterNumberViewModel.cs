@@ -46,10 +46,10 @@ namespace YoApp.Clients.ViewModels.Setup
         private readonly IVerificationManager _verificationManager;
         private readonly IPageService _pageService;
 
-        public EnterNumberViewModel(IPageService pageService)
+        public EnterNumberViewModel(IPageService pageService, IVerificationManager verificationManager)
         {
             _pageService = pageService;
-            _verificationManager = App.Managers.Resolve<IVerificationManager>();
+            _verificationManager = verificationManager;
             _countryCodesRepository = new CountriesRepository();
             InitCountriesList();
 

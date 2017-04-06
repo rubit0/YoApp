@@ -40,10 +40,9 @@ namespace YoApp.Clients.ViewModels.Settings
         private readonly IPageService _pageService;
         private readonly IAppUserManager _appUserManager;
 
-        public UserDetailsPageViewModel(IPageService pageService)
+        public UserDetailsPageViewModel(IPageService pageService, IAppUserManager appUserManager)
         {
-            _appUserManager = App.Managers.Resolve<IAppUserManager>();
-
+            _appUserManager = appUserManager;
             _nickName = _appUserManager.User.Nickname;
             _statusMessage = _appUserManager.User.Status;
             _pageService = pageService;

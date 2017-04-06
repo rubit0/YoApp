@@ -5,7 +5,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using Xamarin.Auth;
 using YoApp.Clients.Helpers.Extensions;
-using YoApp.Clients.Helpers.Extensions;
 
 namespace YoApp.Clients.Services
 {
@@ -18,14 +17,14 @@ namespace YoApp.Clients.Services
         public static event EventHandler<string> OnTokenUpdated;
         public static Account AuthAccount { get; private set; }
 
-        private static readonly AccountStore _accountStore;
-        private static readonly Uri _tokenEndpoint;
+        private static readonly AccountStore AccountStore;
+        private static readonly Uri TokenEndpoint;
 
         static AuthenticationService()
         {
-            _tokenEndpoint = new Uri($"{App.Settings.Identity.Url}connect/token");
-            _accountStore = AccountStore.Create();
-            AuthAccount = _accountStore
+            TokenEndpoint = new Uri($"{App.Settings.Identity.Url}connect/token");
+            AccountStore = AccountStore.Create();
+            AuthAccount = AccountStore
                 .FindAccountsForService(App.Settings.ServiceId)
                 .FirstOrDefault();
         }
@@ -38,7 +37,7 @@ namespace YoApp.Clients.Services
         /// <returns>Returns successful state</returns>
         public static async Task<bool> RequestToken(string username, string password)
         {
-            var authenticator = new OAuth2PasswordCredentialsAuthenticator(_tokenEndpoint);
+            var authenticator = new OAuth2PasswordCredentialsAuthenticator(TokenEndpoint);
             authenticator.SetCredentials(username, password);
 
             try
@@ -50,7 +49,7 @@ namespace YoApp.Clients.Services
                 account.Properties.Add("password", password);
                 account.Properties.Add("date", DateTime.Now.ToString());
 
-                await _accountStore.SaveAsync(account, App.Settings.ServiceId);
+                await AccountStore.SaveAsync(account, App.Settings.ServiceId);
 
                 AuthAccount = account;
                 OnTokenUpdated?.Invoke(null, (string)account.Properties["access_token"]);

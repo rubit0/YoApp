@@ -1,4 +1,5 @@
-﻿using Xamarin.Forms;
+﻿using Autofac;
+using Xamarin.Forms;
 using YoApp.Clients.Helpers;
 using YoApp.Clients.ViewModels.Setup;
 
@@ -6,13 +7,14 @@ namespace YoApp.Clients.Pages.Setup
 {
     public partial class ProfilePage : ContentPage, IPageService
     {
-        private ProfileViewModel _viewModel;
+        private readonly ProfileViewModel _viewModel;
 
         public ProfilePage()
         {
             InitializeComponent();
+            _viewModel = App.Container.Resolve<ProfileViewModel>(
+                new TypedParameter(typeof(IPageService), this));
 
-            _viewModel = new ProfileViewModel(this);
             BindingContext = _viewModel;
         }
 

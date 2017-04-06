@@ -1,10 +1,4 @@
 ﻿using FluentScheduler;
-using Plugin.Connectivity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using YoApp.Clients.Helpers.EventArgs;
 using YoApp.Clients.Services;
 
@@ -39,21 +33,13 @@ namespace YoApp.Clients.StateMachine.States
         {
             var registry = new Registry();
 
-            registry.Schedule(async ()=> {
+            registry.Schedule(async ()=> 
+            {
                 if (AuthenticationService.CanRequestToken())
                     await AuthenticationService.RequestToken(true);
             }).ToRunEvery(3300).Seconds();
 
             return registry;
-        }
-
-        private async Task HandleAuthentication()
-        {
-            if (AuthenticationService.CanRequestToken())
-            {
-                await AuthenticationService.RequestToken(true);
-                return;
-            }
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Xamarin.Forms;
+﻿using Autofac;
+using Xamarin.Forms;
 using YoApp.Clients.Helpers;
 using YoApp.Clients.ViewModels.Setup;
 
@@ -10,9 +11,9 @@ namespace YoApp.Clients.Pages.Setup
         {
             InitializeComponent();
             CodeEntry.Focus();
-
-            var viewModel = new VerificationViewModel(phoneNumber, this);
-            BindingContext = viewModel;
+            BindingContext = App.Container.Resolve<VerificationViewModel>(
+                new NamedParameter("phoneNumber", phoneNumber),
+                new TypedParameter(typeof(IPageService), this));
         }
     }
 }

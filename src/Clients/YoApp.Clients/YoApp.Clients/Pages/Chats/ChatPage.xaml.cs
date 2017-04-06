@@ -1,5 +1,5 @@
-﻿
-using System.Linq;
+﻿using System.Linq;
+using Autofac;
 using Xamarin.Forms;
 using YoApp.Clients.Models;
 using YoApp.Clients.ViewModels.Chats;
@@ -14,7 +14,9 @@ namespace YoApp.Clients.Pages.Chats
         {
             InitializeComponent();
             Friend = friend;
-            BindingContext = new ChatViewModel(Friend, chatBook);
+            BindingContext = App.Container.Resolve<ChatViewModel>(
+                new TypedParameter(typeof(Friend), friend),
+                new TypedParameter(typeof(ChatBook), chatBook));
         }
 
         protected override void OnAppearing()
@@ -22,7 +24,7 @@ namespace YoApp.Clients.Pages.Chats
             ListView.SelectedItem = null;
 
             var items = ListView.ItemsSource.Cast<object>();
-            if(items.Count() > 0)
+            if(items.Any())
                 ListView.ScrollTo(items.Last(), ScrollToPosition.End, false);
         }
 

@@ -7,7 +7,6 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using YoApp.Clients.Helpers;
-using YoApp.Clients.Helpers.Extensions;
 using YoApp.Clients.Models;
 using YoApp.Clients.Persistence;
 using YoApp.Clients.Services;
@@ -18,17 +17,17 @@ namespace YoApp.Clients.Manager
     {
         public ObservableCollection<Friend> Friends { get; private set; }
 
-        private readonly IKeyValueStore _store;
+        private readonly IKeyValueStore _keyValueStore;
         private readonly IRealmStore _realmStore;
         private readonly IFriendsService _friendsService;
 
-        public FriendsManager()
+        public FriendsManager(IKeyValueStore keyValueStore, IRealmStore realmStore, IFriendsService friendsService)
         {
-            _store = App.Persistence.Resolve<IKeyValueStore>();
-            _realmStore = App.Persistence.Resolve<IRealmStore>();
-            _friendsService = App.Services.Resolve<IFriendsService>();
+            _keyValueStore = keyValueStore;
+            _realmStore = realmStore;
+            _friendsService = friendsService;
 
-            _store.GetAllObservable<Friend>()
+            _keyValueStore.GetAllObservable<Friend>()
                 .Subscribe(friends =>
                 {
                     if (friends == null)
@@ -58,7 +57,7 @@ namespace YoApp.Clients.Manager
                 await DiscoverFriendsAsync(contacts);
 
             //Persist
-            await _store.Persist();
+            await _keyValueStore.Persist();
         }
 
         /// <summary>
@@ -104,12 +103,12 @@ namespace YoApp.Clients.Manager
                 friend.LocalContact = contact;
 
                 //Persist friend
-                await _store.Insert(friend);
+                await _keyValueStore.Insert(friend);
 
                 Friends.Add(friend);
 
                 //Persist chatbook
-                var chatbook = new ChatBook { FriendKey = friend.Key };
+                var chatbook = new ChatBook() { FriendKey = friend.Key };
                 await _realmStore.AddAsync(chatbook);
 
                 OnPropertyChanged(nameof(Friends));
@@ -128,7 +127,7 @@ namespace YoApp.Clients.Manager
 
             foreach (var friend in stale)
             {
-                await _store.Remove(friend);
+                await _keyValueStore.Remove(friend);
                 Friends.Remove(friend);
 
                 //Remove Chatbook

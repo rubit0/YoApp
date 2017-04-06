@@ -3,6 +3,7 @@ using Plugin.Connectivity;
 using Plugin.Connectivity.Abstractions;
 using System;
 using System.Threading.Tasks;
+using Autofac;
 using Xamarin.Forms;
 using YoApp.Clients.Helpers;
 using YoApp.Clients.Helpers.EventArgs;
@@ -23,10 +24,10 @@ namespace YoApp.Clients.StateMachine
 
         public StateMachine()
         {
-            _lifeCycleState = new LifeCycleState();
-            _setupFinishedState = new UserCreatedState();
-            _schedulerState = new SchedulerState();
-            _connectivityState = new ConnectivityState();
+            _lifeCycleState = App.Container.Resolve<LifeCycleState>();
+            _setupFinishedState = App.Container.Resolve<UserCreatedState>();
+            _schedulerState = App.Container.Resolve<SchedulerState>();
+            _connectivityState = App.Container.Resolve<ConnectivityState>();
 
             SetupSubscriptions();
         }

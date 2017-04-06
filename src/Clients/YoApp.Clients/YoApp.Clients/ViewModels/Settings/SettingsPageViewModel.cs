@@ -18,9 +18,9 @@ namespace YoApp.Clients.ViewModels.Settings
 
         private readonly IAppUserManager _userManager;
 
-        public SettingsPageViewModel(IPageService pageService)
+        public SettingsPageViewModel(IPageService pageService, IAppUserManager userManager)
         {
-            _userManager = App.Managers.Resolve<IAppUserManager>();
+            _userManager = userManager;
 
             if (ResourceKeys.IsDebug)
                 OpenDebugMenuCommand = new Command(async () =>

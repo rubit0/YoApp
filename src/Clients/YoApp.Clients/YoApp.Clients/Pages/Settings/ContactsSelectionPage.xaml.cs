@@ -1,4 +1,4 @@
-﻿
+﻿using Autofac;
 using Xamarin.Forms;
 using YoApp.Clients.Helpers;
 using YoApp.Clients.ViewModels.Settings;
@@ -10,7 +10,8 @@ namespace YoApp.Clients.Pages.Settings
         public ContactsSelectionPage()
         {
             InitializeComponent();
-            BindingContext = new ContactsSelectionViewModel(this);
+            BindingContext = App.Container.Resolve<ContactsSelectionViewModel>(
+                new TypedParameter(typeof(IPageService), this));
         }
     }
 }

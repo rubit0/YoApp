@@ -42,11 +42,12 @@ namespace YoApp.Clients.ViewModels.Settings
         private readonly IFriendsManager _friendsManager;
         private readonly IKeyValueStore _keyValueStore;
 
-        public DebugPageViewModel(IPageService pageService)
+        public DebugPageViewModel(IPageService pageService, IKeyValueStore keyValueStore, IFriendsManager friendsManager)
         {
             _pageService = pageService;
-            _friendsManager = App.Managers.Resolve<IFriendsManager>();
-            _keyValueStore = App.Persistence.Resolve<IKeyValueStore>();
+            _friendsManager = friendsManager;
+            _keyValueStore = keyValueStore;
+
             Initcommands();
         }
 

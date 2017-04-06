@@ -16,14 +16,14 @@ namespace YoApp.Clients.ViewModels.Setup
 
         public string NickName
         {
-            get { return _appUserManager.User.Nickname; }
-            set { _appUserManager.User.Nickname = value; }
+            get => _appUserManager.User.Nickname;
+            set => _appUserManager.User.Nickname = value;
         }
 
         public string StatusMessage
         {
-            get { return _appUserManager.User.Status; }
-            set { _appUserManager.User.Status = value; }
+            get => _appUserManager.User.Status;
+            set => _appUserManager.User.Status = value;
         }
 
         public ICommand SubmitCommand { get; }
@@ -32,10 +32,10 @@ namespace YoApp.Clients.ViewModels.Setup
         private readonly IPageService _pageService;
         private readonly IAppUserManager _appUserManager;
 
-        public ProfileViewModel(IPageService pageService)
+        public ProfileViewModel(IPageService pageService, IAppUserManager appUserManager)
         {
             _pageService = pageService;
-            _appUserManager = App.Managers.Resolve<IAppUserManager>();
+            _appUserManager = appUserManager;
 
             SubmitCommand = new Command(async () => await UpdateAndPersistUser(),
                 () => CanSubmit);
