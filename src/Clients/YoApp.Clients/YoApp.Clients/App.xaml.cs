@@ -1,6 +1,8 @@
 ﻿using System.Reflection;
 using System.Threading.Tasks;
 using Autofac;
+using Plugin.Contacts;
+using Plugin.Contacts.Abstractions;
 using Xamarin.Forms;
 using YoApp.Clients.Helpers;
 using YoApp.Clients.Helpers.EventArgs;
@@ -53,9 +55,10 @@ namespace YoApp.Clients
         {
             var builder = new ContainerBuilder();
 
-            //Settings
+            //Misc
             builder.RegisterType<AppSettings>().As<IStartable>().AsSelf().SingleInstance();
             builder.RegisterType<ChatBook>().AsSelf();
+            builder.RegisterInstance(CrossContacts.Current).As<IContacts>().SingleInstance();
 
             //Persistence
             builder.RegisterType<AkavacheContext>().As<IKeyValueStore>().SingleInstance();

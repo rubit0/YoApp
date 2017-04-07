@@ -1,6 +1,5 @@
 ﻿using Realms;
 using System.Collections.Generic;
-using Autofac;
 using YoApp.Clients.Persistence;
 
 namespace YoApp.Clients.Models

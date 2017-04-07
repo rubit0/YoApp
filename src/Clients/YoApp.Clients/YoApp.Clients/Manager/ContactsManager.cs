@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
+using Plugin.Contacts.Abstractions;
 using YoApp.Clients.Helpers;
 using YoApp.Clients.Models;
 using YoApp.Clients.ViewModels.ListViewGroups;
@@ -17,7 +18,7 @@ namespace YoApp.Clients.Manager
     {
         public List<LocalContact> Contacts
         {
-            get { return _contacts; }
+            get => _contacts;
             private set
             {
                 _contacts = value;
@@ -27,9 +28,11 @@ namespace YoApp.Clients.Manager
 
         private List<LocalContact> _contacts;
         private readonly ContactComparer _contactComparer;
+        private readonly IContacts _deviceContacts;
 
-        public ContactsManager()
+        public ContactsManager(IContacts deviceContacts)
         {
+            _deviceContacts = deviceContacts;
             _contacts = new List<LocalContact>();
             _contactComparer = new ContactComparer();
         }
@@ -40,19 +43,19 @@ namespace YoApp.Clients.Manager
         /// <returns>Has been new contacts found?</returns>
         public async Task<bool> LoadContactsAsync()
         {
-            var hasPermission = await CrossContacts.Current.RequestPermission();
+            var hasPermission = await _deviceContacts.RequestPermission();
             if (!hasPermission)
                 return false;
 
-            CrossContacts.Current.PreferContactAggregation = false;
+            _deviceContacts.PreferContactAggregation = false;
 
-            if (CrossContacts.Current.Contacts?.ToArray().Length
+            if (_deviceContacts.Contacts?.ToArray().Length
                 == Contacts?.Count)
                 return false;
 
             Contacts = await Task.Run(() =>
             {
-                var fetchedContacts = CrossContacts.Current
+                var fetchedContacts = _deviceContacts
                     .Contacts
                     .ToArray()
                     .Where(c => !string.IsNullOrWhiteSpace(c.DisplayName)
