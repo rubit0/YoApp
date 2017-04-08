@@ -19,15 +19,6 @@ namespace YoApp.Chat.Controllers
             _hubContext = GlobalHost.ConnectionManager.GetHubContext<MainHub>();
         }
 
-        public async Task<IActionResult> SendMessageAll(string message)
-        {
-            if (string.IsNullOrWhiteSpace(message))
-                return BadRequest();
-
-            await _hubContext.Clients.All.OnMessage(message);
-            return Ok();
-        }
-
         [HttpPost("send")]
         public async Task<IActionResult> SendMessage(string receiver, string message)
         {

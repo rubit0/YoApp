@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using YoApp.DataObjects.Users;
-using YoApp.Data.Models;
 using YoApp.Friends.Helper;
 
 namespace YoApp.Identity.Controllers
@@ -47,7 +46,7 @@ namespace YoApp.Identity.Controllers
         [HttpPost]
         public async Task<IActionResult> FindUsers([FromBody]IEnumerable<string> phoneNumbers)
         {
-            if (phoneNumbers == null || phoneNumbers.Count() == 0)
+            if (phoneNumbers == null || !phoneNumbers.Any())
                 return BadRequest();
 
             var usersInDb = await _repository.Friends.FindByNameRangeAsync(phoneNumbers);
@@ -107,18 +106,6 @@ namespace YoApp.Identity.Controllers
                 return Ok();
             else
                 return NotFound();
-        }
-
-        [HttpPost("check/")]
-        public async Task<IActionResult> IsMemberRange([FromBody]IEnumerable<string> phoneNumbers)
-        {
-            if (phoneNumbers == null || phoneNumbers.Count() == 0)
-                return BadRequest();
-
-            var usersInDb = await _repository.Friends.FindByNameRangeAsync(phoneNumbers);
-            var dto = _mapper.Map<IEnumerable<ApplicationUser>, IEnumerable<UserDto>>(usersInDb);
-
-            return Ok(dto);
         }
     }
 }
