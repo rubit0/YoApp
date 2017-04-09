@@ -260,47 +260,5 @@ namespace YoApp.Tests.Services.Friends.Controller
             //Assert
             Assert.IsType<OkResult>(response);
         }
-
-        [Fact]
-        public async void CheckAreMember_OnEmptyQuery_BadRequest()
-        {
-            //Arrange
-            var persistenceMock = new Mock<IFriendsPersistence>();
-            var mapperMock = new Mock<IMapper>();
-
-            //Act
-            var controller = new FriendsController(_logger, persistenceMock.Object, mapperMock.Object);
-            var response = await controller.IsMemberRange(null);
-
-            //Assert
-            Assert.IsType<BadRequestResult>(response);
-        }
-
-        [Fact]
-        public async void CheckAreMember_OnAnyFindingMatches_OkResultWithDto()
-        {
-            //Arrange
-            var query = new List<string> { "123", "456", "789" };
-            var usersFromDb = new List<ApplicationUser> { new ApplicationUser { UserName = query[0] } };
-            var dtos = new List<UserDto> { new UserDto { Username = usersFromDb[0].UserName } };
-
-            var persistenceMock = new Mock<IFriendsPersistence>();
-            persistenceMock
-                .Setup(p => p.Friends.FindByNameRangeAsync(query))
-                .ReturnsAsync(usersFromDb);
-
-            var mapperMock = new Mock<IMapper>();
-            mapperMock
-                .Setup(m => m.Map<IEnumerable<ApplicationUser>, IEnumerable<UserDto>>(usersFromDb))
-                .Returns(dtos);
-
-
-            //Act
-            var controller = new FriendsController(_logger, persistenceMock.Object, mapperMock.Object);
-            var response = await controller.IsMemberRange(query);
-            
-            //Assert
-            Assert.IsType<OkObjectResult>(response);
-        }
     }
 }

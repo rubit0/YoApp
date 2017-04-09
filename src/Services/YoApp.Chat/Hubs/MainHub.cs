@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNet.SignalR;
-using System.Threading.Tasks;
 
 namespace YoApp.Chat.Hubs
 {
@@ -8,11 +7,6 @@ namespace YoApp.Chat.Hubs
     {
         public MainHub()
         {
-        }
-
-        public override async Task OnConnected()
-        {
-            await Clients.All.OnWelcome<string>("Hello World!");
         }
     }
 }

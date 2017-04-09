@@ -1,9 +1,7 @@
-﻿using FluentScheduler;
-using Plugin.Connectivity;
+﻿using Plugin.Connectivity;
 using Plugin.Connectivity.Abstractions;
 using System;
 using System.Threading.Tasks;
-using Autofac;
 using Xamarin.Forms;
 using YoApp.Clients.Helpers;
 using YoApp.Clients.Helpers.EventArgs;
@@ -15,33 +13,20 @@ namespace YoApp.Clients.StateMachine
     /// <summary>
     /// Manages all relevant states of the App.
     /// </summary>
-    public class StateMachine : IDisposable
+    public class StateMachineController : IDisposable
     {
         private readonly LifeCycleState _lifeCycleState;
         private readonly UserCreatedState _setupFinishedState;
         private readonly SchedulerState _schedulerState;
         private readonly ConnectivityState _connectivityState;
 
-        public StateMachine()
+        public StateMachineController(LifeCycleState lifeCycleState, UserCreatedState setupFinishedState, 
+            SchedulerState schedulerState, ConnectivityState connectivityState)
         {
-            _lifeCycleState = App.Container.Resolve<LifeCycleState>();
-            _setupFinishedState = App.Container.Resolve<UserCreatedState>();
-            _schedulerState = App.Container.Resolve<SchedulerState>();
-            _connectivityState = App.Container.Resolve<ConnectivityState>();
-
-            SetupSubscriptions();
-        }
-
-        private void SetupSubscriptions()
-        {
-            CrossConnectivity.Current.ConnectivityChanged +=
-                async (s, e) => await OnConnectivityChanged(e);
-
-            MessagingCenter.Subscribe<VerificationViewModel>(this, MessagingEvents.UserCreated,
-                async (s) => await OnUserCreated());
-
-            MessagingCenter.Subscribe<App, LifecycleEventArgs>(this, MessagingEvents.LifecycleChanged,
-                async (s, e) => await OnLifeCycleChanged(e));
+            _lifeCycleState = lifeCycleState;
+            _setupFinishedState = setupFinishedState;
+            _schedulerState = schedulerState;
+            _connectivityState = connectivityState;
         }
 
         private async Task OnLifeCycleChanged(LifecycleEventArgs eventArgs)
@@ -58,6 +43,18 @@ namespace YoApp.Clients.StateMachine
         private async Task OnConnectivityChanged(ConnectivityChangedEventArgs eventArgs)
         {
             await _connectivityState.HandleConnectivityState(eventArgs.IsConnected);
+        }
+
+        public void Start()
+        {
+            CrossConnectivity.Current.ConnectivityChanged +=
+                async (s, e) => await OnConnectivityChanged(e);
+
+            MessagingCenter.Subscribe<VerificationViewModel>(this, MessagingEvents.UserCreated,
+                async (s) => await OnUserCreated());
+
+            MessagingCenter.Subscribe<App, LifecycleEventArgs>(this, MessagingEvents.LifecycleChanged,
+                async (s, e) => await OnLifeCycleChanged(e));
         }
 
         public void Dispose()

@@ -1,4 +1,6 @@
 ﻿using System.Threading.Tasks;
+using Xamarin.Forms;
+using YoApp.Clients.Helpers;
 using YoApp.Clients.Helpers.EventArgs;
 using YoApp.Clients.Manager;
 using YoApp.Clients.Persistence;
@@ -52,11 +54,14 @@ namespace YoApp.Clients.StateMachine.States
             if (AuthenticationService.CanRequestToken())
                 await AuthenticationService.RequestToken(true);
 
+            await _friendsManager.LoadFriends();
             if (await _contactsManager.LoadContactsAsync())
                 await _friendsManager.ManageFriends(_contactsManager.Contacts);
 
             if (App.Settings.SetupFinished)
                 await _chatService.Connect();
+
+            Device.BeginInvokeOnMainThread(() => App.Current.MainPage = GetMainPage());
         }
 
         private async Task Sleep()
@@ -71,6 +76,13 @@ namespace YoApp.Clients.StateMachine.States
 
             if (await _contactsManager.LoadContactsAsync())
                 await _friendsManager.ManageFriends(_contactsManager.Contacts);
+        }
+
+        private Page GetMainPage()
+        {
+            return (App.Settings.SetupFinished || ResourceKeys.IsDebug)
+                ? new NavigationPage(new Pages.MainPage())
+                : new NavigationPage(new Pages.Setup.WelcomePage());
         }
     }
 }

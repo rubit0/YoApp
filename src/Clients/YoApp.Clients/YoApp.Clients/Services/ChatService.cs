@@ -26,12 +26,6 @@ namespace YoApp.Clients.Services
             SetupSignalR();
         }
 
-        private void OnTokenUpdatedHandler(object sender, string e)
-        {
-            if (_connection != null)
-                _connection.Headers["Authorization"] = $"Bearer {e}";
-        }
-
         public async Task<bool> Connect()
         {
             try
@@ -67,7 +61,7 @@ namespace YoApp.Clients.Services
             _connection = new HubConnection(_baseAddress.ToString());
 
             var token = AuthenticationService.AuthAccount?.Properties["access_token"] ?? "";
-            _connection.Headers.Add("Authorization", $"Bearer token");
+            _connection.Headers.Add("Authorization", $"Bearer {token}");
 
             _chatProxy = _connection.CreateHubProxy("MainHub");
             _chatProxy.On("OnReceiveMessage", (string sender, string message) =>
@@ -86,6 +80,12 @@ namespace YoApp.Clients.Services
             };
 
             OnChatMessageReceived?.Invoke(this, args);
+        }
+
+        private void OnTokenUpdatedHandler(object sender, string e)
+        {
+            if (_connection != null)
+                _connection.Headers["Authorization"] = $"Bearer {e}";
         }
     }
 }

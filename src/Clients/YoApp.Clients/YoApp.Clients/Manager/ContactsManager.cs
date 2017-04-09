@@ -63,7 +63,7 @@ namespace YoApp.Clients.Manager
                     .SelectMany(c =>
                     {
                         return c.Phones.Select(phone =>
-                            new LocalContact(phone.Number)
+                            new LocalContact(phone.Number.Replace(" ", ""))
                             {
                                 Id = c.Id,
                                 FirstName = c.FirstName,

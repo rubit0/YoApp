@@ -17,7 +17,7 @@ namespace YoApp.Clients.ViewModels.Settings
         private string _nickName;
         public string Nickname
         {
-            get { return _nickName; }
+            get => _nickName;
             set
             {
                 _nickName = value;
@@ -28,7 +28,7 @@ namespace YoApp.Clients.ViewModels.Settings
         private string _statusMessage;
         public string StatusMessage
         {
-            get { return _statusMessage; }
+            get => _statusMessage;
             set
             {
                 _statusMessage = value;
@@ -36,7 +36,7 @@ namespace YoApp.Clients.ViewModels.Settings
             }
         }
 
-        public ICommand UpdateCommand { get; private set; }
+        public ICommand UpdateCommand { get; }
         private readonly IPageService _pageService;
         private readonly IAppUserManager _appUserManager;
 

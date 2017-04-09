@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="YoApp.Clients.Pages.SplashPage"
+             Title="SplashPage">
+  <ScrollView>
+    <StackLayout Padding="10">
+            <Label VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" 
+                   Text="YoApp!" FontSize="40"/>
+        </StackLayout>
+  </ScrollView>
+</ContentPage>

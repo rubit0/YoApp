@@ -10,6 +10,7 @@ namespace YoApp.Clients.Manager
     {
         ObservableCollection<Friend> Friends { get; }
 
+        Task LoadFriends();
         Task ManageFriends(List<LocalContact> contacts);
         Task DiscoverFriendsAsync(List<LocalContact> contacts);
         void MatchFriendsToContacts(IEnumerable<Friend> friends, List<LocalContact> contacts);

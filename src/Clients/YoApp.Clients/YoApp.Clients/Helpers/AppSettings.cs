@@ -128,10 +128,7 @@ namespace YoApp.Clients.Helpers
 
         public async Task Persist()
         {
-            var instance = await _store.Get<AppSettings>(Key);
-            if(instance == null)
-                await _store.Insert(this);
-
+            await _store.Insert(this);
             await _store.Persist();
         }
 

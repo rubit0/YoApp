@@ -1,5 +1,4 @@
 ﻿using Plugin.Connectivity;
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -26,15 +25,12 @@ namespace YoApp.Clients.Manager
             _keyValueStore = keyValueStore;
             _realmStore = realmStore;
             _friendsService = friendsService;
+        }
 
-            _keyValueStore.GetAllObservable<Friend>()
-                .Subscribe(friends =>
-                {
-                    if (friends == null)
-                        friends = new List<Friend>();
-
-                    Friends = new ObservableCollection<Friend>(friends);
-                });
+        public async Task LoadFriends()
+        {
+            var friendsFromStore = await _keyValueStore.GetAll<Friend>() ?? new List<Friend>();
+            Friends = new ObservableCollection<Friend>(friendsFromStore);
         }
 
         /// <summary>
@@ -42,6 +38,9 @@ namespace YoApp.Clients.Manager
         /// </summary>
         public async Task ManageFriends(List<LocalContact> contacts)
         {
+            if(Friends == null || contacts == null)
+                return;
+
             //Get rid of all friends that can't be associated with a local contact
             await RemoveStaleFriendsAsync(contacts);
 
