@@ -4,15 +4,15 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using YoApp.Data.Extensions;
-using YoApp.Data.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using YoApp.Data;
 using AspNet.Security.OpenIdConnect.Primitives;
-using YoApp.Utils.Extensions;
+using YoApp.Core.Models;
 using YoApp.Data.Repositories;
 using YoApp.Identity.Helper;
 using YoApp.Identity.Services;
 using YoApp.Identity.Services.Interfaces;
+using YoApp.Utils.Extensions;
 
 namespace YoApp.Identity
 {

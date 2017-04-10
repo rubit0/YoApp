@@ -1,5 +1,5 @@
 ﻿using YoApp.Clients.Persistence;
-using YoApp.DataObjects.Users;
+using YoApp.Core.Dtos.Users;
 
 namespace YoApp.Clients.Models
 {

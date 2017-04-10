@@ -8,7 +8,7 @@ using YoApp.Clients.Manager;
 using YoApp.Clients.Models;
 using YoApp.Clients.Persistence;
 using YoApp.Clients.Services;
-using YoApp.DataObjects.Account;
+using YoApp.Core.Dtos.Account;
 
 namespace YoApp.Tests.Clients.Managers
 {

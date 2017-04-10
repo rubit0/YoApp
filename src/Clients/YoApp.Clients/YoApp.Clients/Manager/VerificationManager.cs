@@ -3,7 +3,7 @@ using System;
 using System.Net.Http;
 using System.Threading.Tasks;
 using YoApp.Clients.Helpers;
-using YoApp.DataObjects.Verification;
+using YoApp.Core.Dtos.Verification;
 
 namespace YoApp.Clients.Manager
 {

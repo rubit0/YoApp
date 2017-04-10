@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using YoApp.Data.Models;
+using YoApp.Core.Models;
 
 namespace YoApp.Data.Repositories
 {

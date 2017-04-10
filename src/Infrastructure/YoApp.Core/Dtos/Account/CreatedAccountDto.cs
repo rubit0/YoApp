@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace YoApp.DataObjects.Account
+namespace YoApp.Core.Dtos.Account
 {
     public class CreatedAccountDto
     {

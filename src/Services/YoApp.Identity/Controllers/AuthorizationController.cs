@@ -11,7 +11,7 @@ using OpenIddict.Core;
 using Microsoft.Extensions.Options;
 using Microsoft.AspNetCore.Builder;
 using System.Collections.Generic;
-using YoApp.Data.Models;
+using YoApp.Core.Models;
 
 namespace YoApp.Identity.Controllers
 {

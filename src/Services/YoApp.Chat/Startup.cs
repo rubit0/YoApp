@@ -1,10 +1,12 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using YoApp.Chat.Helpers;
 using Owin;
+using YoApp.Core.Models;
 using YoApp.Utils.Extensions;
 
 namespace YoApp.Chat
@@ -29,6 +31,10 @@ namespace YoApp.Chat
         {
             // Add framework services.
             services.AddMvc();
+
+            //Identity persitence.
+            services.AddIdentity<ApplicationUser, IdentityRole>()
+                .AddDefaultTokenProviders();
 
             //Set App wide protection keyring.
             if (Configuration.IsLocalInstance())

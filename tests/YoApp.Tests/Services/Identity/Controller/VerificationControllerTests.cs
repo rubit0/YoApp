@@ -4,13 +4,13 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Moq;
 using Xunit;
-using YoApp.DataObjects.Verification;
 using YoApp.Identity.Controllers;
 using YoApp.Identity;
 using YoApp.Identity.Services.Interfaces;
 using YoApp.Identity.Helper;
-using YoApp.Data.Models;
 using System;
+using YoApp.Core.Dtos.Verification;
+using YoApp.Core.Models;
 
 namespace YoApp.Tests.Services.Identity.Controller
 {

@@ -3,14 +3,14 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Moq;
 using Xunit;
-using YoApp.Identity.Controllers;
 using YoApp.Friends.Helper;
 using Microsoft.AspNetCore.Http;
-using YoApp.Data.Models;
 using System.Threading.Tasks;
-using YoApp.DataObjects.Users;
 using System.Collections.Generic;
 using System.Linq;
+using YoApp.Core.Dtos.Users;
+using YoApp.Core.Models;
+using YoApp.Friends.Controllers;
 
 namespace YoApp.Tests.Services.Friends.Controller
 {

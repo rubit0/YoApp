@@ -1,4 +1,4 @@
-﻿namespace YoApp.DataObjects.Users
+﻿namespace YoApp.Core.Dtos.Users
 {
     public class UserDto
     {

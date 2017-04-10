@@ -408,16 +408,16 @@
     <Content Include="FodyWeavers.xml" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Infrastructure\YoApp.DataObjects\YoApp.DataObjects.csproj">
-      <Project>{2a2db839-3c33-4681-a071-dd562044ea87}</Project>
-      <Name>YoApp.DataObjects</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="Pages\SplashPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Infrastructure\YoApp.Core\YoApp.Core.csproj">
+      <Project>{0847b326-6bfd-4507-bed7-48be70d15d02}</Project>
+      <Name>YoApp.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

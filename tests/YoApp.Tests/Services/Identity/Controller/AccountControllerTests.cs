@@ -4,10 +4,10 @@ using Microsoft.Extensions.Logging;
 using Moq;
 using Xunit;
 using YoApp.Identity.Controllers;
-using YoApp.Data.Models;
-using YoApp.DataObjects.Account;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
+using YoApp.Core.Dtos.Account;
+using YoApp.Core.Models;
 
 namespace YoApp.Tests.Services.Identity.Controller
 {

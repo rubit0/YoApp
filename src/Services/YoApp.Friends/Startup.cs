@@ -4,13 +4,13 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using YoApp.Data.Extensions;
-using YoApp.Utils.Extensions;
 using YoApp.Data;
 using YoApp.Data.Repositories;
-using YoApp.Data.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using AutoMapper;
+using YoApp.Core.Models;
 using YoApp.Friends.Helper;
+using YoApp.Utils.Extensions;
 
 namespace YoApp.Friends
 {

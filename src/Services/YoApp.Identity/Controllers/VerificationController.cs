@@ -4,10 +4,10 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using YoApp.Identity.Helper;
 using YoApp.Identity.Services.Interfaces;
-using YoApp.DataObjects.Verification;
 using YoApp.Utils.Misc;
-using YoApp.Data.Models;
 using Microsoft.AspNetCore.Identity;
+using YoApp.Core.Dtos.Verification;
+using YoApp.Core.Models;
 
 namespace YoApp.Identity.Controllers
 {

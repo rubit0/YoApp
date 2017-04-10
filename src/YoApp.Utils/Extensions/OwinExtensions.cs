@@ -15,7 +15,6 @@ namespace YoApp.Utils.Extensions
         /// <param name="accountName">Account name of the blob storage</param>
         /// <param name="accountKey">Key of the account</param>
         /// <param name="containerName">Blob target container.</param>
-        /// <param name="isLocal">Check if the current app instance is running localy.</param>
         public static void ConfigureDataProtectionOnAzure(this IServiceCollection services, 
             string applicationName, string accountName, string accountKey, string containerName = "ringkeys")
         {

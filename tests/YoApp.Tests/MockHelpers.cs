@@ -1,9 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Moq;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using YoApp.Data.Models;
+using YoApp.Core.Models;
 
 namespace YoApp.Tests
 {

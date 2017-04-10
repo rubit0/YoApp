@@ -5,10 +5,10 @@ using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using YoApp.DataObjects.Users;
+using YoApp.Core.Dtos.Users;
 using YoApp.Friends.Helper;
 
-namespace YoApp.Identity.Controllers
+namespace YoApp.Friends.Controllers
 {
     [Authorize]
     [Route("[controller]")]

@@ -2,9 +2,9 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using YoApp.DataObjects.Account;
-using YoApp.Data.Models;
 using Microsoft.AspNetCore.Identity;
+using YoApp.Core.Dtos.Account;
+using YoApp.Core.Models;
 
 namespace YoApp.Identity.Controllers
 {

@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using YoApp.Data.Models;
+using YoApp.Core.Models;
 
 namespace YoApp.Data.Repositories
 {

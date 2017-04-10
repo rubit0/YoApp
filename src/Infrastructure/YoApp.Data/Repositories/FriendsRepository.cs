@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
-using YoApp.Data.Models;
+using YoApp.Core.Models;
 
 namespace YoApp.Data.Repositories
 {

@@ -1,7 +1,7 @@
 ﻿using System;
-using YoApp.DataObjects.Verification;
+using YoApp.Core.Dtos.Verification;
 
-namespace YoApp.Data.Models
+namespace YoApp.Core.Models
 {
     public class VerificationToken
     {
@@ -33,9 +33,8 @@ namespace YoApp.Data.Models
             if (dto == null)
                 throw new ArgumentNullException();
 
-            if (string.CompareOrdinal(this.User, dto.PhoneNumber) != 0)
-                return false;
-            if (string.CompareOrdinal(this.Code, dto.VerificationCode) != 0)
+            if (string.CompareOrdinal(this.User, dto.PhoneNumber) != 0 
+                || string.CompareOrdinal(this.Code, dto.VerificationCode) != 0)
                 return false;
 
             return true;

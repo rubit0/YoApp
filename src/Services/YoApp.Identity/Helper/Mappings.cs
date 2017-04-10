@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
-using YoApp.Data.Models;
-using YoApp.DataObjects.Account;
-using YoApp.DataObjects.Users;
+using YoApp.Core.Dtos.Account;
+using YoApp.Core.Dtos.Users;
+using YoApp.Core.Models;
 
 namespace YoApp.Identity.Helper
 {

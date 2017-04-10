@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
-namespace YoApp.Data.Models
+namespace YoApp.Core.Models
 {
     public class ApplicationUser : IdentityUser
     {

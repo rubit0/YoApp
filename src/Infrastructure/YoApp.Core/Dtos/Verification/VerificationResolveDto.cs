@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace YoApp.DataObjects.Verification
+namespace YoApp.Core.Dtos.Verification
 {
     public class VerificationResolveDto
     {
