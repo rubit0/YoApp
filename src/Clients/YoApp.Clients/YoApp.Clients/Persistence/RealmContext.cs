@@ -72,6 +72,11 @@ namespace YoApp.Clients.Persistence
             await Instance.WriteAsync(r => r.RemoveRange(entities));
         }
 
+        public async Task RemoveAll<T>() where T : RealmObject
+        {
+            await Instance.WriteAsync(r => r.RemoveAll<T>());
+        }
+
         public async Task Update<T>(Action<T> transaction, T entity) where T : RealmObject
         {
             await entity.Realm.WriteAsync((r) =>

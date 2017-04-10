@@ -35,7 +35,7 @@ namespace YoApp.Tests.Clients.Managers
                 new Contact("1", false)
                 {
                     DisplayName = "Dummy",
-                    Phones = new List<Phone> {new Phone()}
+                    Phones = new List<Phone> { new Phone { Number = "49173123456", Label = "Mobile" } }
                 }
             };
             var deviceContactsMock = new Mock<IContacts>();
@@ -61,7 +61,7 @@ namespace YoApp.Tests.Clients.Managers
                 new Contact("1", false)
                 {
                     DisplayName = "Dummy",
-                    Phones = new List<Phone> {new Phone()}
+                    Phones = new List<Phone> { new Phone { Number = "49173123456", Label = "Mobile" } }
                 }
             };
             var deviceContactsMock = new Mock<IContacts>();
@@ -87,7 +87,7 @@ namespace YoApp.Tests.Clients.Managers
                 new Contact("1", false)
                 {
                     DisplayName = "Dummy",
-                    Phones = new List<Phone> {new Phone()}
+                    Phones = new List<Phone> { new Phone { Number = "49173123456", Label = "Mobile" } }
                 }
             };
             var deviceContactsMock = new Mock<IContacts>();

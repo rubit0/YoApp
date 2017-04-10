@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using YoApp.Core.Dtos.Users;
 using YoApp.Core.Models;
+using YoApp.Dtos.Users;
 
 namespace YoApp.Identity.Helper
 {

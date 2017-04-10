@@ -1,5 +1,5 @@
 ﻿using FluentScheduler;
-using YoApp.Clients.Helpers.EventArgs;
+using YoApp.Clients.Core.EventArgs;
 using YoApp.Clients.Services;
 
 namespace YoApp.Clients.StateMachine.States

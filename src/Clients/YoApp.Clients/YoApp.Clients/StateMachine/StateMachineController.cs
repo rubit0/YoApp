@@ -3,8 +3,8 @@ using Plugin.Connectivity.Abstractions;
 using System;
 using System.Threading.Tasks;
 using Xamarin.Forms;
-using YoApp.Clients.Helpers;
-using YoApp.Clients.Helpers.EventArgs;
+using YoApp.Clients.Core;
+using YoApp.Clients.Core.EventArgs;
 using YoApp.Clients.StateMachine.States;
 using YoApp.Clients.ViewModels.Setup;
 

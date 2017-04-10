@@ -4,7 +4,8 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using Xamarin.Forms;
-using YoApp.Clients.Helpers;
+using YoApp.Clients.Core;
+using YoApp.Clients.Forms;
 using YoApp.Clients.Manager;
 using YoApp.Clients.Pages.Modals;
 using YoApp.Clients.Pages.Setup;
@@ -41,7 +42,7 @@ namespace YoApp.Clients.ViewModels.Setup
         public List<string> Countries { get; private set; }
         public string UserPhoneNumber { get; set; }
 
-        private readonly CountriesRepository _countryCodesRepository;
+        private readonly CountriesContext _countryContext;
         private List<CountryViewModel> _countriesFromRepo;
         private readonly IVerificationManager _verificationManager;
         private readonly IPageService _pageService;
@@ -50,7 +51,7 @@ namespace YoApp.Clients.ViewModels.Setup
         {
             _pageService = pageService;
             _verificationManager = verificationManager;
-            _countryCodesRepository = new CountriesRepository();
+            _countryContext = new CountriesContext();
             InitCountriesList();
 
             CompleteCommand = new Command(async () => await ExecuteRequest());
@@ -80,7 +81,7 @@ namespace YoApp.Clients.ViewModels.Setup
         private void InitCountriesList()
         {
             Countries = new List<string>();
-            _countriesFromRepo = _countryCodesRepository.Countries;
+            _countriesFromRepo = _countryContext.Countries;
 
             foreach (var country in _countriesFromRepo)
                 Countries.Add($"{country.ToStringWithEmojiFlag()}");

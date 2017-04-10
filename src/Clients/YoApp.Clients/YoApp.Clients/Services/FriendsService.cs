@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Net;
 using System.Threading.Tasks;
 using YoApp.Clients.Models;
-using YoApp.Core.Dtos.Users;
+using YoApp.Dtos.Users;
 
 namespace YoApp.Clients.Services
 {

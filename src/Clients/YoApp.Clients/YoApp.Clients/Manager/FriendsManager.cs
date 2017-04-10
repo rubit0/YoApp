@@ -5,7 +5,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
-using YoApp.Clients.Helpers;
+using YoApp.Clients.Core;
 using YoApp.Clients.Models;
 using YoApp.Clients.Persistence;
 using YoApp.Clients.Services;

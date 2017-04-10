@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
-using YoApp.Clients.Helpers.EventArgs;
+using YoApp.Clients.Core.EventArgs;
 using YoApp.Clients.Models;
 
 namespace YoApp.Clients.Services

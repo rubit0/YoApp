@@ -23,9 +23,9 @@
     <ProjectReference Include="..\..\src\Clients\YoApp.Clients\YoApp.Clients\YoApp.Clients.csproj" />
     <ProjectReference Include="..\..\src\Infrastructure\YoApp.Core\YoApp.Core.csproj" />
     <ProjectReference Include="..\..\src\Infrastructure\YoApp.Data\YoApp.Data.csproj" />
+    <ProjectReference Include="..\..\src\Infrastructure\YoApp.Dtos\YoApp.Dtos.csproj" />
     <ProjectReference Include="..\..\src\Services\YoApp.Friends\YoApp.Friends.csproj" />
     <ProjectReference Include="..\..\src\Services\YoApp.Identity\YoApp.Identity.csproj" />
-    <ProjectReference Include="..\..\src\YoApp.Utils\YoApp.Utils.csproj" />
   </ItemGroup>
 
   <ItemGroup>

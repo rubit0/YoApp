@@ -1,6 +1,7 @@
 ﻿using Autofac;
 using Xamarin.Forms;
-using YoApp.Clients.Helpers;
+using YoApp.Clients.Core;
+using YoApp.Clients.Forms;
 using YoApp.Clients.ViewModels.Setup;
 
 namespace YoApp.Clients.Pages.Setup

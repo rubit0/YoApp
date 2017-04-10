@@ -4,7 +4,7 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 using Xamarin.Auth;
-using YoApp.Clients.Helpers.Extensions;
+using YoApp.Clients.Core.Extensions;
 
 namespace YoApp.Clients.Services
 {

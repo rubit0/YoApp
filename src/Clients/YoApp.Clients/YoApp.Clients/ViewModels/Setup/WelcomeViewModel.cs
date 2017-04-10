@@ -1,8 +1,8 @@
 ﻿using Plugin.Connectivity;
 using System.Threading.Tasks;
 using Xamarin.Forms;
-using YoApp.Clients.Helpers;
-using YoApp.Clients.Helpers.Extensions;
+using YoApp.Clients.Core.Extensions;
+using YoApp.Clients.Forms;
 using YoApp.Clients.Pages.Modals;
 using YoApp.Clients.Pages.Setup;
 
@@ -15,7 +15,7 @@ namespace YoApp.Clients.ViewModels.Setup
         private bool _isConnecting;
         public bool IsConnecting
         {
-            get { return _isConnecting; }
+            get => _isConnecting;
             set
             {
                 _isConnecting = value;

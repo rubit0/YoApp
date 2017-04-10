@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System;
 using Moq;
 using Xunit;
 using System.Reactive.Linq;

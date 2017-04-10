@@ -6,8 +6,8 @@ using Xunit;
 using YoApp.Identity.Controllers;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
-using YoApp.Core.Dtos.Account;
 using YoApp.Core.Models;
+using YoApp.Dtos.Account;
 
 namespace YoApp.Tests.Services.Identity.Controller
 {

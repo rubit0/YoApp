@@ -1,6 +1,7 @@
 ﻿using System.Windows.Input;
 using Xamarin.Forms;
-using YoApp.Clients.Helpers;
+using YoApp.Clients.Core;
+using YoApp.Clients.Forms;
 using YoApp.Clients.Manager;
 using YoApp.Clients.Pages.Settings;
 using YoApp.Clients.Services;

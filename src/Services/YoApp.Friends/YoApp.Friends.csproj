@@ -18,7 +18,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Infrastructure\YoApp.Data\YoApp.Data.csproj" />
-    <ProjectReference Include="..\..\YoApp.Utils\YoApp.Utils.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\YoApp.Dtos\YoApp.Dtos.csproj" />
   </ItemGroup>
 
 </Project>

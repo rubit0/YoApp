@@ -1,5 +1,4 @@
 ﻿using System;
-using YoApp.Core.Dtos.Verification;
 
 namespace YoApp.Core.Models
 {
@@ -26,18 +25,6 @@ namespace YoApp.Core.Models
         public bool IsExpired()
         {
             return DateTime.Compare(Expires, DateTime.Now) < 0;
-        }
-
-        public bool ResolveToken(VerificationResolveDto dto)
-        {
-            if (dto == null)
-                throw new ArgumentNullException();
-
-            if (string.CompareOrdinal(this.User, dto.PhoneNumber) != 0 
-                || string.CompareOrdinal(this.Code, dto.VerificationCode) != 0)
-                return false;
-
-            return true;
         }
     }
 }

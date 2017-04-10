@@ -2,7 +2,7 @@
 using YoApp.Clients.Models;
 using YoApp.Clients.Persistence;
 using YoApp.Clients.Services;
-using YoApp.Core.Dtos.Account;
+using YoApp.Dtos.Account;
 
 namespace YoApp.Clients.Manager
 {

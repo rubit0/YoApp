@@ -4,10 +4,10 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using YoApp.Identity.Helper;
 using YoApp.Identity.Services.Interfaces;
-using YoApp.Utils.Misc;
 using Microsoft.AspNetCore.Identity;
-using YoApp.Core.Dtos.Verification;
 using YoApp.Core.Models;
+using YoApp.Core.Utils;
+using YoApp.Dtos.Verification;
 
 namespace YoApp.Identity.Controllers
 {
@@ -74,7 +74,7 @@ namespace YoApp.Identity.Controllers
                 return BadRequest($"No verification request found for {dto.PhoneNumber}.");
 
             //Verify if code matches
-            if (!request.ResolveToken(dto))
+            if (!request.ResolveTokenWithDto(dto))
             {
                 _logger.LogInformation($"Code verification failed for [+{dto.PhoneNumber}.\nExpected ({request.Code}) but got ({dto.VerificationCode}).]");
                 return BadRequest("Verification code does not match.");

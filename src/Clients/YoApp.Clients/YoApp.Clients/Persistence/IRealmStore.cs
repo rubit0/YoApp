@@ -21,6 +21,7 @@ namespace YoApp.Clients.Persistence
         IQueryable<T> GetQuerry<T>() where T : RealmObject;
         Task Remove<T>(T entity) where T : RealmObject;
         Task RemoveRange<T>(IQueryable<T> entities) where T : RealmObject;
+        Task RemoveAll<T>() where T : RealmObject;
         Task Update<T>(Action<T> transaction, T entity) where T : RealmObject;
     }
 }

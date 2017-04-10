@@ -1,6 +1,5 @@
 ﻿using System;
 using Xunit;
-using YoApp.Clients.Helpers;
 using YoApp.Clients.Manager;
 
 namespace YoApp.Tests.Clients.Managers

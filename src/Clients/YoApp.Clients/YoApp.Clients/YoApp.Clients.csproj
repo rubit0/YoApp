@@ -39,25 +39,25 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Behaviors\EntryLengthClamp.cs" />
-    <Compile Include="Behaviors\EntryNumericClamp.cs" />
-    <Compile Include="Behaviors\EntryPhoneValidation.cs" />
-    <Compile Include="Behaviors\ListViewAutoScroll.cs" />
+    <Compile Include="Forms\Behaviors\EntryLengthClamp.cs" />
+    <Compile Include="Forms\Behaviors\EntryNumericClamp.cs" />
+    <Compile Include="Forms\Behaviors\EntryPhoneValidation.cs" />
+    <Compile Include="Forms\Behaviors\ListViewAutoScroll.cs" />
     <Compile Include="Forms\Triggers\ClearEntryTrigger.cs" />
-    <Compile Include="Helpers\EventArgs\ChatMessageReceivedEventArgs.cs" />
-    <Compile Include="Helpers\Extensions\AccountExtensions.cs" />
-    <Compile Include="Helpers\Attached\EntryCompleteAttached.cs" />
-    <Compile Include="Helpers\EventArgs\LifeCycleEventArgs.cs" />
-    <Compile Include="Helpers\Extensions\ContactExtensions.cs" />
-    <Compile Include="Helpers\IPageService.cs" />
-    <Compile Include="Helpers\MainComponentRegistrar.cs" />
-    <Compile Include="Helpers\MessagingEvents.cs" />
-    <Compile Include="Helpers\PhoneNumberHelpers.cs" />
-    <Compile Include="Helpers\ParsedPhoneNumber.cs" />
-    <Compile Include="Helpers\ResourceKeys.cs" />
-    <Compile Include="Helpers\Attached\TapGestureAttached.cs" />
-    <Compile Include="Helpers\ContactComparer.cs" />
-    <Compile Include="Helpers\AppSettings.cs" />
+    <Compile Include="Core\EventArgs\ChatMessageReceivedEventArgs.cs" />
+    <Compile Include="Core\Extensions\AccountExtensions.cs" />
+    <Compile Include="Forms\Attached\EntryCompleteAttached.cs" />
+    <Compile Include="Core\EventArgs\LifeCycleEventArgs.cs" />
+    <Compile Include="Core\Extensions\ContactExtensions.cs" />
+    <Compile Include="Forms\IPageService.cs" />
+    <Compile Include="Core\MainComponentRegistrar.cs" />
+    <Compile Include="Core\MessagingEvents.cs" />
+    <Compile Include="Core\PhoneNumberUtils.cs" />
+    <Compile Include="Models\ParsedPhoneNumber.cs" />
+    <Compile Include="Core\ResourceKeys.cs" />
+    <Compile Include="Forms\Attached\TapGestureAttached.cs" />
+    <Compile Include="Core\ContactComparer.cs" />
+    <Compile Include="Core\AppSettings.cs" />
     <Compile Include="Manager\ChatManager.cs" />
     <Compile Include="Manager\IChatManager.cs" />
     <Compile Include="Manager\IVerificationManager.cs" />
@@ -124,12 +124,11 @@
     <Compile Include="Pages\Setup\VerificationPage.xaml.cs">
       <DependentUpon>VerificationPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Helpers\CountriesRepository.cs" />
+    <Compile Include="Core\CountriesContext.cs" />
     <Compile Include="Manager\ContactsManager.cs" />
-    <Compile Include="Helpers\PersistenceHelpers.cs" />
     <Compile Include="Manager\AppUserManager.cs" />
     <Compile Include="Services\AuthenticationService.cs" />
-    <Compile Include="Helpers\Extensions\ConnectivityExtensions.cs" />
+    <Compile Include="Core\Extensions\ConnectivityExtensions.cs" />
     <Compile Include="Services\ChatService.cs" />
     <Compile Include="Services\FriendsService.cs" />
     <Compile Include="StateMachine\States\UserCreatedState.cs" />
@@ -417,6 +416,10 @@
     <ProjectReference Include="..\..\..\Infrastructure\YoApp.Core\YoApp.Core.csproj">
       <Project>{0847b326-6bfd-4507-bed7-48be70d15d02}</Project>
       <Name>YoApp.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Infrastructure\YoApp.Dtos\YoApp.Dtos.csproj">
+      <Project>{210ef4fd-e00c-4eb3-8478-bc33af1166f4}</Project>
+      <Name>YoApp.Dtos</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />

@@ -8,9 +8,9 @@ using Microsoft.AspNetCore.Http;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using System.Linq;
-using YoApp.Core.Dtos.Users;
 using YoApp.Core.Models;
 using YoApp.Friends.Controllers;
+using YoApp.Dtos.Users;
 
 namespace YoApp.Tests.Services.Friends.Controller
 {

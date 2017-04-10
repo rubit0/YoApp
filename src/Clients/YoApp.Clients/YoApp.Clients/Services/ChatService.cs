@@ -5,7 +5,7 @@ using YoApp.Clients.Models;
 using Rubito.SimpleFormsAuth;
 using System.Collections.Generic;
 using System.Net;
-using YoApp.Clients.Helpers.EventArgs;
+using YoApp.Clients.Core.EventArgs;
 
 namespace YoApp.Clients.Services
 {

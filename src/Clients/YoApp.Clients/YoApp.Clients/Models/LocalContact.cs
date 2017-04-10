@@ -1,5 +1,5 @@
 ﻿using Xamarin.Forms;
-using YoApp.Clients.Helpers;
+using YoApp.Clients.Core;
 
 namespace YoApp.Clients.Models
 {
@@ -21,7 +21,7 @@ namespace YoApp.Clients.Models
         public LocalContact(string phoneNumber)
         {
             PhoneNumber = phoneNumber;
-            var parsed = PhoneNumberHelpers.ParsePhoneNumber(PhoneNumber);
+            var parsed = PhoneNumberUtils.ParsePhoneNumber(PhoneNumber);
 
             IsMobile = parsed.IsMobile;
             IsValidPhoneNumber = parsed.IsValid;

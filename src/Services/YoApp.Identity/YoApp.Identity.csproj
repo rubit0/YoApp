@@ -19,8 +19,9 @@
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="1.0.0" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Infrastructure\YoApp.Core\YoApp.Core.csproj" />
     <ProjectReference Include="..\..\Infrastructure\YoApp.Data\YoApp.Data.csproj" />
-    <ProjectReference Include="..\..\YoApp.Utils\YoApp.Utils.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\YoApp.Dtos\YoApp.Dtos.csproj" />
   </ItemGroup>
 
 </Project>

@@ -5,7 +5,7 @@ using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using YoApp.Core.Dtos.Users;
+using YoApp.Dtos.Users;
 using YoApp.Friends.Helper;
 
 namespace YoApp.Friends.Controllers

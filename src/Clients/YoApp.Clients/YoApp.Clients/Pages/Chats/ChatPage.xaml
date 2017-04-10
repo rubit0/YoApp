@@ -2,8 +2,8 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="YoApp.Clients.Pages.Chats.ChatPage"
-             xmlns:behaviors="clr-namespace:YoApp.Clients.Behaviors"
              xmlns:triggers="clr-namespace:YoApp.Clients.Forms.Triggers;assembly=YoApp.Clients"
+             xmlns:behaviors="clr-namespace:YoApp.Clients.Forms.Behaviors;assembly=YoApp.Clients"
              Title="{Binding Name}"
              NavigationPage.HasBackButton="True" >
     <Grid>

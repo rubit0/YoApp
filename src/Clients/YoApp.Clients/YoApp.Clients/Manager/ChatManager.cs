@@ -2,7 +2,7 @@
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
-using YoApp.Clients.Helpers.EventArgs;
+using YoApp.Clients.Core.EventArgs;
 using YoApp.Clients.Models;
 using YoApp.Clients.Pages.Chats;
 using YoApp.Clients.Persistence;

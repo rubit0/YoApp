@@ -1,11 +1,10 @@
-﻿using Plugin.Contacts;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using Plugin.Contacts.Abstractions;
-using YoApp.Clients.Helpers;
+using YoApp.Clients.Core;
 using YoApp.Clients.Models;
 using YoApp.Clients.ViewModels.ListViewGroups;
 

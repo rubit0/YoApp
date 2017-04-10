@@ -9,8 +9,8 @@ using YoApp.Identity;
 using YoApp.Identity.Services.Interfaces;
 using YoApp.Identity.Helper;
 using System;
-using YoApp.Core.Dtos.Verification;
 using YoApp.Core.Models;
+using YoApp.Dtos.Verification;
 
 namespace YoApp.Tests.Services.Identity.Controller
 {

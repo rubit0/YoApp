@@ -1,8 +1,8 @@
 ﻿using System.Threading.Tasks;
 using Autofac;
 using Xamarin.Forms;
-using YoApp.Clients.Helpers;
-using YoApp.Clients.Helpers.EventArgs;
+using YoApp.Clients.Core;
+using YoApp.Clients.Core.EventArgs;
 using YoApp.Clients.Pages;
 
 namespace YoApp.Clients

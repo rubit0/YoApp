@@ -5,8 +5,9 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Auth;
 using Xamarin.Forms;
-using YoApp.Clients.Helpers;
-using YoApp.Clients.Helpers.Extensions;
+using YoApp.Clients.Core;
+using YoApp.Clients.Core.Extensions;
+using YoApp.Clients.Forms;
 using YoApp.Clients.Manager;
 using YoApp.Clients.Models;
 using YoApp.Clients.Pages;
@@ -41,11 +42,13 @@ namespace YoApp.Clients.ViewModels.Settings
         private readonly IPageService _pageService;
         private readonly IFriendsManager _friendsManager;
         private readonly IKeyValueStore _keyValueStore;
+        private readonly IRealmStore _realmStore;
 
-        public DebugPageViewModel(IPageService pageService, IKeyValueStore keyValueStore, IFriendsManager friendsManager)
+        public DebugPageViewModel(IPageService pageService, IKeyValueStore keyValueStore, IFriendsManager friendsManager, IRealmStore realmStore)
         {
             _pageService = pageService;
             _friendsManager = friendsManager;
+            _realmStore = realmStore;
             _keyValueStore = keyValueStore;
 
             Initcommands();
@@ -105,7 +108,11 @@ namespace YoApp.Clients.ViewModels.Settings
                 "Cancel");
 
             if (result)
-                await PersistenceHelpers.DropTables();
+            {
+                await _keyValueStore.RemoveAll<Friend>();
+                await _realmStore.RemoveAll<ChatMessage>();
+                await _realmStore.RemoveAll<ChatBook>();
+            }
         }
 
         private async Task RefreshToken()

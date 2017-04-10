@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Xamarin.Forms;
-using YoApp.Clients.Helpers;
-using YoApp.Clients.Helpers.EventArgs;
+using YoApp.Clients.Core;
+using YoApp.Clients.Core.EventArgs;
 using YoApp.Clients.Manager;
 using YoApp.Clients.Persistence;
 using YoApp.Clients.Services;

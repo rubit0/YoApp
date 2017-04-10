@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:attached="clr-namespace:YoApp.Clients.Helpers.Attached;assembly=YoApp.Clients"
+             xmlns:attached="clr-namespace:YoApp.Clients.Forms.Attached;assembly=YoApp.Clients"
              x:Class="YoApp.Clients.Pages.Chats.FriendSelectionPage"
              Title="New Chat"
              NavigationPage.HasNavigationBar="True">

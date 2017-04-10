@@ -2,7 +2,7 @@
 using Rubito.SimpleFormsAuth;
 using System;
 using System.Threading.Tasks;
-using YoApp.Core.Dtos.Account;
+using YoApp.Dtos.Account;
 
 namespace YoApp.Clients.Services
 {

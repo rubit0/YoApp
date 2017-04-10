@@ -2,8 +2,8 @@
 using System;
 using System.Net.Http;
 using System.Threading.Tasks;
-using YoApp.Clients.Helpers;
-using YoApp.Core.Dtos.Verification;
+using YoApp.Clients.Core;
+using YoApp.Dtos.Verification;
 
 namespace YoApp.Clients.Manager
 {
