@@ -1,6 +1,4 @@
 ﻿using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.DataProtection;
-using Microsoft.AspNetCore.DataProtection.Internal;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -8,6 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Owin.Security.DataProtection;
 using Owin;
+using System;
 using YoApp.Core.Extensions;
 using YoApp.Core.Models;
 
@@ -51,7 +50,7 @@ namespace YoApp.Chat
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, IServiceProvider serviceProvider)
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
@@ -61,13 +60,10 @@ namespace YoApp.Chat
 
             if (!Configuration.IsLocalInstance())
             {
-                app.Isolate(
-                    b => b.UseKatana(a => a.MapSignalR()),
-                    s =>
-                    {
-                        var section = Configuration.GetSection("Blobs:keyring");
-                        s.ConfigureDataProtectionOnAzure("YoApp", section["Account"], section["Secret"]);
-                    });
+                var dateProcProv = OwinDataProtectionFacade.CreateFromServiceProvider(serviceProvider);
+                app.UseKatana(appBuilder => appBuilder
+                    .MapSignalR()
+                    .SetDataProtectionProvider(dateProcProv));
             }
 
             app.UseMvc();
