@@ -248,3 +248,6 @@ ModelManifest.xml
 /src/Services/YoApp.Identity/Properties/PublishProfiles
 /src/Clients/YoApp.Clients/YoApp.Clients/Ressources/appsettings.Development.json
 /src/Clients/YoApp.Clients/YoApp.Clients/Ressources/appsettings.Development.json
+
+# Realm supporting lib
+RealmWeaver.Fody.dll
