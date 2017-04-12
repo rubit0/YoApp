@@ -10,7 +10,7 @@ using AspNet.Security.OpenIdConnect.Primitives;
 using YoApp.Core.Extensions;
 using YoApp.Core.Models;
 using YoApp.Data.Repositories;
-using YoApp.Identity.Helper;
+using YoApp.Identity.Core;
 using YoApp.Identity.Services;
 using YoApp.Identity.Services.Interfaces;
 

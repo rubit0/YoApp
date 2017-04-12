@@ -2,7 +2,7 @@
 using YoApp.Core.Models;
 using YoApp.Dtos.Verification;
 
-namespace YoApp.Identity.Helper
+namespace YoApp.Identity.Core
 {
     public static class VerificationTokenExtensions
     {

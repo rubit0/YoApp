@@ -3,7 +3,7 @@ using YoApp.Core.Models;
 using YoApp.Dtos.Account;
 using YoApp.Dtos.Users;
 
-namespace YoApp.Identity.Helper
+namespace YoApp.Identity.Core
 {
     public class Mappings : Profile
     {

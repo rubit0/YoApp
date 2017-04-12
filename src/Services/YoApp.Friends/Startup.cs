@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using AutoMapper;
 using YoApp.Core.Extensions;
 using YoApp.Core.Models;
-using YoApp.Friends.Helper;
+using YoApp.Friends.Core;
 
 namespace YoApp.Friends
 {

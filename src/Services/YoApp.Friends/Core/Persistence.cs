@@ -1,7 +1,7 @@
 ﻿using YoApp.Data;
 using YoApp.Data.Repositories;
 
-namespace YoApp.Friends.Helper
+namespace YoApp.Friends.Core
 {
     public class Persistence : UnitOfWorkBase, IFriendsPersistence
     {

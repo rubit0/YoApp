@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using YoApp.Dtos.Users;
-using YoApp.Friends.Helper;
+using YoApp.Friends.Core;
 
 namespace YoApp.Friends.Controllers
 {

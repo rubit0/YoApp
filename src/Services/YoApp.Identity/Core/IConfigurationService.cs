@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace YoApp.Identity.Helper
+namespace YoApp.Identity.Core
 {
     public interface IConfigurationService
     {

@@ -7,8 +7,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
+using YoApp.Identity.Core;
 using YoApp.Identity.Services.Interfaces;
-using YoApp.Identity.Helper;
 
 namespace YoApp.Identity.Services
 {

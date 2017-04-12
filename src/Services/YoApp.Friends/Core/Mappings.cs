@@ -2,7 +2,7 @@
 using YoApp.Core.Models;
 using YoApp.Dtos.Users;
 
-namespace YoApp.Identity.Helper
+namespace YoApp.Friends.Core
 {
     public class Mappings : Profile
     {

@@ -2,12 +2,12 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using YoApp.Identity.Helper;
 using YoApp.Identity.Services.Interfaces;
 using Microsoft.AspNetCore.Identity;
 using YoApp.Core.Models;
 using YoApp.Core.Utils;
 using YoApp.Dtos.Verification;
+using YoApp.Identity.Core;
 
 namespace YoApp.Identity.Controllers
 {

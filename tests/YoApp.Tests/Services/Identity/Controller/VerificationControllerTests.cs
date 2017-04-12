@@ -7,10 +7,10 @@ using Xunit;
 using YoApp.Identity.Controllers;
 using YoApp.Identity;
 using YoApp.Identity.Services.Interfaces;
-using YoApp.Identity.Helper;
 using System;
 using YoApp.Core.Models;
 using YoApp.Dtos.Verification;
+using YoApp.Identity.Core;
 
 namespace YoApp.Tests.Services.Identity.Controller
 {

@@ -1,7 +1,7 @@
 ﻿using YoApp.Data;
 using YoApp.Data.Repositories;
 
-namespace YoApp.Identity
+namespace YoApp.Identity.Core
 {
     public interface IIdentityPersistence : IUnitOfWork
     {
