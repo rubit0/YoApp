@@ -61,7 +61,7 @@ namespace YoApp.Identity
                 o.ClaimsIdentity.RoleClaimType = OpenIdConnectConstants.Claims.Role;
             });
 
-            //Set App wide protection keyring.
+            //Set App-wide protection keyring.
             if (Configuration.IsLocalInstance())
             {
                 services.ConfigureDataProtectionLocal("YoApp");
@@ -82,7 +82,7 @@ namespace YoApp.Identity
                 b.DisableHttpsRequirement()
                 .AddEphemeralSigningKey());
 
-            // Add framework services.
+            // Framework services.
             services.AddMvc();
 
             //IoC
@@ -104,6 +104,7 @@ namespace YoApp.Identity
             loggerFactory.AddDebug();
             loggerFactory.AddAzureWebAppDiagnostics();
 
+            //Middleware.
             app.UseOAuthValidation();
             app.UseOpenIddict();
             app.UseMvc();

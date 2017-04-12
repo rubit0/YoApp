@@ -1,22 +1,24 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNet.SignalR;
 using YoApp.Chat.Hubs;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.SignalR;
+using Microsoft.AspNetCore.SignalR.Infrastructure;
 using Microsoft.Extensions.Logging;
 
 namespace YoApp.Chat.Controllers
 {
-    [Authorize]
+    [Microsoft.AspNetCore.Authorization.Authorize]
     [Route("[controller]")]
     public class MessagesController : Controller
     {
         private ILogger _logger;
         private IHubContext _hubContext;
 
-        public MessagesController(ILogger<MessagesController> logger)
+        public MessagesController(ILogger<MessagesController> logger, IConnectionManager manager)
         {
             _logger = logger;
-            _hubContext = GlobalHost.ConnectionManager.GetHubContext<MainHub>();
+
+            _hubContext = manager.GetHubContext<MainHub>();
         }
 
         [HttpPost("send")]

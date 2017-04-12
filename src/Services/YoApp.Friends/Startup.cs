@@ -29,7 +29,6 @@ namespace YoApp.Friends
             Configuration = builder.Build();
         }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             //Persistence and connection strings.
@@ -40,7 +39,7 @@ namespace YoApp.Friends
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
 
-            //Set App wide protection keyring.
+            //Set App-wide protection keyring.
             if (Configuration.IsLocalInstance())
             {
                 services.ConfigureDataProtectionLocal("YoApp");
@@ -51,7 +50,7 @@ namespace YoApp.Friends
                 services.ConfigureDataProtectionOnAzure("YoApp", section["Account"], section["Secret"]);
             }
 
-            // Add framework services.
+            //Framework services.
             services.AddMvc();
             services.AddAutoMapper(typeof(Startup));
 
@@ -62,13 +61,13 @@ namespace YoApp.Friends
             services.AddScoped<IFriendsPersistence, Persistence>();
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
             loggerFactory.AddAzureWebAppDiagnostics();
 
+            //Middleware.
             app.UseOAuthValidation();
             app.UseMvc();
         }

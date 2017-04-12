@@ -1,12 +1,10 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using System;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Microsoft.Owin.Security.DataProtection;
-using Owin;
-using System;
 using YoApp.Core.Extensions;
 using YoApp.Core.Models;
 
@@ -27,17 +25,17 @@ namespace YoApp.Chat
 
         public static IConfigurationRoot Configuration { get; private set; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             //Identity persitence.
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddDefaultTokenProviders();
 
-            // Add framework services.
+            //Framework services.
             services.AddMvc();
+            services.AddSignalR();
 
-            //Set App wide protection keyring.
+            //Set App-wide protection keyring.
             if (Configuration.IsLocalInstance())
             {
                 services.ConfigureDataProtectionLocal("YoApp");
@@ -49,23 +47,16 @@ namespace YoApp.Chat
             }
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, IServiceProvider serviceProvider)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
             loggerFactory.AddAzureWebAppDiagnostics();
 
+            //Middleware.
             app.UseOAuthValidation();
-
-            if (!Configuration.IsLocalInstance())
-            {
-                var dateProcProv = OwinDataProtectionFacade.CreateFromServiceProvider(serviceProvider);
-                app.UseKatana(appBuilder => appBuilder
-                    .MapSignalR()
-                    .SetDataProtectionProvider(dateProcProv));
-            }
-
+            app.UseWebSockets();
+            app.UseSignalR();
             app.UseMvc();
         }
     }
