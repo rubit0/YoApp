@@ -2,7 +2,7 @@
 
 namespace YoApp.Core.Extensions
 {
-    public static class Configuration
+    public static class ConfigurationExtensions
     {
         public static bool IsLocalInstance(this IConfiguration configuration)
         {

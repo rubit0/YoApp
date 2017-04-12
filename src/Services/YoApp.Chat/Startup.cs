@@ -1,10 +1,10 @@
-﻿using System;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using YoApp.Chat.Core;
 using YoApp.Core.Extensions;
 using YoApp.Core.Models;
 
@@ -43,7 +43,7 @@ namespace YoApp.Chat
             else
             {
                 var section = Configuration.GetSection("Blobs:keyring");
-                services.ConfigureDataProtectionOnAzure("YoApp", section["Account"], section["Secret"]);
+                services.ConfigureDataProtectionForAspNet2OnAzure("YoApp", section["Account"], section["Secret"]);
             }
         }
 
@@ -51,7 +51,8 @@ namespace YoApp.Chat
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
-            loggerFactory.AddAzureWebAppDiagnostics();
+            //Currently broken when deployed to Azure
+            //loggerFactory.AddAzureWebAppDiagnostics();
 
             //Middleware.
             app.UseOAuthValidation();

@@ -4,14 +4,15 @@
     <TargetFramework>netcoreapp1.1</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="AspNet.Security.OAuth.Validation" Version="1.0.0-rtm-0235" />
-    <PackageReference Include="Microsoft.AspNetCore" Version="2.0.0-preview1-24401" />
-    <PackageReference Include="Microsoft.AspNetCore.Identity" Version="1.1.1" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="1.1.2" />
+    <PackageReference Include="AspNet.Security.OAuth.Validation" Version="1.0.0-rtm-0241" />
+    <PackageReference Include="Microsoft.AspNetCore" Version="2.0.0-preview1-24406" />
+    <PackageReference Include="Microsoft.AspNetCore.DataProtection.AzureStorage" Version="2.0.0-preview1-24407" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.0.0-preview1-24406" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.0.0-preview1-24406" />
     <PackageReference Include="Microsoft.AspNetCore.SignalR.Server" Version="0.2.0-preview2-22683" />
-    <PackageReference Include="Microsoft.AspNetCore.WebSockets" Version="2.0.0-preview1-24401" />
-    <PackageReference Include="Microsoft.Extensions.Logging.AzureAppServices" Version="1.0.1" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="1.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.WebSockets" Version="2.0.0-preview1-24406" />
+    <PackageReference Include="Microsoft.Extensions.Logging.AzureAppServices" Version="2.0.0-preview1-24406" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="2.0.0-preview1-24406" />
     <PackageReference Include="NETStandard.Library" Version="1.6.1" />
   </ItemGroup>
   <ItemGroup>
