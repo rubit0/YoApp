@@ -19,6 +19,8 @@ namespace YoApp.Clients.StateMachine.States
         private readonly IFriendsManager _friendsManager;
         private readonly IChatService _chatService;
 
+        private bool _startCompleted;
+
         public LifeCycleState(IKeyValueStore store, IAppUserManager appUserManager, 
             IContactsManager contactsManager, IFriendsManager friendsManager, IChatService chatService)
         {
@@ -31,6 +33,9 @@ namespace YoApp.Clients.StateMachine.States
 
         public async Task HandleState(Lifecycle state)
         {
+            if (!_startCompleted && state != Lifecycle.Start)
+                return;
+
             switch (state)
             {
                 case Lifecycle.Start:
@@ -43,7 +48,7 @@ namespace YoApp.Clients.StateMachine.States
                     await Resume();
                     break;
                 default:
-                    break;
+                    return;
             }
         }
 
@@ -62,6 +67,8 @@ namespace YoApp.Clients.StateMachine.States
                 await _chatService.Connect();
 
             Device.BeginInvokeOnMainThread(() => App.Current.MainPage = GetMainPage());
+
+            _startCompleted = true;
         }
 
         private async Task Sleep()
