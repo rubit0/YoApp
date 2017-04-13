@@ -85,21 +85,18 @@ namespace YoApp.Clients.Manager
         {
             //Find unassociated contacts
             var contactsFromFriends = Friends.Select(f => f.LocalContact);
-            var unassociatedContacts = contacts.Except(contactsFromFriends, new ContactComparer());
+            var unassociatedContacts = contacts
+                .Except(contactsFromFriends, new ContactComparer()).ToList();
 
-            foreach (var contact in unassociatedContacts)
+            var friends = await _friendsService
+                .FetchFriends(unassociatedContacts.Select(f => f.NormalizedPhoneNumber));
+
+            foreach (var friend in friends)
             {
-                if (!contact.IsValidPhoneNumber)
+                if (Friends.Contains(friend, new FriendsComparer()))
                     continue;
 
-                if (!await _friendsService.CheckMembership(contact.NormalizedPhoneNumber))
-                    continue;
-
-                var friend = await _friendsService.FetchFriend(contact.NormalizedPhoneNumber);
-                if (friend == null)
-                    continue;
-
-                friend.LocalContact = contact;
+                friend.LocalContact = unassociatedContacts.SingleOrDefault(c => c.NormalizedPhoneNumber == friend.PhoneNumber);
 
                 //Persist friend
                 await _keyValueStore.Insert(friend);

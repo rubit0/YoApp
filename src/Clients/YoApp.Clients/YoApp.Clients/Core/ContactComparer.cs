@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using YoApp.Clients.Models;
 
@@ -15,7 +16,7 @@ namespace YoApp.Clients.Core
 
         public bool Equals(LocalContact x, LocalContact y)
         {
-            return x.Id == y.Id;
+            return string.CompareOrdinal(x.NormalizedPhoneNumber, y.NormalizedPhoneNumber) == 0;
         }
 
         public int GetHashCode(LocalContact obj)
@@ -30,7 +31,7 @@ namespace YoApp.Clients.Core
                 case CompareBy.LastName:
                     return x.GetSortFlag().CompareTo(y.GetSortFlag());
                 case CompareBy.DisplayName:
-                    return string.Compare(x.DisplayName, y.DisplayName);
+                    return string.CompareOrdinal(x.DisplayName, y.DisplayName);
                 default:
                     return x.GetSortFlag().CompareTo(y.GetSortFlag());
             }

@@ -39,6 +39,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Core\FriendsComparer.cs" />
     <Compile Include="Forms\Behaviors\EntryLengthClamp.cs" />
     <Compile Include="Forms\Behaviors\EntryNumericClamp.cs" />
     <Compile Include="Forms\Behaviors\EntryPhoneValidation.cs" />
