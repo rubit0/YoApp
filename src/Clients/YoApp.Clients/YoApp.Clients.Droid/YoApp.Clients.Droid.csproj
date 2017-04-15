@@ -338,6 +338,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="FodyWeavers.xml" />
+    <AndroidResource Include="Resources\drawable\splash_icon.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\splash_icon.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\splash_icon.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\splash_icon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

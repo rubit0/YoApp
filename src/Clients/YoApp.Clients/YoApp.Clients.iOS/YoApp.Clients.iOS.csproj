@@ -281,6 +281,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="FodyWeavers.xml" />
+    <BundleResource Include="Resources\splash_icon.png" />
+    <BundleResource Include="Resources\splash_icon%402x.png" />
+    <BundleResource Include="Resources\splash_icon%403x.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

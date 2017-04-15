@@ -17,20 +17,6 @@
     }
   },
   {
-    "CountryCode": "AX",
-    "Name": "Åland Islands",
-    "CallingCode": "358",
-    "EmojiUnicode": "U+1F1E6 U+1F1FD",
-    "Language": "sv",
-    "Translations": {
-      "DE": "Åland",
-      "ES": "Alandia",
-      "FR": "Åland",
-      "JA": "オーランド諸島",
-      "IT": "Isole Aland"
-    }
-  },
-  {
     "CountryCode": "AL",
     "Name": "Albania",
     "CallingCode": "355",
@@ -56,20 +42,6 @@
       "FR": "Algérie",
       "JA": "アルジェリア",
       "IT": "Algeria"
-    }
-  },
-  {
-    "CountryCode": "AS",
-    "Name": "American Samoa",
-    "CallingCode": "1684",
-    "EmojiUnicode": "U+1F1E6 U+1F1F8",
-    "Language": "en",
-    "Translations": {
-      "DE": "Amerikanisch-Samoa",
-      "ES": "Samoa Americana",
-      "FR": "Samoa américaines",
-      "JA": "アメリカ領サモア",
-      "IT": "Samoa Americane"
     }
   },
   {
@@ -112,20 +84,6 @@
       "FR": "Anguilla",
       "JA": "アンギラ",
       "IT": "Anguilla"
-    }
-  },
-  {
-    "CountryCode": "AQ",
-    "Name": "Antarctica",
-    "CallingCode": "",
-    "EmojiUnicode": "U+1F1E6 U+1F1F6",
-    "Language": "en",
-    "Translations": {
-      "DE": "Antarktika",
-      "ES": "Antártida",
-      "FR": "Antarctique",
-      "JA": "南極大陸",
-      "IT": "Antartide"
     }
   },
   {
@@ -423,20 +381,6 @@
     }
   },
   {
-    "CountryCode": "BV",
-    "Name": "Bouvet Island",
-    "CallingCode": "",
-    "EmojiUnicode": "U+1F1E7 U+1F1FB",
-    "Language": "en",
-    "Translations": {
-      "DE": "Bouvetinsel",
-      "ES": "Isla Bouvet",
-      "FR": "Île Bouvet",
-      "JA": "ブーベ島",
-      "IT": "Isola Bouvet"
-    }
-  },
-  {
     "CountryCode": "BR",
     "Name": "Brazil",
     "CallingCode": "55",
@@ -462,20 +406,6 @@
       "FR": "Territoire britannique de l'océan Indien",
       "JA": "イギリス領インド洋地域",
       "IT": "Territorio britannico dell'oceano indiano"
-    }
-  },
-  {
-    "CountryCode": "UM",
-    "Name": "United States Minor Outlying Islands",
-    "CallingCode": "",
-    "EmojiUnicode": "U+1F1FA U+1F1F2",
-    "Language": "en",
-    "Translations": {
-      "DE": "Kleinere Inselbesitzungen der Vereinigten Staaten",
-      "ES": "Islas Ultramarinas Menores de Estados Unidos",
-      "FR": "Îles mineures éloignées des États-Unis",
-      "JA": "合衆国領有小離島",
-      "IT": "Isole minori esterne degli Stati Uniti d'America"
     }
   },
   {
@@ -1123,20 +1053,6 @@
     }
   },
   {
-    "CountryCode": "TF",
-    "Name": "French Southern and Antarctic Lands",
-    "CallingCode": "",
-    "EmojiUnicode": "U+1F1F9 U+1F1EB",
-    "Language": "fr",
-    "Translations": {
-      "DE": "Französische Süd- und Antarktisgebiete",
-      "ES": "Tierras Australes y Antárticas Francesas",
-      "FR": "Terres australes et antarctiques françaises",
-      "JA": "フランス領南方・南極地域",
-      "IT": "Territori Francesi del Sud"
-    }
-  },
-  {
     "CountryCode": "GA",
     "Name": "Gabon",
     "CallingCode": "241",
@@ -1372,20 +1288,6 @@
       "FR": "Haïti",
       "JA": "ハイチ",
       "IT": "Haiti"
-    }
-  },
-  {
-    "CountryCode": "HM",
-    "Name": "Heard Island and McDonald Islands",
-    "CallingCode": "",
-    "EmojiUnicode": "U+1F1ED U+1F1F2",
-    "Language": "en",
-    "Translations": {
-      "DE": "Heard und die McDonaldinseln",
-      "ES": "Islas Heard y McDonald",
-      "FR": "Îles Heard-et-MacDonald",
-      "JA": "ハード島とマクドナルド諸島",
-      "IT": "Isole Heard e McDonald"
     }
   },
   {

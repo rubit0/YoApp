@@ -4,9 +4,10 @@
              x:Class="YoApp.Clients.Pages.SplashPage"
              Title="SplashPage">
   <ScrollView>
-    <StackLayout Padding="10">
-            <Label VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" 
-                   Text="YoApp!" FontSize="40"/>
+    <StackLayout x:Name="Container" Padding="10" >
+        <Image x:Name="Logo" Source="splash_icon.png" 
+               VerticalOptions="CenterAndExpand" 
+               HorizontalOptions="CenterAndExpand" />
         </StackLayout>
   </ScrollView>
 </ContentPage>
