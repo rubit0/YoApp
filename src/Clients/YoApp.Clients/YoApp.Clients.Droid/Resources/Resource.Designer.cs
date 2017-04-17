@@ -2184,26 +2184,26 @@ namespace YoApp.Clients.Droid
 			// aapt resource value: 0x7f020053
 			public const int avd_hide_password = 2130837587;
 			
-			// aapt resource value: 0x7f02010b
-			public const int avd_hide_password_1 = 2130837771;
-			
-			// aapt resource value: 0x7f02010c
-			public const int avd_hide_password_2 = 2130837772;
-			
 			// aapt resource value: 0x7f02010d
-			public const int avd_hide_password_3 = 2130837773;
+			public const int avd_hide_password_1 = 2130837773;
+			
+			// aapt resource value: 0x7f02010e
+			public const int avd_hide_password_2 = 2130837774;
+			
+			// aapt resource value: 0x7f02010f
+			public const int avd_hide_password_3 = 2130837775;
 			
 			// aapt resource value: 0x7f020054
 			public const int avd_show_password = 2130837588;
 			
-			// aapt resource value: 0x7f02010e
-			public const int avd_show_password_1 = 2130837774;
-			
-			// aapt resource value: 0x7f02010f
-			public const int avd_show_password_2 = 2130837775;
-			
 			// aapt resource value: 0x7f020110
-			public const int avd_show_password_3 = 2130837776;
+			public const int avd_show_password_1 = 2130837776;
+			
+			// aapt resource value: 0x7f020111
+			public const int avd_show_password_2 = 2130837777;
+			
+			// aapt resource value: 0x7f020112
+			public const int avd_show_password_3 = 2130837778;
 			
 			// aapt resource value: 0x7f020055
 			public const int design_bottom_navigation_item_background = 2130837589;
@@ -2736,11 +2736,11 @@ namespace YoApp.Clients.Droid
 			// aapt resource value: 0x7f020105
 			public const int notification_icon_background = 2130837765;
 			
-			// aapt resource value: 0x7f020109
-			public const int notification_template_icon_bg = 2130837769;
+			// aapt resource value: 0x7f02010b
+			public const int notification_template_icon_bg = 2130837771;
 			
-			// aapt resource value: 0x7f02010a
-			public const int notification_template_icon_low_bg = 2130837770;
+			// aapt resource value: 0x7f02010c
+			public const int notification_template_icon_low_bg = 2130837772;
 			
 			// aapt resource value: 0x7f020106
 			public const int notification_tile_bg = 2130837766;
@@ -2749,7 +2749,13 @@ namespace YoApp.Clients.Droid
 			public const int notify_panel_notification_icon_bg = 2130837767;
 			
 			// aapt resource value: 0x7f020108
-			public const int splash_icon = 2130837768;
+			public const int pattern_backdrop = 2130837768;
+			
+			// aapt resource value: 0x7f020109
+			public const int primitive_circle = 2130837769;
+			
+			// aapt resource value: 0x7f02010a
+			public const int splash_icon = 2130837770;
 			
 			static Drawable()
 			{

@@ -9,6 +9,7 @@ namespace YoApp.Clients.Pages.Setup
         public CompletePage()
         {
             InitializeComponent();
+            NavigationPage.SetHasBackButton(this, false);
         }
 
         private void OnDoneClicked(object sender, EventArgs e)

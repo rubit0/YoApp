@@ -3,7 +3,7 @@ using Moq;
 using Xunit;
 using System.Reactive.Linq;
 using System.Threading.Tasks;
-using Realms;
+//using Realms;
 using YoApp.Clients.Manager;
 using YoApp.Clients.Models;
 using YoApp.Clients.Persistence;
@@ -53,7 +53,7 @@ namespace YoApp.Tests.Clients.Managers
             storeMock.Setup(s => s.GetAllObservable<Friend>()).Returns(sequence.ToObservable);
 
             var realmMock = new Mock<IRealmStore>();
-            realmMock.Setup(r => r.AddAsync(It.IsAny<RealmObject>())).Returns(Task.CompletedTask);
+            //realmMock.Setup(r => r.AddAsync(It.IsAny<RealmObject>())).Returns(Task.CompletedTask);
 
             var friendsServiceMock = new Mock<IFriendsService>();
             friendsServiceMock.Setup(f => f.CheckMembership(matchingFriend.PhoneNumber)).ReturnsAsync(true);

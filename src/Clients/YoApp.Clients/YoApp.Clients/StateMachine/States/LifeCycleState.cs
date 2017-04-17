@@ -66,9 +66,10 @@ namespace YoApp.Clients.StateMachine.States
             if (App.Settings.SetupFinished)
                 await _chatService.Connect();
 
-            Device.BeginInvokeOnMainThread(() => App.Current.MainPage = GetMainPage());
-
             _startCompleted = true;
+
+            Device.BeginInvokeOnMainThread(() =>
+                MessagingCenter.Send(this, MessagingEvents.AppLoadFinished, GetMainPage()));
         }
 
         private async Task Sleep()

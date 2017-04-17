@@ -4,8 +4,7 @@
              x:Class="YoApp.Clients.Pages.Chats.ChatPage"
              xmlns:triggers="clr-namespace:YoApp.Clients.Forms.Triggers;assembly=YoApp.Clients"
              xmlns:behaviors="clr-namespace:YoApp.Clients.Forms.Behaviors;assembly=YoApp.Clients"
-             Title="{Binding Name}"
-             NavigationPage.HasBackButton="True" >
+             Title="{Binding Name}" >
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>

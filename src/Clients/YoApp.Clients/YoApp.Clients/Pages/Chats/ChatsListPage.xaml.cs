@@ -1,6 +1,5 @@
 ﻿using Autofac;
 using Xamarin.Forms;
-using YoApp.Clients.Core;
 using YoApp.Clients.Forms;
 using YoApp.Clients.ViewModels.Chats;
 
@@ -11,6 +10,8 @@ namespace YoApp.Clients.Pages.Chats
         public ChatsListPage()
         {
             InitializeComponent();
+            NavigationPage.SetHasBackButton(this, false);
+
             BindingContext = App.Container.Resolve<ChatsListViewModel>(
                 new TypedParameter(typeof(IPageService), this));
         }

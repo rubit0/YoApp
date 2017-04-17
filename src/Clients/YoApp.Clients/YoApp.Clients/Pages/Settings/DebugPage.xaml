@@ -3,7 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="YoApp.Clients.Pages.Settings.DebugPage"
              NavigationPage.HasNavigationBar="True"
-             NavigationPage.HasBackButton="True"
              Title="Debug Menu">
   <TableView Intent="Settings">
     <TableRoot>

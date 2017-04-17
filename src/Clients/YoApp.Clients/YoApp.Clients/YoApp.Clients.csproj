@@ -39,6 +39,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Core\AnimationExtensions.cs" />
     <Compile Include="Core\FriendsComparer.cs" />
     <Compile Include="Forms\Behaviors\EntryLengthClamp.cs" />
     <Compile Include="Forms\Behaviors\EntryNumericClamp.cs" />
@@ -54,6 +55,7 @@
     <Compile Include="Core\MainComponentRegistrar.cs" />
     <Compile Include="Core\MessagingEvents.cs" />
     <Compile Include="Core\PhoneNumberUtils.cs" />
+    <Compile Include="Forms\ViewExtensions.cs" />
     <Compile Include="Models\ParsedPhoneNumber.cs" />
     <Compile Include="Core\ResourceKeys.cs" />
     <Compile Include="Forms\Attached\TapGestureAttached.cs" />
@@ -426,6 +428,7 @@
       <Name>YoApp.Dtos</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

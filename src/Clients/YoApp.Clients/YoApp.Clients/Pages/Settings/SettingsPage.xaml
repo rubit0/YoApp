@@ -2,8 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="YoApp.Clients.Pages.Settings.SettingsTablePage"
-             Title="Settings"
-             NavigationPage.HasBackButton="False" >
+             Title="Settings" >
   <StackLayout>
     <Button x:Name="DebugButton" IsVisible="{StaticResource isDebug}" 
             Text="🔨 Debug Menu" 

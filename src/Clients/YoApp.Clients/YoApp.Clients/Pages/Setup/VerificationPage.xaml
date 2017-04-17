@@ -4,8 +4,7 @@
              xmlns:behaviors="clr-namespace:YoApp.Clients.Forms.Behaviors;assembly=YoApp.Clients"
              x:Class="YoApp.Clients.Pages.Setup.WaitVerificationPage"
              Title="Verification"
-             NavigationPage.HasNavigationBar="True"
-             NavigationPage.HasBackButton="True">
+             NavigationPage.HasNavigationBar="True" >
   <StackLayout>
     <Label Text="Waiting to automaticaly detect the incomming SMS."/>
     <Label Text="{Binding PhoneNumber}" />

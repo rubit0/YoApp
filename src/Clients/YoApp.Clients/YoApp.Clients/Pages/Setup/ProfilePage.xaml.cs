@@ -1,6 +1,5 @@
 ﻿using Autofac;
 using Xamarin.Forms;
-using YoApp.Clients.Core;
 using YoApp.Clients.Forms;
 using YoApp.Clients.ViewModels.Setup;
 
@@ -13,6 +12,8 @@ namespace YoApp.Clients.Pages.Setup
         public ProfilePage()
         {
             InitializeComponent();
+            NavigationPage.SetHasBackButton(this, false);
+
             _viewModel = App.Container.Resolve<ProfileViewModel>(
                 new TypedParameter(typeof(IPageService), this));
 

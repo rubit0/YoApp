@@ -4,8 +4,7 @@
              xmlns:behaviors="clr-namespace:YoApp.Clients.Forms.Behaviors;assembly=YoApp.Clients"
              x:Class="YoApp.Clients.Pages.Settings.UserDetailsPage"
              Title="{Binding Nickname}"
-             NavigationPage.HasBackButton="True"
-             NavigationPage.HasNavigationBar="True">
+             NavigationPage.HasNavigationBar="True" >
   <StackLayout>
     <Entry Text="{Binding Nickname}">
       <Entry.Behaviors>

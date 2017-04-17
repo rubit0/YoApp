@@ -11,6 +11,8 @@ namespace YoApp.Clients.Pages.Settings
         public SettingsTablePage()
         {
             InitializeComponent();
+            NavigationPage.SetHasBackButton(this, false);
+
             BindingContext = App.Container.Resolve<SettingsPageViewModel>(
                 new TypedParameter(typeof(IPageService), this));
             DebugButton.IsVisible = ResourceKeys.IsDebug;

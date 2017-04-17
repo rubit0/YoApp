@@ -6,8 +6,7 @@
              xmlns:attached="clr-namespace:YoApp.Clients.Forms.Attached;assembly=YoApp.Clients"
              x:Class="YoApp.Clients.Pages.Setup.EnterNumberPage"
              Title="Verify your Phone"
-             NavigationPage.HasNavigationBar="True"
-             NavigationPage.HasBackButton="False" >
+             NavigationPage.HasNavigationBar="True" >
   <StackLayout>
     <Label Text="Just one step before you cant start with YoApp."></Label>
     <Label Text="Please verify your country code and enter your phone number" />

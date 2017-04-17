@@ -3,8 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:attached="clr-namespace:YoApp.Clients.Forms.Attached;assembly=YoApp.Clients"
              x:Class="YoApp.Clients.Pages.Settings.ContactsSelectionPage"
-             Title="Contacts"
-             NavigationPage.HasBackButton="False" >
+             Title="Contacts" >
     <ListView ItemsSource="{Binding ContactGroups}"
               IsGroupingEnabled="True"
               GroupDisplayBinding="{Binding GroupSymbol}"
