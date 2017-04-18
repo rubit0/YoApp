@@ -35,7 +35,7 @@ namespace YoApp.Clients.Pages
 
         private void FadeOut(object sender, Page target)
         {
-            this.AbortAnimation("SplashAnim");
+            this.AbortAnimation(StartAnimation);
 
             var exitAnimation = GetExitAnimation();
             exitAnimation.Commit(this, ExitAnimation, 16, 500, Easing.SinOut, (current, done) => App.Current.MainPage = target);
@@ -44,22 +44,21 @@ namespace YoApp.Clients.Pages
         private Animation GetStartAnimation()
         {
             var animationController = new Animation();
-
-            var startColor = new Color(1);
-            var targetColor = new Color(0.196, 0.639, 0.839);
-            var tintBackground = new Animation(v => Container.LerpBackgroundColor(startColor, targetColor, v));
             var fadeIconsBackDrop = new Animation(v => BackDrop.Opacity = v, 0, 0.5, Easing.CubicIn);
             var fadeActivityIndicator = new Animation(v => ActivityIndicator.Opacity = v);
 
-            animationController.Add(0, 0.65, tintBackground);
             animationController.Add(0.55, 1, fadeIconsBackDrop);
             animationController.Add(0.85, 1, fadeActivityIndicator);
 
             if (Device.RuntimePlatform == Device.Android)
             {
+                var startColor = new Color(1);
+                var targetColor = new Color(0.196, 0.639, 0.839);
+                var tintBackground = new Animation(v => Container.LerpBackgroundColor(startColor, targetColor, v));
                 var fadeLogo = new Animation(v => Logo.Opacity = v);
                 var rotateLogo = new Animation(v => Logo.RotationY = v, -90, 0, Easing.BounceIn);
 
+                animationController.Add(0, 0.65, tintBackground);
                 animationController.Add(0.35, 0.8, fadeLogo);
                 animationController.Add(0.5, 1, rotateLogo);
             }

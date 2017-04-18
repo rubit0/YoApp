@@ -51,5 +51,9 @@
 	<string>Resources/AppIcons.xcassets/LaunchImages.launchimage</string>
 	<key>UIStatusBarStyle</key>
 	<string>UIStatusBarStyleLightContent</string>
+  <key>UIAppFonts</key>
+  <array>
+    <string>iconize-fontawesome.ttf</string>
+  </array>
 </dict>
 </plist>

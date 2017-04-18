@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="YoApp.Clients.Pages.SplashPage"
              Title="SplashPage">
-    <AbsoluteLayout x:Name="Container">
+    <AbsoluteLayout x:Name="Container" BackgroundColor="#32a3d6">
         <Image x:Name="BackDrop" 
                Source="pattern_backdrop.png" 
                Aspect="AspectFill" 

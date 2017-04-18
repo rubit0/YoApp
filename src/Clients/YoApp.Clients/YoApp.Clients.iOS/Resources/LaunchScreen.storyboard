@@ -29,7 +29,7 @@
                         <accessibility key="accessibilityConfiguration">
                             <accessibilityTraits key="traits" notEnabled="YES"/>
                         </accessibility>
-                        <color key="backgroundColor" colorSpace="calibratedWhite" white="1" alpha="1"/>
+                        <color key="backgroundColor" colorSpace="calibratedRGB" red="0.19607843137254902" green="0.63921568627450975" blue="0.83921568627450982" alpha="1"/>
                         <constraints>
                             <constraint id="69" firstItem="3" firstAttribute="centerX" secondItem="yd7-JS-zBw" secondAttribute="centerX"/>
                             <constraint id="70" firstItem="3" firstAttribute="centerY" secondItem="yd7-JS-zBw" secondAttribute="centerY"/>

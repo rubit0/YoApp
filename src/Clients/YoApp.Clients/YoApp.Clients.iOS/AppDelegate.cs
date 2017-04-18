@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-
 using Foundation;
+using Plugin.Iconize.Fonts;
 using UIKit;
 
 namespace YoApp.Clients.iOS
@@ -22,6 +22,9 @@ namespace YoApp.Clients.iOS
         //
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
+            FormsPlugin.Iconize.iOS.IconControls.Init();
+            Plugin.Iconize.Iconize.With(new FontAwesomeModule());
+
             global::Xamarin.Forms.Forms.Init();
             LoadApplication(new App());
 

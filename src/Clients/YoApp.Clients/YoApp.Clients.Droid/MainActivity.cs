@@ -2,6 +2,7 @@
 using Android.App;
 using Android.Content.PM;
 using Android.OS;
+using Plugin.Iconize.Fonts;
 using Plugin.Permissions;
 
 namespace YoApp.Clients.Droid
@@ -15,6 +16,9 @@ namespace YoApp.Clients.Droid
             ToolbarResource = Resource.Layout.Toolbar;
 
             base.OnCreate(bundle);
+
+            FormsPlugin.Iconize.Droid.IconControls.Init(Resource.Id.toolbar, Resource.Id.sliding_tabs);
+            Plugin.Iconize.Iconize.With(new FontAwesomeModule());
 
             global::Xamarin.Forms.Forms.Init(this, bundle);
             LoadApplication(new App());

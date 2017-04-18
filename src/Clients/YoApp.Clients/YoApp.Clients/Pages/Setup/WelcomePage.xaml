@@ -1,12 +1,35 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:iconize="clr-namespace:FormsPlugin.Iconize;assembly=FormsPlugin.Iconize"
              x:Class="YoApp.Clients.Pages.Setup.WelcomePage"
-             NavigationPage.HasNavigationBar="True"
+             NavigationPage.HasNavigationBar="False"
              Title="Welcome" >
-  <StackLayout>
-    <Label Text="Welcome to YoApp" VerticalOptions="Center" HorizontalOptions="Center" />
-    <Label Text="Message all your friends from around the world!" />
-    <Button x:Name="ButtonContinue" Command="{Binding ConnectCommand}" Text="Continue"/>
-  </StackLayout>
+    <AbsoluteLayout x:Name="AbsoluteLayout" >
+        <BoxView x:Name="SlideFirst" Color="DeepSkyBlue" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" 
+                 AbsoluteLayout.LayoutFlags="All" />
+
+        <BoxView x:Name="SlideSecond" Color="Yellow" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" 
+                 AbsoluteLayout.LayoutFlags="All" />
+
+        <BoxView x:Name="SlideThird" Color="IndianRed" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" 
+                 AbsoluteLayout.LayoutFlags="All" />
+
+        <StackLayout AbsoluteLayout.LayoutBounds="0, 0, 1, 1" 
+                     AbsoluteLayout.LayoutFlags="All" >
+            <Label Text="Welcome to YoApp" HorizontalOptions="Center" />
+
+            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+                <iconize:IconImage Icon="fa-heart" IconSize="18" IconColor="#00FBFBFB" />
+                <iconize:IconImage Icon="fa-user" IconSize="18" IconColor="#00FBFBFB" />
+                <iconize:IconImage Icon="fa-camera" IconSize="18" IconColor="#00FBFBFB" />
+                <iconize:IconImage Icon="fa-comment" IconSize="18" IconColor="#00FBFBFB" />
+                <iconize:IconImage Icon="fa-envelope" IconSize="18" IconColor="#00FBFBFB" />
+            </StackLayout>
+
+            <Label Text="Message all your friends from around the world!" />
+            <Button x:Name="ButtonContinue" Command="{Binding ConnectCommand}" Text="Continue"/>
+        </StackLayout>
+    </AbsoluteLayout>
+
 </ContentPage>
