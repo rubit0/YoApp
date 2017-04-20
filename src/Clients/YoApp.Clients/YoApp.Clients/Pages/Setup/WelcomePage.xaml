@@ -5,18 +5,30 @@
              x:Class="YoApp.Clients.Pages.Setup.WelcomePage"
              NavigationPage.HasNavigationBar="False"
              Title="Welcome" >
-    <AbsoluteLayout x:Name="AbsoluteLayout" >
-        <BoxView x:Name="SlideFirst" Color="DeepSkyBlue" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" 
-                 AbsoluteLayout.LayoutFlags="All" />
+    <Grid x:Name="GridLayout" >
 
-        <BoxView x:Name="SlideSecond" Color="Yellow" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" 
-                 AbsoluteLayout.LayoutFlags="All" />
+        <Grid.RowDefinitions>
+            <RowDefinition />
+        </Grid.RowDefinitions>
 
-        <BoxView x:Name="SlideThird" Color="IndianRed" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" 
-                 AbsoluteLayout.LayoutFlags="All" />
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
 
-        <StackLayout AbsoluteLayout.LayoutBounds="0, 0, 1, 1" 
-                     AbsoluteLayout.LayoutFlags="All" >
+        <BoxView Grid.Row="0" Grid.Column="0" 
+                 Grid.RowSpan="2" Grid.ColumnSpan="2" 
+                 x:Name="SlideFirst" 
+                 Color="DeepSkyBlue" />
+        <BoxView Grid.Row="0" Grid.Column="0" 
+                 Grid.RowSpan="2" Grid.ColumnSpan="2" 
+                 x:Name="SlideSecond" 
+                 Color="LawnGreen" />
+        <BoxView Grid.Row="0" Grid.Column="0" 
+                 Grid.RowSpan="2" Grid.ColumnSpan="2" 
+                 x:Name="SlideThird" 
+                 Color="IndianRed" />
+
+        <StackLayout Grid.Row="1" Grid.Column="0" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" >
             <Label Text="Welcome to YoApp" HorizontalOptions="Center" />
 
             <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
@@ -30,6 +42,6 @@
             <Label Text="Message all your friends from around the world!" />
             <Button x:Name="ButtonContinue" Command="{Binding ConnectCommand}" Text="Continue"/>
         </StackLayout>
-    </AbsoluteLayout>
+    </Grid>
 
 </ContentPage>

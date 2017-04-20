@@ -41,6 +41,7 @@
     </Compile>
     <Compile Include="Core\AnimationExtensions.cs" />
     <Compile Include="Core\FriendsComparer.cs" />
+    <Compile Include="Core\MathHelper.cs" />
     <Compile Include="Forms\Behaviors\EntryLengthClamp.cs" />
     <Compile Include="Forms\Behaviors\EntryNumericClamp.cs" />
     <Compile Include="Forms\Behaviors\EntryPhoneValidation.cs" />

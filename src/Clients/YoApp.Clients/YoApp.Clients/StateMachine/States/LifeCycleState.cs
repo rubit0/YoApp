@@ -60,16 +60,16 @@ namespace YoApp.Clients.StateMachine.States
                 await AuthenticationService.RequestToken(true);
 
             await _friendsManager.LoadFriends();
-            if (await _contactsManager.LoadContactsAsync())
-                await _friendsManager.ManageFriends(_contactsManager.Contacts);
+            await _contactsManager.LoadContactsAsync();
 
+            Device.BeginInvokeOnMainThread(() =>
+                MessagingCenter.Send(this, MessagingEvents.AppLoadFinished, GetMainPage()));
+
+            await _friendsManager.ManageFriends(_contactsManager.Contacts);
             if (App.Settings.SetupFinished)
                 await _chatService.Connect();
 
             _startCompleted = true;
-
-            Device.BeginInvokeOnMainThread(() =>
-                MessagingCenter.Send(this, MessagingEvents.AppLoadFinished, GetMainPage()));
         }
 
         private async Task Sleep()

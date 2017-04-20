@@ -22,6 +22,7 @@
                AbsoluteLayout.LayoutFlags="PositionProportional" />
 
         <ActivityIndicator x:Name="ActivityIndicator" 
+                           Color="WhiteSmoke"
                            AbsoluteLayout.LayoutBounds="0.5, 0.75" 
                            AbsoluteLayout.LayoutFlags="PositionProportional" 
                            IsRunning="True" />

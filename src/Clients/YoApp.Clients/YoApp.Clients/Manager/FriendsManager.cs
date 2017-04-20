@@ -91,6 +91,9 @@ namespace YoApp.Clients.Manager
             var friends = await _friendsService
                 .FetchFriends(unassociatedContacts.Select(f => f.NormalizedPhoneNumber));
 
+            if(friends == null)
+                return;
+
             foreach (var friend in friends)
             {
                 if (Friends.Contains(friend, new FriendsComparer()))
