@@ -2,46 +2,93 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:iconize="clr-namespace:FormsPlugin.Iconize;assembly=FormsPlugin.Iconize"
-             x:Class="YoApp.Clients.Pages.Setup.WelcomePage"
+             x:Class="YoApp.Clients.Pages.Setup.WelcomePage" 
              NavigationPage.HasNavigationBar="False"
              Title="Welcome" >
-    <Grid x:Name="GridLayout" >
+    <AbsoluteLayout x:Name="TopLayout" >
+        <Grid x:Name="GridLayout" 
+              AbsoluteLayout.LayoutFlags="All" 
+              AbsoluteLayout.LayoutBounds="0, 0, 1, 1">
+            <BoxView Grid.Row="0" Grid.Column="0" 
+                     x:Name="SlideFirst" 
+                     Color="#22C37C" />
+            <BoxView Grid.Row="0" Grid.Column="0" 
+                     x:Name="SlideSecond" 
+                     Color="#008EFB" />
+            <BoxView Grid.Row="0" Grid.Column="0" 
+                     x:Name="SlideThird" 
+                     Color="#FA9149" />
+            <Image Grid.Row="0" Grid.Column="0" 
+                   x:Name="Overlay"
+                   Aspect="AspectFill"
+                   Source="setup_overlay.png" />
+        </Grid>
 
-        <Grid.RowDefinitions>
-            <RowDefinition />
-        </Grid.RowDefinitions>
+        <Grid x:Name="GridContainer" 
+              AbsoluteLayout.LayoutFlags="All" 
+              AbsoluteLayout.LayoutBounds="0, 0, 1, 1" 
+              HorizontalOptions="Center" >
+            
+            <Grid.RowDefinitions>
+                <RowDefinition Height="AUTO" />
+                <RowDefinition Height="AUTO" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="AUTO" />
+                <RowDefinition Height="AUTO" />
+                <RowDefinition Height="AUTO" />
+            </Grid.RowDefinitions>
+            
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="AUTO" />
+            </Grid.ColumnDefinitions>
 
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition />
-        </Grid.ColumnDefinitions>
+            <Label Grid.Row="0" Margin="0, 10, 0, 5"
+                   FontSize="28" TextColor="White" 
+                   HorizontalTextAlignment="Center" 
+                   HorizontalOptions="Center" 
+                   Text="Welcome to YoApp" />
 
-        <BoxView Grid.Row="0" Grid.Column="0" 
-                 Grid.RowSpan="2" Grid.ColumnSpan="2" 
-                 x:Name="SlideFirst" 
-                 Color="DeepSkyBlue" />
-        <BoxView Grid.Row="0" Grid.Column="0" 
-                 Grid.RowSpan="2" Grid.ColumnSpan="2" 
-                 x:Name="SlideSecond" 
-                 Color="LawnGreen" />
-        <BoxView Grid.Row="0" Grid.Column="0" 
-                 Grid.RowSpan="2" Grid.ColumnSpan="2" 
-                 x:Name="SlideThird" 
-                 Color="IndianRed" />
-
-        <StackLayout Grid.Row="1" Grid.Column="0" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" >
-            <Label Text="Welcome to YoApp" HorizontalOptions="Center" />
-
-            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
-                <iconize:IconImage Icon="fa-heart" IconSize="18" IconColor="#00FBFBFB" />
-                <iconize:IconImage Icon="fa-user" IconSize="18" IconColor="#00FBFBFB" />
-                <iconize:IconImage Icon="fa-camera" IconSize="18" IconColor="#00FBFBFB" />
-                <iconize:IconImage Icon="fa-comment" IconSize="18" IconColor="#00FBFBFB" />
-                <iconize:IconImage Icon="fa-envelope" IconSize="18" IconColor="#00FBFBFB" />
+            <StackLayout Grid.Row="1" 
+                         Orientation="Horizontal" 
+                         HorizontalOptions="CenterAndExpand">
+                <iconize:IconImage Icon="fa-heart" IconSize="22" IconColor="White" />
+                <iconize:IconImage Icon="fa-user" IconSize="22" IconColor="White" />
+                <iconize:IconImage Icon="fa-camera" IconSize="22" IconColor="White" />
+                <iconize:IconImage Icon="fa-comment" IconSize="22" IconColor="White" />
+                <iconize:IconImage Icon="fa-envelope" IconSize="22" IconColor="White" />
             </StackLayout>
 
-            <Label Text="Message all your friends from around the world!" />
-            <Button x:Name="ButtonContinue" Command="{Binding ConnectCommand}" Text="Continue"/>
-        </StackLayout>
-    </Grid>
+            <Image x:Name="Icon" Grid.Row="2" 
+                   Margin="0, 10, 0, 10"
+                   Source="splash_icon.png" />
 
+            <Label Grid.Row="3" 
+                   Margin="0, 0, 0, 10"
+                   FontSize="18"
+                   TextColor="White" 
+                   HorizontalTextAlignment="Center" 
+                   Text="Chat with all your friends.&#10;Around the globe.&#10;Across devices." />
+
+            <Label Grid.Row="4"
+                   BackgroundColor="Transparent"
+                   Margin="0, 0, 0, 5"
+                   TextColor="LightSkyBlue" 
+                   FontAttributes="Bold"
+                   HorizontalTextAlignment="Center"
+                   Text="Terms of Service" >
+                <Label.GestureRecognizers >
+                    <TapGestureRecognizer Command="{Binding PresentTermsCommand}" />
+                </Label.GestureRecognizers>
+            </Label>
+
+            <Button x:Name="ButtonContinue" 
+                    Grid.Row="5" 
+                    Margin="0, 0, 0, 30"
+                    Command="{Binding ConnectCommand}" 
+                    BackgroundColor="DodgerBlue"
+                    TextColor="White"
+                    BorderColor="Transparent"
+                    Text="Agree and Start"/>
+        </Grid>
+    </AbsoluteLayout>
 </ContentPage>

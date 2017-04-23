@@ -22,8 +22,8 @@ namespace YoApp.Clients.iOS
         //
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
-            FormsPlugin.Iconize.iOS.IconControls.Init();
             Plugin.Iconize.Iconize.With(new FontAwesomeModule());
+            FormsPlugin.Iconize.iOS.IconControls.Init();
 
             global::Xamarin.Forms.Forms.Init();
             LoadApplication(new App());

@@ -359,6 +359,7 @@
     <AndroidResource Include="Resources\drawable-xxhdpi\splash_icon.png" />
     <AndroidResource Include="Resources\drawable\pattern_backdrop.png" />
     <AndroidResource Include="Resources\drawable\primitive_circle.png" />
+    <AndroidResource Include="Resources\drawable\setup_overlay.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

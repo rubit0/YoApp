@@ -286,6 +286,7 @@
     <BundleResource Include="Resources\splash_icon%403x.png" />
     <BundleResource Include="Resources\pattern_backdrop.png" />
     <BundleResource Include="Resources\primitive_circle.png" />
+    <BundleResource Include="Resources\setup_overlay.png" />
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Resources\AppIcons.xcassets\AppIcons.appiconset\Contents.json">

@@ -11,6 +11,7 @@ namespace YoApp.Clients.ViewModels.Setup
     public class WelcomeViewModel
     {
         public Command ConnectCommand { get; }
+        public Command PresentTermsCommand { get; }
 
         private bool _isConnecting;
         public bool IsConnecting
@@ -31,6 +32,8 @@ namespace YoApp.Clients.ViewModels.Setup
 
             ConnectCommand = new Command(async () => await TestServiceConnection(),
                 () => !IsConnecting && CrossConnectivity.Current.IsConnected);
+
+            PresentTermsCommand = new Command(async () => await pageService.DisplayAlert("YoApp Terms", "Lorem ipsum.", "Ok"));
 
             CrossConnectivity.Current.ConnectivityChanged +=
                 (sender, args) => ConnectCommand.ChangeCanExecute();
