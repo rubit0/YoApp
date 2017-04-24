@@ -8,12 +8,12 @@
   <StackLayout>
     <Entry Text="{Binding Nickname}">
       <Entry.Behaviors>
-        <behaviors:EntryLengthClamp MaxLength="{StaticResource Key=nicknameMaxLength}"/>
+        <behaviors:EntryMaxLength MaxLength="{StaticResource Key=nicknameMaxLength}"/>
       </Entry.Behaviors>
     </Entry>
     <Entry Text="{Binding StatusMessage, Mode=TwoWay}">
       <Entry.Behaviors>
-        <behaviors:EntryLengthClamp 
+        <behaviors:EntryMaxLength 
           MaxLength="{StaticResource Key=statusMessageMaxLength}" />
       </Entry.Behaviors>
     </Entry>

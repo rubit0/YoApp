@@ -1,10 +1,10 @@
-﻿using Xamarin.Forms;
+﻿using System.Text.RegularExpressions;
+using Xamarin.Forms;
 
 namespace YoApp.Clients.Forms.Behaviors
 {
-    public class EntryLengthClamp : Behavior<Entry>
+    public class EntryForceNumeric : Behavior<Entry>
     {
-        public int MaxLength { get; set; }
         private Entry _entry;
 
         protected override void OnAttachedTo(Entry bindable)
@@ -20,10 +20,9 @@ namespace YoApp.Clients.Forms.Behaviors
             _entry.TextChanged -= OnTextChanged;
         }
 
-        private void OnTextChanged(object sender, TextChangedEventArgs textChangedEventArgs)
+        private void OnTextChanged(object sender, TextChangedEventArgs eventArgs)
         {
-            if (textChangedEventArgs.NewTextValue.Length > MaxLength)
-                _entry.Text = textChangedEventArgs.OldTextValue;
+            _entry.Text = Regex.Replace(eventArgs.NewTextValue, @"\D", string.Empty);
         }
     }
 }

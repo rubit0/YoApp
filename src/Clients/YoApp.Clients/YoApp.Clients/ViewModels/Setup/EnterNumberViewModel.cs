@@ -63,7 +63,7 @@ namespace YoApp.Clients.ViewModels.Setup
         private async Task ExecuteRequest()
         {
             var result = await _pageService.DisplayAlert("Verifying phone number",
-                $"+{CallingCode} {UserPhoneNumber}\nIs this OK or do you want to edit the number?",
+                $"+{CallingCode} {UserPhoneNumber}\n\nIs this OK or do you want to edit the number?",
                 "Ok",
                 "Edit");
 
@@ -109,16 +109,12 @@ namespace YoApp.Clients.ViewModels.Setup
             _userDialogs.HideLoading();
 
             if (!response)
-            {
-                await _pageService.DisplayAlert("Error",
+                await _pageService.DisplayAlert("Service Error",
                     "Sorry, could not send you an SMS.\nPlease try later again.",
                     "Ok");
-            }
             else
-            {
                 await _pageService.Navigation
-                    .PushAsync(new WaitVerificationPage($"{CallingCode}{UserPhoneNumber}"));
-            }
+                    .PushAsync(new VerificationPage($"{CallingCode}{UserPhoneNumber}"));
         }
     }
 }

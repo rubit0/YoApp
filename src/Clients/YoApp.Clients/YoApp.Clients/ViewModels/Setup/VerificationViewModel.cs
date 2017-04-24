@@ -24,7 +24,8 @@ namespace YoApp.Clients.ViewModels.Setup
         private readonly IUserDialogs _userDialogs;
         private bool _canVerify = true;
 
-        public VerificationViewModel(string phoneNumber, IPageService pageService, IVerificationManager verificationManager, IAppUserManager appUserManager, IUserDialogs userDialogs)
+        public VerificationViewModel(string phoneNumber, IPageService pageService, IVerificationManager verificationManager, 
+            IAppUserManager appUserManager, IUserDialogs userDialogs)
         {
             if (string.IsNullOrWhiteSpace(phoneNumber))
                 throw new ArgumentNullException(nameof(phoneNumber), "You must provide a phone number");
@@ -46,23 +47,20 @@ namespace YoApp.Clients.ViewModels.Setup
         private async Task StartVerification()
         {
             _canVerify = false;
+            _userDialogs.ShowLoading("Verifying security code.");
+
             VerifyCommand.ChangeCanExecute();
             var password = AuthenticationService.GeneratePassword();
-            var loadDialog = _userDialogs.Loading("Verifying security code.");
-            loadDialog.Show();
-
             var response = await _verificationManager.ResolveVerificationCodeAsync(VerificationCode, PhoneNumber, password);
 
-            loadDialog.Hide();
+            _userDialogs.HideLoading();
 
             if (!response)
             {
                 _canVerify = true;
                 VerifyCommand.ChangeCanExecute();
 
-                await _pageService.DisplayAlert("Code Error",
-                    "The code does not match, please try again.",
-                    "Ok");
+                _userDialogs.ShowError("\nThe verification code doesn't match.", 2500);
             }
             else
             {

@@ -4,7 +4,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:behaviors="clr-namespace:YoApp.Clients.Forms.Behaviors;assembly=YoApp.Clients"
              xmlns:iconize="clr-namespace:FormsPlugin.Iconize;assembly=FormsPlugin.Iconize"
-             x:Class="YoApp.Clients.Pages.Setup.WaitVerificationPage"
+             xmlns:triggers="clr-namespace:YoApp.Clients.Forms.Triggers;assembly=YoApp.Clients"
+             x:Class="YoApp.Clients.Pages.Setup.VerificationPage"
              Title="{Binding Title}"
              NavigationPage.HasNavigationBar="True">
     <Grid>
@@ -46,12 +47,26 @@
                Placeholder="Enter verification code"
                Text="{Binding VerificationCode, Mode=TwoWay, StringFormat='{0:###-###}'}">
             <Entry.Behaviors>
-                <behaviors:EntryNumericClamp />
-                <behaviors:EntryLengthClamp MaxLength="6" />
+                <behaviors:EntryForceNumeric />
+                <behaviors:EntryMaxLength MaxLength="6" />
             </Entry.Behaviors>
+            <Entry.Triggers>
+                <EventTrigger Event="TextChanged">
+                    <triggers:EntryMinLengthButtonTrigger MinLength="6" 
+                                                          Target="{x:Reference VerifyButton}" />
+                </EventTrigger>
+            </Entry.Triggers>
         </Entry>
         
-        <Button Grid.Row="4" Text="Verify me"
-                Command="{Binding VerifyCommand}" />
+        <Button x:Name="VerifyButton" 
+                Grid.Row="4" 
+                HorizontalOptions="Center"
+                IsEnabled="False"
+                Text="Next"
+                Command="{Binding VerifyCommand}" >
+            <Button.Behaviors>
+                <behaviors:TimedSelfDisable />
+            </Button.Behaviors>
+        </Button>
     </Grid>
 </ContentPage>
