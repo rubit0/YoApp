@@ -45,25 +45,21 @@ namespace YoApp.Clients.ViewModels.Setup
         {
             IsConnecting = true;
             ConnectCommand.ChangeCanExecute();
-            var loadDialog = _userDialogs.Loading("Connecting to service");
-            loadDialog.Show();
+            _userDialogs.ShowLoading("Connecting to service.", MaskType.Clear);
 
             if (!CrossConnectivity.Current.IsConnected
                 || !await CrossConnectivity.Current.IsServiceOnlineAsync())
             {
-                loadDialog.Hide();
-                loadDialog.Dispose();
+                _userDialogs.HideLoading();
+                _userDialogs.Toast("Can't connect to service.");
 
-                await _pageService.Navigation.PopModalAsync();
                 IsConnecting = false;
                 ConnectCommand.ChangeCanExecute();
 
                 return;
             }
 
-            loadDialog.Hide();
-            loadDialog.Dispose();
-
+            _userDialogs.HideLoading();
             await _pageService.Navigation.PushAsync(new EnterNumberPage());
         }
     }

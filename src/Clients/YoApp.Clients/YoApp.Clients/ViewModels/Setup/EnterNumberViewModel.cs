@@ -102,14 +102,11 @@ namespace YoApp.Clients.ViewModels.Setup
 
         private async Task StartRequest()
         {
-            var loadDialog = _userDialogs.Loading("Connecting.");
-            loadDialog.Show();
-
+            _userDialogs.ShowLoading("Connecting.");
             var response = await _verificationManager
                                 .RequestVerificationCodeAsync(CallingCode,
                                 UserPhoneNumber);
-
-            loadDialog.Hide();
+            _userDialogs.HideLoading();
 
             if (!response)
             {
@@ -119,7 +116,6 @@ namespace YoApp.Clients.ViewModels.Setup
             }
             else
             {
-                loadDialog.Dispose();
                 await _pageService.Navigation
                     .PushAsync(new WaitVerificationPage($"{CallingCode}{UserPhoneNumber}"));
             }

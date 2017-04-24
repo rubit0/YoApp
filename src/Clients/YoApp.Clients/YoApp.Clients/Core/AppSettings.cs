@@ -107,22 +107,31 @@ namespace YoApp.Clients.Core
 
                 //Backend
                 var backendTokenIdentity = intermediate["Backend"]["Identity"];
-                Identity.TimeOut = (int)backendTokenIdentity["TimeOut"];
-                Identity.Secure = (bool)backendTokenIdentity["Secure"];
-                Identity.Host = (string)backendTokenIdentity["Host"];
-                Identity.Port = (int)backendTokenIdentity["Port"];
+                Identity = new BackendHost
+                {
+                    Host = (string) backendTokenIdentity["Host"],
+                    Port = (int) backendTokenIdentity["Port"],
+                    Secure = (bool) backendTokenIdentity["Secure"],
+                    TimeOut = (int) backendTokenIdentity["TimeOut"]
+                };
 
                 var backendTokenFriends = intermediate["Backend"]["Friends"];
-                Friends.TimeOut = (int)backendTokenFriends["TimeOut"];
-                Friends.Secure = (bool)backendTokenFriends["Secure"];
-                Friends.Host = (string)backendTokenFriends["Host"];
-                Friends.Port = (int)backendTokenFriends["Port"];
+                Friends = new BackendHost
+                {
+                    Host = (string)backendTokenFriends["Host"],
+                    Port = (int)backendTokenFriends["Port"],
+                    Secure = (bool)backendTokenFriends["Secure"],
+                    TimeOut = (int)backendTokenFriends["TimeOut"]
+                };
 
                 var backendTokenChat = intermediate["Backend"]["Chat"];
-                Chat.TimeOut = (int)backendTokenChat["TimeOut"];
-                Chat.Secure = (bool)backendTokenChat["Secure"];
-                Chat.Host = (string)backendTokenChat["Host"];
-                Chat.Port = (int)backendTokenChat["Port"];
+                Chat = new BackendHost
+                {
+                    Host = (string)backendTokenChat["Host"],
+                    Port = (int)backendTokenChat["Port"],
+                    Secure = (bool)backendTokenChat["Secure"],
+                    TimeOut = (int)backendTokenChat["TimeOut"]
+                };
             }
         }
 
