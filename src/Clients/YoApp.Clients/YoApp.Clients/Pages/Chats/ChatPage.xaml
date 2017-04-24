@@ -10,10 +10,12 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="52"/>
         </Grid.RowDefinitions>
+        
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
+        
         <ListView SeparatorVisibility="None" 
                   HasUnevenRows="True" 
                   Grid.Row="0" 
@@ -24,13 +26,16 @@
             <ListView.Behaviors>
                 <behaviors:ListViewAutoScroll />
             </ListView.Behaviors>
+            
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <TextCell Text="{Binding Message}"/>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+        
         <Entry x:Name="Entry" Grid.Row="1" Grid.Column="0" />
+        
         <Button Grid.Row="1" Grid.Column="1"
                 Text="Send"
                 Command="{Binding PostMessageCommand}"

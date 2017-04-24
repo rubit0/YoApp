@@ -46,9 +46,11 @@ namespace YoApp.Clients.Forms.Behaviors
             {
                 if (!Regex.IsMatch(textChangedEventArgs.NewTextValue, "[1-9]"))
                     _entry.Text = string.Empty;
+
+                SubmitButton.IsEnabled = false;
             }
             else if (textChangedEventArgs.NewTextValue.Length >= 2
-                && textChangedEventArgs.NewTextValue.Length <= _phoneNumberMaxLength)
+                     && textChangedEventArgs.NewTextValue.Length <= _phoneNumberMaxLength)
             {
                 var state = textChangedEventArgs.NewTextValue.Length > 4;
                 _entry.TextColor = state ? Color.Black : Color.Gray;

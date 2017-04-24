@@ -28,6 +28,11 @@
               AbsoluteLayout.LayoutFlags="All" 
               AbsoluteLayout.LayoutBounds="0, 0, 1, 1" 
               HorizontalOptions="Center" >
+            <Grid.Padding>
+                <OnPlatform x:TypeArguments="Thickness">
+                    <On Platform="iOS" Value="0, 20, 0, 0" />
+                </OnPlatform>
+            </Grid.Padding>
             
             <Grid.RowDefinitions>
                 <RowDefinition Height="AUTO" />
@@ -58,7 +63,8 @@
                 <iconize:IconImage Icon="fa-envelope" IconSize="22" IconColor="White" />
             </StackLayout>
 
-            <Image x:Name="Icon" Grid.Row="2" 
+            <Image x:Name="SplashIcon" 
+                   Grid.Row="2" 
                    Margin="0, 10, 0, 10"
                    Source="splash_icon.png" />
 

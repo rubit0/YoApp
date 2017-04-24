@@ -11,11 +11,10 @@ namespace YoApp.Clients.Pages.Setup
         {
             InitializeComponent();
             NavigationPage.SetHasBackButton(this, false);
+            SubmitButton.IsEnabled = false;
 
             BindingContext = App.Container.Resolve<EnterNumberViewModel>(
                 new TypedParameter(typeof(IPageService), this));
-
-            SubmitButton.IsEnabled = false;
         }
 
         protected override void OnAppearing()

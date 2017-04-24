@@ -1,6 +1,5 @@
 ﻿using Autofac;
 using Xamarin.Forms;
-using YoApp.Clients.Core;
 using YoApp.Clients.Forms;
 using YoApp.Clients.ViewModels.Setup;
 

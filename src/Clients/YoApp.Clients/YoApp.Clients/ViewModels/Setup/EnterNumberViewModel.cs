@@ -3,11 +3,11 @@ using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
+using Acr.UserDialogs;
 using Xamarin.Forms;
 using YoApp.Clients.Core;
 using YoApp.Clients.Forms;
 using YoApp.Clients.Manager;
-using YoApp.Clients.Pages.Modals;
 using YoApp.Clients.Pages.Setup;
 
 namespace YoApp.Clients.ViewModels.Setup
@@ -19,7 +19,7 @@ namespace YoApp.Clients.ViewModels.Setup
         private int _selectedCountry;
         public int SelectedCountry
         {
-            get { return _selectedCountry; }
+            get => _selectedCountry;
             set
             {
                 _selectedCountry = value;
@@ -30,7 +30,7 @@ namespace YoApp.Clients.ViewModels.Setup
         private string _callingCode;
         public string CallingCode
         {
-            get { return _callingCode; }
+            get => _callingCode;
             set
             {
                 _callingCode = value;
@@ -38,7 +38,7 @@ namespace YoApp.Clients.ViewModels.Setup
             }
         }
 
-        public Command CompleteCommand { get; private set; }
+        public Command CompleteCommand { get; }
         public List<string> Countries { get; private set; }
         public string UserPhoneNumber { get; set; }
 
@@ -46,11 +46,14 @@ namespace YoApp.Clients.ViewModels.Setup
         private List<CountryViewModel> _countriesFromRepo;
         private readonly IVerificationManager _verificationManager;
         private readonly IPageService _pageService;
+        private readonly IUserDialogs _userDialogs;
 
-        public EnterNumberViewModel(IPageService pageService, IVerificationManager verificationManager)
+        public EnterNumberViewModel(IPageService pageService, IVerificationManager verificationManager, IUserDialogs userDialogs)
         {
             _pageService = pageService;
             _verificationManager = verificationManager;
+            _userDialogs = userDialogs;
+
             _countryContext = new CountriesContext();
             InitCountriesList();
 
@@ -59,9 +62,9 @@ namespace YoApp.Clients.ViewModels.Setup
 
         private async Task ExecuteRequest()
         {
-            var result = await _pageService.DisplayAlert("Phone number verification",
-                $"+{CallingCode} {UserPhoneNumber}\n Is this phone number correct?",
-                "Yes",
+            var result = await _pageService.DisplayAlert("Verifying phone number",
+                $"+{CallingCode} {UserPhoneNumber}\nIs this OK or do you want to edit the number?",
+                "Ok",
                 "Edit");
 
             if (result)
@@ -84,7 +87,7 @@ namespace YoApp.Clients.ViewModels.Setup
             _countriesFromRepo = _countryContext.Countries;
 
             foreach (var country in _countriesFromRepo)
-                Countries.Add($"{country.ToStringWithEmojiFlag()}");
+                Countries.Add($"{country.Name}");
 
             var userRegion = System.Globalization.RegionInfo
                 .CurrentRegion
@@ -99,13 +102,14 @@ namespace YoApp.Clients.ViewModels.Setup
 
         private async Task StartRequest()
         {
-            await _pageService.Navigation.PushModalAsync(new LoadingModalPage("Please wait."));
+            var loadDialog = _userDialogs.Loading("Connecting.");
+            loadDialog.Show();
 
             var response = await _verificationManager
                                 .RequestVerificationCodeAsync(CallingCode,
                                 UserPhoneNumber);
 
-            await _pageService.Navigation.PopModalAsync();
+            loadDialog.Hide();
 
             if (!response)
             {
@@ -115,6 +119,7 @@ namespace YoApp.Clients.ViewModels.Setup
             }
             else
             {
+                loadDialog.Dispose();
                 await _pageService.Navigation
                     .PushAsync(new WaitVerificationPage($"{CallingCode}{UserPhoneNumber}"));
             }

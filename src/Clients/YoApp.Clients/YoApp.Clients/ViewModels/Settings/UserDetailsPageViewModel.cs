@@ -3,11 +3,10 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Acr.UserDialogs;
 using Xamarin.Forms;
-using YoApp.Clients.Core;
 using YoApp.Clients.Forms;
 using YoApp.Clients.Manager;
-using YoApp.Clients.Pages.Modals;
 
 namespace YoApp.Clients.ViewModels.Settings
 {
@@ -38,15 +37,16 @@ namespace YoApp.Clients.ViewModels.Settings
         }
 
         public ICommand UpdateCommand { get; }
-        private readonly IPageService _pageService;
         private readonly IAppUserManager _appUserManager;
+        private readonly IUserDialogs _userDialogs;
 
-        public UserDetailsPageViewModel(IPageService pageService, IAppUserManager appUserManager)
+        public UserDetailsPageViewModel(IAppUserManager appUserManager, IUserDialogs userDialogs)
         {
             _appUserManager = appUserManager;
+            _userDialogs = userDialogs;
+
             _nickName = _appUserManager.User.Nickname;
             _statusMessage = _appUserManager.User.Status;
-            _pageService = pageService;
 
             UpdateCommand = new Command(async () => await UpdateUser(),
                 () => CrossConnectivity.Current.IsConnected);
@@ -54,7 +54,8 @@ namespace YoApp.Clients.ViewModels.Settings
 
         public async Task UpdateUser()
         {
-            await _pageService.Navigation.PushModalAsync(new LoadingModalPage("Please wait."));
+            var loadDialog = _userDialogs.Loading("Updating.");
+            loadDialog.Show();
 
             var oldNick = _nickName;
             var oldStatus = _statusMessage;
@@ -62,7 +63,8 @@ namespace YoApp.Clients.ViewModels.Settings
             _appUserManager.User.Status = _statusMessage;
 
             var result = await _appUserManager.SyncUpAsync();
-            await _pageService.Navigation.PopModalAsync();
+            loadDialog.Hide();
+            loadDialog.Dispose();
 
             if (!result)
             {

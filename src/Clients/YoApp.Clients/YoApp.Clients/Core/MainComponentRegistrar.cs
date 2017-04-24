@@ -1,5 +1,6 @@
 ﻿using System.Reflection;
 using System.Threading.Tasks;
+using Acr.UserDialogs;
 using Autofac;
 using Plugin.Contacts;
 using Plugin.Contacts.Abstractions;
@@ -27,6 +28,7 @@ namespace YoApp.Clients.Core
             builder.RegisterType<ChatBook>().AsSelf();
             builder.RegisterType<StateMachine.StateMachineController>().AsSelf().SingleInstance();
             builder.RegisterInstance(CrossContacts.Current).As<IContacts>().SingleInstance();
+            builder.RegisterInstance(UserDialogs.Instance).As<IUserDialogs>().SingleInstance();
 
             //Persistence
             builder.RegisterType<AkavacheContext>().As<IKeyValueStore>().SingleInstance();

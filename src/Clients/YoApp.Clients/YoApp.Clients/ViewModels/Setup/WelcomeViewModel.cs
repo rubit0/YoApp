@@ -1,9 +1,9 @@
 ﻿using Plugin.Connectivity;
 using System.Threading.Tasks;
+using Acr.UserDialogs;
 using Xamarin.Forms;
 using YoApp.Clients.Core.Extensions;
 using YoApp.Clients.Forms;
-using YoApp.Clients.Pages.Modals;
 using YoApp.Clients.Pages.Setup;
 
 namespace YoApp.Clients.ViewModels.Setup
@@ -25,10 +25,12 @@ namespace YoApp.Clients.ViewModels.Setup
         }
 
         private readonly IPageService _pageService;
+        private readonly IUserDialogs _userDialogs;
 
-        public WelcomeViewModel(IPageService pageService)
+        public WelcomeViewModel(IPageService pageService, IUserDialogs userDialogs)
         {
             _pageService = pageService;
+            _userDialogs = userDialogs;
 
             ConnectCommand = new Command(async () => await TestServiceConnection(),
                 () => !IsConnecting && CrossConnectivity.Current.IsConnected);
@@ -43,12 +45,15 @@ namespace YoApp.Clients.ViewModels.Setup
         {
             IsConnecting = true;
             ConnectCommand.ChangeCanExecute();
-
-            await _pageService.Navigation.PushModalAsync(new LoadingModalPage("Please wait, connecting to service."));
+            var loadDialog = _userDialogs.Loading("Connecting to service");
+            loadDialog.Show();
 
             if (!CrossConnectivity.Current.IsConnected
                 || !await CrossConnectivity.Current.IsServiceOnlineAsync())
             {
+                loadDialog.Hide();
+                loadDialog.Dispose();
+
                 await _pageService.Navigation.PopModalAsync();
                 IsConnecting = false;
                 ConnectCommand.ChangeCanExecute();
@@ -56,7 +61,8 @@ namespace YoApp.Clients.ViewModels.Setup
                 return;
             }
 
-            await _pageService.Navigation.PopModalAsync();
+            loadDialog.Hide();
+            loadDialog.Dispose();
 
             await _pageService.Navigation.PushAsync(new EnterNumberPage());
         }

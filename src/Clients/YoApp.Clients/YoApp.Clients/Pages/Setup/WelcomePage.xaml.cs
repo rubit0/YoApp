@@ -13,14 +13,10 @@ namespace YoApp.Clients.Pages.Setup
         private bool _presentedEnterAnimation;
 
         private const string AnimationEnter = nameof(AnimationEnter);
-        private const string AnimationExit = nameof(AnimationExit);
 
         public WelcomePage()
         {
             InitializeComponent();
-
-            if (Device.RuntimePlatform == Device.iOS)
-                GridContainer.Padding = new Thickness(0, 20, 0, 0);
 
             BindingContext = App.Container.Resolve<WelcomeViewModel>(
                 new TypedParameter(typeof(IPageService), this));
@@ -41,18 +37,12 @@ namespace YoApp.Clients.Pages.Setup
         {
             base.OnAppearing();
 
-            if (Device.RuntimePlatform == Device.Android)
-            {
-                if (!_sizeAllocated)
+            if (Device.RuntimePlatform == Device.Android 
+                && !_sizeAllocated)
                     return; 
-            }
 
-            if(_presentedEnterAnimation)
-                return;
-
-            var animation = GetAnimationStart();
-            _presentedEnterAnimation = true;
-            animation.Commit(this, AnimationEnter, 16, 2000);
+            if(!_presentedEnterAnimation)
+                StartPagePresentation();
         }
 
         protected override bool OnBackButtonPressed()
@@ -60,9 +50,11 @@ namespace YoApp.Clients.Pages.Setup
             return true;
         }
 
-        private Animation GetAnimationStart()
+        private void StartPagePresentation(uint duration = 2000)
         {
             var animationController = new Animation();
+
+            ButtonContinue.Opacity = 0;
             var layoutHeight = GridLayout.Height;
 
             SlideSecond.TranslationY = -layoutHeight;
@@ -75,9 +67,9 @@ namespace YoApp.Clients.Pages.Setup
             SlideThird.Scale = 1.5;
             SlideThird.AnchorY = 0;
 
-            Icon.Opacity = 0;
+            SplashIcon.Opacity = 0;
             Overlay.Opacity = 0;
-            Icon.RotationY = -90;
+            SplashIcon.RotationY = -90;
 
             var slideInSecond = new Animation(
                 v => SlideSecond.TranslationY = Lerp(-layoutHeight, layoutHeight, v), 
@@ -96,14 +88,18 @@ namespace YoApp.Clients.Pages.Setup
                 0, 1,
                 Easing.CubicInOut);
             var rotateIcon = new Animation(
-                v => Icon.RotationY = Lerp(-90, 0, v),
+                v => SplashIcon.RotationY = Lerp(-90, 0, v),
                 0, 1,
                 Easing.SpringOut);
+            var fadeInContinueButton = new Animation(
+                v => ButtonContinue.Opacity = v,
+                0, 1,
+                Easing.SinIn);
 
             var fadeInFirst = new Animation(v => SlideFirst.Opacity = v);
             var fadeInSecond = new Animation(v => SlideSecond.Opacity = v);
             var fadeInThird = new Animation(v => SlideThird.Opacity = v);
-            var fadeInIcon = new Animation(v => Icon.Opacity = v);
+            var fadeInIcon = new Animation(v => SplashIcon.Opacity = v);
             var fadeInOverlay = new Animation(v => Overlay.Opacity = v, 0, 0.6);
 
             animationController.Add(0, 0.5, fadeInFirst);
@@ -118,8 +114,11 @@ namespace YoApp.Clients.Pages.Setup
             animationController.Add(0.2, 0.8, slideInThird);
             animationController.Add(0.1, 0.8, rotateThird);
             animationController.Add(0, 0.5, fadeInThird);
+            animationController.Add(0.8, 1, fadeInContinueButton);
 
-            return animationController;
+            _presentedEnterAnimation = true;
+
+            animationController.Commit(this, AnimationEnter, 16, duration);
         }
     }
 }
