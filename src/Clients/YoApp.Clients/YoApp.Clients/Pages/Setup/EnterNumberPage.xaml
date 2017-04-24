@@ -31,7 +31,7 @@
 
             <StackLayout Grid.Row="0" Orientation="Horizontal"
                          HorizontalOptions="CenterAndExpand">
-                <iconize:IconImage Icon="fa-circle" IconSize="10" IconColor="DodgerBlue" />
+                <iconize:IconImage Icon="fa-circle" IconSize="10" IconColor="#008EFB" />
                 <iconize:IconImage Icon="fa-circle" IconSize="10" IconColor="Black" Opacity="0.25" />
                 <iconize:IconImage Icon="fa-circle" IconSize="10" IconColor="Black" Opacity="0.25" />
             </StackLayout>

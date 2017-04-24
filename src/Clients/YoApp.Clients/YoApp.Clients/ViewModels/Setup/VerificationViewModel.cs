@@ -69,7 +69,7 @@ namespace YoApp.Clients.ViewModels.Setup
 
                 await _appUserManager.PersistUser();
                 await AuthenticationService.RequestToken(PhoneNumber, password);
-                await Task.Run(() => MessagingCenter.Send(this, MessagingEvents.UserCreated));
+                MessagingCenter.Send(this, MessagingEvents.UserCreated);
 
                 await _pageService.Navigation.PushAsync(new ProfilePage());
             }
