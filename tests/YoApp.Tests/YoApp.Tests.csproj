@@ -29,17 +29,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="Autofac">
-      <HintPath>..\..\packages\Autofac.4.5.0\lib\netstandard1.1\Autofac.dll</HintPath>
-    </Reference>
     <Reference Include="FluentScheduler">
       <HintPath>..\..\libs\FluentScheduler\FluentScheduler.dll</HintPath>
-    </Reference>
-    <Reference Include="Plugin.Contacts.Abstractions">
-      <HintPath>..\..\src\Clients\packages\Xam.Plugin.Contacts.2.2.0.29-beta\lib\portable-net45+wp80+win8+wpa81\Plugin.Contacts.Abstractions.dll</HintPath>
-    </Reference>
-    <Reference Include="Realm">
-      <HintPath>..\..\src\Clients\packages\Realm.Database.1.1.0\lib\MonoAndroid44\Realm.dll</HintPath>
     </Reference>
   </ItemGroup>
 
