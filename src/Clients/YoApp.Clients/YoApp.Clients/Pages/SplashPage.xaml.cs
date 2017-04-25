@@ -13,7 +13,10 @@ namespace YoApp.Clients.Pages
         {
             InitializeComponent();
 
-            MessagingCenter.Subscribe<LifeCycleState, Page>(this, MessagingEvents.AppLoadFinished, FadeOut);
+            MessagingCenter.Subscribe<LifeCycleState, Page>(
+                this, 
+                MessagingEvents.AppLoadFinished, 
+                FadeOut);
         }
 
         protected override void OnAppearing()

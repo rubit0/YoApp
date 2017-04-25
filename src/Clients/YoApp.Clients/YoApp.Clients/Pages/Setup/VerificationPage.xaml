@@ -43,6 +43,7 @@
 
         <Entry x:Name="CodeEntry"
                Grid.Row="3" 
+               HorizontalOptions="Center"
                Keyboard="Numeric"
                Placeholder="Enter verification code"
                Text="{Binding VerificationCode, Mode=TwoWay, StringFormat='{0:###-###}'}">

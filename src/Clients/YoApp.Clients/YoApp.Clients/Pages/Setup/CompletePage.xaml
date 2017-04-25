@@ -1,12 +1,67 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:iconize="clr-namespace:FormsPlugin.Iconize;assembly=FormsPlugin.Iconize"
              x:Class="YoApp.Clients.Pages.Setup.CompletePage"
-             NavigationPage.HasNavigationBar="True"
+             NavigationPage.HasNavigationBar="False"
              Title="Setup complete">
-  <StackLayout>
-    <Label Text="Enjoy YoApp for one year!" />
-    <Button Text="Done" Clicked="OnDoneClicked" />
-  </StackLayout>
-  
+    <AbsoluteLayout x:Name="TopLayout">
+        <Grid x:Name="GridBackground"
+              AbsoluteLayout.LayoutFlags="All"
+              AbsoluteLayout.LayoutBounds="0, 0, 1, 1">
+            <BoxView Grid.Row="0" Grid.Column="0"
+                     x:Name="TileBackground"
+                     Color="#26E28F" />
+            <Image Grid.Row="0" Grid.Column="0"
+                   x:Name="OverlayBackground"
+                   Aspect="AspectFill"
+                   Source="pattern_backdrop.png" />
+        </Grid>
+
+        <Grid x:Name="GridContainer"
+              AbsoluteLayout.LayoutFlags="All"
+              AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+              HorizontalOptions="Center">
+            <Grid.Padding>
+                <OnPlatform x:TypeArguments="Thickness">
+                    <On Platform="Android" Value="35, 15, 35, 0" />
+                    <On Platform="iOS" Value="35, 25, 35, 0" />
+                </OnPlatform>
+            </Grid.Padding>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="AUTO" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="AUTO" />
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="AUTO" />
+            </Grid.ColumnDefinitions>
+
+            <Label Grid.Row="0" Margin="0, 10, 0, 5"
+                   FontSize="28" TextColor="White"
+                   HorizontalTextAlignment="Center"
+                   HorizontalOptions="Center"
+                   Text="{Binding Topic}" />
+
+            <Label Grid.Row="1"
+                   Margin="0, 0, 0, 10"
+                   FontSize="20"
+                   TextColor="White"
+                   HorizontalTextAlignment="Center"
+                   VerticalOptions="EndAndExpand"
+                   Text="Now enjoy YoApp for free and chat with all your friends." />
+
+            <Button x:Name="ButtonFinish"
+                    Grid.Row="2"
+                    Margin="0, 0, 0, 30"
+                    HorizontalOptions="Center"
+                    Command="{Binding FinishCommand}"
+                    BackgroundColor="DodgerBlue"
+                    TextColor="White"
+                    BorderColor="Transparent"
+                    Text="Finish Setup" />
+        </Grid>
+    </AbsoluteLayout>
 </ContentPage>

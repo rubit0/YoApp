@@ -41,7 +41,7 @@
                    VerticalTextAlignment="Center"
                    Text="We will send you an SMS message to verify your phone number. Enter your country code and phone number:" />
 
-            <Grid Grid.Row="2" HorizontalOptions="Fill" Margin="25, 5, 25, 0">
+            <Grid Grid.Row="2" HorizontalOptions="Fill" Margin="25, 5, 25, 0" >
                 <Grid.RowDefinitions>
                     <RowDefinition Height="AUTO" />
                     <RowDefinition Height="AUTO" />

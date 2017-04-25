@@ -4,7 +4,6 @@ using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
-using YoApp.Clients.Core;
 using YoApp.Clients.Forms;
 using YoApp.Clients.Manager;
 using YoApp.Clients.Pages.Setup;

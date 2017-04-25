@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:iconize="clr-namespace:FormsPlugin.Iconize;assembly=FormsPlugin.Iconize"
+             xmlns:triggers="clr-namespace:YoApp.Clients.Forms.Triggers;assembly=YoApp.Clients"
              x:Class="YoApp.Clients.Pages.Setup.ProfilePage"
              Title="Edit profile"
              NavigationPage.HasNavigationBar="True" >
@@ -50,13 +51,20 @@
 
             <Entry Grid.Row="3" 
                    Placeholder="Nickname" 
-                   Text="{Binding NickName, Mode=TwoWay}" />
+                   Text="{Binding NickName, Mode=TwoWay}" >
+                <Entry.Triggers>
+                    <EventTrigger Event="TextChanged">
+                        <triggers:EntryMinLengthButtonTrigger MinLength="3" Target="{x:Reference ButtonNext}" />
+                    </EventTrigger>
+                </Entry.Triggers>
+            </Entry>
             
             <Entry Grid.Row="4" 
                    Placeholder="Status message" 
                    Text="{Binding StatusMessage, Mode=TwoWay}" />
             
-            <Button Grid.Row="5" 
+            <Button x:Name="ButtonNext"
+                    Grid.Row="5" 
                     HorizontalOptions="Center" 
                     Text="Next" 
                     Command="{Binding SubmitCommand}" 

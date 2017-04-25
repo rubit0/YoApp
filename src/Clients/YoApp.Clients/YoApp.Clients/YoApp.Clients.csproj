@@ -90,6 +90,7 @@
     <Compile Include="Manager\IContactsManager.cs" />
     <Compile Include="Manager\IFriendsManager.cs" />
     <Compile Include="Models\ChatBook.cs" />
+    <Compile Include="ViewModels\Setup\CompleteViewModel.cs" />
     <Compile Include="ViewModels\Setup\CountryViewModel.cs" />
     <Compile Include="Pages\Chats\ChatPage.xaml.cs">
       <DependentUpon>ChatPage.xaml</DependentUpon>
