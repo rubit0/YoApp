@@ -9,7 +9,7 @@
              Title="Verification"
              NavigationPage.HasNavigationBar="True">
     <ScrollView>
-        <Grid>
+        <Grid x:Name="GridContainer">
             <Grid.Padding>
                 <OnPlatform x:TypeArguments="Thickness">
                     <On Platform="Android" Value="35, 15, 35, 0" />

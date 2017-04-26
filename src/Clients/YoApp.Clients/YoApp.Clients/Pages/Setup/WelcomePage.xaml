@@ -53,9 +53,10 @@
                    HorizontalOptions="Center" 
                    Text="Welcome to YoApp" />
 
-            <StackLayout Grid.Row="1" 
+            <StackLayout x:Name="IconsContainer" 
+                         Grid.Row="1" 
                          Orientation="Horizontal" 
-                         HorizontalOptions="CenterAndExpand">
+                         HorizontalOptions="CenterAndExpand" >
                 <iconize:IconImage Icon="fa-heart" IconSize="22" IconColor="White" />
                 <iconize:IconImage Icon="fa-user" IconSize="22" IconColor="White" />
                 <iconize:IconImage Icon="fa-camera" IconSize="22" IconColor="White" />
@@ -68,12 +69,28 @@
                    Margin="0, 10, 0, 10"
                    Source="splash_icon.png" />
 
-            <Label Grid.Row="3" 
-                   Margin="0, 0, 0, 10"
-                   FontSize="18"
-                   TextColor="White" 
-                   HorizontalTextAlignment="Center" 
-                   Text="Chat with all your friends.&#10;Around the globe.&#10;Across devices." />
+            <StackLayout x:Name="CaptionsContainer" Grid.Row="3" 
+                         Margin="0, 0, 0, 10" >
+                <StackLayout.Spacing>
+                    <OnPlatform x:TypeArguments="x:Double">
+                        <On Platform="iOS" Value="0" />
+                        <On Platform="Android" Value="-5" />
+                    </OnPlatform>
+                </StackLayout.Spacing>
+                
+                <Label HorizontalOptions="Center" 
+                       FontSize="18" 
+                       TextColor="White" 
+                       Text="Chat with all your friends."/>
+                <Label HorizontalOptions="Center" 
+                       FontSize="18" 
+                       TextColor="White" 
+                       Text="Around the globe."/>
+                <Label HorizontalOptions="Center" 
+                       FontSize="18" 
+                       TextColor="White"
+                       Text="Across devices."/>
+            </StackLayout>
 
             <Label Grid.Row="4"
                    BackgroundColor="Transparent"
@@ -89,7 +106,7 @@
 
             <Button x:Name="ButtonContinue" 
                     Grid.Row="5" 
-                    Margin="0, 0, 0, 30"
+                    Margin="5, 0, 5, 30"
                     HorizontalOptions="Center"
                     Command="{Binding ConnectCommand}" 
                     BackgroundColor="DodgerBlue"
