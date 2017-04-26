@@ -8,15 +8,36 @@
     <AbsoluteLayout x:Name="TopLayout">
         <Grid x:Name="GridBackground"
               AbsoluteLayout.LayoutFlags="All"
-              AbsoluteLayout.LayoutBounds="0, 0, 1, 1">
-            <BoxView Grid.Row="0" Grid.Column="0"
-                     x:Name="TileBackground"
-                     Color="#26E28F" />
-            <Image Grid.Row="0" Grid.Column="0"
+              AbsoluteLayout.LayoutBounds="0, 0, 1, 1" >
+            <Image Grid.Row="0" 
+                   x:Name="GradientBackground"
+                   Aspect="AspectFill"
+                   AnchorX="0.5" AnchorY="0.5"
+                   Scale="3"
+                   Opacity="0.85"
+                   Source="rgb_gradient_radial.png" />
+            <BoxView Grid.Row="0" 
+                     Opacity="0.15"
+                     Color="Black" />
+            <Image Grid.Row="0" 
                    x:Name="OverlayBackground"
                    Aspect="AspectFill"
                    Source="pattern_backdrop.png" />
         </Grid>
+
+        <iconize:IconImage
+            AbsoluteLayout.LayoutBounds="0.2, 0.25" 
+            AbsoluteLayout.LayoutFlags="PositionProportional"
+            Icon="fa-comment"
+            IconSize="64"
+            IconColor="White" />
+
+        <iconize:IconImage
+            AbsoluteLayout.LayoutBounds="0.75, 0.4" 
+            AbsoluteLayout.LayoutFlags="PositionProportional"
+            Icon="fa-heart"
+            IconSize="64"
+            IconColor="White" />
 
         <Grid x:Name="GridContainer"
               AbsoluteLayout.LayoutFlags="All"

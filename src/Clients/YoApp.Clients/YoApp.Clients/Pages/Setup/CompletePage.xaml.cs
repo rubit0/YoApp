@@ -19,5 +19,25 @@ namespace YoApp.Clients.Pages.Setup
         {
             return true;
         }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+
+            var animationController = new Animation();
+
+            OverlayBackground.Opacity = 0;
+            var overlayFade = new Animation(
+                v => OverlayBackground.Opacity = v, 
+                0, 1, 
+                Easing.CubicInOut);
+
+            var gradientRotation = new Animation(v => GradientBackground.Rotation = v, 0, 360);
+
+            animationController.Add(0, 0.075, overlayFade);
+            animationController.Add(0, 1, gradientRotation);
+
+            animationController.Commit(this, "Animation", 16, 50000, null, null, () => true);
+        }
     }
 }
