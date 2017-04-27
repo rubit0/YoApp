@@ -32,9 +32,9 @@ namespace YoApp.Clients.Pages.Setup
                 0, 1, 
                 Easing.CubicInOut);
 
-            var gradientRotation = new Animation(v => GradientBackground.Rotation = v, 0, 360);
+            var gradientRotation = new Animation(v => GradientBackground.Rotation = v, 0, 2160);
 
-            animationController.Add(0, 0.075, overlayFade);
+            animationController.Add(0, 0.025, overlayFade);
             animationController.Add(0, 1, gradientRotation);
 
             animationController.Commit(this, "Animation", 16, 50000, null, null, () => true);

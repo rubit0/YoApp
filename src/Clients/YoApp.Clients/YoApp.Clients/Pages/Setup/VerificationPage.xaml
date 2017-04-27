@@ -8,13 +8,16 @@
              x:Class="YoApp.Clients.Pages.Setup.VerificationPage"
              Title="{Binding Title}"
              NavigationPage.HasNavigationBar="True">
-    <Grid>
+    <Grid x:Name="GridContainer">
         <Grid.Padding>
             <OnPlatform x:TypeArguments="Thickness">
                 <On Platform="Android" Value="35, 15, 35, 0" />
                 <On Platform="iOS" Value="35, 25, 35, 0" />
             </OnPlatform>
         </Grid.Padding>
+        <Grid.Behaviors>
+            <behaviors:PushFadeAnimation FocusElement="{x:Reference CodeEntry}" />
+        </Grid.Behaviors>
 
         <Grid.RowDefinitions>
             <RowDefinition Height="AUTO" />
@@ -53,8 +56,8 @@
             </Entry.Behaviors>
             <Entry.Triggers>
                 <EventTrigger Event="TextChanged">
-                    <triggers:EntryMinLengthButtonTrigger MinLength="6" 
-                                                          Target="{x:Reference VerifyButton}" />
+                    <triggers:EntryMinLengthTrigger MinLength="6" 
+                                                          ToggleTarget="{x:Reference VerifyButton}" />
                 </EventTrigger>
             </Entry.Triggers>
         </Entry>

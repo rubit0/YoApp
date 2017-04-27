@@ -2,21 +2,74 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:behaviors="clr-namespace:YoApp.Clients.Forms.Behaviors;assembly=YoApp.Clients"
+             xmlns:iconize="clr-namespace:FormsPlugin.Iconize;assembly=FormsPlugin.Iconize"
+             xmlns:triggers="clr-namespace:YoApp.Clients.Forms.Triggers;assembly=YoApp.Clients"
              x:Class="YoApp.Clients.Pages.Settings.UserDetailsPage"
-             Title="{Binding Nickname}"
+             Title="Profile"
              NavigationPage.HasNavigationBar="True" >
-  <StackLayout>
-    <Entry Text="{Binding Nickname}">
-      <Entry.Behaviors>
-        <behaviors:EntryMaxLength MaxLength="{StaticResource Key=nicknameMaxLength}"/>
-      </Entry.Behaviors>
-    </Entry>
-    <Entry Text="{Binding StatusMessage, Mode=TwoWay}">
-      <Entry.Behaviors>
-        <behaviors:EntryMaxLength 
-          MaxLength="{StaticResource Key=statusMessageMaxLength}" />
-      </Entry.Behaviors>
-    </Entry>
-    <Button Text="Change" Command="{Binding UpdateCommand}" />
-  </StackLayout>
+    <ScrollView>
+        <Grid>
+            <Grid.Padding>
+                <OnPlatform x:TypeArguments="Thickness">
+                    <On Platform="Android" Value="35, 15, 35, 0" />
+                    <On Platform="iOS" Value="35, 25, 25, 0" />
+                </OnPlatform>
+            </Grid.Padding>
+            <Grid.Behaviors>
+                <behaviors:PushFadeAnimation />
+            </Grid.Behaviors>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="AUTO" />
+                <RowDefinition Height="AUTO" />
+                <RowDefinition Height="AUTO" />
+                <RowDefinition Height="AUTO" />
+                <RowDefinition Height="AUTO" />
+                <RowDefinition Height="AUTO" />
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Label Grid.Row="0" 
+                   HorizontalOptions="CenterAndExpand" 
+                   HorizontalTextAlignment="Center" 
+                   Text="Update your profile." />
+
+            <iconize:IconImage Grid.Row="1" 
+                               HorizontalOptions="Center" 
+                               VerticalOptions="Center" 
+                               Icon="fa-circle" IconSize="124" IconColor="DeepSkyBlue" />
+            <iconize:IconImage Grid.Row="1" 
+                               HorizontalOptions="Center" 
+                               VerticalOptions="Center" 
+                               Icon="fa-camera" IconSize="26" IconColor="WhiteSmoke" />
+
+            <Entry Grid.Row="2" 
+                   Placeholder="Nickname" 
+                   Text="{Binding Nickname, Mode=TwoWay}" >
+                <Entry.Triggers>
+                    <EventTrigger Event="TextChanged">
+                        <triggers:EntryMinLengthTrigger MinLength="3" 
+                                                        ToggleTarget="{x:Reference ButtonSubmit}" />
+                        <triggers:EntryMaxLengthTrigger MaxLength="{StaticResource Key=nicknameMaxLength}" 
+                                                        ToggleTarget="{x:Reference ButtonSubmit}"/>
+                    </EventTrigger>
+                </Entry.Triggers>
+            </Entry>
+
+            <Entry Grid.Row="3" 
+                   Placeholder="Status message" 
+                   Text="{Binding StatusMessage, Mode=TwoWay}" />
+
+            <Button x:Name="ButtonSubmit"
+                    Grid.Row="4" 
+                    HorizontalOptions="Center" 
+                    Text="Update" 
+                    Command="{Binding UpdateCommand}" 
+                    IsEnabled="{Binding CanSubmit}" />
+
+        </Grid>
+    </ScrollView>
 </ContentPage>

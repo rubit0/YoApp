@@ -2,6 +2,7 @@
 using Rubito.SimpleFormsAuth;
 using System;
 using System.Threading.Tasks;
+using Acr.UserDialogs;
 using YoApp.Dtos.Account;
 
 namespace YoApp.Clients.Services
@@ -9,9 +10,11 @@ namespace YoApp.Clients.Services
     public class AccountService : IAccountService
     {
         private readonly Uri _backendAddress;
+        private readonly IUserDialogs _userDialogs;
 
-        public AccountService()
+        public AccountService(IUserDialogs userDialogs)
         {
+            _userDialogs = userDialogs;
             _backendAddress = new Uri(App.Settings.Identity.Url, "account");
         }
 
@@ -58,10 +61,15 @@ namespace YoApp.Clients.Services
             try
             {
                 var response = await request.GetResponseAsync();
-                return (response.StatusCode == System.Net.HttpStatusCode.OK);
+                var result = response.StatusCode == System.Net.HttpStatusCode.OK;
+                _userDialogs.Toast(result ? "Updated user account." : "Failed to update user account.");
+                
+                return result;
             }
             catch (Exception)
             {
+                _userDialogs.ShowError("Connection to service failed.");
+
                 return false;
             }
         }

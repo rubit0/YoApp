@@ -16,7 +16,10 @@
                     <On Platform="iOS" Value="35, 25, 35, 0" />
                 </OnPlatform>
             </Grid.Padding>
-
+            <Grid.Behaviors>
+                <behaviors:PushFadeAnimation FocusElement="{x:Reference NumberEntry}" />
+            </Grid.Behaviors>
+            
             <Grid.RowDefinitions>
                 <RowDefinition Height="AUTO" />
                 <RowDefinition Height="AUTO" />

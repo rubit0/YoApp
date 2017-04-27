@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Acr.UserDialogs;
 using Xamarin.Forms;
-using YoApp.Clients.Forms;
 using YoApp.Clients.Manager;
 
 namespace YoApp.Clients.ViewModels.Settings

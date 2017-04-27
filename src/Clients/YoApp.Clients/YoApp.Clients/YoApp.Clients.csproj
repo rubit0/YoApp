@@ -42,10 +42,11 @@
     <Compile Include="Core\AnimationExtensions.cs" />
     <Compile Include="Core\FriendsComparer.cs" />
     <Compile Include="Core\MathHelper.cs" />
-    <Compile Include="Forms\Behaviors\EntryMaxLength.cs" />
     <Compile Include="Forms\Behaviors\EntryForceNumeric.cs" />
+    <Compile Include="Forms\Behaviors\EntryMaxLength.cs" />
     <Compile Include="Forms\Behaviors\EntryPhoneValidation.cs" />
     <Compile Include="Forms\Behaviors\ListViewAutoScroll.cs" />
+    <Compile Include="Forms\Behaviors\PushFadeAnimation.cs" />
     <Compile Include="Forms\Behaviors\TimedSelfDisable.cs" />
     <Compile Include="Forms\Triggers\ClearEntryTrigger.cs" />
     <Compile Include="Core\EventArgs\ChatMessageReceivedEventArgs.cs" />
@@ -57,7 +58,8 @@
     <Compile Include="Core\MainComponentRegistrar.cs" />
     <Compile Include="Core\MessagingEvents.cs" />
     <Compile Include="Core\PhoneNumberUtils.cs" />
-    <Compile Include="Forms\Triggers\EntryMinLengthButtonTrigger.cs" />
+    <Compile Include="Forms\Triggers\EntryMaxLengthTrigger.cs" />
+    <Compile Include="Forms\Triggers\EntryMinLengthTrigger.cs" />
     <Compile Include="Forms\ViewExtensions.cs" />
     <Compile Include="Models\ParsedPhoneNumber.cs" />
     <Compile Include="Core\ResourceKeys.cs" />

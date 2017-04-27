@@ -60,6 +60,7 @@ namespace YoApp.Clients.Pages.Setup
         private void StartPagePresentation(uint duration = 2000)
         {
             var animationController = new Animation();
+            var captionsAnimationCotnroller =new Animation();
 
             ButtonContinue.Opacity = 0;
             var layoutHeight = GridLayout.Height;
@@ -89,9 +90,10 @@ namespace YoApp.Clients.Pages.Setup
                 captions[i].Opacity = 0;
                 var iterator = i;
                 var fader = new Animation(v => captions[iterator].Opacity = v, 0, 1, Easing.CubicIn);
-                var begin = 0.25 + (i * 0.25);
-                var end = 0.6 + (i * 0.2);
-                animationController.Add(begin, end, fader);
+                double fraction = 1f / captions.Count;
+                var begin = fraction * i;
+                var end = fraction * (i + 1);
+                captionsAnimationCotnroller.Add(begin, end, fader);
             }
 
             var slideInSecond = new Animation(
@@ -143,7 +145,8 @@ namespace YoApp.Clients.Pages.Setup
 
             _presentedEnterAnimation = true;
 
-            animationController.Commit(this, AnimationEnter, 16, duration);
+            animationController.Commit(this, AnimationEnter, 16, duration, 
+                finished: (d, b) => captionsAnimationCotnroller.Commit(this, AnimationEnter, 16, (uint)captions.Count * 1000));
         }
     }
 }
