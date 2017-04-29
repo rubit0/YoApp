@@ -7,14 +7,13 @@ namespace YoApp.Clients.Pages.Setup
 {
     public partial class CompletePage : ContentPage, IPageService
     {
+        private bool _hasFinishedAnimation;
+
         public CompletePage()
         {
             InitializeComponent();
 
-            Circle.Opacity = 0;
-            GridBadge.Opacity = 0;
-            GridBadge.Scale = 0;
-            GridContainer.Opacity = 0;
+
 
             NavigationPage.SetHasBackButton(this, false);
             BindingContext = App.Container.Resolve<CompleteViewModel>(
@@ -28,8 +27,15 @@ namespace YoApp.Clients.Pages.Setup
 
         protected override void OnAppearing()
         {
+            if (_hasFinishedAnimation)
+                return;
+
             base.OnAppearing();
 
+            Circle.Opacity = 0;
+            GridBadge.Opacity = 0;
+            GridBadge.Scale = 0;
+            GridContainer.Opacity = 0;
             var animationController = new Animation();
 
             var badgeFade = new Animation(v => GridBadge.Opacity = v, easing: Easing.CubicInOut);
@@ -42,7 +48,7 @@ namespace YoApp.Clients.Pages.Setup
             animationController.Add(0.1, 0.4, badgeScale);
             animationController.Add(0.4, 0.95, fadeCircle);
             animationController.Add(0.4, 0.95, scaleCircle);
-            animationController.Add(0.7, 1, fadeLabelsContainer);
+            animationController.Add(0.85, 1, fadeLabelsContainer);
 
             var badgeBackgroundRotation = new Animation(v => BadgeBackground.Rotation = v, 0, 4320);
             badgeBackgroundRotation.Commit(this, "RotaionAnimation", 16, 60000);
@@ -51,6 +57,7 @@ namespace YoApp.Clients.Pages.Setup
                 16, 2000, null, 
                 null, 
                 () => true);
+
         }
     }
 }
