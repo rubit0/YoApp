@@ -9,19 +9,30 @@ namespace YoApp.Clients.Core
         public enum CompareBy
         {
             LastName,
-            DisplayName
+            DisplayName,
+            PhoneNumber
         }
 
         public CompareBy CompareMode { get; set; } = CompareBy.LastName;
 
+        public ContactComparer()
+        {
+            
+        }
+
+        public ContactComparer(CompareBy compareMode)
+        {
+            CompareMode = compareMode;
+        }
+
         public bool Equals(LocalContact x, LocalContact y)
         {
-            return string.CompareOrdinal(x.NormalizedPhoneNumber, y.NormalizedPhoneNumber) == 0;
+            return StringComparer.Ordinal.Equals(x.NormalizedPhoneNumber, y.NormalizedPhoneNumber);
         }
 
         public int GetHashCode(LocalContact obj)
         {
-            return obj.Id.GetHashCode();
+            return StringComparer.Ordinal.GetHashCode(obj.NormalizedPhoneNumber);
         }
 
         public int Compare(LocalContact x, LocalContact y)
@@ -32,6 +43,8 @@ namespace YoApp.Clients.Core
                     return x.GetSortFlag().CompareTo(y.GetSortFlag());
                 case CompareBy.DisplayName:
                     return string.CompareOrdinal(x.DisplayName, y.DisplayName);
+                case CompareBy.PhoneNumber:
+                    return string.CompareOrdinal(x.NormalizedPhoneNumber, y.NormalizedPhoneNumber);
                 default:
                     return x.GetSortFlag().CompareTo(y.GetSortFlag());
             }

@@ -19,7 +19,7 @@ namespace YoApp.Clients.StateMachine.States
         private readonly IFriendsManager _friendsManager;
         private readonly IChatService _chatService;
 
-        private bool _startCompleted;
+        private bool _hasStartedUp;
 
         public LifeCycleState(IKeyValueStore store, IAppUserManager appUserManager, 
             IContactsManager contactsManager, IFriendsManager friendsManager, IChatService chatService)
@@ -33,7 +33,7 @@ namespace YoApp.Clients.StateMachine.States
 
         public async Task HandleState(Lifecycle state)
         {
-            if (!_startCompleted && state != Lifecycle.Start)
+            if (!_hasStartedUp && state != Lifecycle.Start)
                 return;
 
             switch (state)
@@ -54,22 +54,22 @@ namespace YoApp.Clients.StateMachine.States
 
         private async Task Start()
         {
+            _hasStartedUp = true;
+
             await _userManager.LoadUser();
 
             if (AuthenticationService.CanRequestToken())
                 await AuthenticationService.RequestToken(true);
 
-            await _friendsManager.LoadFriends();
-            await _contactsManager.LoadContactsAsync();
-
             Device.BeginInvokeOnMainThread(() =>
                 MessagingCenter.Send(this, MessagingEvents.AppLoadFinished, GetMainPage()));
 
+            await _friendsManager.LoadFriends();
+            await _contactsManager.LoadContactsAsync();
             await _friendsManager.ManageFriends(_contactsManager.Contacts);
+
             if (App.Settings.SetupFinished)
                 await _chatService.Connect();
-
-            _startCompleted = true;
         }
 
         private async Task Sleep()

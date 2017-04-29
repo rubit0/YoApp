@@ -296,10 +296,10 @@
     <BundleResource Include="Resources\matrix.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\rgb_gradient_radial.png" />
+    <BundleResource Include="Resources\circular_icons_pad.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\setup_finished_backdrop.png" />
+    <BundleResource Include="Resources\circular_icons_pad_bg.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Import Project="..\..\..\..\packages\Xamarin.Forms.2.3.3.193\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets" Condition="Exists('..\..\..\..\packages\Xamarin.Forms.2.3.3.193\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets')" />

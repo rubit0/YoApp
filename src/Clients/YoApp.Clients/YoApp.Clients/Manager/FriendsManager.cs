@@ -51,7 +51,7 @@ namespace YoApp.Clients.Manager
 
             MatchFriendsToContacts(looseFriends, contacts);
 
-            if (CrossConnectivity.Current.IsConnected 
+            if (CrossConnectivity.Current.IsConnected
                 && App.Settings.SetupFinished)
                 await DiscoverFriendsAsync(contacts);
 
@@ -86,7 +86,7 @@ namespace YoApp.Clients.Manager
             //Find unassociated contacts
             var contactsFromFriends = Friends.Select(f => f.LocalContact);
             var unassociatedContacts = contacts
-                .Except(contactsFromFriends, new ContactComparer()).ToList();
+                .Except(contactsFromFriends, new ContactComparer(ContactComparer.CompareBy.PhoneNumber)).ToList();
 
             var friends = await _friendsService
                 .FetchFriends(unassociatedContacts.Select(f => f.NormalizedPhoneNumber));

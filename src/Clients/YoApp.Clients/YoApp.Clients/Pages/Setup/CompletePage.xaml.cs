@@ -10,6 +10,12 @@ namespace YoApp.Clients.Pages.Setup
         public CompletePage()
         {
             InitializeComponent();
+
+            Circle.Opacity = 0;
+            GridBadge.Opacity = 0;
+            GridBadge.Scale = 0;
+            GridContainer.Opacity = 0;
+
             NavigationPage.SetHasBackButton(this, false);
             BindingContext = App.Container.Resolve<CompleteViewModel>(
                 new TypedParameter(typeof(IPageService), this));
@@ -26,18 +32,25 @@ namespace YoApp.Clients.Pages.Setup
 
             var animationController = new Animation();
 
-            OverlayBackground.Opacity = 0;
-            var overlayFade = new Animation(
-                v => OverlayBackground.Opacity = v, 
-                0, 1, 
-                Easing.CubicInOut);
+            var badgeFade = new Animation(v => GridBadge.Opacity = v, easing: Easing.CubicInOut);
+            var badgeScale = new Animation(v => GridBadge.Scale = v, easing: Easing.BounceOut);
+            var fadeCircle = new Animation(v => Circle.Opacity = v, 0.7, 0);
+            var scaleCircle = new Animation(v => Circle.Scale = v, 0, 20, Easing.SinIn);
+            var fadeLabelsContainer = new Animation(v => GridContainer.Opacity = v, easing: Easing.SinIn);
 
-            var gradientRotation = new Animation(v => GradientBackground.Rotation = v, 0, 2160);
+            animationController.Add(0.1, 0.45, badgeFade);
+            animationController.Add(0.1, 0.4, badgeScale);
+            animationController.Add(0.4, 0.95, fadeCircle);
+            animationController.Add(0.4, 0.95, scaleCircle);
+            animationController.Add(0.7, 1, fadeLabelsContainer);
 
-            animationController.Add(0, 0.025, overlayFade);
-            animationController.Add(0, 1, gradientRotation);
+            var badgeBackgroundRotation = new Animation(v => BadgeBackground.Rotation = v, 0, 4320);
+            badgeBackgroundRotation.Commit(this, "RotaionAnimation", 16, 60000);
 
-            animationController.Commit(this, "Animation", 16, 50000, null, null, () => true);
+            animationController.Commit(this, "Animation", 
+                16, 2000, null, 
+                null, 
+                () => true);
         }
     }
 }

@@ -4,21 +4,26 @@
              x:Class="YoApp.Clients.Pages.Setup.CompletePage"
              NavigationPage.HasNavigationBar="False"
              Title="Setup complete">
-    <AbsoluteLayout x:Name="TopLayout">
-        <Grid x:Name="GridBackground"
+    <AbsoluteLayout x:Name="MainLayout">
+        <Image x:Name="Circle" 
+               Source="circular_icons_pad_bg.png"
+                AnchorX="0.5" AnchorY="0.5"
+               AbsoluteLayout.LayoutFlags="All"
+               AbsoluteLayout.LayoutBounds="0.5, 0.35, 0.65, 0.65" />
+        
+        <Grid x:Name="GridBadge" 
+              AnchorX="0.5" AnchorY="0.5"
               AbsoluteLayout.LayoutFlags="All"
-              AbsoluteLayout.LayoutBounds="0, 0, 1, 1" >
+              AbsoluteLayout.LayoutBounds="0.5, 0.35, 0.7, 0.7" >
             <Image Grid.Row="0" 
-                   x:Name="GradientBackground"
-                   Aspect="AspectFill"
+                   x:Name="BadgeBackground"
+                   Aspect="AspectFit"
                    AnchorX="0.5" AnchorY="0.5"
-                   Scale="1.5"
-                   Opacity="0.85"
-                   Source="rgb_gradient_radial.png" />
+                   Source="circular_icons_pad_bg.png" />
             <Image Grid.Row="0" 
-                   x:Name="OverlayBackground"
-                   Aspect="AspectFill"
-                   Source="setup_finished_backdrop.png" />
+                   x:Name="IconsBadge"
+                   Aspect="AspectFit"
+                   Source="circular_icons_pad.png" />
         </Grid>
 
         <Grid x:Name="GridContainer"
@@ -45,7 +50,6 @@
             <Label Grid.Row="0" 
                    Margin="0, 10, 0, 5"
                    FontSize="28" 
-                   TextColor="White"
                    HorizontalTextAlignment="Center"
                    HorizontalOptions="Center"
                    Text="{Binding Topic}" />
@@ -53,15 +57,14 @@
             <Label Grid.Row="1"
                    Margin="0, 0, 0, 10"
                    FontSize="20"
-                   TextColor="White"
                    HorizontalTextAlignment="Center"
                    VerticalOptions="EndAndExpand"
                    Text="Now enjoy YoApp for free and chat with all your friends." />
 
             <Button x:Name="ButtonFinish"
                     Grid.Row="2"
-                    Margin="0, 0, 0, 30"
-                    HorizontalOptions="Center"
+                    Margin="20, 0, 20, 30"
+                    HorizontalOptions="Fill"
                     Command="{Binding FinishCommand}"
                     BackgroundColor="DodgerBlue"
                     TextColor="White"
