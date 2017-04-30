@@ -1,6 +1,4 @@
-﻿using System;
-using System.Linq;
-using Autofac;
+﻿using Autofac;
 using Xamarin.Forms;
 using YoApp.Clients.Forms;
 using YoApp.Clients.ViewModels.Setup;
@@ -10,9 +8,7 @@ namespace YoApp.Clients.Pages.Setup
 {
     public partial class WelcomePage : ContentPage, IPageService
     {
-        private bool _sizeAllocated;
         private bool _presentedEnterAnimation;
-
         private const string AnimationEnter = nameof(AnimationEnter);
 
         public WelcomePage()
@@ -27,22 +23,7 @@ namespace YoApp.Clients.Pages.Setup
         {
             base.OnSizeAllocated(width, height);
 
-            if (Device.RuntimePlatform == Device.Android)
-            {
-                _sizeAllocated = true;
-                OnAppearing(); 
-            }
-        }
-
-        protected override void OnAppearing()
-        {
-            base.OnAppearing();
-
-            if (Device.RuntimePlatform == Device.Android 
-                && !_sizeAllocated)
-                    return; 
-
-            if(!_presentedEnterAnimation)
+            if (!_presentedEnterAnimation)
                 StartPagePresentation();
         }
 
@@ -146,7 +127,7 @@ namespace YoApp.Clients.Pages.Setup
             _presentedEnterAnimation = true;
 
             animationController.Commit(this, AnimationEnter, 16, duration, 
-                finished: (d, b) => captionsAnimationCotnroller.Commit(this, AnimationEnter, 16, (uint)captions.Count * 1000));
+                finished: (d, b) => captionsAnimationCotnroller.Commit(this, AnimationEnter, 16, (uint)captions.Count * 500));
         }
     }
 }

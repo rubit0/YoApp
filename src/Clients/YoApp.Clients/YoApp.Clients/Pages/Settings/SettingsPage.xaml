@@ -4,7 +4,7 @@
              x:Class="YoApp.Clients.Pages.Settings.SettingsTablePage"
              Title="Settings" >
   <StackLayout>
-    <Button x:Name="DebugButton" IsVisible="{StaticResource isDebug}" 
+    <Button x:Name="DebugButton" IsVisible="{StaticResource IsDebug}" 
             Text="🔨 Debug Menu" 
             Command="{Binding OpenDebugMenuCommand}" />
 

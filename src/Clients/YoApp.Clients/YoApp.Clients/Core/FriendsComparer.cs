@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using YoApp.Clients.Models;
 
@@ -12,7 +13,7 @@ namespace YoApp.Clients.Core
 
         public int GetHashCode(Friend obj)
         {
-            return obj.PhoneNumber.GetHashCode();
+            return StringComparer.Ordinal.GetHashCode(obj.PhoneNumber);
         }
     }
 }

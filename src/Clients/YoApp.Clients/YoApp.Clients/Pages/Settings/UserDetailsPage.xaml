@@ -1,7 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:behaviors="clr-namespace:YoApp.Clients.Forms.Behaviors;assembly=YoApp.Clients"
              xmlns:iconize="clr-namespace:FormsPlugin.Iconize;assembly=FormsPlugin.Iconize"
              xmlns:triggers="clr-namespace:YoApp.Clients.Forms.Triggers;assembly=YoApp.Clients"
              x:Class="YoApp.Clients.Pages.Settings.UserDetailsPage"
@@ -15,9 +14,11 @@
                     <On Platform="iOS" Value="35, 25, 25, 0" />
                 </OnPlatform>
             </Grid.Padding>
-            <Grid.Behaviors>
-                <behaviors:PushFadeAnimation />
-            </Grid.Behaviors>
+            <Grid.Triggers>
+                <EventTrigger Event="SizeChanged">
+                    <triggers:PushFade Direction="Left" />
+                </EventTrigger>
+            </Grid.Triggers>
 
             <Grid.RowDefinitions>
                 <RowDefinition Height="AUTO" />
@@ -53,7 +54,7 @@
                     <EventTrigger Event="TextChanged">
                         <triggers:EntryMinLengthTrigger MinLength="3" 
                                                         ToggleTarget="{x:Reference ButtonSubmit}" />
-                        <triggers:EntryMaxLengthTrigger MaxLength="{StaticResource Key=nicknameMaxLength}" 
+                        <triggers:EntryMaxLengthTrigger MaxLength="{StaticResource NicknameMaxLength}" 
                                                         ToggleTarget="{x:Reference ButtonSubmit}"/>
                     </EventTrigger>
                 </Entry.Triggers>

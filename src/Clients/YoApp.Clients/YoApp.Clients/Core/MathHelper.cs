@@ -5,13 +5,13 @@
         /// <summary>
         /// Interpolate between two values.
         /// </summary>
-        /// <param name="x"></param>
-        /// <param name="y"></param>
+        /// <param name="fromValue"></param>
+        /// <param name="toValue"></param>
         /// <param name="amount"></param>
         /// <returns>Interpolated result.</returns>
-        public static double Lerp(double x, double y, double amount)
+        public static double Lerp(double fromValue, double toValue, double amount)
         {
-            return x + (y - x) * amount;
+            return fromValue + (toValue - fromValue) * amount;
         }
     }
 }

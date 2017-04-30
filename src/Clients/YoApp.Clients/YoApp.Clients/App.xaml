@@ -4,9 +4,9 @@
              x:Class="YoApp.Clients.App">
   <Application.Resources>
     <ResourceDictionary>
-        <x:Boolean x:Key="isDebug">False</x:Boolean>
-        <x:Int32 x:Key="nicknameMaxLength">20</x:Int32>
-        <x:Int32 x:Key="statusMessageMaxLength">30</x:Int32>
+        <x:Boolean x:Key="IsDebug">False</x:Boolean>
+        <x:Int32 x:Key="NicknameMaxLength">20</x:Int32>
+        <x:Int32 x:Key="StatusMessageMaxLength">30</x:Int32>
     </ResourceDictionary>
   </Application.Resources>
 </Application>

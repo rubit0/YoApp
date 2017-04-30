@@ -46,7 +46,6 @@
     <Compile Include="Forms\Behaviors\EntryMaxLength.cs" />
     <Compile Include="Forms\Behaviors\EntryPhoneValidation.cs" />
     <Compile Include="Forms\Behaviors\ListViewAutoScroll.cs" />
-    <Compile Include="Forms\Behaviors\PushFadeAnimation.cs" />
     <Compile Include="Forms\Behaviors\TimedSelfDisable.cs" />
     <Compile Include="Forms\Triggers\ClearEntryTrigger.cs" />
     <Compile Include="Core\EventArgs\ChatMessageReceivedEventArgs.cs" />
@@ -60,6 +59,8 @@
     <Compile Include="Core\PhoneNumberUtils.cs" />
     <Compile Include="Forms\Triggers\EntryMaxLengthTrigger.cs" />
     <Compile Include="Forms\Triggers\EntryMinLengthTrigger.cs" />
+    <Compile Include="Forms\Triggers\EntryRangeLengthTrigger.cs" />
+    <Compile Include="Forms\Triggers\PushFade.cs" />
     <Compile Include="Forms\ViewExtensions.cs" />
     <Compile Include="Models\ParsedPhoneNumber.cs" />
     <Compile Include="Core\ResourceKeys.cs" />
@@ -137,7 +138,6 @@
     <Compile Include="Core\Extensions\ConnectivityExtensions.cs" />
     <Compile Include="Services\ChatService.cs" />
     <Compile Include="Services\FriendsService.cs" />
-    <Compile Include="StateMachine\States\UserCreatedState.cs" />
     <Compile Include="Models\ChatMessage.cs" />
     <Compile Include="ViewModels\Chats\ChatsListViewModel.cs" />
     <Compile Include="ViewModels\Chats\ChatViewModel.cs" />

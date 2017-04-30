@@ -1,5 +1,7 @@
-﻿using Xamarin.Forms;
+﻿using System;
+using Xamarin.Forms;
 using YoApp.Clients.Core;
+using YoApp.Clients.Forms;
 using YoApp.Clients.StateMachine.States;
 
 namespace YoApp.Clients.Pages
@@ -27,7 +29,7 @@ namespace YoApp.Clients.Pages
             if (Device.RuntimePlatform == Device.Android)
                 Logo.RotationY = -90;
 
-            GetStartAnimation().Commit(this, StartAnimation, 16, 1250);
+            PresentEntryAnimation(1250);
         }
 
         protected override void OnDisappearing()
@@ -38,13 +40,14 @@ namespace YoApp.Clients.Pages
 
         private void FadeOut(object sender, Page target)
         {
-            this.AbortAnimation(StartAnimation);
+            this.CancelAnimation();
+            Logo.RotationY = 0;
+            Logo.Opacity = 1;
 
-            var exitAnimation = GetExitAnimation();
-            exitAnimation.Commit(this, ExitAnimation, 16, 500, Easing.SinOut, (current, done) => App.Current.MainPage = target);
+            PresentExitAnimation(850, target);
         }
 
-        private Animation GetStartAnimation()
+        private void PresentEntryAnimation(uint duration)
         {
             var animationController = new Animation();
             var fadeIconsBackDrop = new Animation(v => BackDrop.Opacity = v, 0, 0.5, Easing.CubicIn);
@@ -66,10 +69,10 @@ namespace YoApp.Clients.Pages
                 animationController.Add(0.5, 1, rotateLogo);
             }
 
-            return animationController;
+            animationController.Commit(this, StartAnimation, 16, duration);
         }
 
-        private Animation GetExitAnimation()
+        private void PresentExitAnimation(uint duration, Page nextPage)
         {
             var animationController = new Animation();
 
@@ -91,7 +94,9 @@ namespace YoApp.Clients.Pages
             animationController.Add(0, 0.75, scaleCircle);
             animationController.Add(0, 0.5, rotateLogo);
 
-            return animationController;
+            animationController.Commit(this, 
+                ExitAnimation, 16, duration, Easing.SinOut, 
+                (current, done) => App.Current.MainPage = nextPage);
         }
     }
 }

@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Acr.UserDialogs;
 using Xamarin.Forms;
 using YoApp.Clients.Core;
+using YoApp.Clients.Core.EventArgs;
 using YoApp.Clients.Forms;
 using YoApp.Clients.Manager;
 using YoApp.Clients.Pages.Setup;
@@ -69,7 +70,10 @@ namespace YoApp.Clients.ViewModels.Setup
 
                 await _appUserManager.PersistUser();
                 await AuthenticationService.RequestToken(PhoneNumber, password);
-                MessagingCenter.Send(this, MessagingEvents.UserCreated);
+
+                MessagingCenter.Send(this, 
+                    MessagingEvents.LifecycleChanged, new 
+                    LifecycleEventArgs(Lifecycle.SetupCompleted));
 
                 await _pageService.Navigation.PushAsync(new ProfilePage());
             }

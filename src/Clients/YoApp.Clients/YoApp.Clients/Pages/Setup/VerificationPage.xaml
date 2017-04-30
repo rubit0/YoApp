@@ -1,5 +1,4 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:behaviors="clr-namespace:YoApp.Clients.Forms.Behaviors;assembly=YoApp.Clients"
@@ -15,9 +14,11 @@
                 <On Platform="iOS" Value="35, 25, 35, 0" />
             </OnPlatform>
         </Grid.Padding>
-        <Grid.Behaviors>
-            <behaviors:PushFadeAnimation FocusElement="{x:Reference CodeEntry}" />
-        </Grid.Behaviors>
+        <Grid.Triggers>
+            <EventTrigger Event="SizeChanged">
+                <triggers:PushFade Direction="Left" FocusElement="{x:Reference CodeEntry}" />
+            </EventTrigger>
+        </Grid.Triggers>
 
         <Grid.RowDefinitions>
             <RowDefinition Height="AUTO" />

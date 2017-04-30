@@ -25,12 +25,15 @@ namespace YoApp.Clients.Manager
             _keyValueStore = keyValueStore;
             _realmStore = realmStore;
             _friendsService = friendsService;
+
+            Friends = new ObservableCollection<Friend>();
         }
 
         public async Task LoadFriends()
         {
             var friendsFromStore = await _keyValueStore.GetAll<Friend>() ?? new List<Friend>();
-            Friends = new ObservableCollection<Friend>(friendsFromStore);
+            foreach (var friend in friendsFromStore)
+                Friends.Add(friend);
         }
 
         /// <summary>
@@ -50,7 +53,6 @@ namespace YoApp.Clients.Manager
                 .ToList();
 
             MatchFriendsToContacts(looseFriends, contacts);
-
             if (CrossConnectivity.Current.IsConnected
                 && App.Settings.SetupFinished)
                 await DiscoverFriendsAsync(contacts);
@@ -99,11 +101,11 @@ namespace YoApp.Clients.Manager
                 if (Friends.Contains(friend, new FriendsComparer()))
                     continue;
 
-                friend.LocalContact = unassociatedContacts.SingleOrDefault(c => c.NormalizedPhoneNumber == friend.PhoneNumber);
+                friend.LocalContact = unassociatedContacts
+                    .SingleOrDefault(c => c.NormalizedPhoneNumber == friend.PhoneNumber);
 
                 //Persist friend
                 await _keyValueStore.Insert(friend);
-
                 Friends.Add(friend);
 
                 //Persist chatbook

@@ -4,7 +4,8 @@
     {
         Start,
         Sleep,
-        Resume
+        Resume,
+        SetupCompleted
     }
 
     public class LifecycleEventArgs : System.EventArgs

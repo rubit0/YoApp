@@ -16,15 +16,13 @@ namespace YoApp.Clients.StateMachine
     public class StateMachineController : IDisposable
     {
         private readonly LifeCycleState _lifeCycleState;
-        private readonly UserCreatedState _setupFinishedState;
         private readonly SchedulerState _schedulerState;
         private readonly ConnectivityState _connectivityState;
 
-        public StateMachineController(LifeCycleState lifeCycleState, UserCreatedState setupFinishedState, 
-            SchedulerState schedulerState, ConnectivityState connectivityState)
+        public StateMachineController(LifeCycleState lifeCycleState, SchedulerState schedulerState, 
+            ConnectivityState connectivityState)
         {
             _lifeCycleState = lifeCycleState;
-            _setupFinishedState = setupFinishedState;
             _schedulerState = schedulerState;
             _connectivityState = connectivityState;
         }
@@ -33,11 +31,6 @@ namespace YoApp.Clients.StateMachine
         {
             _schedulerState.HandleState(eventArgs.State);
             await _lifeCycleState.HandleState(eventArgs.State);
-        }
-
-        private async Task OnUserCreated()
-        {
-            await _setupFinishedState.Execute();
         }
 
         private async Task OnConnectivityChanged(ConnectivityChangedEventArgs eventArgs)
@@ -50,11 +43,14 @@ namespace YoApp.Clients.StateMachine
             CrossConnectivity.Current.ConnectivityChanged +=
                 async (s, e) => await OnConnectivityChanged(e);
 
-            MessagingCenter.Subscribe<VerificationViewModel>(this, MessagingEvents.UserCreated,
-                async (s) => await OnUserCreated());
-
             MessagingCenter.Subscribe<App, LifecycleEventArgs>(this, MessagingEvents.LifecycleChanged,
                 async (s, e) => await OnLifeCycleChanged(e));
+
+            if (!App.Settings.SetupFinished)
+            {
+                MessagingCenter.Subscribe<VerificationViewModel, LifecycleEventArgs>(this, MessagingEvents.LifecycleChanged,
+                    async (s, e) => await OnLifeCycleChanged(e));
+            }
         }
 
         public void Dispose()

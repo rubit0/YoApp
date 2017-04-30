@@ -20,9 +20,9 @@
             set { App.Current.Resources[ResourceKeys.StatusMessageMaxLengthKey] = value; }
         }
 
-        private const string DebugKey = "isDebug";
-        private const string NicknameMaxLengthKey = "nicknameMaxLength";
-        private const string StatusMessageMaxLengthKey = "statusMessageMaxLength";
+        private const string DebugKey = "IsDebug";
+        private const string NicknameMaxLengthKey = "NicknameMaxLength";
+        private const string StatusMessageMaxLengthKey = "StatusMessageMaxLength";
 
         static ResourceKeys()
         {

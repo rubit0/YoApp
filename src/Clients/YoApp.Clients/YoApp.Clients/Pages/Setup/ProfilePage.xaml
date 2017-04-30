@@ -3,7 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:iconize="clr-namespace:FormsPlugin.Iconize;assembly=FormsPlugin.Iconize"
              xmlns:triggers="clr-namespace:YoApp.Clients.Forms.Triggers;assembly=YoApp.Clients"
-             xmlns:behaviors="clr-namespace:YoApp.Clients.Forms.Behaviors;assembly=YoApp.Clients"
              x:Class="YoApp.Clients.Pages.Setup.ProfilePage"
              Title="Profile info"
              NavigationPage.HasNavigationBar="True" >
@@ -15,9 +14,11 @@
                     <On Platform="iOS" Value="35, 25, 35, 0" />
                 </OnPlatform>
             </Grid.Padding>
-            <Grid.Behaviors>
-                <behaviors:PushFadeAnimation />
-            </Grid.Behaviors>
+            <Grid.Triggers>
+                <EventTrigger Event="SizeChanged">
+                    <triggers:PushFade Direction="Left" FocusElement="{x:Reference NicknameEntry}" />
+                </EventTrigger>
+            </Grid.Triggers>
 
             <Grid.RowDefinitions>
                 <RowDefinition Height="AUTO" />
@@ -53,29 +54,34 @@
                                VerticalOptions="Center" 
                                Icon="fa-camera" IconSize="26" IconColor="WhiteSmoke" />
 
-            <Entry Grid.Row="3" 
+            <Entry x:Name="NicknameEntry" Grid.Row="3" 
                    Placeholder="Nickname" 
                    Text="{Binding NickName, Mode=TwoWay}" >
                 <Entry.Triggers>
                     <EventTrigger Event="TextChanged">
-                        <triggers:EntryMinLengthTrigger MinLength="3" 
+                        <triggers:EntryRangeLengthTrigger MinLength="3" MaxLength="{StaticResource NicknameMaxLength}"
                                                         ToggleTarget="{x:Reference ButtonNext}" />
-                        <triggers:EntryMaxLengthTrigger MaxLength="{StaticResource Key=statusMessageMaxLength}" 
-                                                        ToggleTarget="{x:Reference ButtonNext}"/>
                     </EventTrigger>
                 </Entry.Triggers>
             </Entry>
             
             <Entry Grid.Row="4" 
                    Placeholder="Status message" 
-                   Text="{Binding StatusMessage, Mode=TwoWay}" />
+                   Text="{Binding StatusMessage, Mode=TwoWay}" >
+                <Entry.Triggers>
+                    <EventTrigger Event="TextChanged">
+                        <triggers:EntryMaxLengthTrigger MaxLength="{StaticResource StatusMessageMaxLength}"
+                                                          ToggleTarget="{x:Reference ButtonNext}" />
+                    </EventTrigger>
+                </Entry.Triggers>
+            </Entry>
             
             <Button x:Name="ButtonNext"
                     Grid.Row="5" 
                     HorizontalOptions="Center" 
                     Text="Next" 
                     Command="{Binding SubmitCommand}" 
-                    IsEnabled="{Binding CanSubmit}" />
+                    IsEnabled="False" />
             
         </Grid>
     </ScrollView>

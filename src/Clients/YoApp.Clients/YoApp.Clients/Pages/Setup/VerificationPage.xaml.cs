@@ -24,7 +24,7 @@ namespace YoApp.Clients.Pages.Setup
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            PresentPage();
+            //PresentPage();
         }
 
         private void PresentPage()

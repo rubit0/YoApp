@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:attached="clr-namespace:YoApp.Clients.Forms.Attached;assembly=YoApp.Clients"
              xmlns:iconize="clr-namespace:FormsPlugin.Iconize;assembly=FormsPlugin.Iconize"
              xmlns:behaviors="clr-namespace:YoApp.Clients.Forms.Behaviors;assembly=YoApp.Clients"
+             xmlns:triggers="clr-namespace:YoApp.Clients.Forms.Triggers;assembly=YoApp.Clients"
              x:Class="YoApp.Clients.Pages.Setup.EnterNumberPage"
              Title="Verification"
              NavigationPage.HasNavigationBar="True">
@@ -16,9 +16,11 @@
                     <On Platform="iOS" Value="35, 25, 35, 0" />
                 </OnPlatform>
             </Grid.Padding>
-            <Grid.Behaviors>
-                <behaviors:PushFadeAnimation FocusElement="{x:Reference NumberEntry}" />
-            </Grid.Behaviors>
+            <Grid.Triggers>
+                <EventTrigger Event="SizeChanged">
+                    <triggers:PushFade Direction="Left" FocusElement="{x:Reference NumberEntry}" />
+                </EventTrigger>
+            </Grid.Triggers>
             
             <Grid.RowDefinitions>
                 <RowDefinition Height="AUTO" />
