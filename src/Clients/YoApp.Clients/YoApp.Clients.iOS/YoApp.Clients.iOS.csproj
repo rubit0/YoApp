@@ -293,13 +293,55 @@
     <None Include="FodyWeavers.xml" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\matrix.png" />
-  </ItemGroup>
-  <ItemGroup>
     <BundleResource Include="Resources\circular_icons_pad.png" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\circular_icons_pad_bg.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\chat.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\chat_filled.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\settings.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\settings_filled.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\chat%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\chat_filled%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\settings%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\settings_filled%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\write%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\chat%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\chat_filled%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\settings%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\settings_filled%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\write%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\write.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Import Project="..\..\..\..\packages\Xamarin.Forms.2.3.3.193\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets" Condition="Exists('..\..\..\..\packages\Xamarin.Forms.2.3.3.193\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets')" />

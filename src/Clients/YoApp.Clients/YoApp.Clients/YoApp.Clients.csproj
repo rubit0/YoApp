@@ -46,6 +46,7 @@
     <Compile Include="Forms\Behaviors\EntryMaxLength.cs" />
     <Compile Include="Forms\Behaviors\EntryPhoneValidation.cs" />
     <Compile Include="Forms\Behaviors\ListViewAutoScroll.cs" />
+    <Compile Include="Forms\Behaviors\PageIconSwapper.cs" />
     <Compile Include="Forms\Behaviors\TimedSelfDisable.cs" />
     <Compile Include="Forms\Triggers\ClearEntryTrigger.cs" />
     <Compile Include="Core\EventArgs\ChatMessageReceivedEventArgs.cs" />

@@ -1,7 +1,6 @@
 ﻿using System;
 using Xamarin.Forms;
 using YoApp.Clients.Core;
-using YoApp.Clients.Forms;
 using YoApp.Clients.StateMachine.States;
 
 namespace YoApp.Clients.Pages
@@ -10,6 +9,9 @@ namespace YoApp.Clients.Pages
     {
         private const string StartAnimation = nameof(StartAnimation);
         private const string ExitAnimation = nameof(ExitAnimation);
+
+        private event EventHandler StartAnimationCompleteHandler;
+        private bool _startAnimationComplete;
 
         public SplashPage()
         {
@@ -40,11 +42,8 @@ namespace YoApp.Clients.Pages
 
         private void FadeOut(object sender, Page target)
         {
-            this.CancelAnimation();
-            Logo.RotationY = 0;
-            Logo.Opacity = 1;
-
-            PresentExitAnimation(850, target);
+            if(!_startAnimationComplete)
+                StartAnimationCompleteHandler += (o, args) => PresentExitAnimation(850, target);
         }
 
         private void PresentEntryAnimation(uint duration)
@@ -69,7 +68,11 @@ namespace YoApp.Clients.Pages
                 animationController.Add(0.5, 1, rotateLogo);
             }
 
-            animationController.Commit(this, StartAnimation, 16, duration);
+            animationController.Commit(this, StartAnimation, 16, duration, finished: (d, b) =>
+            {
+                _startAnimationComplete = true;
+                StartAnimationCompleteHandler?.Invoke(this, EventArgs.Empty);
+            });
         }
 
         private void PresentExitAnimation(uint duration, Page nextPage)

@@ -1,50 +1,61 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:behaviors="clr-namespace:YoApp.Clients.Forms.Behaviors;assembly=YoApp.Clients"
              x:Class="YoApp.Clients.Pages.Settings.SettingsTablePage"
-             Title="Settings" >
-  <StackLayout>
-    <Button x:Name="DebugButton" IsVisible="{StaticResource IsDebug}" 
-            Text="🔨 Debug Menu" 
-            Command="{Binding OpenDebugMenuCommand}" />
+             Title="Settings">
+    <ContentPage.Icon>
+        <OnPlatform x:TypeArguments="FileImageSource">
+            <On Platform="iOS" Value="Settings.png" />
+        </OnPlatform>
+    </ContentPage.Icon>
+    <ContentPage.Behaviors>
+        <behaviors:PageIconSwapper ImageFocus="Settings_filled.png"
+                                   ImageNormal="Settings.png" />
+    </ContentPage.Behaviors>
+    <StackLayout>
+        <Button x:Name="DebugButton" IsVisible="{StaticResource IsDebug}"
+                Text="🔨 Debug Menu"
+                Command="{Binding OpenDebugMenuCommand}" />
 
-    <TableView Intent="Settings">
-      <TableSection Title="User">
-        <ViewCell>
-          <StackLayout Orientation="Horizontal">
-            <Grid Padding="15, 5, 0, 0" HorizontalOptions="StartAndExpand">
-              <Label Grid.Row="0" Grid.Column="0" Text="{Binding Nickname}" />
-              <Label Grid.Row="1" Grid.Column="0" FontSize="12" Text="{Binding StatusMessage}" />
-            </Grid>
-            <Button HorizontalOptions="CenterAndExpand" Text="Change" Command="{Binding OpenUserPage}"/>
-          </StackLayout>
-        </ViewCell>
-      </TableSection>
-      
-      <TableSection>
-        <ViewCell>
-          <Button HorizontalOptions="StartAndExpand" Text="Privacy" />
-        </ViewCell>
-        <ViewCell>
-          <Button HorizontalOptions="StartAndExpand" Text="Notifications" />
-        </ViewCell>
-        <ViewCell>
-          <Button HorizontalOptions="StartAndExpand" Text="Chats" />
-        </ViewCell>
-        <ViewCell>
-          <Button HorizontalOptions="StartAndExpand" Text="Data and Storage" />
-        </ViewCell>
-      </TableSection>
+        <TableView Intent="Settings">
+            <TableSection Title="User">
+                <ViewCell>
+                    <StackLayout Orientation="Horizontal">
+                        <Grid Padding="15, 5, 0, 0" HorizontalOptions="StartAndExpand">
+                            <Label Grid.Row="0" Grid.Column="0" Text="{Binding Nickname}" />
+                            <Label Grid.Row="1" Grid.Column="0" FontSize="12" Text="{Binding StatusMessage}" />
+                        </Grid>
+                        <Button HorizontalOptions="CenterAndExpand" Text="Change" Command="{Binding OpenUserPage}" />
+                    </StackLayout>
+                </ViewCell>
+            </TableSection>
 
-      <TableSection>
-        <ViewCell>
-          <Button HorizontalOptions="StartAndExpand" Text="Info" />
-        </ViewCell>
-        <ViewCell>
-          <Button HorizontalOptions="StartAndExpand" Text="❤️ Invite Friends" Command="{Binding OpenContactsListCommand}" />
-        </ViewCell>
-      </TableSection>
-    </TableView>
-  </StackLayout>
+            <TableSection>
+                <ViewCell>
+                    <Button HorizontalOptions="StartAndExpand" Text="Privacy" />
+                </ViewCell>
+                <ViewCell>
+                    <Button HorizontalOptions="StartAndExpand" Text="Notifications" />
+                </ViewCell>
+                <ViewCell>
+                    <Button HorizontalOptions="StartAndExpand" Text="Chats" />
+                </ViewCell>
+                <ViewCell>
+                    <Button HorizontalOptions="StartAndExpand" Text="Data and Storage" />
+                </ViewCell>
+            </TableSection>
+
+            <TableSection>
+                <ViewCell>
+                    <Button HorizontalOptions="StartAndExpand" Text="Info" />
+                </ViewCell>
+                <ViewCell>
+                    <Button HorizontalOptions="StartAndExpand" Text="❤️ Invite Friends"
+                            Command="{Binding OpenContactsListCommand}" />
+                </ViewCell>
+            </TableSection>
+        </TableView>
+    </StackLayout>
 
 </ContentPage>

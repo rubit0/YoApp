@@ -107,7 +107,7 @@ namespace YoApp.Clients.StateMachine.States
         private Page GetMainPage()
         {
             return (App.Settings.SetupFinished || ResourceKeys.IsDebug)
-                ? new NavigationPage(new Pages.MainPage())
+                ? new NavigationPage(new Pages.MainPage()) 
                 : new NavigationPage(new Pages.Setup.WelcomePage());
         }
     }

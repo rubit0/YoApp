@@ -7,71 +7,73 @@
              x:Class="YoApp.Clients.Pages.Setup.VerificationPage"
              Title="{Binding Title}"
              NavigationPage.HasNavigationBar="True">
-    <Grid x:Name="GridContainer">
-        <Grid.Padding>
-            <OnPlatform x:TypeArguments="Thickness">
-                <On Platform="Android" Value="35, 15, 35, 0" />
-                <On Platform="iOS" Value="35, 25, 35, 0" />
-            </OnPlatform>
-        </Grid.Padding>
-        <Grid.Triggers>
-            <EventTrigger Event="SizeChanged">
-                <triggers:PushFade Direction="Left" FocusElement="{x:Reference CodeEntry}" />
-            </EventTrigger>
-        </Grid.Triggers>
-
-        <Grid.RowDefinitions>
-            <RowDefinition Height="AUTO" />
-            <RowDefinition Height="AUTO" />
-            <RowDefinition Height="AUTO" />
-            <RowDefinition Height="AUTO" />
-            <RowDefinition Height="AUTO" />
-        </Grid.RowDefinitions>
-        
-        <StackLayout Grid.Row="0" Orientation="Horizontal"
-                     HorizontalOptions="CenterAndExpand">
-            <iconize:IconImage Icon="fa-circle" IconSize="10" IconColor="Black" Opacity="0.25" />
-            <iconize:IconImage Icon="fa-circle" IconSize="10" IconColor="#22C37C" />
-            <iconize:IconImage Icon="fa-circle" IconSize="10" IconColor="Black" Opacity="0.25" />
-        </StackLayout>
-
-        <Label Grid.Row="1" HorizontalOptions="Center"
-               Margin="0, 15, 0, 0"
-               VerticalTextAlignment="Center"
-               Text="We have send you an SMS message with a code to the phonenumber above." />
-
-        <Label Grid.Row="2" HorizontalOptions="Center"
-               Margin="0, 15, 0, 0"
-               VerticalTextAlignment="Center"
-               Text="To complete the verification of your phonenumber, please enter below the correct 6-digit code." />
-
-        <Entry x:Name="CodeEntry"
-               Grid.Row="3" 
-               HorizontalOptions="Center"
-               Keyboard="Numeric"
-               Placeholder="Enter verification code"
-               Text="{Binding VerificationCode, Mode=TwoWay, StringFormat='{0:###-###}'}">
-            <Entry.Behaviors>
-                <behaviors:EntryForceNumeric />
-                <behaviors:EntryMaxLength MaxLength="6" />
-            </Entry.Behaviors>
-            <Entry.Triggers>
-                <EventTrigger Event="TextChanged">
-                    <triggers:EntryMinLengthTrigger MinLength="6" 
-                                                          ToggleTarget="{x:Reference VerifyButton}" />
+    <ScrollView>
+        <Grid x:Name="GridContainer">
+            <Grid.Padding>
+                <OnPlatform x:TypeArguments="Thickness">
+                    <On Platform="Android" Value="35, 15, 35, 0" />
+                    <On Platform="iOS" Value="35, 25, 35, 0" />
+                </OnPlatform>
+            </Grid.Padding>
+            <Grid.Triggers>
+                <EventTrigger Event="SizeChanged">
+                    <triggers:PushFade Direction="Left" FocusElement="{x:Reference CodeEntry}" />
                 </EventTrigger>
-            </Entry.Triggers>
-        </Entry>
-        
-        <Button x:Name="VerifyButton" 
-                Grid.Row="4" 
-                HorizontalOptions="Center"
-                IsEnabled="False"
-                Text="Next"
-                Command="{Binding VerifyCommand}" >
-            <Button.Behaviors>
-                <behaviors:TimedSelfDisable />
-            </Button.Behaviors>
-        </Button>
-    </Grid>
+            </Grid.Triggers>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="AUTO" />
+                <RowDefinition Height="AUTO" />
+                <RowDefinition Height="AUTO" />
+                <RowDefinition Height="AUTO" />
+                <RowDefinition Height="AUTO" />
+            </Grid.RowDefinitions>
+
+            <StackLayout Grid.Row="0" Orientation="Horizontal"
+                         HorizontalOptions="CenterAndExpand">
+                <iconize:IconImage Icon="fa-circle" IconSize="10" IconColor="Black" Opacity="0.25" />
+                <iconize:IconImage Icon="fa-circle" IconSize="10" IconColor="#22C37C" />
+                <iconize:IconImage Icon="fa-circle" IconSize="10" IconColor="Black" Opacity="0.25" />
+            </StackLayout>
+
+            <Label Grid.Row="1" HorizontalOptions="Center"
+                   Margin="0, 15, 0, 0"
+                   VerticalTextAlignment="Center"
+                   Text="We have send you an SMS message with a code to the phonenumber above." />
+
+            <Label Grid.Row="2" HorizontalOptions="Center"
+                   Margin="0, 15, 0, 0"
+                   VerticalTextAlignment="Center"
+                   Text="To complete the verification of your phonenumber, please enter below the correct 6-digit code." />
+
+            <Entry x:Name="CodeEntry"
+                   Grid.Row="3"
+                   HorizontalOptions="Center"
+                   Keyboard="Numeric"
+                   Placeholder="Enter verification code"
+                   Text="{Binding VerificationCode, Mode=TwoWay, StringFormat='{0:###-###}'}">
+                <Entry.Behaviors>
+                    <behaviors:EntryForceNumeric />
+                    <behaviors:EntryMaxLength MaxLength="6" />
+                </Entry.Behaviors>
+                <Entry.Triggers>
+                    <EventTrigger Event="TextChanged">
+                        <triggers:EntryMinLengthTrigger MinLength="6"
+                                                        ToggleTarget="{x:Reference VerifyButton}" />
+                    </EventTrigger>
+                </Entry.Triggers>
+            </Entry>
+
+            <Button x:Name="VerifyButton"
+                    Grid.Row="4"
+                    HorizontalOptions="Center"
+                    IsEnabled="False"
+                    Text="Next"
+                    Command="{Binding VerifyCommand}">
+                <Button.Behaviors>
+                    <behaviors:TimedSelfDisable />
+                </Button.Behaviors>
+            </Button>
+        </Grid>
+    </ScrollView>
 </ContentPage>

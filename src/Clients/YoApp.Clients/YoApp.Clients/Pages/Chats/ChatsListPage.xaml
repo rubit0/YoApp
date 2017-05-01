@@ -1,24 +1,40 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:attached="clr-namespace:YoApp.Clients.Forms.Attached;assembly=YoApp.Clients"
+             xmlns:behaviors="clr-namespace:YoApp.Clients.Forms.Behaviors;assembly=YoApp.Clients"
+             xmlns:triggers="clr-namespace:YoApp.Clients.Forms.Triggers;assembly=YoApp.Clients"
              x:Class="YoApp.Clients.Pages.Chats.ChatsListPage"
-             Title="Chats" >
-  <ContentPage.ToolbarItems>
-    <ToolbarItem Text="✍️" Command="{Binding OpenFriendsListCommand}"/>
-  </ContentPage.ToolbarItems>
-  <ListView x:Name="ListView" 
-            ItemsSource="{Binding Pages}"
-            attached:TapGestureAttached.Command="{Binding OpenChatCommand}">
-    <ListView.ItemTemplate>
-      <DataTemplate>
-        <ViewCell>
-          <StackLayout>
-            <Label Text="{Binding Friend.DisplayName}"/>
-            <Label FontSize="10" TextColor="Blue" Text="{Binding Friend.StatusMessage}"/>
-          </StackLayout>
-        </ViewCell>
-      </DataTemplate>
-    </ListView.ItemTemplate>
-  </ListView>
+             Title="Chats">
+    <ContentPage.Icon>
+        <OnPlatform x:TypeArguments="FileImageSource">
+            <On Platform="iOS" Value="chat_filled.png" />
+        </OnPlatform>
+    </ContentPage.Icon>
+    <ContentPage.Triggers>
+        <EventTrigger Event="SizeChanged">
+            <triggers:PushFade Direction="Bottom" />
+        </EventTrigger>
+    </ContentPage.Triggers>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Icon="write.png" Command="{Binding OpenFriendsListCommand}" />
+    </ContentPage.ToolbarItems>
+    <ContentPage.Behaviors>
+        <behaviors:PageIconSwapper ImageFocus="chat_filled.png"
+                                   ImageNormal="chat.png" />
+    </ContentPage.Behaviors>
+    <ListView x:Name="ListView"
+              ItemsSource="{Binding Pages}"
+              attached:TapGestureAttached.Command="{Binding OpenChatCommand}">
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <ViewCell>
+                    <StackLayout>
+                        <Label Text="{Binding Friend.DisplayName}" />
+                        <Label FontSize="10" TextColor="Blue" Text="{Binding Friend.StatusMessage}" />
+                    </StackLayout>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
 </ContentPage>
