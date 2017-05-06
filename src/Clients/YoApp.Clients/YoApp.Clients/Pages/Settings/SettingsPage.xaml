@@ -6,12 +6,12 @@
              Title="Settings">
     <ContentPage.Icon>
         <OnPlatform x:TypeArguments="FileImageSource">
-            <On Platform="iOS" Value="Settings.png" />
+            <On Platform="iOS" Value="settings.png" />
         </OnPlatform>
     </ContentPage.Icon>
     <ContentPage.Behaviors>
-        <behaviors:PageIconSwapper ImageFocus="Settings_filled.png"
-                                   ImageNormal="Settings.png" />
+        <behaviors:PageIconSwapper ImageFocus="settings_filled.png"
+                                   ImageNormal="settings.png" />
     </ContentPage.Behaviors>
     <StackLayout>
         <Button x:Name="DebugButton" IsVisible="{StaticResource IsDebug}"
