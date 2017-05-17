@@ -8,7 +8,7 @@ using YoApp.Dtos.Verification;
 namespace YoApp.Clients.Manager
 {
     /// <summary>
-    /// Service to verify the AppUser on the intial setup flow
+    /// Service to verify the AppUser on the initial setup flow
     /// </summary>
     public class VerificationManager : IVerificationManager
     {
@@ -28,7 +28,7 @@ namespace YoApp.Clients.Manager
         /// </summary>
         /// <param name="countryCode">Clients local calling code</param>
         /// <param name="phonenumber">Clients phonenumber</param>
-        /// <returns>Rrequest accepted by server?</returns>
+        /// <returns>Request accepted by server?</returns>
         public async Task<bool> RequestVerificationCodeAsync(string countryCode, string phonenumber)
         {
             if(string.IsNullOrWhiteSpace(countryCode) || string.IsNullOrWhiteSpace(phonenumber))
@@ -63,7 +63,7 @@ namespace YoApp.Clients.Manager
         /// </summary>
         /// <param name="verificationCode">Verification code from the server send via SMS.</param>
         /// <param name="phoneNumber">Country code and phonenumber concatenated</param>
-        /// <param name="password">Password which should be a GIUD uppercase</param>
+        /// <param name="password">Password which should be a GUID uppercase</param>
         /// <returns></returns>
         public async Task<bool> ResolveVerificationCodeAsync(string verificationCode, string phoneNumber, string password)
         {

@@ -21,7 +21,7 @@ namespace YoApp.Clients.Services
         /// <summary>
         /// Sync from the backend downstream to this local user.
         /// </summary>
-        /// <returns>Accoutn object from backend.</returns>
+        /// <returns>Account object from backend.</returns>
         public async Task<UpdatedAccountDto> SyncDownAsync()
         {
             var request = new OAuth2BearerRequest("GET",

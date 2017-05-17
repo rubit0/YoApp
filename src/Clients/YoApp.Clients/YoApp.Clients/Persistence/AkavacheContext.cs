@@ -88,7 +88,7 @@ namespace YoApp.Clients.Persistence
         }
 
         /// <summary>
-        /// Get all objects for T as an IObservable to subsribe to it's completion callback.
+        /// Get all objects for T as an IObservable to subscribe to it's completion callback.
         /// Returns null if there are no objects for the given type.
         /// </summary>
         /// <returns>All objects of T wrapped in IObservable</returns>
@@ -101,7 +101,7 @@ namespace YoApp.Clients.Persistence
         /// <summary>
         /// Insert a new entity with the key provided by IAkavacheObject.
         /// </summary>
-        /// <param name="entity">enetity to insert</param>
+        /// <param name="entity">entity to insert</param>
         public virtual async Task Insert<T>(T entity) where T : class, IKeyProvider
         {
             await _blobCache
