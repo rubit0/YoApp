@@ -1,4 +1,5 @@
-![YoApp Logo](https://github.com/rubit0/YoApp/blob/master/assets/App%20Icons/export/splash_icon@2x.png?raw=true)
+![YoApp Logo](https://github.com/rubit0/YoApp/blob/master/assets/App%20Icons/export/splash_icon@2x.png?raw=true)  
+
 
 # YoApp
 YoApp is a WhatsApp style messaging suite that covers the whole stack from back-end to mobile-apps, batteries included!  
@@ -19,7 +20,11 @@ YoApp is primarily powered by microsoft open source technologies.
 * [Akavache](https://github.com/akavache)
 * [Realm](https://github.com/realm)
 * [Google libphonenumbers](https://github.com/googlei18n/libphonenumber)
-* [SimpleFormsAuth](https://github.com/rubit0/SimpleFormsAuth)-
+* [SimpleFormsAuth](https://github.com/rubit0/SimpleFormsAuth)
+
+### Mobile Client Media
+![](https://github.com/rubit0/YoApp/blob/master/assets/UI/yoapp_setup-intro.gif?raw=true) 
+![](https://github.com/rubit0/YoApp/blob/master/assets/UI/yoapp_setup-complete.gif?raw=true)
 
 ## Restoring this Project
 
