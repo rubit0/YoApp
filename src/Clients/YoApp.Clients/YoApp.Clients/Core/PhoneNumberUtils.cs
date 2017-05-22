@@ -3,6 +3,9 @@ using YoApp.Clients.Models;
 
 namespace YoApp.Clients.Core
 {
+    /// <summary>
+    /// Utils to handle raw phonenumbers.
+    /// </summary>
     public static class PhoneNumberUtils
     {
         private static readonly PhoneNumberUtil PhoneNumberUtil;

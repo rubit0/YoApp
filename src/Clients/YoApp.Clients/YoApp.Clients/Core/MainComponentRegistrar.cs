@@ -12,8 +12,15 @@ using Module = Autofac.Module;
 
 namespace YoApp.Clients.Core
 {
+    /// <summary>
+    /// Class that contains and builds this apps main componontents for AutoFac.
+    /// </summary>
     public class MainComponentRegistrar : Module
     {
+        /// <summary>
+        /// Build the main component container for this app.
+        /// </summary>
+        /// <returns>Container that contains all main components.</returns>
         public static async Task<IContainer> BuildContainerAsync()
         {
             var builder = new ContainerBuilder();

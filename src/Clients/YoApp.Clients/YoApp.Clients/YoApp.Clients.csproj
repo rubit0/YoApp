@@ -39,7 +39,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Core\AnimationExtensions.cs" />
+    <Compile Include="Core\Extensions\AnimationExtensions.cs" />
     <Compile Include="Core\FriendsComparer.cs" />
     <Compile Include="Core\MathHelper.cs" />
     <Compile Include="Forms\Behaviors\EntryForceNumeric.cs" />
@@ -143,8 +143,6 @@
     <Compile Include="ViewModels\Chats\ChatsListViewModel.cs" />
     <Compile Include="ViewModels\Chats\ChatViewModel.cs" />
     <Compile Include="ViewModels\Chats\FriendSelectionViewModel.cs" />
-    <Compile Include="ViewModels\Contacts\ContactDetailViewModel.cs" />
-    <Compile Include="ViewModels\Contacts\ContactsListViewModel.cs" />
     <Compile Include="Models\Friend.cs" />
     <Compile Include="ViewModels\ListViewGroups\ContactGroup.cs" />
     <Compile Include="ViewModels\Settings\ContactsSelectionViewModel.cs" />

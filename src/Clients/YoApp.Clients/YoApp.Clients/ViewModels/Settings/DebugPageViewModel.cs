@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Auth;
 using Xamarin.Forms;
-using YoApp.Clients.Core;
 using YoApp.Clients.Core.Extensions;
 using YoApp.Clients.Forms;
 using YoApp.Clients.Manager;

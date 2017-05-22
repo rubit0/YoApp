@@ -1,7 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using Xamarin.Forms;
-using YoApp.Clients.Core;
 using YoApp.Clients.Forms;
 using YoApp.Clients.Manager;
 using YoApp.Clients.Pages.Chats;

@@ -4,6 +4,9 @@ using YoApp.Clients.Models;
 
 namespace YoApp.Clients.Core
 {
+    /// <summary>
+    /// Compare Friends instances.
+    /// </summary>
     public class FriendsComparer : IEqualityComparer<Friend>
     {
         public bool Equals(Friend x, Friend y)

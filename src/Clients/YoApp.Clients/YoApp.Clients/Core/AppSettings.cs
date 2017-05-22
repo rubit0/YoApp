@@ -57,8 +57,6 @@ namespace YoApp.Clients.Core
                 Identity = settings.Identity;
                 Friends = settings.Friends;
                 Chat = settings.Chat;
-
-                settings = null;
             }
             else
             {
@@ -73,7 +71,6 @@ namespace YoApp.Clients.Core
         /// <summary>
         /// Load from an embedded json ressource.
         /// </summary>
-        /// <returns>AppSettings instance.</returns>
         private void LoadFromRessource(string relativePath = "YoApp.Clients.Ressources")
         {
             var name = (!ResourceKeys.IsDebug) 

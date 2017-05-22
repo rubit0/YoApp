@@ -71,7 +71,7 @@ namespace YoApp.Clients.StateMachine.States
 
             if (App.Settings.SetupFinished)
             {
-                await _friendsManager.LoadFriends();
+                await _friendsManager.LoadFriendsFromStore();
                 await _contactsManager.LoadContactsAsync();
                 await _friendsManager.ManageFriends(_contactsManager.Contacts);
                 await _chatService.Connect();

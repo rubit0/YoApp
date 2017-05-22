@@ -16,6 +16,7 @@ namespace YoApp.Clients.Models
         public string Id { get; private set; }
 
         public bool IsIncomming { get; set; }
+        //This prop uses int as workaround since RealmObject doesn't support enums
         public int DeliveryState { get; set; }
         public string Message { get; set; }
         public DateTimeOffset Date { get; private set; }
@@ -24,6 +25,11 @@ namespace YoApp.Clients.Models
         {
             Id = Guid.NewGuid().ToString();
             Date = DateTimeOffset.UtcNow;
+        }
+
+        public Delivery GetCurrentState()
+        {
+            return (Delivery) DeliveryState;
         }
     }
 }

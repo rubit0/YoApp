@@ -7,6 +7,9 @@ using YoApp.Clients.ViewModels.Setup;
 
 namespace YoApp.Clients.Core
 {
+    /// <summary>
+    /// Loads country emoji flags from a json ressource.
+    /// </summary>
     public class CountriesContext
     {
         public List<CountryViewModel> Countries { get; }

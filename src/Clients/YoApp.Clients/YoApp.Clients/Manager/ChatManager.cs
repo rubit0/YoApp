@@ -10,6 +10,9 @@ using YoApp.Clients.Services;
 
 namespace YoApp.Clients.Manager
 {
+    /// <summary>
+    /// Manages Chat Pages and relays incomming messages to chatbooks.
+    /// </summary>
     public class ChatManager : IChatManager, IDisposable
     {
         public ObservableCollection<ChatPage> Pages { get; set; }

@@ -2,7 +2,6 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Xamarin.Forms;
-using YoApp.Clients.Core;
 using YoApp.Clients.Forms;
 using YoApp.Clients.Manager;
 using YoApp.Clients.Models;

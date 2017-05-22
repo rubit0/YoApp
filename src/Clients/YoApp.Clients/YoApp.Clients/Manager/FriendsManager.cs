@@ -29,7 +29,7 @@ namespace YoApp.Clients.Manager
             Friends = new ObservableCollection<Friend>();
         }
 
-        public async Task LoadFriends()
+        public async Task LoadFriendsFromStore()
         {
             var friendsFromStore = await _keyValueStore.GetAll<Friend>() ?? new List<Friend>();
             foreach (var friend in friendsFromStore)

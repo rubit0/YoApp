@@ -4,6 +4,9 @@ using YoApp.Clients.Models;
 
 namespace YoApp.Clients.Core
 {
+    /// <summary>
+    /// Class to compate LocalContact instances.
+    /// </summary>
     public class ContactComparer : IEqualityComparer<LocalContact>, IComparer<LocalContact>
     {
         public enum CompareBy

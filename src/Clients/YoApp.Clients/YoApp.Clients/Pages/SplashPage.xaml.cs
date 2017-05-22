@@ -1,6 +1,7 @@
 ﻿using System;
 using Xamarin.Forms;
 using YoApp.Clients.Core;
+using YoApp.Clients.Core.Extensions;
 using YoApp.Clients.StateMachine.States;
 
 namespace YoApp.Clients.Pages
