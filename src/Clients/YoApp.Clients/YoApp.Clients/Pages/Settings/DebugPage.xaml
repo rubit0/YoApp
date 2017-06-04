@@ -1,46 +1,48 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="YoApp.Clients.Pages.Settings.DebugPage"
              NavigationPage.HasNavigationBar="True"
              Title="Debug Menu">
-  <TableView Intent="Settings">
-    <TableRoot>
-      <TableSection Title="Local User">
-        <TextCell Text="{Binding SetupComplete, StringFormat='Is completed: {0}'}" Detail="Setup complete" />
-        <TextCell Text="{Binding Nickname}" Detail="Nickname" />
-        <TextCell Text="{Binding FriendsAmount}" Detail="Friends count" />
-        <ViewCell>
-          <Button Text="Start Setup" Command="{Binding StartSetupCommand}" />
-        </ViewCell>
-      </TableSection>
-      <TableSection Title="Data">
-        <ViewCell>
-          <Button TextColor="Red" Text="Reset Settings" Command="{Binding ClearSettingsCommand}" />
-        </ViewCell>
-        <ViewCell>
-          <Button TextColor="Red" Text="💣 Clear SQL Tables" Command="{Binding ClearSqlTablesCommand}" />
-        </ViewCell>
-      </TableSection>
-      <TableSection Title="Authentication Account">
-        <TextCell Text="{Binding TokenType}" Detail="Token Type" />
-        <TextCell Text="{Binding TokenCreation}" Detail="Created" />
-        <TextCell Text="{Binding TokenExpiration}" Detail="Expires" />
-        <ViewCell>
-          <Button Text="Refresh Token" Command="{Binding RefreshTokenCommand}" />
-        </ViewCell>
-        <ViewCell>
-          <Button TextColor="Red" Text="💣 Delete Account" Command="{Binding DeleteAccountCommand}" />
-        </ViewCell>
-      </TableSection>
-      <TableSection Title="Service Backend">
-        <TextCell Text="{Binding BackendEndpoint}" Detail="URL" />
-        <TextCell Text="{Binding BackendPort}" Detail="Port" />
-        <TextCell Text="{Binding BackendTimeout, StringFormat='{0} ms'}" Detail="Timeout" />
-        <ViewCell>
-          <Button Text="Ping Backend" Command="{Binding PingBackendCommand}" />
-        </ViewCell>
-      </TableSection>
-    </TableRoot>
-  </TableView>
+    <TableView Intent="Settings">
+        <TableRoot>
+            <TableSection Title="Local User">
+                <TextCell Text="{Binding SetupComplete, StringFormat='Is completed: {0}'}" Detail="Setup complete" />
+                <TextCell Text="{Binding PhoneNumber}" Detail="Registered Phone" />
+                <TextCell Text="{Binding Nickname}" Detail="Nickname" />
+                <TextCell Text="{Binding StatusMessage}" Detail="Status Message" />
+                <TextCell Text="{Binding FriendsAmount}" Detail="Friends count" />
+                <ViewCell>
+                    <Button Text="Start Setup" Command="{Binding StartSetupCommand}" />
+                </ViewCell>
+            </TableSection>
+            <TableSection Title="Data">
+                <ViewCell>
+                    <Button TextColor="Red" Text="Reset Settings" Command="{Binding ClearSettingsCommand}" />
+                </ViewCell>
+                <ViewCell>
+                    <Button TextColor="Red" Text="💣 Delete Data" Command="{Binding DeleteDataCommand}" />
+                </ViewCell>
+            </TableSection>
+            <TableSection Title="Authentication Account">
+                <TextCell Text="{Binding TokenType}" Detail="Token Type" />
+                <TextCell Text="{Binding TokenCreation}" Detail="Created" />
+                <TextCell Text="{Binding TokenExpiration}" Detail="Expires" />
+                <ViewCell>
+                    <Button Text="Refresh Auth Token" Command="{Binding RefreshTokenCommand}" />
+                </ViewCell>
+                <ViewCell>
+                    <Button TextColor="Red" Text="💣 Delete Account" Command="{Binding DeleteAccountCommand}" />
+                </ViewCell>
+            </TableSection>
+            <TableSection Title="Service Backend">
+                <TextCell Text="{Binding BackendEndpoint}" Detail="URL" />
+                <TextCell Text="{Binding BackendPort}" Detail="Port" />
+                <TextCell Text="{Binding BackendTimeout, StringFormat='{0} ms'}" Detail="Timeout" />
+                <ViewCell>
+                    <Button Text="Ping Backend" Command="{Binding PingBackendCommand}" />
+                </ViewCell>
+            </TableSection>
+        </TableRoot>
+    </TableView>
 </ContentPage>

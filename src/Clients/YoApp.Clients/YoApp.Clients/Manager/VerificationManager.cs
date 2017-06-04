@@ -64,7 +64,7 @@ namespace YoApp.Clients.Manager
         /// <param name="verificationCode">Verification code from the server send via SMS.</param>
         /// <param name="phoneNumber">Country code and phonenumber concatenated</param>
         /// <param name="password">Password which should be a GUID uppercase</param>
-        /// <returns></returns>
+        /// <returns>Successful code resolution?</returns>
         public async Task<bool> ResolveVerificationCodeAsync(string verificationCode, string phoneNumber, string password)
         {
             if (string.IsNullOrWhiteSpace(verificationCode) 

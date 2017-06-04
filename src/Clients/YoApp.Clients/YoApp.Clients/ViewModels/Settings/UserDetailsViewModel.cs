@@ -9,7 +9,7 @@ using YoApp.Clients.Manager;
 
 namespace YoApp.Clients.ViewModels.Settings
 {
-    public class UserDetailsPageViewModel : INotifyPropertyChanged
+    public class UserDetailsViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -39,7 +39,7 @@ namespace YoApp.Clients.ViewModels.Settings
         private readonly IAppUserManager _appUserManager;
         private readonly IUserDialogs _userDialogs;
 
-        public UserDetailsPageViewModel(IAppUserManager appUserManager, IUserDialogs userDialogs)
+        public UserDetailsViewModel(IAppUserManager appUserManager, IUserDialogs userDialogs)
         {
             _appUserManager = appUserManager;
             _userDialogs = userDialogs;

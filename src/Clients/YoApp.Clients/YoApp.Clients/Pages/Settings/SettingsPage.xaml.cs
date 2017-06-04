@@ -13,7 +13,7 @@ namespace YoApp.Clients.Pages.Settings
             InitializeComponent();
             NavigationPage.SetHasBackButton(this, false);
 
-            BindingContext = App.Container.Resolve<SettingsPageViewModel>(
+            BindingContext = App.Container.Resolve<SettingsViewModel>(
                 new TypedParameter(typeof(IPageService), this));
             DebugButton.IsVisible = ResourceKeys.IsDebug;
         }

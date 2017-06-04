@@ -11,7 +11,7 @@ namespace YoApp.Clients.Pages.Settings
         public DebugPage()
         {
             InitializeComponent();
-            BindingContext = App.Container.Resolve<DebugPageViewModel>(
+            BindingContext = App.Container.Resolve<DebugViewModel>(
                 new TypedParameter(typeof(IPageService), this));
         }
     }

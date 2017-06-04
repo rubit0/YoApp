@@ -16,10 +16,12 @@ using YoApp.Clients.Services;
 
 namespace YoApp.Clients.ViewModels.Settings
 {
-    public class DebugPageViewModel
+    public class DebugViewModel
     {
         public bool SetupComplete => App.Settings.SetupFinished;
-        public string Nickname => AuthenticationService.AuthAccount?.Username ?? "NO USER";
+        public string PhoneNumber => _appUserManager.User.PhoneNumber ?? "No USER";
+        public string Nickname => _appUserManager.User.Nickname ?? "No USER";
+        public string StatusMessage => _appUserManager.User.Status ?? "No USER";
         public string FriendsAmount => _friendsManager.Friends.Count().ToString();
 
         public string TokenType => AuthenticationService.AuthAccount?.Tokentype() ?? "NO USER";
@@ -33,19 +35,21 @@ namespace YoApp.Clients.ViewModels.Settings
         public ICommand ExitCommand { get; private set; }
         public ICommand StartSetupCommand { get; private set; }
         public ICommand ClearSettingsCommand { get; private set; }
-        public ICommand ClearSqlTablesCommand { get; private set; }
+        public ICommand DeleteDataCommand { get; private set; }
         public ICommand RefreshTokenCommand { get; private set; }
         public ICommand DeleteAccountCommand { get; private set; }
         public ICommand PingBackendCommand { get; private set; }
 
         private readonly IPageService _pageService;
+        private readonly IAppUserManager _appUserManager;
         private readonly IFriendsManager _friendsManager;
         private readonly IKeyValueStore _keyValueStore;
         private readonly IRealmStore _realmStore;
 
-        public DebugPageViewModel(IPageService pageService, IKeyValueStore keyValueStore, IFriendsManager friendsManager, IRealmStore realmStore)
+        public DebugViewModel(IPageService pageService, IKeyValueStore keyValueStore, IAppUserManager appUserManager, IFriendsManager friendsManager, IRealmStore realmStore)
         {
             _pageService = pageService;
+            _appUserManager = appUserManager;
             _friendsManager = friendsManager;
             _realmStore = realmStore;
             _keyValueStore = keyValueStore;
@@ -58,7 +62,7 @@ namespace YoApp.Clients.ViewModels.Settings
             ExitCommand = new Command(() => Application.Current.MainPage = new NavigationPage(new MainPage()));
             StartSetupCommand = new Command(async () => await ResetSetup());
             ClearSettingsCommand = new Command(async () => await ClearSettings());
-            ClearSqlTablesCommand = new Command(async () => await DropSqlTables());
+            DeleteDataCommand = new Command(async () => await DropSqlTables());
             RefreshTokenCommand = new Command(async () => await RefreshToken(),
                 () => AuthenticationService.AuthAccount != null);
             DeleteAccountCommand = new Command(async () => await DeleteLocalAccount(),

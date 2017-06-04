@@ -1,17 +1,16 @@
 ﻿using System.Threading.Tasks;
 using Xamarin.Forms;
 using YoApp.Clients.Core;
-using YoApp.Clients.Core.EventArgs;
 using YoApp.Clients.Manager;
 using YoApp.Clients.Persistence;
 using YoApp.Clients.Services;
 
-namespace YoApp.Clients.StateMachine.States
+namespace YoApp.Clients.StateMachine.Behaviors
 {
     /// <summary>
     /// Manage App LifeCycle events.
     /// </summary>
-    public class LifeCycleState
+    public class MainAppBehavior : AppBehavior
     {
         private readonly IKeyValueStore _store;
         private readonly IAppUserManager _userManager;
@@ -19,9 +18,10 @@ namespace YoApp.Clients.StateMachine.States
         private readonly IFriendsManager _friendsManager;
         private readonly IChatService _chatService;
 
-        private bool _ignoreLifeCycleEvents;
+        private bool _isHandlingStart;
+        private bool _isHandlingSetup;
 
-        public LifeCycleState(IKeyValueStore store, IAppUserManager appUserManager, 
+        public MainAppBehavior(IKeyValueStore store, IAppUserManager appUserManager, 
             IContactsManager contactsManager, IFriendsManager friendsManager, IChatService chatService)
         {
             _store = store;
@@ -31,40 +31,14 @@ namespace YoApp.Clients.StateMachine.States
             _chatService = chatService;
         }
 
-        public async Task HandleState(Lifecycle state)
+        public override async Task OnStart()
         {
-            if(_ignoreLifeCycleEvents)
+            if(_isHandlingStart)
                 return;
 
-            switch (state)
-            {
-                case Lifecycle.Start:
-                    _ignoreLifeCycleEvents = true;
-                    await Start();
-                    _ignoreLifeCycleEvents = false;
-                    break;
-                case Lifecycle.Sleep:
-                    await Sleep();
-                    break;
-                case Lifecycle.Resume:
-                    await Resume();
-                    break;
-                case Lifecycle.SetupCompleted:
-                    _ignoreLifeCycleEvents = true;
-                    await HandleSetup();
-                    _ignoreLifeCycleEvents = false;
-                    break;
-                default:
-                    return;
-            }
-        }
+            _isHandlingStart = true;
 
-        private async Task Start()
-        {
             await _userManager.LoadUser();
-
-            if (AuthenticationService.CanRequestToken())
-                await AuthenticationService.RequestToken(true);
 
             Device.BeginInvokeOnMainThread(() =>
                 MessagingCenter.Send(this, MessagingEvents.AppLoadFinished, GetMainPage()));
@@ -76,32 +50,43 @@ namespace YoApp.Clients.StateMachine.States
                 await _friendsManager.ManageFriends(_contactsManager.Contacts);
                 await _chatService.Connect();
             }
+
+            _isHandlingStart = false;
         }
 
-        private async Task Sleep()
+        public override async Task OnSleep()
         {
             await _store.Persist();
         }
 
-        private async Task Resume()
+        public override async Task OnResume()
         {
             if(!App.Settings.SetupFinished)
                 return;
-            
-            if (AuthenticationService.CanRequestToken())
-                await AuthenticationService.RequestToken(true);
 
             if (await _contactsManager.LoadContactsAsync())
                 await _friendsManager.ManageFriends(_contactsManager.Contacts);
         }
 
+        public override async Task OnSetupComplete()
+        {
+            if(_isHandlingSetup)
+                return;
+
+            await HandleSetup();
+        }
+
         private async Task HandleSetup()
         {
+            _isHandlingSetup = true;
+
             await App.Settings.Persist();
             await _contactsManager.LoadContactsAsync();
             await _friendsManager.ManageFriends(_contactsManager.Contacts);
             await _chatService.Connect();
             await _store.Persist();
+
+            _isHandlingSetup = false;
         }
 
         private Page GetMainPage()

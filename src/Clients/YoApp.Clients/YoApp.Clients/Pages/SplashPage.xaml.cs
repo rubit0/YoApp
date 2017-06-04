@@ -2,7 +2,7 @@
 using Xamarin.Forms;
 using YoApp.Clients.Core;
 using YoApp.Clients.Core.Extensions;
-using YoApp.Clients.StateMachine.States;
+using YoApp.Clients.StateMachine.Behaviors;
 
 namespace YoApp.Clients.Pages
 {
@@ -18,7 +18,7 @@ namespace YoApp.Clients.Pages
         {
             InitializeComponent();
 
-            MessagingCenter.Subscribe<LifeCycleState, Page>(
+            MessagingCenter.Subscribe<MainAppBehavior, Page>(
                 this, 
                 MessagingEvents.AppLoadFinished, 
                 FadeOut);
@@ -43,8 +43,10 @@ namespace YoApp.Clients.Pages
 
         private void FadeOut(object sender, Page target)
         {
-            if(!_startAnimationComplete)
+            if (!_startAnimationComplete)
                 StartAnimationCompleteHandler += (o, args) => PresentExitAnimation(850, target);
+            else
+                PresentExitAnimation(850, target);
         }
 
         private void PresentEntryAnimation(uint duration)

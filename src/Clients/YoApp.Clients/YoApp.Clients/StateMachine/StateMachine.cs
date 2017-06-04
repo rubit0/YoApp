@@ -1,41 +1,52 @@
 ﻿using Plugin.Connectivity;
 using Plugin.Connectivity.Abstractions;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
+using Autofac;
 using Xamarin.Forms;
 using YoApp.Clients.Core;
 using YoApp.Clients.Core.EventArgs;
-using YoApp.Clients.StateMachine.States;
 using YoApp.Clients.ViewModels.Setup;
 
 namespace YoApp.Clients.StateMachine
 {
     /// <summary>
-    /// Manages all relevant states of the App.
+    /// Propagates app states to the underlying behaviors.
     /// </summary>
-    public class StateMachineController : IDisposable
+    public class StateMachine : IDisposable, IStartable
     {
-        private readonly LifeCycleState _lifeCycleState;
-        private readonly SchedulerState _schedulerState;
-        private readonly ConnectivityState _connectivityState;
+        private readonly BehaviorList _behaviors;
 
-        public StateMachineController(LifeCycleState lifeCycleState, SchedulerState schedulerState, 
-            ConnectivityState connectivityState)
+        public StateMachine(IEnumerable<AppBehavior> behaviors)
         {
-            _lifeCycleState = lifeCycleState;
-            _schedulerState = schedulerState;
-            _connectivityState = connectivityState;
+            _behaviors = new BehaviorList(behaviors);
         }
 
         private async Task OnLifeCycleChanged(LifecycleEventArgs eventArgs)
         {
-            _schedulerState.HandleState(eventArgs.State);
-            await _lifeCycleState.HandleState(eventArgs.State);
+            switch (eventArgs.State)
+            {
+                case Lifecycle.Start:
+                    await _behaviors.InvokeStart();
+                    break;
+                case Lifecycle.Sleep:
+                    await _behaviors.InvokeSleep();
+                    break;
+                case Lifecycle.Resume:
+                    await _behaviors.InvokeResume();
+                    break;
+                case Lifecycle.SetupCompleted:
+                    await _behaviors.InvokeSetupComplete();
+                    break;
+                default:
+                    break;
+            }
         }
 
         private async Task OnConnectivityChanged(ConnectivityChangedEventArgs eventArgs)
         {
-            await _connectivityState.HandleConnectivityState(eventArgs.IsConnected);
+            await _behaviors.InvokeConnectivity(eventArgs.IsConnected);
         }
 
         public void Start()
@@ -55,9 +66,6 @@ namespace YoApp.Clients.StateMachine
 
         public void Dispose()
         {
-            CrossConnectivity.Current.ConnectivityChanged -=
-                async (s, e) => await OnConnectivityChanged(e);
-
             MessagingCenter.Unsubscribe<VerificationViewModel>(this, MessagingEvents.UserCreated);
             MessagingCenter.Unsubscribe<App, LifecycleEventArgs>(this, MessagingEvents.LifecycleChanged);
         }

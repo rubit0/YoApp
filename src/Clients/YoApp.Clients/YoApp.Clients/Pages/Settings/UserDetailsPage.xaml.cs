@@ -10,7 +10,7 @@ namespace YoApp.Clients.Pages.Settings
         public UserDetailsPage()
         {
             InitializeComponent();
-            BindingContext = App.Container.Resolve<UserDetailsPageViewModel>(
+            BindingContext = App.Container.Resolve<UserDetailsViewModel>(
                 new TypedParameter(typeof(IPageService), this));
         }
     }

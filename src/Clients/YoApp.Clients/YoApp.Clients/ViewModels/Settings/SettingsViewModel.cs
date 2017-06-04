@@ -8,7 +8,7 @@ using YoApp.Clients.Services;
 
 namespace YoApp.Clients.ViewModels.Settings
 {
-    public class SettingsPageViewModel
+    public class SettingsViewModel
     {
         public string Nickname => _userManager.User?.Nickname ?? "";
         public string StatusMessage => _userManager.User?.Status ?? "";
@@ -19,7 +19,7 @@ namespace YoApp.Clients.ViewModels.Settings
 
         private readonly IAppUserManager _userManager;
 
-        public SettingsPageViewModel(IPageService pageService, IAppUserManager userManager)
+        public SettingsViewModel(IPageService pageService, IAppUserManager userManager)
         {
             _userManager = userManager;
 

@@ -20,10 +20,7 @@ namespace YoApp.Clients
 
         protected override async void OnStart()
         {
-            Container = await MainComponentRegistrar.BuildContainerAsync();
-            Settings = Container.Resolve<AppSettings>();
-            Container.Resolve<StateMachine.StateMachineController>().Start();
-
+            await Configure();
             SendLifeCycleEvent(Lifecycle.Start);
         }
 
@@ -38,6 +35,13 @@ namespace YoApp.Clients
         }
 
         #region Helpers
+        private async Task Configure()
+        {
+            Container = await MainComponentRegistrar.BuildContainerAsync();
+            Settings = Container.Resolve<AppSettings>();
+            Container.Resolve<StateMachine.StateMachine>().Start();
+        }
+
         private async void SendLifeCycleEvent(Lifecycle state)
         {
             await Task.Run(() =>

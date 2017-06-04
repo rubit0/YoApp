@@ -9,8 +9,7 @@ using YoApp.Clients.Core.Extensions;
 namespace YoApp.Clients.Services
 {
     /// <summary>
-    /// Service for getting and updating OAuth2 authentication token.
-    /// This class should be only used by other services that talk to the backend.
+    /// Service for fetching and updating the OAuth2 authentication token for the local account.
     /// </summary>
     public static class AuthenticationService
     {
@@ -34,7 +33,7 @@ namespace YoApp.Clients.Services
         /// </summary>
         /// <param name="username"></param>
         /// <param name="password"></param>
-        /// <returns>Returns successful state</returns>
+        /// <returns>Returns success state</returns>
         public static async Task<bool> RequestToken(string username, string password)
         {
             var authenticator = new OAuth2PasswordCredentialsAuthenticator(TokenEndpoint);
@@ -63,10 +62,10 @@ namespace YoApp.Clients.Services
         }
 
         /// <summary>
-        /// Request an new bearer token by using the credentials of an existing local account.
+        /// Request a new bearer token by using the credentials of an existing local account.
         /// </summary>
         /// <param name="force">Request a new token regardless if current token is valid.</param>
-        /// <returns>Returns successful state</returns>
+        /// <returns>Returns success state</returns>
         public static async Task<bool> RequestToken(bool force = false)
         {
             if (AuthAccount == null)

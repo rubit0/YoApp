@@ -8,6 +8,7 @@ using YoApp.Clients.Manager;
 using YoApp.Clients.Models;
 using YoApp.Clients.Persistence;
 using YoApp.Clients.Services;
+using YoApp.Clients.StateMachine;
 using Module = Autofac.Module;
 
 namespace YoApp.Clients.Core
@@ -33,7 +34,7 @@ namespace YoApp.Clients.Core
             //Misc
             builder.RegisterType<AppSettings>().As<IStartable>().AsSelf().SingleInstance();
             builder.RegisterType<ChatBook>().AsSelf();
-            builder.RegisterType<StateMachine.StateMachineController>().AsSelf().SingleInstance();
+            builder.RegisterType<StateMachine.StateMachine>().AsSelf().SingleInstance();
             builder.RegisterInstance(CrossContacts.Current).As<IContacts>().SingleInstance();
             builder.RegisterInstance(UserDialogs.Instance).As<IUserDialogs>().SingleInstance();
 
@@ -55,7 +56,7 @@ namespace YoApp.Clients.Core
 
             //Scan Assemblies
             var current = typeof(App).GetTypeInfo().Assembly;
-            builder.RegisterAssemblyTypes(current).Where(t => t.Name.EndsWith("State"));
+            builder.RegisterAssemblyTypes(current).Where(t => t.IsAssignableTo<AppBehavior>()).As<AppBehavior>();
             builder.RegisterAssemblyTypes(current).Where(t => t.Name.EndsWith("ViewModel"));
         }
     }
